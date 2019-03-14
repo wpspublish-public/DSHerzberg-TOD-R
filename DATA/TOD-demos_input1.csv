@@ -1,21 +1,21 @@
-﻿IDnum,Ageyear,Gender,PEL,Ethnicity,Region
-001,5,male,BA+,White,West
-002,38,female,HS grad,White,West
-003,14,female,Some college,Black,South
-004,22,male,Some college,Asian,Northeast
-005,7,male,Some college,Hispanic,Midwest
-006,7,male,BA+,Black,Midwest
-007,7,female,No HS deg,Black,Midwest
-008,9,female,No HS deg,White,South
-009,12,male,BA+,White,West
-010,11,female,BA+,White,South
-011,11,female,HS grad,Asian,Northeast
-012,7,male,HS grad,Hispanic,Northeast
-013,47,female,Some college,Hispanic,West
-014,59,female,BA+,Hispanic,South
-015,6,male,BA+,White,South
-016,6,male,No HS deg,White,Midwest
-017,24,female,HS grad,Black,South
-018,17,male,BA+,Black,West
-019,18,male,Some college,White,West
-020,18,female,HS grad,Hispanic,Northeast
+﻿IDnum,ageyear,gender,PEL,ethnic,region
+1,5,male,BA+,White,West
+2,38,female,HS grad,White,West
+3,14,female,Some college,Black,South
+4,22,male,Some college,Asian,Northeast
+5,7,male,Some college,Hispanic,Midwest
+6,7,male,BA+,Black,Midwest
+7,7,female,No HS deg,Black,Midwest
+8,9,female,No HS deg,White,South
+9,12,male,BA+,White,West
+10,11,female,BA+,White,South
+11,11,female,HS grad,Asian,Northeast
+12,7,male,HS grad,Hispanic,Northeast
+13,47,female,Some college,Hispanic,West
+14,59,female,BA+,Hispanic,South
+15,6,male,BA+,White,South
+16,6,male,No HS deg,White,Midwest
+17,24,female,HS grad,Black,South
+18,17,male,BA+,Black,West
+19,18,male,Some college,White,West
+20,18,female,HS grad,Hispanic,Northeast
