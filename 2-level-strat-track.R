@@ -9,7 +9,6 @@ library(magrittr) # PIPE OPERATORS
 suppressMessages(suppressWarnings(library(tidyverse)))
 suppressMessages(library(ggpmisc)) # EXTENSIONS TO ggplot2: ADD EQUATIONS AND FIT STATISTICS TO FITTED LINE PLOTS
 library(ggrepel) # MORE ggplot2 EXTENSIONS
-library(forcats) # FACTOR TOOLS
 
 
 TOD_demos <- suppressMessages(read_csv(here('DATA/TOD-demos_input1.csv'))) %>% arrange(ageyear) %>% 
