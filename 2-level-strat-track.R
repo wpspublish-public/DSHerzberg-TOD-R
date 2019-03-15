@@ -13,13 +13,18 @@ library(ggrepel) # MORE ggplot2 EXTENSIONS
 
 TOD_demos <- suppressMessages(read_csv(here('DATA/TOD-demos_input1.csv'))) %>% arrange(ageyear) %>% 
   mutate(agestrat = case_when(
-    ageyear <=24 ~ as.character(ageyear),
-    ageyear >=25 & ageyear <=40 ~ "25-40",
-    ageyear >=41 & ageyear <=50 ~ "41-50",
-    ageyear >=51 & ageyear <=60 ~ "51-60",
-    ageyear >=61 & ageyear <=70 ~ "61-70",
-    ageyear >=71 & ageyear <=80 ~ "71-80",
-    ageyear >=81 & ageyear <=90 ~ "81-90",
+    ageyear == 5 ~ "05",
+    ageyear == 6 ~ "06",
+    ageyear == 7 ~ "07",
+    ageyear == 8 ~ "08",
+    ageyear == 9 ~ "09",
+    ageyear >=10 & ageyear <=24 ~ as.character(ageyear),
+    ageyear >=25 & ageyear <=40 ~ "2540",
+    ageyear >=41 & ageyear <=50 ~ "4150",
+    ageyear >=51 & ageyear <=60 ~ "5160",
+    ageyear >=61 & ageyear <=70 ~ "6170",
+    ageyear >=71 & ageyear <=80 ~ "7180",
+    ageyear >=81 & ageyear <=90 ~ "8190",
     TRUE ~ NA_character_
-  )) %>% mutate_at(vars(agestrat), as.factor) %>% group_by(agestrat)
+  )) %>% group_by(agestrat)
 
