@@ -50,9 +50,16 @@ ethnic_input <- TOD_demos %>% select(agestrat, ethnic) %>%
   count(agestrat, ethnic) %>%
   spread(ethnic, n, fill = 0) %>% select(agestrat, Hispanic, Asian, Black, White, Other)
 
+# Next table shows how to pass char vec to dplyr::select.
+region_select <- c("agestrat", "Northeast", "South", "Midwest", "West")
+
 region_input <- TOD_demos %>% select(agestrat, region) %>%
   count(agestrat, region) %>%
-  spread(region, n, fill = 0) %>% select(agestrat, Northeast, South, Midwest, West)
+  spread(region, n, fill = 0) %>% select(agestrat, region_select)
+
+# region_input <- TOD_demos %>% select(agestrat, region) %>%
+#   count(agestrat, region) %>%
+#   spread(region, n, fill = 0) %>% select(agestrat, Northeast, South, Midwest, West)
 
 
 
