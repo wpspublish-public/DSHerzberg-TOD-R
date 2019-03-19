@@ -1,6 +1,7 @@
 # TOD: two-level demographic tracking
 
 suppressMessages(library(here)) # BEST WAY TO SPECIFY FILE PATHS
+library(data.table) # DATA READ-IN TOOLS
 library(reshape2) # RESHAPE DATA FROM WIDE TO TALL
 library(magrittr) # PIPE OPERATORS
 # note use of `suppressWarnings` to silence chatter during interactive session
@@ -28,11 +29,66 @@ TOD_demos <- suppressMessages(read_csv(here('DATA/TOD_demos_input1.csv'))) %>%
 
 # NEXT: MAKE THIS NEXT TABLE A STATIC COLUMN TABLE HOLDING ALL STATIC VALUES, INCLUDING CENSUS DEMO PERCENTAGES PER AGESTRAT
 
-# Initialize columns of target sample size per agestrat.
-target_n_age <- tibble(agestrat = c("06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", 
-                                       "18", "19", "20", "21", "22", "23", "24", "2540", "4150", "5160", "6170", "7180", "8190"),
-                          target_n = c(250, 250, 250, 250, 250, 225, 225, 225, 225, 225, 175, 175, 175, 175, 100, 
-                                       100, 100, 75, 75, 75, 75, 75, 75, 50, 50))
+# Initialize table of static columns: use bind_cols to paste tables side-by-side, there is no index var
+# so must be sure that columns are sorted on same var prior to past.
+static_columns <-
+  bind_cols(
+    tibble(
+      agestrat = c(
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "2540",
+        "4150",
+        "5160",
+        "6170",
+        "7180",
+        "8190"
+      )
+    ),
+    fread(here("DATA/TOD_Target_n_by_age.csv"), select = c("target_n")),
+    (
+      fread(
+        here("DATA/Age_x_gender_TOD_final.csv"),
+        select = c("male", "female")
+      ) %>%
+        rename(male_census_pct = male, female_census_pct = female)
+    ),
+    (
+      fread(
+        here("DATA/Age_x_region_TOD_final.csv"),
+        select = c("Northeast", "Midwest", "South", "West")
+      ) %>%
+        rename(
+          northeast_census_pct = Northeast,
+          midwest_census_pct = Midwest,
+          south_census_pct = South,
+          west_census_pct = West
+        ) %>%
+        select(
+          northeast_census_pct,
+          south_census_pct,
+          midwest_census_pct,
+          west_census_pct
+        )
+    )
+  )
 
 # Individual demo input tables
 
@@ -64,7 +120,8 @@ region_input <- TOD_demos %>% select(agestrat, region) %>%
 
 
 # join tally of males/females per agestrat to column of all agestrats, target sample sizes, replace `NA` with 0
-# gender_output <- left_join(target_n_age, gender_input) %>% mutate_if(is.numeric , replace_na, replace = 0) %>% 
+# gender_output <- left_join(static_columns, gender_input) %>% mutate_if(is.numeric , replace_na, replace = 0) %>% 
 #   mutate(still_needed = target_n - (male + female))
 # 
+
 
