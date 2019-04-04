@@ -1,8 +1,8 @@
 # TOD: two-level demographic tracking
 
 suppressMessages(library(here)) # BEST WAY TO SPECIFY FILE PATHS
-library(data.table) # DATA READ-IN TOOLS
-library(reshape2) # RESHAPE DATA FROM WIDE TO TALL
+suppressMessages(suppressWarnings(library(data.table))) # DATA READ-IN TOOLS
+suppressMessages(library(reshape2)) # RESHAPE DATA FROM WIDE TO TALL
 library(magrittr) # PIPE OPERATORS
 # note use of `suppressWarnings` to silence chatter during interactive session
 suppressMessages(suppressWarnings(library(tidyverse)))
@@ -26,11 +26,8 @@ TOD_demos <- suppressMessages(read_csv(here('DATA/TOD_demos_input1.csv'))) %>%
     TRUE ~ NA_character_
   )) %>% arrange(agestrat) %>% group_by(agestrat)
 
-
-# NEXT: MAKE THIS NEXT TABLE A STATIC COLUMN TABLE HOLDING ALL STATIC VALUES, INCLUDING CENSUS DEMO PERCENTAGES PER AGESTRAT
-
 # Initialize table of static columns: use bind_cols to paste tables side-by-side, there is no index var
-# so must be sure that columns are sorted on same var prior to past.
+# so must be sure that columns are sorted on same var prior to paste.
 static_columns <-
   bind_cols(
     tibble(
@@ -62,6 +59,8 @@ static_columns <-
         "8190"
       )
     ),
+    # Note use of `data.table::fread` to read in .csv, takes the arguments `select = c(vector of cols to keep)`, or
+    # `drop = c(vec of cols to drop)`
     fread(here("DATA/TOD_Target_n_by_age.csv"), select = c("target_n")),
     (
       fread(
@@ -72,23 +71,49 @@ static_columns <-
     ),
     (
       fread(
-        here("DATA/Age_x_region_TOD_final.csv"),
-        select = c("Northeast", "Midwest", "South", "West")
+        here("DATA/Age_x_PEL_TOD_final.csv"),
+        select = c("Less_than_HS", "HS_Degree", "Some_College", "BA_or_Higher")
       ) %>%
         rename(
-          northeast_census_pct = Northeast,
-          midwest_census_pct = Midwest,
-          south_census_pct = South,
-          west_census_pct = West
+          No_HS_deg_census_pct = Less_than_HS,
+          HS_grad_census_pct = HS_Degree,
+          Some_college_census_pct = Some_College,
+          BA_plus_census_pct = BA_or_Higher
+        )
+    ),
+    (
+      fread(
+        here("DATA/Age_x_race_TOD_final.csv"),
+        select = c("White", "Black", "Asian", "Other", "Hispanic")
+      ) %>%
+        rename(
+          White_census_pct = White,
+          Black_census_pct = Black,
+          Asian_census_pct = Asian,
+          Other_Multiracial_census_pct = Other,
+          Hispanic_census_pct = Hispanic
         ) %>%
         select(
-          northeast_census_pct,
-          south_census_pct,
-          midwest_census_pct,
-          west_census_pct
+          Hispanic_census_pct,
+          Asian_census_pct,
+          Black_census_pct,
+          White_census_pct,
+          Other_Multiracial_census_pct
         )
-    )
+    ),
+    (
+    fread(
+      here("DATA/Age_x_region_TOD_final.csv"),
+      select = c("Northeast", "Midwest", "South", "West")
+    ) %>%
+      rename(
+        northeast_census_pct = Northeast,
+        midwest_census_pct = Midwest,
+        south_census_pct = South,
+        west_census_pct = West
+      ) 
   )
+)
 
 # Individual demo input tables
 
@@ -96,31 +121,65 @@ static_columns <-
 # into multiple columns: (e.g., "male" and "female"), showing counts of each value of per agestrat.
 gender_input <- TOD_demos %>% select(agestrat, gender)  %>%
   count(agestrat, gender) %>%
-  spread(gender, n, fill = 0) %>% select(agestrat, male, female)
+  spread(gender, n, fill = 0) %>%
+  select(agestrat, male, female) %>%
+  rename(male_actual = male, female_actual = female)
 
 PEL_input <- TOD_demos %>% select(agestrat, PEL) %>%
   count(agestrat, PEL) %>%
-  spread(PEL, n, fill = 0) %>% select(agestrat, No_HS_deg, HS_grad, Some_college, BA_plus)
+  spread(PEL, n, fill = 0) %>%
+  select(agestrat, No_HS_deg, HS_grad, Some_college, BA_plus) %>%
+  rename(
+    No_HS_deg_actual = No_HS_deg,
+    HS_grad_actual = HS_grad,
+    Some_college_actual = Some_college,
+    BA_plus_actual = BA_plus
+  )
 
 ethnic_input <- TOD_demos %>% select(agestrat, ethnic) %>%
   count(agestrat, ethnic) %>%
-  spread(ethnic, n, fill = 0) %>% select(agestrat, Hispanic, Asian, Black, White, Other)
-
-# Next table shows how to pass char vec to dplyr::select.
-region_select <- c("agestrat", "Northeast", "South", "Midwest", "West")
+  spread(ethnic, n, fill = 0) %>%
+  select(agestrat, Hispanic, Asian, Black, White, Other) %>%
+  rename(
+    Hispanic_actual = Hispanic,
+    Asian_actual = Asian,
+    Black_actual = Black,
+    White_actual = White,
+    Other_multiracial_actual = Other
+  )
 
 region_input <- TOD_demos %>% select(agestrat, region) %>%
   count(agestrat, region) %>%
-  spread(region, n, fill = 0) %>% select(agestrat, region_select)
+  spread(region, n, fill = 0) %>%
+  select(agestrat, Northeast, South, Midwest, West) %>%
+  rename(
+    Northeast_actual = Northeast,
+    South_actual = South,
+    Midwest_actual = Midwest,
+    West_actual = West
+  )
 
-# region_input <- TOD_demos %>% select(agestrat, region) %>%
-#   count(agestrat, region) %>%
-#   spread(region, n, fill = 0) %>% select(agestrat, Northeast, South, Midwest, West)
-
-
+# NEXT RECODE NEGATIVE `_needed` NUMBERS TO 0.
 
 # join tally of males/females per agestrat to column of all agestrats, target sample sizes, replace `NA` with 0
-# gender_output <- left_join(static_columns, gender_input) %>% mutate_if(is.numeric , replace_na, replace = 0) %>% 
+gender_output <-
+  left_join(static_columns, gender_input, by = "agestrat") %>%
+  mutate_if(is.numeric , replace_na, replace = 0) %>%
+  mutate(
+    male_needed = round((target_n * male_census_pct) - male_actual, 0),
+    female_needed = round((target_n * female_census_pct) - female_actual, 0)
+  ) %>%
+  select(
+    agestrat,
+    target_n,
+    male_census_pct,
+    male_actual,
+    male_needed,
+    female_census_pct,
+    female_actual,
+    female_needed
+  )
+# %>% 
 #   mutate(still_needed = target_n - (male + female))
 # 
 
