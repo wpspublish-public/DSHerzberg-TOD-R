@@ -10,7 +10,8 @@ suppressMessages(library(ggpmisc)) # EXTENSIONS TO ggplot2: ADD EQUATIONS AND FI
 library(ggrepel) # MORE ggplot2 EXTENSIONS
 
 # Read input file of demos per case, sort by ageyear, compute agestrat, group by agestrat
-TOD_demos <- suppressMessages(read_csv(here('DATA/TOD_demos_input1.csv'))) %>%  
+# TOD_demos <- suppressMessages(read_csv(here('DATA/TOD_demos_input1.csv'))) %>%  
+TOD_demos <- suppressMessages(read_csv(here('DATA/TOD_demos_input_oversample.csv'))) %>%  
   mutate(agestrat = case_when(
     ageyear == 6 ~ "06",
     ageyear == 7 ~ "07",
@@ -65,9 +66,9 @@ static_columns <-
     (
       fread(
         here("DATA/Age_x_gender_TOD_final.csv"),
-        select = c("male", "female")
+        select = c("Male", "Female")
       ) %>%
-        rename(male_census_pct = male, female_census_pct = female)
+        rename(Male_census_pct = Male, Female_census_pct = Female)
     ),
     (
       fread(
@@ -90,7 +91,7 @@ static_columns <-
           White_census_pct = White,
           Black_census_pct = Black,
           Asian_census_pct = Asian,
-          Other_Multiracial_census_pct = Other,
+          Other_multiracial_census_pct = Other,
           Hispanic_census_pct = Hispanic
         ) %>%
         select(
@@ -98,7 +99,7 @@ static_columns <-
           Asian_census_pct,
           Black_census_pct,
           White_census_pct,
-          Other_Multiracial_census_pct
+          Other_multiracial_census_pct
         )
     ),
     (
@@ -107,10 +108,10 @@ static_columns <-
       select = c("Northeast", "Midwest", "South", "West")
     ) %>%
       rename(
-        northeast_census_pct = Northeast,
-        midwest_census_pct = Midwest,
-        south_census_pct = South,
-        west_census_pct = West
+        Northeast_census_pct = Northeast,
+        Midwest_census_pct = Midwest,
+        South_census_pct = South,
+        West_census_pct = West
       ) 
   )
 )
@@ -118,12 +119,12 @@ static_columns <-
 # Individual demo input tables
 
 # pull demo variable with agestrats from demo input file, spread gender values from single "gender" column 
-# into multiple columns: (e.g., "male" and "female"), showing counts of each value of per agestrat.
+# into multiple columns: (e.g., "Male" and "Female"), showing counts of each value of per agestrat.
 gender_input <- TOD_demos %>% select(agestrat, gender)  %>%
   count(agestrat, gender) %>%
   spread(gender, n, fill = 0) %>%
   select(agestrat, male, female) %>%
-  rename(male_actual = male, female_actual = female)
+  rename(Male_actual = male, Female_actual = female)
 
 PEL_input <- TOD_demos %>% select(agestrat, PEL) %>%
   count(agestrat, PEL) %>%
@@ -159,28 +160,69 @@ region_input <- TOD_demos %>% select(agestrat, region) %>%
     West_actual = West
   )
 
-# NEXT RECODE NEGATIVE `_needed` NUMBERS TO 0.
+# Initial char vec of final output columns in final order.
+final_output_cols <- c( "agestrat", "target_n", "Male_census_pct", "Male_actual", 
+                        "Male_needed", "Female_census_pct", "Female_actual", "Female_needed", 
+                        "No_HS_deg_census_pct", "No_HS_deg_actual", "No_HS_deg_needed", 
+                        "HS_grad_census_pct", "HS_grad_actual", "HS_grad_needed", "Some_college_census_pct", 
+                        "Some_college_actual", "Some_college_needed", "BA_plus_census_pct", "BA_plus_actual", 
+                        "BA_plus_needed", "Hispanic_census_pct", "Hispanic_actual", "Hispanic_needed", 
+                        "Asian_census_pct", "Asian_actual", "Asian_needed", "Black_census_pct", "Black_actual", 
+                        "Black_needed", "White_census_pct", "White_actual", "White_needed", 
+                        "Other_multiracial_census_pct", "Other_multiracial_actual", "Other_multiracial_needed", 
+                        "Northeast_census_pct", "Northeast_actual", "Northeast_needed", "South_census_pct", 
+                        "South_actual", "South_needed", "Midwest_census_pct", "Midwest_actual", 
+                        "Midwest_needed", "West_census_pct", "West_actual", "West_needed")
 
-# join tally of males/females per agestrat to column of all agestrats, target sample sizes, replace `NA` with 0
-gender_output <-
-  left_join(static_columns, gender_input, by = "agestrat") %>%
+# Final output table joins static columns with actual counts from each demo cat,
+# then calculates still needed count for each cat. To join multiple tables, put
+# them into a list and then use `purrr::reduce` to apply `dplyr::left_join` over
+# the list, indexing on a `by` var.
+TOD_2level_tracking_output <-
+  list(static_columns, gender_input, PEL_input, ethnic_input, region_input) %>% reduce(left_join, by = "agestrat") %>%
   mutate_if(is.numeric , replace_na, replace = 0) %>%
   mutate(
-    male_needed = round((target_n * male_census_pct) - male_actual, 0),
-    female_needed = round((target_n * female_census_pct) - female_actual, 0)
+    Male_needed = (target_n * Male_census_pct) - Male_actual,
+    Female_needed = (target_n * Female_census_pct) - Female_actual,
+    No_HS_deg_needed = (target_n * No_HS_deg_census_pct) - No_HS_deg_actual,
+    HS_grad_needed = (target_n * HS_grad_census_pct) - HS_grad_actual,
+    Some_college_needed = (target_n * Some_college_census_pct) - Some_college_actual,
+    BA_plus_needed = (target_n * BA_plus_census_pct) - BA_plus_actual,
+    Hispanic_needed = (target_n * Hispanic_census_pct) - Hispanic_actual,
+    Asian_needed = (target_n * Asian_census_pct) - Asian_actual,
+    Black_needed = (target_n * Black_census_pct) - Black_actual,
+    White_needed = (target_n * White_census_pct) - White_actual,
+    Other_multiracial_needed = (target_n * Other_multiracial_census_pct) - Other_multiracial_actual,
+    Northeast_needed = (target_n * Northeast_census_pct) - Northeast_actual,
+    South_needed = (target_n * South_census_pct) - South_actual,
+    Midwest_needed = (target_n * Midwest_census_pct) - Midwest_actual,
+    West_needed = (target_n * West_census_pct) - West_actual
+    ) %>%
+  select(final_output_cols) %>% 
+  # `mutate_at` applies funs over columns designated by
+  # `vars(contains("_needed"))`, i.e., only the columns specifying cases still
+  # needed for a given demographic category, in this case it finds any negative
+  # value in any cell, and recodes it to 0 using `case_when`, when it finds
+  # non-negative values (the `TRUE` argument - equivalent to ELSE),  it doesn't
+  # change the value: `.x` is a token for any cell value, `as.double` ensures
+  # output of `TRUE` is same data type as input.
+  mutate_at(vars(contains("_needed")),
+            ~ case_when(
+              .x < 0 ~ 0,
+              TRUE ~ as.double(.x)
+            )
   ) %>%
-  select(
-    agestrat,
-    target_n,
-    male_census_pct,
-    male_actual,
-    male_needed,
-    female_census_pct,
-    female_actual,
-    female_needed
-  )
-# %>% 
-#   mutate(still_needed = target_n - (male + female))
-# 
+  # In this `mutate`, `pmax` is used to get the maximum of a set of values,
+  # because the elements being evaluated are of different lengths, and using
+  # `max` would return incorrect values.
+  mutate(total_usable_cases = target_n - pmax((Male_needed + Female_needed),
+                                             (No_HS_deg_needed + HS_grad_needed + Some_college_needed + BA_plus_needed),
+                                             (Hispanic_needed + Asian_needed + Black_needed + White_needed + Other_multiracial_needed),
+                                             (Northeast_needed + South_needed + Midwest_needed + West_needed))) %>%
+  # save the rounding to the last step, so calculations can occur on unrounded
+  # numbers, use `mutate_at` with `vars` and `funs` args to provide correct
+  # arguments within pipe.
+  mutate_at(vars(contains("_needed"), total_usable_cases), funs(round(., 0)))
 
-
+# FINAL STEP: WRITE .CSV OUTPUT FILE, TEST
+  
