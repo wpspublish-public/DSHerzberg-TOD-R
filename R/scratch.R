@@ -1,4 +1,4 @@
-max((male_needed + female_needed),
-    (No_HS_deg_needed + HS_grad_needed + Some_college_needed + BA_plus_needed),
-    (Hispanic_needed + Asian_needed + Black_needed + White_needed + Other_multiracial_needed),
-    (Northeast_needed + South_needed + Midwest_needed + West_needed)))
+filename <- paste0("TOD_demo_tracking_output_", format(Sys.Date(), "%Y-%m-%d"), ".csv")
+
+path1<- file.path("/Users", "dherzberg", "Desktop", "TOD-R", "DATA", "OUPUT", "TOD_demo_tracking_output_2019-04-05.csv")
+

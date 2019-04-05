@@ -178,7 +178,7 @@ final_output_cols <- c( "agestrat", "target_n", "Male_census_pct", "Male_actual"
 # then calculates still needed count for each cat. To join multiple tables, put
 # them into a list and then use `purrr::reduce` to apply `dplyr::left_join` over
 # the list, indexing on a `by` var.
-TOD_2level_tracking_output <-
+TOD_demo_tracking_output <-
   list(static_columns, gender_input, PEL_input, ethnic_input, region_input) %>% reduce(left_join, by = "agestrat") %>%
   mutate_if(is.numeric , replace_na, replace = 0) %>%
   mutate(
@@ -224,5 +224,6 @@ TOD_2level_tracking_output <-
   # arguments within pipe.
   mutate_at(vars(contains("_needed"), total_usable_cases), funs(round(., 0)))
 
-# FINAL STEP: WRITE .CSV OUTPUT FILE, TEST
-  
+# Write output appended with date
+write_csv(TOD_demo_tracking_output, here(paste0("DATA/OUTPUT/TOD_demo_tracking_output_", format(Sys.Date(), "%Y-%m-%d"), ".csv")))
+
