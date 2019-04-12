@@ -1,13 +1,10 @@
-filename <- paste0("TOD_demo_tracking_output_", format(Sys.Date(), "%Y-%m-%d"), ".csv")
-
-path1<- file.path("/Users", "dherzberg", "Desktop", "TOD-R", "DATA", "OUPUT", "TOD_demo_tracking_output_2019-04-05.csv")
-
 TOD_demos <-
   suppressMessages(read_csv(here(
     'DATA/TOD_demos_input_AMK_2019-04-12.csv'
   ))) %>%
   mutate(
     agestrat = case_when(
+      ageyear == 5 ~ "05",
       ageyear == 6 ~ "06",
       ageyear == 7 ~ "07",
       ageyear == 8 ~ "08",

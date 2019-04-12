@@ -10,22 +10,62 @@ suppressMessages(library(ggpmisc)) # EXTENSIONS TO ggplot2: ADD EQUATIONS AND FI
 library(ggrepel) # MORE ggplot2 EXTENSIONS
 
 # Read input file of demos per case, sort by ageyear, compute agestrat, group by agestrat
-# TOD_demos <- suppressMessages(read_csv(here('DATA/TOD_demos_input1.csv'))) %>%  
-TOD_demos <- suppressMessages(read_csv(here('DATA/TOD_demos_input_oversample.csv'))) %>%  
-  mutate(agestrat = case_when(
-    ageyear == 6 ~ "06",
-    ageyear == 7 ~ "07",
-    ageyear == 8 ~ "08",
-    ageyear == 9 ~ "09",
-    ageyear >=10 & ageyear <=24 ~ as.character(ageyear),
-    ageyear >=25 & ageyear <=40 ~ "2540",
-    ageyear >=41 & ageyear <=50 ~ "4150",
-    ageyear >=51 & ageyear <=60 ~ "5160",
-    ageyear >=61 & ageyear <=70 ~ "6170",
-    ageyear >=71 & ageyear <=80 ~ "7180",
-    ageyear >=81 & ageyear <=90 ~ "8190",
-    TRUE ~ NA_character_
-  )) %>% arrange(agestrat) %>% group_by(agestrat)
+# TOD_demos <- suppressMessages(read_csv(here('DATA/TOD_demos_input1.csv'))) %>%
+TOD_demos <-
+  suppressMessages(read_csv(here(
+    'DATA/TOD_demos_input_AMK_2019-04-12.csv'
+  ))) %>%
+  mutate(
+    agestrat = case_when(
+      ageyear == 5 ~ "05",
+      ageyear == 6 ~ "06",
+      ageyear == 7 ~ "07",
+      ageyear == 8 ~ "08",
+      ageyear == 9 ~ "09",
+      ageyear >= 10 & ageyear <= 24 ~ as.character(ageyear),
+      ageyear >= 25 & ageyear <= 40 ~ "2540",
+      ageyear >= 41 & ageyear <= 50 ~ "4150",
+      ageyear >= 51 & ageyear <= 60 ~ "5160",
+      ageyear >= 61 & ageyear <= 70 ~ "6170",
+      ageyear >= 71 & ageyear <= 80 ~ "7180",
+      ageyear >= 81 & ageyear <= 90 ~ "8190",
+      TRUE ~ NA_character_
+    ),
+    PEL1 = case_when(
+      PEL == "Less than HS" ~ "Less_than_HS",
+      PEL == "High School" ~ "HS_degree",
+      PEL == "Some College (including Associate's Degree)" ~ "Some_College",
+      PEL == "Bachelors Degree (or higher)" ~ "BA_plus",
+      TRUE ~ NA_character_
+    ),
+    ethnic1 = case_when(hispanic == "Yes" ~ "Hispanic",
+                        TRUE ~ ethnic),
+    region = case_when(
+      inrange(zip, 1000, 8999) | inrange(zip, 10000, 19699) ~ "Northeast",
+      inrange(zip, 900, 999) |
+        inrange(zip,
+                19700,
+                33999) |
+        inrange(zip,
+                34100,
+                42799) |
+        inrange(zip, 70000, 79999) |
+        inrange(zip, 88500, 88599) ~ "South",
+      inrange(zip, 43000, 58999) |
+        inrange(zip, 60000, 69999) ~ "Midwest",
+      inrange(zip, 59000, 59999) |
+        inrange(zip,
+                80000,
+                88499) |
+        inrange(zip,
+                88900,
+                96199) |
+        inrange(zip, 96700, 96899) |
+        inrange(zip, 97000, 99999) ~ "West",
+      TRUE ~ NA_character_
+    )
+  ) %>% select(IDnum, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(ethnic = ethnic1, PEL = PEL1) %>%
+  arrange(agestrat) %>% group_by(agestrat)
 
 # Initialize table of static columns: use bind_cols to paste tables side-by-side, there is no index var
 # so must be sure that columns are sorted on same var prior to paste.
@@ -33,6 +73,7 @@ static_columns <-
   bind_cols(
     tibble(
       agestrat = c(
+        "05",
         "06",
         "07",
         "08",
@@ -123,8 +164,8 @@ static_columns <-
 gender_input <- TOD_demos %>% select(agestrat, gender)  %>%
   count(agestrat, gender) %>%
   spread(gender, n, fill = 0) %>%
-  select(agestrat, male, female) %>%
-  rename(Male_actual = male, Female_actual = female)
+  select(agestrat, Male, Female) %>%
+  rename(Male_actual = Male, Female_actual = Female)
 
 PEL_input <- TOD_demos %>% select(agestrat, PEL) %>%
   count(agestrat, PEL) %>%
