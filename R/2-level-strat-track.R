@@ -4,7 +4,6 @@ suppressMessages(library(here)) # BEST WAY TO SPECIFY FILE PATHS
 suppressMessages(suppressWarnings(library(data.table))) # DATA READ-IN TOOLS
 suppressMessages(library(reshape2)) # RESHAPE DATA FROM WIDE TO TALL
 library(magrittr) # PIPE OPERATORS
-# note use of `suppressWarnings` to silence chatter during interactive session
 suppressMessages(suppressWarnings(library(tidyverse)))
 suppressMessages(library(ggpmisc)) # EXTENSIONS TO ggplot2: ADD EQUATIONS AND FIT STATISTICS TO FITTED LINE PLOTS
 library(ggrepel) # MORE ggplot2 EXTENSIONS
@@ -34,12 +33,16 @@ TOD_demos <-
     PEL1 = case_when(
       PEL == "Less than HS" ~ "Less_than_HS",
       PEL == "High School" ~ "HS_degree",
-      PEL == "Some College (including Associate's Degree)" ~ "Some_College",
+      PEL == "Some College (including Associate's Degree)" ~ "Some_college",
       PEL == "Bachelors Degree (or higher)" ~ "BA_plus",
       TRUE ~ NA_character_
     ),
     ethnic1 = case_when(hispanic == "Yes" ~ "Hispanic",
-                        TRUE ~ ethnic),
+                        ethnic == "White or Caucasian" & hispanic == "No" ~ "White",
+                        ethnic == "Black or African American" & hispanic == "No" ~ "Black",
+                        ethnic == "Asian or Asian American" & hispanic == "No" ~ "Asian",
+                        ethnic == "Other / Multiracial" & hispanic == "No" ~ "Other",
+                        TRUE ~ NA_character_),
     region = case_when(
       inrange(zip, 1000, 8999) | inrange(zip, 10000, 19699) ~ "Northeast",
       inrange(zip, 900, 999) |
@@ -117,8 +120,8 @@ static_columns <-
         select = c("Less_than_HS", "HS_Degree", "Some_College", "BA_or_Higher")
       ) %>%
         rename(
-          No_HS_deg_census_pct = Less_than_HS,
-          HS_grad_census_pct = HS_Degree,
+          Less_than_HS_census_pct = Less_than_HS,
+          HS_degree_census_pct = HS_Degree,
           Some_college_census_pct = Some_College,
           BA_plus_census_pct = BA_or_Higher
         )
@@ -132,7 +135,7 @@ static_columns <-
           White_census_pct = White,
           Black_census_pct = Black,
           Asian_census_pct = Asian,
-          Other_multiracial_census_pct = Other,
+          Other_census_pct = Other,
           Hispanic_census_pct = Hispanic
         ) %>%
         select(
@@ -140,7 +143,7 @@ static_columns <-
           Asian_census_pct,
           Black_census_pct,
           White_census_pct,
-          Other_multiracial_census_pct
+          Other_census_pct
         )
     ),
     (
@@ -170,10 +173,10 @@ gender_input <- TOD_demos %>% select(agestrat, gender)  %>%
 PEL_input <- TOD_demos %>% select(agestrat, PEL) %>%
   count(agestrat, PEL) %>%
   spread(PEL, n, fill = 0) %>%
-  select(agestrat, No_HS_deg, HS_grad, Some_college, BA_plus) %>%
+  select(agestrat, Less_than_HS, HS_degree, Some_college, BA_plus) %>%
   rename(
-    No_HS_deg_actual = No_HS_deg,
-    HS_grad_actual = HS_grad,
+    Less_than_HS_actual = Less_than_HS,
+    HS_degree_actual = HS_degree,
     Some_college_actual = Some_college,
     BA_plus_actual = BA_plus
   )
@@ -187,7 +190,7 @@ ethnic_input <- TOD_demos %>% select(agestrat, ethnic) %>%
     Asian_actual = Asian,
     Black_actual = Black,
     White_actual = White,
-    Other_multiracial_actual = Other
+    Other_actual = Other
   )
 
 region_input <- TOD_demos %>% select(agestrat, region) %>%
@@ -204,13 +207,13 @@ region_input <- TOD_demos %>% select(agestrat, region) %>%
 # Initial char vec of final output columns in final order.
 final_output_cols <- c( "agestrat", "target_n", "Male_census_pct", "Male_actual", 
                         "Male_needed", "Female_census_pct", "Female_actual", "Female_needed", 
-                        "No_HS_deg_census_pct", "No_HS_deg_actual", "No_HS_deg_needed", 
-                        "HS_grad_census_pct", "HS_grad_actual", "HS_grad_needed", "Some_college_census_pct", 
+                        "Less_than_HS_census_pct", "Less_than_HS_actual", "Less_than_HS_needed", 
+                        "HS_degree_census_pct", "HS_degree_actual", "HS_degree_needed", "Some_college_census_pct", 
                         "Some_college_actual", "Some_college_needed", "BA_plus_census_pct", "BA_plus_actual", 
                         "BA_plus_needed", "Hispanic_census_pct", "Hispanic_actual", "Hispanic_needed", 
                         "Asian_census_pct", "Asian_actual", "Asian_needed", "Black_census_pct", "Black_actual", 
                         "Black_needed", "White_census_pct", "White_actual", "White_needed", 
-                        "Other_multiracial_census_pct", "Other_multiracial_actual", "Other_multiracial_needed", 
+                        "Other_census_pct", "Other_actual", "Other_needed", 
                         "Northeast_census_pct", "Northeast_actual", "Northeast_needed", "South_census_pct", 
                         "South_actual", "South_needed", "Midwest_census_pct", "Midwest_actual", 
                         "Midwest_needed", "West_census_pct", "West_actual", "West_needed")
@@ -225,15 +228,15 @@ TOD_demo_tracking_output <-
   mutate(
     Male_needed = (target_n * Male_census_pct) - Male_actual,
     Female_needed = (target_n * Female_census_pct) - Female_actual,
-    No_HS_deg_needed = (target_n * No_HS_deg_census_pct) - No_HS_deg_actual,
-    HS_grad_needed = (target_n * HS_grad_census_pct) - HS_grad_actual,
+    Less_than_HS_needed = (target_n * Less_than_HS_census_pct) - Less_than_HS_actual,
+    HS_degree_needed = (target_n * HS_degree_census_pct) - HS_degree_actual,
     Some_college_needed = (target_n * Some_college_census_pct) - Some_college_actual,
     BA_plus_needed = (target_n * BA_plus_census_pct) - BA_plus_actual,
     Hispanic_needed = (target_n * Hispanic_census_pct) - Hispanic_actual,
     Asian_needed = (target_n * Asian_census_pct) - Asian_actual,
     Black_needed = (target_n * Black_census_pct) - Black_actual,
     White_needed = (target_n * White_census_pct) - White_actual,
-    Other_multiracial_needed = (target_n * Other_multiracial_census_pct) - Other_multiracial_actual,
+    Other_needed = (target_n * Other_census_pct) - Other_actual,
     Northeast_needed = (target_n * Northeast_census_pct) - Northeast_actual,
     South_needed = (target_n * South_census_pct) - South_actual,
     Midwest_needed = (target_n * Midwest_census_pct) - Midwest_actual,
@@ -257,8 +260,8 @@ TOD_demo_tracking_output <-
   # because the elements being evaluated are of different lengths, and using
   # `max` would return incorrect values.
   mutate(total_usable_cases = target_n - pmax((Male_needed + Female_needed),
-                                             (No_HS_deg_needed + HS_grad_needed + Some_college_needed + BA_plus_needed),
-                                             (Hispanic_needed + Asian_needed + Black_needed + White_needed + Other_multiracial_needed),
+                                             (Less_than_HS_needed + HS_degree_needed + Some_college_needed + BA_plus_needed),
+                                             (Hispanic_needed + Asian_needed + Black_needed + White_needed + Other_needed),
                                              (Northeast_needed + South_needed + Midwest_needed + West_needed))) %>%
   # save the rounding to the last step, so calculations can occur on unrounded
   # numbers, use `mutate_at` with `vars` and `funs` args to provide correct
