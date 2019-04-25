@@ -9,11 +9,36 @@ suppressMessages(library(ggpmisc)) # EXTENSIONS TO ggplot2: ADD EQUATIONS AND FI
 library(ggrepel) # MORE ggplot2 EXTENSIONS
 
 # Read input file of demos per case, sort by ageyear, compute agestrat, group by agestrat
-# TOD_demos <- suppressMessages(read_csv(here('DATA/TOD_demos_input1.csv'))) %>%
-TOD_demos <-
+# All_demos <- suppressMessages(read_csv(here('DATA/All_demos_input1.csv'))) %>%
+# All_demos <-
+#   suppressMessages(read_csv(here(
+#     'DATA/All_demos_input_AMK_2019-04-12.csv'
+#   ))) %>%
+# read .csv, strip (filter) first row, select needed columns by position
+demos_input <-
   suppressMessages(read_csv(here(
-    'DATA/TOD_demos_input_AMK_2019-04-12.csv'
-  ))) %>%
+    'DATA/TOD_demos_input_AMK_2019-04-21.csv'
+  ))) %>% filter(!is.na(.[1])) %>% select(
+    10,
+    11,
+    12,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  )
+# strip all attributes and garbage from input table, transforms it into a list of char vecs
+attributes(demos_input) <- NULL
+# name vecs within list
+names(demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
+# transform list of named vecs into dataframe with list column (enframe),
+# transform into 2-col df with names, values cols (unnest), collapse into needed
+# output table with one column per variable (unstack), reorder and reformat vars
+All_demos <- demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>% 
+  select(IDnum, form, zip, ageyear, grade, gender, PEL, hispanic, ethnic) %>% 
+  mutate_at(vars(IDnum, zip, ageyear), funs(as.integer)) %>% 
   mutate(
     agestrat = case_when(
       ageyear == 5 ~ "05",
@@ -28,6 +53,11 @@ TOD_demos <-
       ageyear >= 61 & ageyear <= 70 ~ "6170",
       ageyear >= 71 & ageyear <= 80 ~ "7180",
       ageyear >= 81 & ageyear <= 90 ~ "8190",
+      TRUE ~ NA_character_
+    ),
+    form1 = case_when(
+      form == "TOD-S + TOD-E" ~ "TOD_E",
+      form == "TOD-S + TOD" ~ "TOD",
       TRUE ~ NA_character_
     ),
     PEL1 = case_when(
@@ -67,12 +97,16 @@ TOD_demos <-
         inrange(zip, 97000, 99999) ~ "West",
       TRUE ~ NA_character_
     )
-  ) %>% select(IDnum, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(ethnic = ethnic1, PEL = PEL1) %>%
-  arrange(agestrat) %>% group_by(agestrat)
+  ) %>% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(form = form1, ethnic = ethnic1, PEL = PEL1) %>%
+  arrange(agestrat, ageyear, IDnum) %>% group_by(agestrat)
+
+# Separate demos by form.
+TOD_demos <- All_demos %>% filter(form == "TOD")
+TOD_E_demos <- All_demos %>% filter(form == "TOD_E")
 
 # Initialize table of static columns: use bind_cols to paste tables side-by-side, there is no index var
 # so must be sure that columns are sorted on same var prior to paste.
-static_columns <-
+TOD_static_columns <-
   bind_cols(
     tibble(
       agestrat = c(
@@ -106,17 +140,17 @@ static_columns <-
     ),
     # Note use of `data.table::fread` to read in .csv, takes the arguments `select = c(vector of cols to keep)`, or
     # `drop = c(vec of cols to drop)`
-    fread(here("DATA/TOD_Target_n_by_age.csv"), select = c("target_n")),
+    fread(here("DATA/STATIC_COLUMNS/TOD_Target_n_by_age.csv"), select = c("target_n")),
     (
       fread(
-        here("DATA/Age_x_gender_TOD_final.csv"),
+        here("DATA/STATIC_COLUMNS/Age_x_gender_TOD_final.csv"),
         select = c("Male", "Female")
       ) %>%
         rename(Male_census_pct = Male, Female_census_pct = Female)
     ),
     (
       fread(
-        here("DATA/Age_x_PEL_TOD_final.csv"),
+        here("DATA/STATIC_COLUMNS/Age_x_PEL_TOD_final.csv"),
         select = c("Less_than_HS", "HS_Degree", "Some_College", "BA_or_Higher")
       ) %>%
         rename(
@@ -128,7 +162,7 @@ static_columns <-
     ),
     (
       fread(
-        here("DATA/Age_x_race_TOD_final.csv"),
+        here("DATA/STATIC_COLUMNS/Age_x_race_TOD_final.csv"),
         select = c("White", "Black", "Asian", "Other", "Hispanic")
       ) %>%
         rename(
@@ -148,7 +182,7 @@ static_columns <-
     ),
     (
     fread(
-      here("DATA/Age_x_region_TOD_final.csv"),
+      here("DATA/STATIC_COLUMNS/Age_x_region_TOD_final.csv"),
       select = c("Northeast", "Midwest", "South", "West")
     ) %>%
       rename(
@@ -160,17 +194,29 @@ static_columns <-
   )
 )
 
+TOD_E_static_columns <- TOD_static_columns %>% filter(agestrat %in% c("05", "06", "07", "08", "09")) %>% 
+  mutate_at(
+    vars(target_n), funs(case_when(
+      agestrat == "05" ~ 225,
+      agestrat == "06" ~ 225,
+      agestrat == "07" ~ 225,
+      agestrat == "08" ~ 225,
+      agestrat == "09" ~ 10,
+      TRUE ~ NA_real_
+    )))
+    
+
 # Individual demo input tables
 
 # pull demo variable with agestrats from demo input file, spread gender values from single "gender" column 
 # into multiple columns: (e.g., "Male" and "Female"), showing counts of each value of per agestrat.
-gender_input <- TOD_demos %>% select(agestrat, gender)  %>%
+gender_input <- All_demos %>% select(agestrat, gender)  %>%
   count(agestrat, gender) %>%
   spread(gender, n, fill = 0) %>%
   select(agestrat, Male, Female) %>%
   rename(Male_actual = Male, Female_actual = Female)
 
-PEL_input <- TOD_demos %>% select(agestrat, PEL) %>%
+PEL_input <- All_demos %>% select(agestrat, PEL) %>%
   count(agestrat, PEL) %>%
   spread(PEL, n, fill = 0) %>%
   select(agestrat, Less_than_HS, HS_degree, Some_college, BA_plus) %>%
@@ -181,7 +227,7 @@ PEL_input <- TOD_demos %>% select(agestrat, PEL) %>%
     BA_plus_actual = BA_plus
   )
 
-ethnic_input <- TOD_demos %>% select(agestrat, ethnic) %>%
+ethnic_input <- All_demos %>% select(agestrat, ethnic) %>%
   count(agestrat, ethnic) %>%
   spread(ethnic, n, fill = 0) %>%
   select(agestrat, Hispanic, Asian, Black, White, Other) %>%
@@ -193,7 +239,7 @@ ethnic_input <- TOD_demos %>% select(agestrat, ethnic) %>%
     Other_actual = Other
   )
 
-region_input <- TOD_demos %>% select(agestrat, region) %>%
+region_input <- All_demos %>% select(agestrat, region) %>%
   count(agestrat, region) %>%
   spread(region, n, fill = 0) %>%
   select(agestrat, Northeast, South, Midwest, West) %>%
@@ -223,7 +269,7 @@ final_output_cols <- c( "agestrat", "target_n", "Male_census_pct", "Male_actual"
 # them into a list and then use `purrr::reduce` to apply `dplyr::left_join` over
 # the list, indexing on a `by` var.
 TOD_demo_tracking_output <-
-  list(static_columns, gender_input, PEL_input, ethnic_input, region_input) %>% reduce(left_join, by = "agestrat") %>%
+  list(TOD_static_columns, gender_input, PEL_input, ethnic_input, region_input) %>% reduce(left_join, by = "agestrat") %>%
   mutate_if(is.numeric , replace_na, replace = 0) %>%
   mutate(
     Male_needed = (target_n * Male_census_pct) - Male_actual,

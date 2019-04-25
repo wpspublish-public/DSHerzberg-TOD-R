@@ -1,7 +1,8 @@
-TOD_demos <-
-  suppressMessages(as_tibble(read_csv(here(
+# read .csv, strip (filter) first row, select needed columns by position
+demos_input <-
+  suppressMessages(read_csv(here(
     'DATA/TOD_demos_input_AMK_2019-04-21.csv'
-  )))) %>% filter(!is.na(.[1])) %>% select(
+  ))) %>% filter(!is.na(.[1])) %>% select(
     10,
     11,
     12,
@@ -12,15 +13,39 @@ TOD_demos <-
     18,
     19
   )
-colnames(TOD_demos)[1:9] <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
+# strip all attributes and garbage from input table, transforms it into a list of char vecs
+attributes(demos_input) <- NULL
+# name vecs within list
+names(demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
+# transform list of named vecs into dataframe with list column (enframe),
+# transform into 2-col df with names, values cols (unnest), collapse into needed
+# output table with one column per variable (unstack), reorder and reformat vars
+TOD_demos <- demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>% 
+  select(IDnum, form, zip, ageyear, grade, gender, PEL, hispanic, ethnic) %>% 
+  mutate_at(vars(IDnum, zip, ageyear), funs(as.integer)) %>% 
 
-TOD_demos[] <- lapply(TOD_demos, function(x) { attributes(x) <- NULL; x })
-str(TOD_demos)
 
-df1[] <- lapply(df1, function(x) { attributes(x) <- NULL; x })
-str(df1)
 
-attributes(TOD_demos) <- NULL
+library(tidyverse)
+input <- tribble(
+  ~name, ~value,
+  "animal", "pig",
+  "animal", "dog",
+  "animal", "cat",
+  "plant", "tree",
+  "plant", "bush",
+  "plant", "flower"
+)
+
+output <- tribble(
+  ~animal, ~plant,
+  "pig", "tree",
+  "dog", "bush",
+  "cat", "flower"
+)
+
+df3 <- unstack(input, value ~ name)
+
 
 # columns: 10 (IDnum), 11 (form), 12 (zip), 14 (ageyear), 15 (grade), 16 (gender), 17 (PEL), 18 (hispanic), 19 (ethnic)
 
