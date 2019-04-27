@@ -101,12 +101,12 @@ All_demos <- demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>
   arrange(agestrat, ageyear, IDnum) %>% group_by(agestrat)
 
 # Separate demos by form.
-TOD_demos <- All_demos %>% filter(form == "TOD")
-TOD_E_demos <- All_demos %>% filter(form == "TOD_E")
+demos_TOD <- All_demos %>% filter(form == "TOD")
+demos_TOD_E <- All_demos %>% filter(form == "TOD_E")
 
 # Initialize table of static columns: use bind_cols to paste tables side-by-side, there is no index var
 # so must be sure that columns are sorted on same var prior to paste.
-TOD_static_columns <-
+static_columns_TOD <-
   bind_cols(
     tibble(
       agestrat = c(
@@ -194,7 +194,8 @@ TOD_static_columns <-
   )
 )
 
-TOD_E_static_columns <- TOD_static_columns %>% filter(agestrat %in% c("05", "06", "07", "08", "09")) %>% 
+# Create TOD_E static columns by filtering, recoding TOD columns.
+static_columns_TOD_E <- static_columns_TOD %>% filter(agestrat %in% c("05", "06", "07", "08", "09")) %>% 
   mutate_at(
     vars(target_n), funs(case_when(
       agestrat == "05" ~ 225,
@@ -208,49 +209,94 @@ TOD_E_static_columns <- TOD_static_columns %>% filter(agestrat %in% c("05", "06"
 
 # Individual demo input tables
 
-# pull demo variable with agestrats from demo input file, spread gender values from single "gender" column 
-# into multiple columns: (e.g., "Male" and "Female"), showing counts of each value of per agestrat.
-gender_input <- All_demos %>% select(agestrat, gender)  %>%
-  count(agestrat, gender) %>%
-  spread(gender, n, fill = 0) %>%
-  select(agestrat, Male, Female) %>%
-  rename(Male_actual = Male, Female_actual = Female)
+# pull demo variable with agestrats from demo input file, spread gender values
+# from single "gender" column into multiple columns: (e.g., "Male" and
+# "Female"), showing counts of each value of per agestrat. Initalize char vec of
+# form names to map and create separate demo_inputs for TOD, TOD_E. add_row
+# lines create extra rows for all possible levels of the demo variable. This is
+# necessary because small input files may not have cases with all levels of
+# region, say, which can cause downstream code to throw an error. add_rows
+# facilitiates the creation of a Northeast column (filled with 0 counts), even
+# when there are no cases from Northeast region. Along the way this generates a
+# row that is NA on agestrat, which is filtered out.
+frm <- c("TOD", "TOD_E")
+map(
+  frm,
+  ~
+    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, gender)  %>%
+    count(agestrat, gender) %>%
+    add_row(agestrat = NA_character_, gender = "Less_than_HS", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, gender = "HS_degree", n = NA_integer_) %>% 
+    spread(gender, n, fill = 0) %>%
+    filter(!is.na(agestrat)) %>% 
+    select(agestrat, Male, Female) %>%
+    rename(Male_actual = Male, Female_actual = Female) %>%
+    assign(paste0("gender_input_", .x), ., envir = .GlobalEnv)
+)
 
-PEL_input <- All_demos %>% select(agestrat, PEL) %>%
-  count(agestrat, PEL) %>%
-  spread(PEL, n, fill = 0) %>%
-  select(agestrat, Less_than_HS, HS_degree, Some_college, BA_plus) %>%
-  rename(
-    Less_than_HS_actual = Less_than_HS,
-    HS_degree_actual = HS_degree,
-    Some_college_actual = Some_college,
-    BA_plus_actual = BA_plus
-  )
+map(
+  frm,
+  ~
+    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, PEL)  %>%
+    count(agestrat, PEL) %>%
+    add_row(agestrat = NA_character_, PEL = "Less_than_HS", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, PEL = "HS_degree", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, PEL = "Some_college", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, PEL = "BA_plus", n = NA_integer_) %>% 
+    spread(PEL, n, fill = 0) %>%
+    filter(!is.na(agestrat)) %>% 
+    select(agestrat, Less_than_HS, HS_degree, Some_college, BA_plus) %>%
+    rename(
+      Less_than_HS_actual = Less_than_HS,
+      HS_degree_actual = HS_degree,
+      Some_college_actual = Some_college,
+      BA_plus_actual = BA_plus) %>% 
+    assign(paste0("PEL_input_", .x), ., envir = .GlobalEnv)
+)
 
-ethnic_input <- All_demos %>% select(agestrat, ethnic) %>%
-  count(agestrat, ethnic) %>%
-  spread(ethnic, n, fill = 0) %>%
-  select(agestrat, Hispanic, Asian, Black, White, Other) %>%
-  rename(
-    Hispanic_actual = Hispanic,
-    Asian_actual = Asian,
-    Black_actual = Black,
-    White_actual = White,
-    Other_actual = Other
-  )
+map(
+  frm,
+  ~
+    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, ethnic)  %>%
+    count(agestrat, ethnic) %>%
+    add_row(agestrat = NA_character_, ethnic = "Hispanic", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, ethnic = "Asian", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, ethnic = "Black", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, ethnic = "White", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, ethnic = "Other", n = NA_integer_) %>% 
+    spread(ethnic, n, fill = 0) %>%
+    filter(!is.na(agestrat)) %>% 
+    select(agestrat, Hispanic, Asian, Black, White, Other) %>%
+    rename(
+      Hispanic_actual = Hispanic,
+      Asian_actual = Asian,
+      Black_actual = Black,
+      White_actual = White,
+      Other_actual = Other) %>% 
+    assign(paste0("ethnic_input_", .x), ., envir = .GlobalEnv)
+)
 
-region_input <- All_demos %>% select(agestrat, region) %>%
-  count(agestrat, region) %>%
-  spread(region, n, fill = 0) %>%
-  select(agestrat, Northeast, South, Midwest, West) %>%
-  rename(
-    Northeast_actual = Northeast,
-    South_actual = South,
-    Midwest_actual = Midwest,
-    West_actual = West
-  )
+map(
+  frm,
+  ~
+    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, region)  %>%
+    count(agestrat, region) %>%
+    add_row(agestrat = NA_character_, region = "Northeast", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, region = "South", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, region = "Midwest", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, region = "West", n = NA_integer_) %>% 
+    spread(region, n, fill = 0) %>%
+    filter(!is.na(agestrat)) %>% 
+    select(agestrat, Northeast, South, Midwest, West) %>%
+    rename(
+      Northeast_actual = Northeast,
+      South_actual = South,
+      Midwest_actual = Midwest,
+      West_actual = West) %>% 
+    assign(paste0("region_input_", .x), ., envir = .GlobalEnv)
+)
 
-# Initial char vec of final output columns in final order.
+# Initialize char vec of final output columns in final order.
 final_output_cols <- c( "agestrat", "target_n", "Male_census_pct", "Male_actual", 
                         "Male_needed", "Female_census_pct", "Female_actual", "Female_needed", 
                         "Less_than_HS_census_pct", "Less_than_HS_actual", "Less_than_HS_needed", 
@@ -268,52 +314,75 @@ final_output_cols <- c( "agestrat", "target_n", "Male_census_pct", "Male_actual"
 # then calculates still needed count for each cat. To join multiple tables, put
 # them into a list and then use `purrr::reduce` to apply `dplyr::left_join` over
 # the list, indexing on a `by` var.
-TOD_demo_tracking_output <-
-  list(TOD_static_columns, gender_input, PEL_input, ethnic_input, region_input) %>% reduce(left_join, by = "agestrat") %>%
-  mutate_if(is.numeric , replace_na, replace = 0) %>%
-  mutate(
-    Male_needed = (target_n * Male_census_pct) - Male_actual,
-    Female_needed = (target_n * Female_census_pct) - Female_actual,
-    Less_than_HS_needed = (target_n * Less_than_HS_census_pct) - Less_than_HS_actual,
-    HS_degree_needed = (target_n * HS_degree_census_pct) - HS_degree_actual,
-    Some_college_needed = (target_n * Some_college_census_pct) - Some_college_actual,
-    BA_plus_needed = (target_n * BA_plus_census_pct) - BA_plus_actual,
-    Hispanic_needed = (target_n * Hispanic_census_pct) - Hispanic_actual,
-    Asian_needed = (target_n * Asian_census_pct) - Asian_actual,
-    Black_needed = (target_n * Black_census_pct) - Black_actual,
-    White_needed = (target_n * White_census_pct) - White_actual,
-    Other_needed = (target_n * Other_census_pct) - Other_actual,
-    Northeast_needed = (target_n * Northeast_census_pct) - Northeast_actual,
-    South_needed = (target_n * South_census_pct) - South_actual,
-    Midwest_needed = (target_n * Midwest_census_pct) - Midwest_actual,
-    West_needed = (target_n * West_census_pct) - West_actual
+map(
+  frm,
+  ~
+    list(
+      eval(as.name(paste0("static_columns_", .x))),
+      eval(as.name(paste0("gender_input_", .x))),
+      eval(as.name(paste0("PEL_input_", .x))),
+      eval(as.name(paste0("ethnic_input_", .x))),
+      eval(as.name(paste0("region_input_", .x)))
     ) %>%
-  select(final_output_cols) %>% 
-  # `mutate_at` applies funs over columns designated by
-  # `vars(contains("_needed"))`, i.e., only the columns specifying cases still
-  # needed for a given demographic category, in this case it finds any negative
-  # value in any cell, and recodes it to 0 using `case_when`, when it finds
-  # non-negative values (the `TRUE` argument - equivalent to ELSE),  it doesn't
-  # change the value: `.x` is a token for any cell value, `as.double` ensures
-  # output of `TRUE` is same data type as input.
-  mutate_at(vars(contains("_needed")),
-            ~ case_when(
-              .x < 0 ~ 0,
-              TRUE ~ as.double(.x)
-            )
-  ) %>%
-  # In this `mutate`, `pmax` is used to get the maximum of a set of values,
-  # because the elements being evaluated are of different lengths, and using
-  # `max` would return incorrect values.
-  mutate(total_usable_cases = target_n - pmax((Male_needed + Female_needed),
-                                             (Less_than_HS_needed + HS_degree_needed + Some_college_needed + BA_plus_needed),
-                                             (Hispanic_needed + Asian_needed + Black_needed + White_needed + Other_needed),
-                                             (Northeast_needed + South_needed + Midwest_needed + West_needed))) %>%
-  # save the rounding to the last step, so calculations can occur on unrounded
-  # numbers, use `mutate_at` with `vars` and `funs` args to provide correct
-  # arguments within pipe.
-  mutate_at(vars(contains("_needed"), total_usable_cases), funs(round(., 0)))
+    reduce(left_join, by = "agestrat") %>%
+    mutate_if(is.numeric , replace_na, replace = 0) %>%
+    mutate(
+      Male_needed = (target_n * Male_census_pct) - Male_actual,
+      Female_needed = (target_n * Female_census_pct) - Female_actual,
+      Less_than_HS_needed = (target_n * Less_than_HS_census_pct) - Less_than_HS_actual,
+      HS_degree_needed = (target_n * HS_degree_census_pct) - HS_degree_actual,
+      Some_college_needed = (target_n * Some_college_census_pct) - Some_college_actual,
+      BA_plus_needed = (target_n * BA_plus_census_pct) - BA_plus_actual,
+      Hispanic_needed = (target_n * Hispanic_census_pct) - Hispanic_actual,
+      Asian_needed = (target_n * Asian_census_pct) - Asian_actual,
+      Black_needed = (target_n * Black_census_pct) - Black_actual,
+      White_needed = (target_n * White_census_pct) - White_actual,
+      Other_needed = (target_n * Other_census_pct) - Other_actual,
+      Northeast_needed = (target_n * Northeast_census_pct) - Northeast_actual,
+      South_needed = (target_n * South_census_pct) - South_actual,
+      Midwest_needed = (target_n * Midwest_census_pct) - Midwest_actual,
+      West_needed = (target_n * West_census_pct) - West_actual
+    ) %>%
+    select(final_output_cols) %>%
+    # `mutate_at` applies funs over columns designated by
+    # `vars(contains("_needed"))`, i.e., only the columns specifying cases still
+    # needed for a given demographic category, in this case it finds any negative
+    # value in any cell, and recodes it to 0 using `case_when`, when it finds
+    # non-negative values (the `TRUE` argument - equivalent to ELSE),  it doesn't
+    # change the value: `.x` is a token for any cell value, `as.double` ensures
+    # output of `TRUE` is same data type as input.
+    mutate_at(vars(contains("_needed")),
+              ~ case_when(.x < 0 ~ 0,
+                          TRUE ~ as.double(.x))) %>%
+    # In this `mutate`, `pmax` is used to get the maximum of a set of values,
+    # because the elements being evaluated are of different lengths, and using
+    # `max` would return incorrect values.
+    mutate(total_usable_cases = target_n - pmax((Male_needed + Female_needed),
+                                                (
+                                                  Less_than_HS_needed + HS_degree_needed + Some_college_needed + BA_plus_needed
+                                                ),
+                                                (
+                                                  Hispanic_needed + Asian_needed + Black_needed + White_needed + Other_needed
+                                                ),
+                                                (Northeast_needed + South_needed + Midwest_needed + West_needed)
+    )) %>%
+    # save the rounding to the last step, so calculations can occur on unrounded
+    # numbers, use `mutate_at` with `vars` and `funs` args to provide correct
+    # arguments within pipe.
+    mutate_at(vars(contains("_needed"), total_usable_cases), funs(round(., 0))) %>%
+    assign(paste0("demo_tracking_output_", .x), ., envir = .GlobalEnv))
 
 # Write output appended with date
-write_csv(TOD_demo_tracking_output, here(paste0("DATA/OUTPUT/TOD_demo_tracking_output_", format(Sys.Date(), "%Y-%m-%d"), ".csv")))
-
+map(
+  frm,
+  ~
+    write_csv(eval(as.name(paste0("demo_tracking_output_", .x))), here(
+      paste0(
+        "DATA/OUTPUT/",
+        .x,
+        "_demo_tracking_output_",
+        format(Sys.Date(), "%Y-%m-%d"),
+        ".csv"
+      )
+    ))
+)
