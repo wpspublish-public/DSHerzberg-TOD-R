@@ -1,24 +1,15 @@
 # TOD: two-level demographic tracking
 
-suppressMessages(library(here)) # BEST WAY TO SPECIFY FILE PATHS
-suppressMessages(suppressWarnings(library(data.table))) # DATA READ-IN TOOLS
-suppressMessages(library(reshape2)) # RESHAPE DATA FROM WIDE TO TALL
-library(magrittr) # PIPE OPERATORS
+suppressMessages(library(here))
+suppressMessages(suppressWarnings(library(data.table)))
+suppressMessages(library(reshape2))
 suppressMessages(suppressWarnings(library(tidyverse)))
-suppressMessages(library(ggpmisc)) # EXTENSIONS TO ggplot2: ADD EQUATIONS AND FIT STATISTICS TO FITTED LINE PLOTS
-library(ggrepel) # MORE ggplot2 EXTENSIONS
 
 # Read input file of demos per case, sort by ageyear, compute agestrat, group by agestrat
-# All_demos <- suppressMessages(read_csv(here('DATA/All_demos_input1.csv'))) %>%
-# All_demos <-
-#   suppressMessages(read_csv(here(
-#     'DATA/All_demos_input_AMK_2019-04-12.csv'
-#   ))) %>%
-# read .csv, strip (filter) first row, select needed columns by position
 demos_input <-
-  suppressMessages(read_csv(here(
+  suppressMessages(suppressWarnings(read_csv(here(
     'DATA/TOD_demos_input_AMK_2019-04-21.csv'
-  ))) %>% filter(!is.na(.[1])) %>% select(
+  )))) %>% filter(!is.na(.[1])) %>% select(
     10,
     11,
     12,
@@ -38,7 +29,7 @@ names(demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "P
 # output table with one column per variable (unstack), reorder and reformat vars
 All_demos <- demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>% 
   select(IDnum, form, zip, ageyear, grade, gender, PEL, hispanic, ethnic) %>% 
-  mutate_at(vars(IDnum, zip, ageyear), funs(as.integer)) %>% 
+  mutate_at(vars(IDnum, zip, ageyear), as.integer) %>% 
   mutate(
     agestrat = case_when(
       ageyear == 5 ~ "05",
@@ -197,7 +188,7 @@ static_columns_TOD <-
 # Create TOD_E static columns by filtering, recoding TOD columns.
 static_columns_TOD_E <- static_columns_TOD %>% filter(agestrat %in% c("05", "06", "07", "08", "09")) %>% 
   mutate_at(
-    vars(target_n), funs(case_when(
+    vars(target_n), list(~case_when(
       agestrat == "05" ~ 225,
       agestrat == "06" ~ 225,
       agestrat == "07" ~ 225,
@@ -369,7 +360,7 @@ map(
     # save the rounding to the last step, so calculations can occur on unrounded
     # numbers, use `mutate_at` with `vars` and `funs` args to provide correct
     # arguments within pipe.
-    mutate_at(vars(contains("_needed"), total_usable_cases), funs(round(., 0))) %>%
+    mutate_at(vars(contains("_needed"), total_usable_cases), list(~round(., 0))) %>%
     assign(paste0("demo_tracking_output_", .x), ., envir = .GlobalEnv))
 
 # Write output appended with date
