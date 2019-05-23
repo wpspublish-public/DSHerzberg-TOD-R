@@ -1,5 +1,7 @@
 # TOD-R
 
+Start R by double-clicking TOD-R.Rproj in TOD-ANNIKA folder
+
 Prepare Survey Monkey download
 1. Save as .csv, NOT .xlsx
 2. File name: "TOD-demos-current-input.csv"
