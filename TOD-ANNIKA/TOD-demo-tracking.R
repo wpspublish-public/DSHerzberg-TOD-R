@@ -5,10 +5,11 @@ suppressMessages(suppressWarnings(library(data.table)))
 suppressMessages(library(reshape2))
 suppressMessages(suppressWarnings(library(tidyverse)))
 
-# Read input file of demos per case, sort by ageyear, compute agestrat, group by agestrat
-demos_input <-
+# Read in static file of demos per case from old survey closed out on
+# 2019-05-22, compute agestrat
+old_demos_input <-
   suppressMessages(suppressWarnings(read_csv(here(
-    'DATA/TOD_demos_input_AMK_2019-04-21.csv'
+    'TOD-ANNIKA/INPUT-FILES/TOD-old-demo-survey-2019-05-22.csv'
   )))) %>% filter(!is.na(.[1])) %>% select(
     10,
     11,
@@ -21,9 +22,9 @@ demos_input <-
     19
   )
 # strip all attributes and garbage from input table.
-attributes(demos_input) <- NULL
-names(demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
-All_demos <- demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>% 
+attributes(old_demos_input) <- NULL
+names(old_demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
+old_demos_input_2019_05_22 <- old_demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>% 
   select(IDnum, form, zip, ageyear, grade, gender, PEL, hispanic, ethnic) %>% 
   mutate_at(vars(IDnum, zip, ageyear), as.integer) %>% 
   mutate(
@@ -58,7 +59,8 @@ All_demos <- demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>
                         ethnic == "White or Caucasian" & hispanic == "No" ~ "White",
                         ethnic == "Black or African American" & hispanic == "No" ~ "Black",
                         ethnic == "Asian or Asian American" & hispanic == "No" ~ "Asian",
-                        ethnic == "Other / Multiracial" & hispanic == "No" ~ "Other",
+                        (ethnic == "Other / Multiracial" | ethnic == "American Indian or Alaska Native" | 
+                           ethnic == "Native Hawaiian or other Pacific Islander") & hispanic == "No" ~ "Other",
                         TRUE ~ NA_character_),
     region = case_when(
       inrange(zip, 1000, 8999) | inrange(zip, 10000, 19699) ~ "Northeast",
@@ -84,7 +86,92 @@ All_demos <- demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>
         inrange(zip, 97000, 99999) ~ "West",
       TRUE ~ NA_character_
     )
-  ) %>% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(form = form1, ethnic = ethnic1, PEL = PEL1) %>%
+  ) %>% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(form = form1, ethnic = ethnic1, PEL = PEL1)
+
+# Read in current demos per case from current survey, compute agestrat
+demos_input <-
+  suppressMessages(suppressWarnings(read_csv(here(
+    'TOD-ANNIKA/INPUT-FILES/TOD-demos-current-input.csv'
+  )))) %>% filter(!is.na(.[1])) %>% select(
+    10,
+    12,
+    13,
+    15,
+    23,
+    16,
+    22,
+    20,
+    21
+  )
+# strip all attributes and garbage from input table.
+attributes(demos_input) <- NULL
+names(demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
+current_demos_input <- demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>% 
+  select(IDnum, form, zip, ageyear, grade, gender, PEL, hispanic, ethnic) %>% 
+  mutate_at(vars(IDnum, zip, ageyear), as.integer) %>% 
+  mutate(
+    agestrat = case_when(
+      ageyear == 5 ~ "05",
+      ageyear == 6 ~ "06",
+      ageyear == 7 ~ "07",
+      ageyear == 8 ~ "08",
+      ageyear == 9 ~ "09",
+      ageyear >= 10 & ageyear <= 24 ~ as.character(ageyear),
+      ageyear >= 25 & ageyear <= 40 ~ "2540",
+      ageyear >= 41 & ageyear <= 50 ~ "4150",
+      ageyear >= 51 & ageyear <= 60 ~ "5160",
+      ageyear >= 61 & ageyear <= 70 ~ "6170",
+      ageyear >= 71 & ageyear <= 80 ~ "7180",
+      ageyear >= 81 & ageyear <= 90 ~ "8190",
+      TRUE ~ NA_character_
+    ),
+    form1 = case_when(
+      form == "TOD-S + TOD-E" ~ "TOD_E",
+      form == "TOD-S + TOD" ~ "TOD",
+      TRUE ~ NA_character_
+    ),
+    PEL1 = case_when(
+      PEL == "Did not complete high school" ~ "Less_than_HS",
+      PEL == "High school graduate/GED" ~ "HS_degree",
+      PEL == "Some College or associate's degree" ~ "Some_college",
+      PEL == "Bachelors degree or higher" ~ "BA_plus",
+      TRUE ~ NA_character_
+    ),
+    ethnic1 = case_when(hispanic == "Yes" ~ "Hispanic",
+                        ethnic == "White" & hispanic == "No" ~ "White",
+                        ethnic == "Black/African American" & hispanic == "No" ~ "Black",
+                        ethnic == "Asian" & hispanic == "No" ~ "Asian",
+                        (ethnic == "Other / Multiracial" | ethnic == "American Indian/Alaska Native" | 
+                           ethnic == "Native Hawaiian/Pacific Islander") & hispanic == "No" ~ "Other",
+                        TRUE ~ NA_character_),
+    region = case_when(
+      inrange(zip, 1000, 8999) | inrange(zip, 10000, 19699) ~ "Northeast",
+      inrange(zip, 900, 999) |
+        inrange(zip,
+                19700,
+                33999) |
+        inrange(zip,
+                34100,
+                42799) |
+        inrange(zip, 70000, 79999) |
+        inrange(zip, 88500, 88599) ~ "South",
+      inrange(zip, 43000, 58999) |
+        inrange(zip, 60000, 69999) ~ "Midwest",
+      inrange(zip, 59000, 59999) |
+        inrange(zip,
+                80000,
+                88499) |
+        inrange(zip,
+                88900,
+                96199) |
+        inrange(zip, 96700, 96899) |
+        inrange(zip, 97000, 99999) ~ "West",
+      TRUE ~ NA_character_
+    )
+  ) %>% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(form = form1, ethnic = ethnic1, PEL = PEL1)
+
+# Join old survey static table with new survey dynamic table, sort by ageyear, group by agestrat
+All_demos <- bind_rows(current_demos_input, old_demos_input_2019_05_22) %>%
   arrange(agestrat, ageyear, IDnum) %>% group_by(agestrat)
 
 # Separate demos by form.
@@ -336,7 +423,7 @@ map(
   ~
     write_csv(eval(as.name(paste0("demo_tracking_output_", .x))), here(
       paste0(
-        "DATA/OUTPUT/",
+        "TOD-ANNIKA/OUTPUT-FILES/",
         .x,
         "_demo_tracking_output_",
         format(Sys.Date(), "%Y-%m-%d"),
