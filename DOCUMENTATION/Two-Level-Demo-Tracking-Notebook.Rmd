@@ -1,11 +1,59 @@
-# TOD: two-level demographic tracking
+---
+title: "Using R to Track Two-Level Demographic Stratification"
+output: html_document
+---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+#### HOW TO USE THIS DOCUMENT:
+This R Notebook (.rmd) contains chunks of runnable code along with detailed analysis and documentation of the code and workflow. To use this Notebook, render (knit) it as an HTML document into the RStudio Viewer Pane:
+
+1. In RStudio Preferences, R Markdown section, set the `Show output preview in:` option to `Viewer Pane`.
+2. Knit the notebook using `File -> Knit Document`. This will produce a readable HTML version of this document in the Viewer Pane. 
+3. Close this Notebook (once you have the HTML in the Viewer, you no longer need the Notebook).
+4. Open a new R script in the Source Pane. This will serve as your working script, into which you can copy-and-paste code from the HTML.
+
+The HTML narrative is organized into sections reflecting discrete topics and operations in the R workflow. Each section has two parts:
+
+1. `VALID CODE TO RUN`: this code can be copy-and-pasted into your working R script. All file paths are relative to your R project folder.
+2. `COMMENTED CODE CHUNKS`: these snippets provide the analysis and documentation of the code and workflow. The R code in these snippets is redundant with that in `VALID CODE TO RUN` section. Here, it serves merely to enhance the code documenatation, and is not meant to be run.
+
+<br>
+
+#### UTILIZING RStudio PROJECTS AND DIRECTORY PATHS:
+To keep your work organized, set up a project in RStudio, by clicking File -> New Project. You'll be asked to specify a working directory associated with the project. To facilitate running the code of this project easily, locate input files in a folder named `INPUT-FILES`, within the working directory associated with this project. Also, create a folder named `OUTPUT-FILES`, within the working directory associated with this project.
+
+<br>
+
+#### PACKAGES
+
+Packages are the add-on features and functions that give R its power and versatility. To use the code in this notebook, install and load these packages:
+
+###### VALID CODE TO RUN
+```{r packages, message=FALSE}
 suppressMessages(library(here))
 suppressMessages(suppressWarnings(library(data.table)))
 suppressMessages(suppressWarnings(library(tidyverse)))
+```
+Note use of `suppressMessages` and `suppressWarnings` to silence chatter on the console.
 
-# Read in static file of demos per case from old survey closed out on
-# 2019-05-22, compute agestrat
+<br>
+
+#### CODE OVERVIEW
+This script takes as input .csv files downloaded from Survey Monkey containing demographic information for each case in a research sample. The script is set up to read in a static file of cases collected up to a certain timepoint, followed by a separate dynamic file of cases collected from that timepoint up to the present, and combine the two into a single input file. Required columns for the input files are: ID, form, zipcode, ageyear, gender, PEL, hispanic, and ethnicity.
+
+The data are recoded and processed to fill a demographic tracking table in which gender, PEL, race, and region are tabulated separately for each level of age stratification. All cells are filled simultaneously, allowing the data administer to evaluate whether potential incoming cases meet the remaining demographic needs of the sample. For each level of each demographic variable, output columns include number of cases collected, number of cases still neeeded, and the census percentage for that demographic value at that age level. The script generates separate output tables for each test form, saving tables as .csv in the `OUTPUT-FILES` folder.
+
+<br>
+
+#### Read in and recode .csv input data from a static data set
+
+###### VALID CODE TO RUN
+```{r static_input_read, eval=FALSE}
 old_demos_input <-
   suppressMessages(suppressWarnings(read_csv(here(
     'TOD-ANNIKA/INPUT-FILES/TOD-old-demo-survey-2019-05-22.csv'
@@ -20,7 +68,7 @@ old_demos_input <-
     18,
     19
   )
-# strip all attributes and garbage from input table.
+
 attributes(old_demos_input) <- NULL
 names(old_demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
 old_demos_input_2019_05_22 <- old_demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>% 
@@ -86,8 +134,37 @@ old_demos_input_2019_05_22 <- old_demos_input %>% enframe() %>% unnest() %>% uns
       TRUE ~ NA_character_
     )
   ) %>% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(form = form1, ethnic = ethnic1, PEL = PEL1)
+```
 
-# Read in current demos per case from current survey, compute agestrat
+###### COMMENTED CODE CHUNKS
+Input .csv is read in and assigned to `old_demos_input`. These data are piped into `filter`, which keeps rows identified by `!is.na(.[1])`, i.e., it keeps rows that are NOT missing on the first column `[1]` of the piped table `.`. `select` keeps only certain columns, identified by their numerical position number from left to right within the piped table.
+```{r static_input_read, echo=1:14, eval=FALSE}
+```
+Tables downloaded from Survey Monkey come loaded with garbage attributes that R picks up. Next snippet removes these attributes, first by assigning a `NULL` value to them using `attributes`, which also transforms the nine-column input table into a list of of 9 char vecs, each with a length equal to the number of rows in the input table. These unnamed vectors, which will be transformed back into columns of a data frame, are then given appropriate `names`. 
+
+A new, cleaned up input table `old_demos_input_2019_05_22` is then created by piping the list `old_demos_input` into `enframe()`, which turns the list into a two-column tibble, with a column of names and a list-column containing the nine char vecs. This table is then piped into `unnest()`, which expands it into a tall two-column table (`name` and `value`), in which each row contains a single value of a single variable, repeating through all the values of the first variable, and then continuing down the rows with all the values of the second variable, etc. This table is then piped into `unstack`, which collapses the tall table into a wide table in which each variable has its own named column containing its values.
+```{r static_input_read, echo=16:18, eval=FALSE}
+```
+`select` reorders columns, `mutate_at` converts certain variables to integer format `as.integer`.
+```{r static_input_read, echo=19:20, eval=FALSE}
+```
+`mutate` recodes the demographic variables to desired formats and values, using `case_when` for conditional recoding. General format of `case_when` is to specify the logical condition for applying a code (e.g., `ageyear >= 25 & ageyear <= 40`), and then use the formula symbol `~` to specify the code for that condition. The last line of `case_when` is `TRUE`, which is essentially a blanket "else" condition. `TRUE` must evaluate to the same variable format as the RHS of the other logical conditions. For example, if those conditions yield strings, and you wish `TRUE` to evaluate to `NA`, you would use `NA_character_`, and so forth.
+
+Another function to note in this snippet is `data.table::inrange` which takes three arguments, a variable, lower bound, and upper bound. It evaluates to logical `TRUE` if the value of the var is within the range delineated by the bounds. Those bounds are inclusive by default, they can be set to exclusive using the argument `incbounds = FALSE`.
+```{r static_input_read, echo=21:79, eval=FALSE}
+```
+
+
+<br>
+
+#### Read in and recode .csv input data from a dynamic, newly-updated data set
+
+The code below is analogous to the code in the previous section, so it will NOT be analyzed and documented separately.
+
+At the end of the code section below, the two input tables are joined into a single object `All_demos`, using `dplyr::bind_rows` to stack tables with same columns, different rows on top of one another. Two subsidiary objects, `demos_TOD` and `demos_TOD_E`, are created by filtering `All_demos` by form name.
+
+###### VALID CODE TO RUN
+```{r dynamic_input_read, eval=FALSE}
 demos_input <-
   suppressMessages(suppressWarnings(read_csv(here(
     'TOD-ANNIKA/INPUT-FILES/TOD-demos-current-input.csv'
@@ -102,7 +179,7 @@ demos_input <-
     20,
     21
   )
-# strip all attributes and garbage from input table.
+
 attributes(demos_input) <- NULL
 names(demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
 current_demos_input <- demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>% 
@@ -169,15 +246,19 @@ current_demos_input <- demos_input %>% enframe() %>% unnest() %>% unstack(value 
     )
   ) %>% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(form = form1, ethnic = ethnic1, PEL = PEL1)
 
-# Join old survey static table with new survey dynamic table, sort by ageyear, group by agestrat
 All_demos <- bind_rows(current_demos_input, old_demos_input_2019_05_22) %>%
   arrange(agestrat, ageyear, IDnum) %>% group_by(agestrat)
 
-# Separate demos by form.
 demos_TOD <- All_demos %>% filter(form == "TOD")
 demos_TOD_E <- All_demos %>% filter(form == "TOD_E")
+```
 
-# Initialize table of static columns.
+<br>
+
+#### Initialize static columns for output table
+
+###### VALID CODE TO RUN
+```{r static_columns, eval=FALSE}
 static_columns_TOD <-
   bind_cols(
     tibble(
@@ -264,7 +345,6 @@ static_columns_TOD <-
   )
 )
 
-# Create TOD_E static columns by filtering, recoding TOD columns.
 static_columns_TOD_E <- static_columns_TOD %>% filter(agestrat %in% c("05", "06", "07", "08", "09")) %>% 
   mutate_at(
     vars(target_n), list(~case_when(
@@ -275,159 +355,11 @@ static_columns_TOD_E <- static_columns_TOD %>% filter(agestrat %in% c("05", "06"
       agestrat == "09" ~ 10,
       TRUE ~ NA_real_
     )))
-    
+```
 
-# Individual demo input tables
-frm <- c("TOD", "TOD_E")
-map(
-  frm,
-  ~
-    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, gender)  %>%
-    count(agestrat, gender) %>%
-    add_row(agestrat = NA_character_, gender = "Less_than_HS", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, gender = "HS_degree", n = NA_integer_) %>% 
-    spread(gender, n, fill = 0) %>%
-    filter(!is.na(agestrat)) %>% 
-    select(agestrat, Male, Female) %>%
-    rename(Male_actual = Male, Female_actual = Female) %>%
-    assign(paste0("gender_input_", .x), ., envir = .GlobalEnv)
-)
+###### COMMENTED CODE CHUNKS
+Create a table of static columns `static_columns_TOD` that will be joined to the input data to create final output table. The data object is wrapped in `dplyr::bind_cols()` which joins a series of input vectors and data frames into a single table. In this application, `bind_cols` has no argument specifying an indexing term, so all input objects must be appropriately sorted before being joined.
 
-map(
-  frm,
-  ~
-    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, PEL)  %>%
-    count(agestrat, PEL) %>%
-    add_row(agestrat = NA_character_, PEL = "Less_than_HS", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, PEL = "HS_degree", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, PEL = "Some_college", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, PEL = "BA_plus", n = NA_integer_) %>% 
-    spread(PEL, n, fill = 0) %>%
-    filter(!is.na(agestrat)) %>% 
-    select(agestrat, Less_than_HS, HS_degree, Some_college, BA_plus) %>%
-    rename(
-      Less_than_HS_actual = Less_than_HS,
-      HS_degree_actual = HS_degree,
-      Some_college_actual = Some_college,
-      BA_plus_actual = BA_plus) %>% 
-    assign(paste0("PEL_input_", .x), ., envir = .GlobalEnv)
-)
-
-map(
-  frm,
-  ~
-    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, ethnic)  %>%
-    count(agestrat, ethnic) %>%
-    add_row(agestrat = NA_character_, ethnic = "Hispanic", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, ethnic = "Asian", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, ethnic = "Black", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, ethnic = "White", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, ethnic = "Other", n = NA_integer_) %>% 
-    spread(ethnic, n, fill = 0) %>%
-    filter(!is.na(agestrat)) %>% 
-    select(agestrat, Hispanic, Asian, Black, White, Other) %>%
-    rename(
-      Hispanic_actual = Hispanic,
-      Asian_actual = Asian,
-      Black_actual = Black,
-      White_actual = White,
-      Other_actual = Other) %>% 
-    assign(paste0("ethnic_input_", .x), ., envir = .GlobalEnv)
-)
-
-map(
-  frm,
-  ~
-    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, region)  %>%
-    count(agestrat, region) %>%
-    add_row(agestrat = NA_character_, region = "Northeast", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, region = "South", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, region = "Midwest", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, region = "West", n = NA_integer_) %>% 
-    spread(region, n, fill = 0) %>%
-    filter(!is.na(agestrat)) %>% 
-    select(agestrat, Northeast, South, Midwest, West) %>%
-    rename(
-      Northeast_actual = Northeast,
-      South_actual = South,
-      Midwest_actual = Midwest,
-      West_actual = West) %>% 
-    assign(paste0("region_input_", .x), ., envir = .GlobalEnv)
-)
-
-# Initialize char vec of final output columns in final order.
-final_output_cols <- c( "agestrat", "target_n", "Male_census_pct", "Male_actual", 
-                        "Male_needed", "Female_census_pct", "Female_actual", "Female_needed", 
-                        "Less_than_HS_census_pct", "Less_than_HS_actual", "Less_than_HS_needed", 
-                        "HS_degree_census_pct", "HS_degree_actual", "HS_degree_needed", "Some_college_census_pct", 
-                        "Some_college_actual", "Some_college_needed", "BA_plus_census_pct", "BA_plus_actual", 
-                        "BA_plus_needed", "Hispanic_census_pct", "Hispanic_actual", "Hispanic_needed", 
-                        "Asian_census_pct", "Asian_actual", "Asian_needed", "Black_census_pct", "Black_actual", 
-                        "Black_needed", "White_census_pct", "White_actual", "White_needed", 
-                        "Other_census_pct", "Other_actual", "Other_needed", 
-                        "Northeast_census_pct", "Northeast_actual", "Northeast_needed", "South_census_pct", 
-                        "South_actual", "South_needed", "Midwest_census_pct", "Midwest_actual", 
-                        "Midwest_needed", "West_census_pct", "West_actual", "West_needed")
-
-# Final output table joins static columns with actual counts from each demo cat,
-# then calculates still needed count for each cat. 
-map(
-  frm,
-  ~
-    list(
-      eval(as.name(paste0("static_columns_", .x))),
-      eval(as.name(paste0("gender_input_", .x))),
-      eval(as.name(paste0("PEL_input_", .x))),
-      eval(as.name(paste0("ethnic_input_", .x))),
-      eval(as.name(paste0("region_input_", .x)))
-    ) %>%
-    reduce(left_join, by = "agestrat") %>%
-    mutate_if(is.numeric , replace_na, replace = 0) %>%
-    mutate(
-      Male_needed = (target_n * Male_census_pct) - Male_actual,
-      Female_needed = (target_n * Female_census_pct) - Female_actual,
-      Less_than_HS_needed = (target_n * Less_than_HS_census_pct) - Less_than_HS_actual,
-      HS_degree_needed = (target_n * HS_degree_census_pct) - HS_degree_actual,
-      Some_college_needed = (target_n * Some_college_census_pct) - Some_college_actual,
-      BA_plus_needed = (target_n * BA_plus_census_pct) - BA_plus_actual,
-      Hispanic_needed = (target_n * Hispanic_census_pct) - Hispanic_actual,
-      Asian_needed = (target_n * Asian_census_pct) - Asian_actual,
-      Black_needed = (target_n * Black_census_pct) - Black_actual,
-      White_needed = (target_n * White_census_pct) - White_actual,
-      Other_needed = (target_n * Other_census_pct) - Other_actual,
-      Northeast_needed = (target_n * Northeast_census_pct) - Northeast_actual,
-      South_needed = (target_n * South_census_pct) - South_actual,
-      Midwest_needed = (target_n * Midwest_census_pct) - Midwest_actual,
-      West_needed = (target_n * West_census_pct) - West_actual
-    ) %>%
-    select(final_output_cols) %>%
-    mutate_at(vars(contains("_needed")),
-              ~ case_when(.x < 0 ~ 0,
-                          TRUE ~ as.double(.x))) %>%
-    mutate(total_usable_cases = target_n - pmax((Male_needed + Female_needed),
-                                                (
-                                                  Less_than_HS_needed + HS_degree_needed + Some_college_needed + BA_plus_needed
-                                                ),
-                                                (
-                                                  Hispanic_needed + Asian_needed + Black_needed + White_needed + Other_needed
-                                                ),
-                                                (Northeast_needed + South_needed + Midwest_needed + West_needed)
-    )) %>%
-    mutate_at(vars(contains("_needed"), total_usable_cases), list(~round(., 0))) %>%
-    assign(paste0("demo_tracking_output_", .x), ., envir = .GlobalEnv))
-
-# Write output appended with date
-map(
-  frm,
-  ~
-    write_csv(eval(as.name(paste0("demo_tracking_output_", .x))), here(
-      paste0(
-        "TOD-ANNIKA/OUTPUT-FILES/",
-        .x,
-        "_demo_tracking_output_",
-        format(Sys.Date(), "%Y-%m-%d"),
-        ".csv"
-      )
-    ))
-)
-rm(list = ls())
+The left-most column to be joined is a named char vec containing the levels of `agestrat`, wrapped in `tibble` to transform it into a data frame.
+```{r static_columns, echo=1:32, eval=FALSE}
+```
