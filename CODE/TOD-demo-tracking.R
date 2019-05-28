@@ -284,8 +284,8 @@ map(
   ~
     eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, gender)  %>%
     count(agestrat, gender) %>%
-    add_row(agestrat = NA_character_, gender = "Less_than_HS", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, gender = "HS_degree", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, gender = "Male", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, gender = "Female", n = NA_integer_) %>% 
     spread(gender, n, fill = 0) %>%
     filter(!is.na(agestrat)) %>% 
     select(agestrat, Male, Female) %>%

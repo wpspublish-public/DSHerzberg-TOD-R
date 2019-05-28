@@ -344,7 +344,6 @@ static_columns_TOD <-
       ) 
   )
 )
-
 static_columns_TOD_E <- static_columns_TOD %>% filter(agestrat %in% c("05", "06", "07", "08", "09")) %>% 
   mutate_at(
     vars(target_n), list(~case_when(
@@ -363,3 +362,102 @@ Create a table of static columns `static_columns_TOD` that will be joined to the
 The left-most column to be joined is a named char vec containing the levels of `agestrat`, wrapped in `tibble` to transform it into a data frame.
 ```{r static_columns, echo=1:32, eval=FALSE}
 ```
+The next column to be joined `TOD_Target_n_by_age.csv` is read in by `data.table::fread()`. This function allows you to read in a .csv, and using the `select` argument, keep only certain columns from the input `select = c("target_n")`. The code then proceeds to read in the next column to be joined `Age_x_gender_TOD_final.csv`, select only the `Male` and `Female` columns from the input, and then `rename` those columns for the output table. Note that with `dplyr::rename()`, the **new** name appears to the **left** of the equals sign.
+
+The snippet below is follwed by several other similar code blocks that read in columns for PEL, Race, and Region - these will not be documented separately.
+```{r static_columns, echo=33:39, eval=FALSE}
+```
+At this point, a table of static columns `static_columns_TOD` has been assembled for the TOD form of the test. A second table of static columns now needs to be created for the TOD_E form of the test. The next snippet accomplishes with `dplyr::filter()` to retain only the `agestrat` rows needed for the TOD_E, and then modifying the target n's for those age groups with `dplyr::mutate_at`. The `vars(target_n)` argument names the column to be modified, and the recoding is done by using the shorthand `list(~case_when())` to call `dplyr::case_when`. The latter function assigns a new value for `target_n` to each level of `agestrat` present on the static column table `static_columns_TOD_E`.
+```{r static_columns, echo=86:95, eval=FALSE}
+```
+
+<br>
+
+#### Initialize and format actual demographic count tables, by demographic variable
+
+Recall that previous code created two tables, `demos_TOD` and `demos_TOD_E`, containing the input demographic counts for each test form. The code below reorganizes this dynamic input data into columns suitable for joining with the static columns to create the final output table. The code does this separately for the four demographic variables (gender, PEL, race, and region), creating four interim tables for each form.
+
+###### VALID CODE TO RUN
+```{r demo_count, eval=FALSE}
+frm <- c("TOD", "TOD_E")
+map(
+  frm,
+  ~
+    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, gender)  %>%
+    count(agestrat, gender) %>%
+    add_row(agestrat = NA_character_, gender = "Less_than_HS", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, gender = "HS_degree", n = NA_integer_) %>% 
+    spread(gender, n, fill = 0) %>%
+    filter(!is.na(agestrat)) %>% 
+    select(agestrat, Male, Female) %>%
+    rename(Male_actual = Male, Female_actual = Female) %>%
+    assign(paste0("gender_input_", .x), ., envir = .GlobalEnv)
+)
+
+map(
+  frm,
+  ~
+    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, PEL)  %>%
+    count(agestrat, PEL) %>%
+    add_row(agestrat = NA_character_, PEL = "Less_than_HS", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, PEL = "HS_degree", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, PEL = "Some_college", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, PEL = "BA_plus", n = NA_integer_) %>% 
+    spread(PEL, n, fill = 0) %>%
+    filter(!is.na(agestrat)) %>% 
+    select(agestrat, Less_than_HS, HS_degree, Some_college, BA_plus) %>%
+    rename(
+      Less_than_HS_actual = Less_than_HS,
+      HS_degree_actual = HS_degree,
+      Some_college_actual = Some_college,
+      BA_plus_actual = BA_plus) %>% 
+    assign(paste0("PEL_input_", .x), ., envir = .GlobalEnv)
+)
+
+map(
+  frm,
+  ~
+    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, ethnic)  %>%
+    count(agestrat, ethnic) %>%
+    add_row(agestrat = NA_character_, ethnic = "Hispanic", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, ethnic = "Asian", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, ethnic = "Black", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, ethnic = "White", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, ethnic = "Other", n = NA_integer_) %>% 
+    spread(ethnic, n, fill = 0) %>%
+    filter(!is.na(agestrat)) %>% 
+    select(agestrat, Hispanic, Asian, Black, White, Other) %>%
+    rename(
+      Hispanic_actual = Hispanic,
+      Asian_actual = Asian,
+      Black_actual = Black,
+      White_actual = White,
+      Other_actual = Other) %>% 
+    assign(paste0("ethnic_input_", .x), ., envir = .GlobalEnv)
+)
+
+map(
+  frm,
+  ~
+    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, region)  %>%
+    count(agestrat, region) %>%
+    add_row(agestrat = NA_character_, region = "Northeast", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, region = "South", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, region = "Midwest", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, region = "West", n = NA_integer_) %>% 
+    spread(region, n, fill = 0) %>%
+    filter(!is.na(agestrat)) %>% 
+    select(agestrat, Northeast, South, Midwest, West) %>%
+    rename(
+      Northeast_actual = Northeast,
+      South_actual = South,
+      Midwest_actual = Midwest,
+      West_actual = West) %>% 
+    assign(paste0("region_input_", .x), ., envir = .GlobalEnv)
+)
+```
+
+
+ungroup(): inorder to process the input table here, the previous grouping by agestrat must be removed
+selec(): this op will process only the agestrat and gender columns
+count(): appends a new column `n` that has a count of males and females within each agestrat

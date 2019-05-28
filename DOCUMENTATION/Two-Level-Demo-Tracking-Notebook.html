@@ -591,7 +591,6 @@ demos_TOD_E &lt;- All_demos %&gt;% filter(form == &quot;TOD_E&quot;)</code></pre
       ) 
   )
 )
-
 static_columns_TOD_E &lt;- static_columns_TOD %&gt;% filter(agestrat %in% c(&quot;05&quot;, &quot;06&quot;, &quot;07&quot;, &quot;08&quot;, &quot;09&quot;)) %&gt;% 
   mutate_at(
     vars(target_n), list(~case_when(
@@ -639,6 +638,110 @@ static_columns_TOD_E &lt;- static_columns_TOD %&gt;% filter(agestrat %in% c(&quo
         &quot;8190&quot;
       )
     ),</code></pre>
+<p>The next column to be joined <code>TOD_Target_n_by_age.csv</code> is read in by <code>data.table::fread()</code>. This function allows you to read in a .csv, and using the <code>select</code> argument, keep only certain columns from the input <code>select = c(&quot;target_n&quot;)</code>. The code then proceeds to read in the next column to be joined <code>Age_x_gender_TOD_final.csv</code>, select only the <code>Male</code> and <code>Female</code> columns from the input, and then <code>rename</code> those columns for the output table. Note that with <code>dplyr::rename()</code>, the <strong>new</strong> name appears to the <strong>left</strong> of the equals sign.</p>
+<p>The snippet below is follwed by several other similar code blocks that read in columns for PEL, Race, and Region - these will not be documented separately.</p>
+<pre class="r"><code>    fread(here(&quot;DATA/STATIC_COLUMNS/TOD_Target_n_by_age.csv&quot;), select = c(&quot;target_n&quot;)),
+    (
+      fread(
+        here(&quot;DATA/STATIC_COLUMNS/Age_x_gender_TOD_final.csv&quot;),
+        select = c(&quot;Male&quot;, &quot;Female&quot;)
+      ) %&gt;%
+        rename(Male_census_pct = Male, Female_census_pct = Female)</code></pre>
+<p>At this point, a table of static columns <code>static_columns_TOD</code> has been assembled for the TOD form of the test. A second table of static columns now needs to be created for the TOD_E form of the test. The next snippet accomplishes with <code>dplyr::filter()</code> to retain only the <code>agestrat</code> rows needed for the TOD_E, and then modifying the target n’s for those age groups with <code>dplyr::mutate_at</code>. The <code>vars(target_n)</code> argument names the column to be modified, and the recoding is done by using the shorthand <code>list(~case_when())</code> to call <code>dplyr::case_when</code>. The latter function assigns a new value for <code>target_n</code> to each level of <code>agestrat</code> present on the static column table <code>static_columns_TOD_E</code>.</p>
+<pre class="r"><code>static_columns_TOD_E &lt;- static_columns_TOD %&gt;% filter(agestrat %in% c(&quot;05&quot;, &quot;06&quot;, &quot;07&quot;, &quot;08&quot;, &quot;09&quot;)) %&gt;% 
+  mutate_at(
+    vars(target_n), list(~case_when(
+      agestrat == &quot;05&quot; ~ 225,
+      agestrat == &quot;06&quot; ~ 225,
+      agestrat == &quot;07&quot; ~ 225,
+      agestrat == &quot;08&quot; ~ 225,
+      agestrat == &quot;09&quot; ~ 10,
+      TRUE ~ NA_real_
+    )))</code></pre>
+<p><br></p>
+</div>
+</div>
+<div id="initialize-and-format-actual-demographic-count-tables-by-demographic-variable" class="section level4">
+<h4>Initialize and format actual demographic count tables, by demographic variable</h4>
+<p>Recall that previous code created two tables, <code>demos_TOD</code> and <code>demos_TOD_E</code>, containing the input demographic counts for each test form. The code below reorganizes this dynamic input data into columns suitable for joining with the static columns to create the final output table. The code does this separately for the four demographic variables (gender, PEL, race, and region), creating four interim tables for each form.</p>
+<div id="valid-code-to-run-4" class="section level6">
+<h6>VALID CODE TO RUN</h6>
+<pre class="r"><code>frm &lt;- c(&quot;TOD&quot;, &quot;TOD_E&quot;)
+map(
+  frm,
+  ~
+    eval(as.name(paste0(&quot;demos_&quot;, .x))) %&gt;% ungroup() %&gt;% select(agestrat, gender)  %&gt;%
+    count(agestrat, gender) %&gt;%
+    add_row(agestrat = NA_character_, gender = &quot;Less_than_HS&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, gender = &quot;HS_degree&quot;, n = NA_integer_) %&gt;% 
+    spread(gender, n, fill = 0) %&gt;%
+    filter(!is.na(agestrat)) %&gt;% 
+    select(agestrat, Male, Female) %&gt;%
+    rename(Male_actual = Male, Female_actual = Female) %&gt;%
+    assign(paste0(&quot;gender_input_&quot;, .x), ., envir = .GlobalEnv)
+)
+
+map(
+  frm,
+  ~
+    eval(as.name(paste0(&quot;demos_&quot;, .x))) %&gt;% ungroup() %&gt;% select(agestrat, PEL)  %&gt;%
+    count(agestrat, PEL) %&gt;%
+    add_row(agestrat = NA_character_, PEL = &quot;Less_than_HS&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, PEL = &quot;HS_degree&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, PEL = &quot;Some_college&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, PEL = &quot;BA_plus&quot;, n = NA_integer_) %&gt;% 
+    spread(PEL, n, fill = 0) %&gt;%
+    filter(!is.na(agestrat)) %&gt;% 
+    select(agestrat, Less_than_HS, HS_degree, Some_college, BA_plus) %&gt;%
+    rename(
+      Less_than_HS_actual = Less_than_HS,
+      HS_degree_actual = HS_degree,
+      Some_college_actual = Some_college,
+      BA_plus_actual = BA_plus) %&gt;% 
+    assign(paste0(&quot;PEL_input_&quot;, .x), ., envir = .GlobalEnv)
+)
+
+map(
+  frm,
+  ~
+    eval(as.name(paste0(&quot;demos_&quot;, .x))) %&gt;% ungroup() %&gt;% select(agestrat, ethnic)  %&gt;%
+    count(agestrat, ethnic) %&gt;%
+    add_row(agestrat = NA_character_, ethnic = &quot;Hispanic&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, ethnic = &quot;Asian&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, ethnic = &quot;Black&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, ethnic = &quot;White&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, ethnic = &quot;Other&quot;, n = NA_integer_) %&gt;% 
+    spread(ethnic, n, fill = 0) %&gt;%
+    filter(!is.na(agestrat)) %&gt;% 
+    select(agestrat, Hispanic, Asian, Black, White, Other) %&gt;%
+    rename(
+      Hispanic_actual = Hispanic,
+      Asian_actual = Asian,
+      Black_actual = Black,
+      White_actual = White,
+      Other_actual = Other) %&gt;% 
+    assign(paste0(&quot;ethnic_input_&quot;, .x), ., envir = .GlobalEnv)
+)
+
+map(
+  frm,
+  ~
+    eval(as.name(paste0(&quot;demos_&quot;, .x))) %&gt;% ungroup() %&gt;% select(agestrat, region)  %&gt;%
+    count(agestrat, region) %&gt;%
+    add_row(agestrat = NA_character_, region = &quot;Northeast&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, region = &quot;South&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, region = &quot;Midwest&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, region = &quot;West&quot;, n = NA_integer_) %&gt;% 
+    spread(region, n, fill = 0) %&gt;%
+    filter(!is.na(agestrat)) %&gt;% 
+    select(agestrat, Northeast, South, Midwest, West) %&gt;%
+    rename(
+      Northeast_actual = Northeast,
+      South_actual = South,
+      Midwest_actual = Midwest,
+      West_actual = West) %&gt;% 
+    assign(paste0(&quot;region_input_&quot;, .x), ., envir = .GlobalEnv)
+)</code></pre>
 </div>
 </div>
 
