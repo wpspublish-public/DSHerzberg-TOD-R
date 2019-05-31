@@ -383,10 +383,10 @@ frm <- c("TOD", "TOD_E")
 map(
   frm,
   ~
-    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, gender)  %>%
+    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, gender) %>% filter(gender != "Other") %>%
     count(agestrat, gender) %>%
-    add_row(agestrat = NA_character_, gender = "Less_than_HS", n = NA_integer_) %>% 
-    add_row(agestrat = NA_character_, gender = "HS_degree", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, gender = "Male", n = NA_integer_) %>% 
+    add_row(agestrat = NA_character_, gender = "Female", n = NA_integer_) %>% 
     spread(gender, n, fill = 0) %>%
     filter(!is.na(agestrat)) %>% 
     select(agestrat, Male, Female) %>%
@@ -457,7 +457,28 @@ map(
 )
 ```
 
+###### COMMENTED CODE CHUNKS
+The snippet below creates the final output columns for the gender data, containing the actual counts of males and females in the study within each agestrat. The snippets for PEL, race, and region are analogous to this one, and so will not be documented separately.
 
-ungroup(): inorder to process the input table here, the previous grouping by agestrat must be removed
-selec(): this op will process only the agestrat and gender columns
-count(): appends a new column `n` that has a count of males and females within each agestrat
+Because there are separate output tables for the TOD and TOD_E test forms, the code initializes a char vec `frm` containing the names of the two forms. `purrr::map()` interates over this vector, creating two distinct output tables. The arguments to `map` are the vector to iterate over `frm`, and an anonymous function to be applied to that vector, designated by the shorthand `~`. Within that function, which constists of a set of functions chained together by the pipe operator `%>%`, `map` substitutes vector elements wherever the token `.x` appears. `map` iterates by running the anonymous function for the first element of `frm`, and then repeating for the second element of `frm`.
+
+`eval(as.name(paste0("demos_", .x)))` provides `map` with the name of the data object to be passed through the pipeline. `paste0` creates the string for the name, by pasting together `demos_` with the element from vector `frm` designated by `.x`. `as.name` coerces that string so that it is evaluated as the name of an object that exists in the global environment (e.g., `demos_TOD`). `eval` forces R to evaluate the string as the name of of a data object that can be piped into a function.
+
+The anonymous function designated by `~` transforms the gender data from the input table (e.g., `demos_TOD`) into columns required for the final output. `ungroup()` removes the previously-applied grouping by agestrat, which would interfere with the operation of subsequent functions. `select()` keeps `agestrat` and `gender` as the only columns piped forward. `filter()` drops rows containing the "Other" gender choice `(gender != "Other")`, so that those cases are not counted in the gender columns of the final output table (note that `filter()` also drops any cases that are missing (`NA`) on gender).
+
+`count()` collapses the data object into a summary table that contains two rows per agestrat, a `Male` row and a `Female` row. It appends a new column `n` that provides counts for each row of the summary table. `add_row()` adds two temporary additional rows, a `Male` row and a `Female` row. These temporary rows are `NA` for `agestrat` and `n`. These temporary rows in the summary table are needed to process input tables where there are no cases yet for a level of a demographic var (e.g., no Asians have yet been endrolled in the study). In this situation, without the temporary rows, the code would fail to generate a column for Asians in the final output tables. Once a study is far advanced enough that there are cases for each level of the demographic level, the `add_row()` lines become superfluous.
+
+`spread()` transforms the data object from a table with a single `gender` column to one with separate `Male` and `Female` columns containing the counts, by `agestrat`, for those values of `gender`. Prior to transformation, the data object has key-value pairs in a key column `gender`, and a value column `n`. `spread()` takes the names of the key and value columns as its first two arguments, and then drops these columns and creates new columns, one for each level of the key variable. The cells in these new `Male` and `Female` columns are populated by the counts from the value column `n`, within each agestrat. The resulting object now has a single row per agestrat, with columns showing the counts of males and females within each agestrat. This is the format required for the final output table. The `fill = 0` argument recodes missing (`NA`) counts to zero, so that all agestrats will be included in the table, even if there are no actual cases in those agestrats yet.
+
+
+```{r demo_count, echo=1:14, eval=FALSE}
+```
+
+
+
+spread(): at this point, the data object has key-value pairs in a key column (gender), and a value column (n). n gives the count of cases for each value of gender, within each agestrat. In spread(), the first two arguments give the names of the key and value columns, spread drops these columns and creates new columns, one for each level of the key var. The cells in those columsn are populated by the value from the value column (n) with each agestrat. So the resulting object now has a single row per agestrat,
+with columns showing how many males, females and NAs. The `fill = 0` argument recodes missing `NA` counts to zero, so that all agestrats will be included in the table, even if there are no cases in those agestrats yet.
+filter() cleans up table by removing an unneeded interim row that is missing on agestrat.
+select() keeps only agestrat, Male, and Female columns
+rename()provides column names needed for final output table (the actual count of cases received in the agestrat by gender cells)
+assign() is required to create an object in the global environment that can be manipulated by downstream code

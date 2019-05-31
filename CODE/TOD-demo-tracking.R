@@ -282,7 +282,7 @@ frm <- c("TOD", "TOD_E")
 map(
   frm,
   ~
-    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, gender)  %>%
+    eval(as.name(paste0("demos_", .x))) %>% ungroup() %>% select(agestrat, gender) %>% filter(gender != "Other") %>%
     count(agestrat, gender) %>%
     add_row(agestrat = NA_character_, gender = "Male", n = NA_integer_) %>% 
     add_row(agestrat = NA_character_, gender = "Female", n = NA_integer_) %>% 

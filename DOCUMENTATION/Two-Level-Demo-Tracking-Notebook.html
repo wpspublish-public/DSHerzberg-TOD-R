@@ -670,10 +670,10 @@ static_columns_TOD_E &lt;- static_columns_TOD %&gt;% filter(agestrat %in% c(&quo
 map(
   frm,
   ~
-    eval(as.name(paste0(&quot;demos_&quot;, .x))) %&gt;% ungroup() %&gt;% select(agestrat, gender)  %&gt;%
+    eval(as.name(paste0(&quot;demos_&quot;, .x))) %&gt;% ungroup() %&gt;% select(agestrat, gender) %&gt;% filter(gender != &quot;Other&quot;) %&gt;%
     count(agestrat, gender) %&gt;%
-    add_row(agestrat = NA_character_, gender = &quot;Less_than_HS&quot;, n = NA_integer_) %&gt;% 
-    add_row(agestrat = NA_character_, gender = &quot;HS_degree&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, gender = &quot;Male&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, gender = &quot;Female&quot;, n = NA_integer_) %&gt;% 
     spread(gender, n, fill = 0) %&gt;%
     filter(!is.na(agestrat)) %&gt;% 
     select(agestrat, Male, Female) %&gt;%
@@ -742,6 +742,30 @@ map(
       West_actual = West) %&gt;% 
     assign(paste0(&quot;region_input_&quot;, .x), ., envir = .GlobalEnv)
 )</code></pre>
+</div>
+<div id="commented-code-chunks-2" class="section level6">
+<h6>COMMENTED CODE CHUNKS</h6>
+<p>The snippet below creates the final output columns for the gender data, containing the actual counts of males and females in the study within each agestrat. The snippets for PEL, race, and region are analogous to this one, and so will not be documented separately.</p>
+<p>Because there are separate output tables for the TOD and TOD_E test forms, the code initializes a char vec <code>frm</code> containing the names of the two forms. <code>purrr::map()</code> interates over this vector, creating two distinct output tables. The arguments to <code>map</code> are the vector to iterate over <code>frm</code>, and an anonymous function to be applied to that vector, designated by the shorthand <code>~</code>. Within that function, which constists of a set of functions chained together by the pipe operator <code>%&gt;%</code>, <code>map</code> substitutes vector elements wherever the token <code>.x</code> appears. <code>map</code> iterates by running the anonymous function for the first element of <code>frm</code>, and then repeating for the second element of <code>frm</code>.</p>
+<p><code>eval(as.name(paste0(&quot;demos_&quot;, .x)))</code> provides <code>map</code> with the name of the data object to be passed through the pipeline. <code>paste0</code> creates the string for the name, by pasting together <code>demos_</code> with the element from vector <code>frm</code> designated by <code>.x</code>. <code>as.name</code> coerces that string so that it is evaluated as the name of an object that exists in the global environment (e.g., <code>demos_TOD</code>). <code>eval</code> forces R to evaluate the string as the name of of a data object that can be piped into a function.</p>
+<p>The anonymous function designated by <code>~</code> transforms the gender data from the input table (e.g., <code>demos_TOD</code>) into columns required for the final output. <code>ungroup()</code> removes the previously-applied grouping by agestrat, which would interfere with the operation of subsequent functions. <code>select()</code> keeps <code>agestrat</code> and <code>gender</code> as the only columns piped forward. <code>filter()</code> drops rows containing the “Other” gender choice <code>(gender != &quot;Other&quot;)</code>, so that those cases are not counted in the gender columns of the final output table (note that <code>filter()</code> also drops any cases that are missing (<code>NA</code>) on gender).</p>
+<p><code>count()</code> collapses the data object into a summary table that contains two rows per agestrat, a <code>Male</code> row and a <code>Female</code> row. It appends a new column <code>n</code> that provides counts for each row of the summary table. <code>add_row()</code> adds two temporary additional rows, a <code>Male</code> row and a <code>Female</code> row. These temporary rows are <code>NA</code> for <code>agestrat</code> and <code>n</code>. These temporary rows in the summary table are needed to process input tables where there are no cases yet for a level of a demographic var (e.g., no Asians have yet been endrolled in the study). In this situation, without the temporary rows, there would be no column for Asians in the final output tables. Once a study is far advanced enough that there are cases for each level of the demographic level, the <code>add_row()</code> lines become superfluous.</p>
+<p><code>spread()</code> transforms the data object from a table with a single <code>gender</code> column to one with separate <code>Male</code> and <code>Female</code> columns containing the counts, by <code>agestrat</code>, for those values of <code>gender</code>. Prior to transformation, the data object has key-value pairs in a key column <code>gender</code>, and a value column <code>n</code>. <code>spread()</code> takes the names of the key and value columns as its first two arguments, and then drops these columns and creates new columns, one for each level of the key variable. The cells in these new <code>Male</code> and <code>Female</code> columns are populated by the counts from the value column <code>n</code>, within each agestrat. The resulting object now has a single row per agestrat, with columns showing the counts of males and females within each agestrat. This is the format required for the final output table. The <code>fill = 0</code> argument recodes missing (<code>NA</code>) counts to zero, so that all agestrats will be included in the table, even if there are no actual cases in those agestrats yet.</p>
+<pre class="r"><code>frm &lt;- c(&quot;TOD&quot;, &quot;TOD_E&quot;)
+map(
+  frm,
+  ~
+    eval(as.name(paste0(&quot;demos_&quot;, .x))) %&gt;% ungroup() %&gt;% select(agestrat, gender) %&gt;% filter(gender != &quot;Other&quot;) %&gt;%
+    count(agestrat, gender) %&gt;%
+    add_row(agestrat = NA_character_, gender = &quot;Male&quot;, n = NA_integer_) %&gt;% 
+    add_row(agestrat = NA_character_, gender = &quot;Female&quot;, n = NA_integer_) %&gt;% 
+    spread(gender, n, fill = 0) %&gt;%
+    filter(!is.na(agestrat)) %&gt;% 
+    select(agestrat, Male, Female) %&gt;%
+    rename(Male_actual = Male, Female_actual = Female) %&gt;%
+    assign(paste0(&quot;gender_input_&quot;, .x), ., envir = .GlobalEnv)
+)</code></pre>
+<p>spread(): at this point, the data object has key-value pairs in a key column (gender), and a value column (n). n gives the count of cases for each value of gender, within each agestrat. In spread(), the first two arguments give the names of the key and value columns, spread drops these columns and creates new columns, one for each level of the key var. The cells in those columsn are populated by the value from the value column (n) with each agestrat. So the resulting object now has a single row per agestrat, with columns showing how many males, females and NAs. The <code>fill = 0</code> argument recodes missing <code>NA</code> counts to zero, so that all agestrats will be included in the table, even if there are no cases in those agestrats yet. filter() cleans up table by removing an unneeded interim row that is missing on agestrat. select() keeps only agestrat, Male, and Female columns rename()provides column names needed for final output table (the actual count of cases received in the agestrat by gender cells) assign() is required to create an object in the global environment that can be manipulated by downstream code</p>
 </div>
 </div>
 
