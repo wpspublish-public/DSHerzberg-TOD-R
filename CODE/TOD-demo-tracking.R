@@ -91,7 +91,7 @@ old_demos_input_2019_05_22 <- old_demos_input %>% enframe() %>% unnest() %>% uns
 demos_input <-
   suppressMessages(suppressWarnings(read_csv(here(
     'TOD-ANNIKA/INPUT-FILES/TOD-demos-current-input.csv'
-  )))) %>% filter(!is.na(.[1])) %>% select(
+  )))) %>% filter(!is.na(.[1]) & .[15] >= 5) %>% select(
     10,
     12,
     13,
