@@ -91,7 +91,9 @@ old_demos_input_2019_05_22 <- old_demos_input %>% enframe() %>% unnest() %>% uns
 demos_input <-
   suppressMessages(suppressWarnings(read_csv(here(
     'TOD-ANNIKA/INPUT-FILES/TOD-demos-current-input.csv'
-  )))) %>% filter(!is.na(.[1]) & .[15] >= 5) %>% select(
+  )))) %>% 
+  filter(!is.na(.[1])) %>%
+  select(
     10,
     12,
     13,
@@ -167,7 +169,9 @@ current_demos_input <- demos_input %>% enframe() %>% unnest() %>% unstack(value 
         inrange(zip, 97000, 99999) ~ "West",
       TRUE ~ NA_character_
     )
-  ) %>% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(form = form1, ethnic = ethnic1, PEL = PEL1)
+  ) %>% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% 
+  rename(form = form1, ethnic = ethnic1, PEL = PEL1) %>% 
+  filter(ageyear >= 5)
 
 # Join old survey static table with new survey dynamic table, sort by ageyear, group by agestrat
 All_demos <- bind_rows(current_demos_input, old_demos_input_2019_05_22) %>%
