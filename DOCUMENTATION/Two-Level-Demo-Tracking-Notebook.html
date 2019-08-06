@@ -492,7 +492,7 @@ current_demos_input &lt;- demos_input %&gt;% enframe() %&gt;% unnest() %&gt;% un
         inrange(zip, 97000, 99999) ~ &quot;West&quot;,
       TRUE ~ NA_character_
     )
-  ) %&gt;% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %&gt;% rename(form = form1, ethnic = ethnic1, PEL = PEL1)
+  ) %&gt;% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %&gt;% rename(form = form1, ethnic = ethnic1, PEL = PEL1) %&gt;% filter(ageyear &gt;= 5)
 
 All_demos &lt;- bind_rows(current_demos_input, old_demos_input_2019_05_22) %&gt;%
   arrange(agestrat, ageyear, IDnum) %&gt;% group_by(agestrat)
@@ -749,8 +749,9 @@ map(
 <p>Because there are separate output tables for the TOD and TOD_E test forms, the code initializes a char vec <code>frm</code> containing the names of the two forms. <code>purrr::map()</code> interates over this vector, creating two distinct output tables. The arguments to <code>map</code> are the vector to iterate over <code>frm</code>, and an anonymous function to be applied to that vector, designated by the shorthand <code>~</code>. Within that function, which constists of a set of functions chained together by the pipe operator <code>%&gt;%</code>, <code>map</code> substitutes vector elements wherever the token <code>.x</code> appears. <code>map</code> iterates by running the anonymous function for the first element of <code>frm</code>, and then repeating for the second element of <code>frm</code>.</p>
 <p><code>eval(as.name(paste0(&quot;demos_&quot;, .x)))</code> provides <code>map</code> with the name of the data object to be passed through the pipeline. <code>paste0</code> creates the string for the name, by pasting together <code>demos_</code> with the element from vector <code>frm</code> designated by <code>.x</code>. <code>as.name</code> coerces that string so that it is evaluated as the name of an object that exists in the global environment (e.g., <code>demos_TOD</code>). <code>eval</code> forces R to evaluate the string as the name of of a data object that can be piped into a function.</p>
 <p>The anonymous function designated by <code>~</code> transforms the gender data from the input table (e.g., <code>demos_TOD</code>) into columns required for the final output. <code>ungroup()</code> removes the previously-applied grouping by agestrat, which would interfere with the operation of subsequent functions. <code>select()</code> keeps <code>agestrat</code> and <code>gender</code> as the only columns piped forward. <code>filter()</code> drops rows containing the “Other” gender choice <code>(gender != &quot;Other&quot;)</code>, so that those cases are not counted in the gender columns of the final output table (note that <code>filter()</code> also drops any cases that are missing (<code>NA</code>) on gender).</p>
-<p><code>count()</code> collapses the data object into a summary table that contains two rows per agestrat, a <code>Male</code> row and a <code>Female</code> row. It appends a new column <code>n</code> that provides counts for each row of the summary table. <code>add_row()</code> adds two temporary additional rows, a <code>Male</code> row and a <code>Female</code> row. These temporary rows are <code>NA</code> for <code>agestrat</code> and <code>n</code>. These temporary rows in the summary table are needed to process input tables where there are no cases yet for a level of a demographic var (e.g., no Asians have yet been endrolled in the study). In this situation, without the temporary rows, there would be no column for Asians in the final output tables. Once a study is far advanced enough that there are cases for each level of the demographic level, the <code>add_row()</code> lines become superfluous.</p>
+<p><code>count()</code> collapses the data object into a summary table that contains two rows per agestrat, a <code>Male</code> row and a <code>Female</code> row. It appends a new column <code>n</code> that provides counts for each row of the summary table. <code>add_row()</code> adds two temporary additional rows, a <code>Male</code> row and a <code>Female</code> row. These temporary rows are <code>NA</code> for <code>agestrat</code> and <code>n</code>. These temporary rows in the summary table are needed to process input tables where there are no cases yet for a level of a demographic var (e.g., no Asians have yet been endrolled in the study). In this situation, without the temporary rows, the code would fail to generate a column for Asians in the final output tables. Once a study is far advanced enough that there are cases for each level of the demographic level, the <code>add_row()</code> lines become superfluous.</p>
 <p><code>spread()</code> transforms the data object from a table with a single <code>gender</code> column to one with separate <code>Male</code> and <code>Female</code> columns containing the counts, by <code>agestrat</code>, for those values of <code>gender</code>. Prior to transformation, the data object has key-value pairs in a key column <code>gender</code>, and a value column <code>n</code>. <code>spread()</code> takes the names of the key and value columns as its first two arguments, and then drops these columns and creates new columns, one for each level of the key variable. The cells in these new <code>Male</code> and <code>Female</code> columns are populated by the counts from the value column <code>n</code>, within each agestrat. The resulting object now has a single row per agestrat, with columns showing the counts of males and females within each agestrat. This is the format required for the final output table. The <code>fill = 0</code> argument recodes missing (<code>NA</code>) counts to zero, so that all agestrats will be included in the table, even if there are no actual cases in those agestrats yet.</p>
+<p><code>filter()</code> cleans up the table by removing an unneeded interim row that is missing on <code>agestrat</code>. <code>select()</code> keeps only <code>agestrat</code>, <code>Male</code>, and <code>Female</code> columns. <code>rename()</code> provides column names needed for final output table (the actual count of cases received in the <em>agestrat x gender</em> cells). <code>assign()</code> is required to create an object in the global environment that can be manipulated by downstream code.</p>
 <pre class="r"><code>frm &lt;- c(&quot;TOD&quot;, &quot;TOD_E&quot;)
 map(
   frm,
@@ -765,7 +766,167 @@ map(
     rename(Male_actual = Male, Female_actual = Female) %&gt;%
     assign(paste0(&quot;gender_input_&quot;, .x), ., envir = .GlobalEnv)
 )</code></pre>
-<p>spread(): at this point, the data object has key-value pairs in a key column (gender), and a value column (n). n gives the count of cases for each value of gender, within each agestrat. In spread(), the first two arguments give the names of the key and value columns, spread drops these columns and creates new columns, one for each level of the key var. The cells in those columsn are populated by the value from the value column (n) with each agestrat. So the resulting object now has a single row per agestrat, with columns showing how many males, females and NAs. The <code>fill = 0</code> argument recodes missing <code>NA</code> counts to zero, so that all agestrats will be included in the table, even if there are no cases in those agestrats yet. filter() cleans up table by removing an unneeded interim row that is missing on agestrat. select() keeps only agestrat, Male, and Female columns rename()provides column names needed for final output table (the actual count of cases received in the agestrat by gender cells) assign() is required to create an object in the global environment that can be manipulated by downstream code</p>
+<p><br></p>
+</div>
+</div>
+<div id="assemble-and-write-out-final-output-tables" class="section level4">
+<h4>Assemble and write out final output tables</h4>
+<div id="valid-code-to-run-5" class="section level6">
+<h6>VALID CODE TO RUN</h6>
+<pre class="r"><code>final_output_cols &lt;- c( &quot;agestrat&quot;, &quot;target_n&quot;, &quot;Male_census_pct&quot;, &quot;Male_actual&quot;, 
+                        &quot;Male_needed&quot;, &quot;Female_census_pct&quot;, &quot;Female_actual&quot;, &quot;Female_needed&quot;, 
+                        &quot;Less_than_HS_census_pct&quot;, &quot;Less_than_HS_actual&quot;, &quot;Less_than_HS_needed&quot;, 
+                        &quot;HS_degree_census_pct&quot;, &quot;HS_degree_actual&quot;, &quot;HS_degree_needed&quot;, &quot;Some_college_census_pct&quot;, 
+                        &quot;Some_college_actual&quot;, &quot;Some_college_needed&quot;, &quot;BA_plus_census_pct&quot;, &quot;BA_plus_actual&quot;, 
+                        &quot;BA_plus_needed&quot;, &quot;Hispanic_census_pct&quot;, &quot;Hispanic_actual&quot;, &quot;Hispanic_needed&quot;, 
+                        &quot;Asian_census_pct&quot;, &quot;Asian_actual&quot;, &quot;Asian_needed&quot;, &quot;Black_census_pct&quot;, &quot;Black_actual&quot;, 
+                        &quot;Black_needed&quot;, &quot;White_census_pct&quot;, &quot;White_actual&quot;, &quot;White_needed&quot;, 
+                        &quot;Other_census_pct&quot;, &quot;Other_actual&quot;, &quot;Other_needed&quot;, 
+                        &quot;Northeast_census_pct&quot;, &quot;Northeast_actual&quot;, &quot;Northeast_needed&quot;, &quot;South_census_pct&quot;, 
+                        &quot;South_actual&quot;, &quot;South_needed&quot;, &quot;Midwest_census_pct&quot;, &quot;Midwest_actual&quot;, 
+                        &quot;Midwest_needed&quot;, &quot;West_census_pct&quot;, &quot;West_actual&quot;, &quot;West_needed&quot;)
+
+map(
+  frm,
+  ~
+    list(
+      eval(as.name(paste0(&quot;static_columns_&quot;, .x))),
+      eval(as.name(paste0(&quot;gender_input_&quot;, .x))),
+      eval(as.name(paste0(&quot;PEL_input_&quot;, .x))),
+      eval(as.name(paste0(&quot;ethnic_input_&quot;, .x))),
+      eval(as.name(paste0(&quot;region_input_&quot;, .x)))
+    ) %&gt;%
+    reduce(left_join, by = &quot;agestrat&quot;) %&gt;%
+    mutate_if(is.numeric , replace_na, replace = 0) %&gt;%
+    mutate(
+      Male_needed = (target_n * Male_census_pct) - Male_actual,
+      Female_needed = (target_n * Female_census_pct) - Female_actual,
+      Less_than_HS_needed = (target_n * Less_than_HS_census_pct) - Less_than_HS_actual,
+      HS_degree_needed = (target_n * HS_degree_census_pct) - HS_degree_actual,
+      Some_college_needed = (target_n * Some_college_census_pct) - Some_college_actual,
+      BA_plus_needed = (target_n * BA_plus_census_pct) - BA_plus_actual,
+      Hispanic_needed = (target_n * Hispanic_census_pct) - Hispanic_actual,
+      Asian_needed = (target_n * Asian_census_pct) - Asian_actual,
+      Black_needed = (target_n * Black_census_pct) - Black_actual,
+      White_needed = (target_n * White_census_pct) - White_actual,
+      Other_needed = (target_n * Other_census_pct) - Other_actual,
+      Northeast_needed = (target_n * Northeast_census_pct) - Northeast_actual,
+      South_needed = (target_n * South_census_pct) - South_actual,
+      Midwest_needed = (target_n * Midwest_census_pct) - Midwest_actual,
+      West_needed = (target_n * West_census_pct) - West_actual
+    ) %&gt;%
+    select(final_output_cols) %&gt;%
+    mutate_at(vars(contains(&quot;_needed&quot;)),
+              ~ case_when(.x &lt; 0 ~ 0,
+                          TRUE ~ as.double(.x))) %&gt;%
+    mutate(total_usable_cases = target_n - pmax((Male_needed + Female_needed),
+                                                (
+                                                  Less_than_HS_needed + HS_degree_needed + Some_college_needed + BA_plus_needed
+                                                ),
+                                                (
+                                                  Hispanic_needed + Asian_needed + Black_needed + White_needed + Other_needed
+                                                ),
+                                                (Northeast_needed + South_needed + Midwest_needed + West_needed)
+    )) %&gt;%
+    mutate_at(vars(contains(&quot;_needed&quot;), total_usable_cases), list(~round(., 0))) %&gt;%
+    assign(paste0(&quot;demo_tracking_output_&quot;, .x), ., envir = .GlobalEnv))
+
+map(
+  frm,
+  ~
+    write_csv(eval(as.name(paste0(&quot;demo_tracking_output_&quot;, .x))), here(
+      paste0(
+        &quot;TOD-ANNIKA/OUTPUT-FILES/&quot;,
+        .x,
+        &quot;_demo_tracking_output_&quot;,
+        format(Sys.Date(), &quot;%Y-%m-%d&quot;),
+        &quot;.csv&quot;
+      )
+    ))
+)
+rm(list = ls())</code></pre>
+</div>
+<div id="commented-code-chunks-3" class="section level6">
+<h6>COMMENTED CODE CHUNKS</h6>
+<p>To assemble the final output tables, first initialize a character vector containing the output table column names in the required order.</p>
+<pre class="r"><code>final_output_cols &lt;- c( &quot;agestrat&quot;, &quot;target_n&quot;, &quot;Male_census_pct&quot;, &quot;Male_actual&quot;, 
+                        &quot;Male_needed&quot;, &quot;Female_census_pct&quot;, &quot;Female_actual&quot;, &quot;Female_needed&quot;, 
+                        &quot;Less_than_HS_census_pct&quot;, &quot;Less_than_HS_actual&quot;, &quot;Less_than_HS_needed&quot;, 
+                        &quot;HS_degree_census_pct&quot;, &quot;HS_degree_actual&quot;, &quot;HS_degree_needed&quot;, &quot;Some_college_census_pct&quot;, 
+                        &quot;Some_college_actual&quot;, &quot;Some_college_needed&quot;, &quot;BA_plus_census_pct&quot;, &quot;BA_plus_actual&quot;, 
+                        &quot;BA_plus_needed&quot;, &quot;Hispanic_census_pct&quot;, &quot;Hispanic_actual&quot;, &quot;Hispanic_needed&quot;, 
+                        &quot;Asian_census_pct&quot;, &quot;Asian_actual&quot;, &quot;Asian_needed&quot;, &quot;Black_census_pct&quot;, &quot;Black_actual&quot;, 
+                        &quot;Black_needed&quot;, &quot;White_census_pct&quot;, &quot;White_actual&quot;, &quot;White_needed&quot;, 
+                        &quot;Other_census_pct&quot;, &quot;Other_actual&quot;, &quot;Other_needed&quot;, 
+                        &quot;Northeast_census_pct&quot;, &quot;Northeast_actual&quot;, &quot;Northeast_needed&quot;, &quot;South_census_pct&quot;, 
+                        &quot;South_actual&quot;, &quot;South_needed&quot;, &quot;Midwest_census_pct&quot;, &quot;Midwest_actual&quot;, 
+                        &quot;Midwest_needed&quot;, &quot;West_census_pct&quot;, &quot;West_actual&quot;, &quot;West_needed&quot;)</code></pre>
+<p>The final output tables join static columns (total cases needed per agestrat, census percentages) with actual counts from each demographic subcategory. Then columns are added to calculate cases still needed for each subcategory (by agestrat), and total usable cases (in which the total of cases per agestrat is determined by the demographic category that still requires the most cases. Thus, this total does not count extra cases in oversampled categories.)</p>
+<p>As in previous code, <code>map()</code> iterates separately over the input columns from <code>TOD</code> and <code>TOD_E</code> (the labels contained in <code>frm</code>). <code>map</code> executes an anonymous function, which begins by putting the static columns and demographic input columns into a <code>list</code> which can be piped through transformations.</p>
+<p><code>purrr::reduce()</code> applies <code>dplyr::left_join()</code> over the list of input columns, aligning the rows by <code>agestrat</code>. <code>mutate_if()</code> operates only on columns that return <code>TRUE</code> on the logical test provided by <code>base::is.numeric</code>. It replaces <code>NA</code> values in these columns with <code>0</code>.</p>
+<p><code>mutate()</code> is then used to calculate new columns giving the cases still needed, by <code>agestrat</code>, for each demographic subcategory. To get the cases needed, the code first multiplies <code>target_n</code> for each <code>agestrat</code> by <code>census_pct</code> for each demographic subcategory. It then subtracts the <code>actual</code> cases for that subcategory.</p>
+<p>The column structure of the final output tables is set up by calling <code>select()</code>, which takes as its argument <code>final_output_cols</code>, the vector previously created to represent the final, ordered column structure. <code>mutate_at()</code>, in conjunction with <code>case_when</code>, recodes any negative numbers in the <code>_needed</code> columns to <code>0</code> (when a subcategory is oversampled it generates a negative number in the <code>_needed</code> column, which means that <code>0</code> additional cases are required in that subcategory).</p>
+<p><code>mutate()</code> then caculates the <code>total_useable_cases</code> column. The codes uses <code>dplyr::pmax()</code> to find the element-wise maximum of the sums of cases needed within each demographic category. (Note: <code>dplyr::max()</code> is not used here because it is a summary function and would not find the right maxium value in this context). The element-wise maximum is then substracted from <code>target_n</code> for each <code>agestrat</code>.</p>
+<p>The final transformation is to round the <code>_needed</code> columns to integers using <code>mutate_at()</code>. Remember, these columns are originally products of census percentages expressed as decimals, so they retain values to the right of the decimal point. The <code>list</code> expression in <code>mutate_at</code> is another way of formulating an anonymous function within a <code>dplyr</code> verb. Finally <code>assign()</code> is used to create output objects in the global environment.</p>
+<pre class="r"><code>map(
+  frm,
+  ~
+    list(
+      eval(as.name(paste0(&quot;static_columns_&quot;, .x))),
+      eval(as.name(paste0(&quot;gender_input_&quot;, .x))),
+      eval(as.name(paste0(&quot;PEL_input_&quot;, .x))),
+      eval(as.name(paste0(&quot;ethnic_input_&quot;, .x))),
+      eval(as.name(paste0(&quot;region_input_&quot;, .x)))
+    ) %&gt;%
+    reduce(left_join, by = &quot;agestrat&quot;) %&gt;%
+    mutate_if(is.numeric , replace_na, replace = 0) %&gt;%
+    mutate(
+      Male_needed = (target_n * Male_census_pct) - Male_actual,
+      Female_needed = (target_n * Female_census_pct) - Female_actual,
+      Less_than_HS_needed = (target_n * Less_than_HS_census_pct) - Less_than_HS_actual,
+      HS_degree_needed = (target_n * HS_degree_census_pct) - HS_degree_actual,
+      Some_college_needed = (target_n * Some_college_census_pct) - Some_college_actual,
+      BA_plus_needed = (target_n * BA_plus_census_pct) - BA_plus_actual,
+      Hispanic_needed = (target_n * Hispanic_census_pct) - Hispanic_actual,
+      Asian_needed = (target_n * Asian_census_pct) - Asian_actual,
+      Black_needed = (target_n * Black_census_pct) - Black_actual,
+      White_needed = (target_n * White_census_pct) - White_actual,
+      Other_needed = (target_n * Other_census_pct) - Other_actual,
+      Northeast_needed = (target_n * Northeast_census_pct) - Northeast_actual,
+      South_needed = (target_n * South_census_pct) - South_actual,
+      Midwest_needed = (target_n * Midwest_census_pct) - Midwest_actual,
+      West_needed = (target_n * West_census_pct) - West_actual
+    ) %&gt;%
+    select(final_output_cols) %&gt;%
+    mutate_at(vars(contains(&quot;_needed&quot;)),
+              ~ case_when(.x &lt; 0 ~ 0,
+                          TRUE ~ as.double(.x))) %&gt;%
+    mutate(total_usable_cases = target_n - pmax((Male_needed + Female_needed),
+                                                (
+                                                  Less_than_HS_needed + HS_degree_needed + Some_college_needed + BA_plus_needed
+                                                ),
+                                                (
+                                                  Hispanic_needed + Asian_needed + Black_needed + White_needed + Other_needed
+                                                ),
+                                                (Northeast_needed + South_needed + Midwest_needed + West_needed)
+    )) %&gt;%
+    mutate_at(vars(contains(&quot;_needed&quot;), total_usable_cases), list(~round(., 0))) %&gt;%
+    assign(paste0(&quot;demo_tracking_output_&quot;, .x), ., envir = .GlobalEnv))</code></pre>
+<p>This final code chunk writes separate .csv output tables for <code>TOD</code> and <code>TOD_E</code>. Because <code>map()</code> is used once again to iterate over the form lables, <code>paste0()</code> is used to concatenate the strings representing the file path and file name. This allows the file name to be appended with today’s date, using <code>base::Sys.Date()</code>. <code>base::rm()</code> clears all interim objects from the global environment.</p>
+<pre class="r"><code>map(
+  frm,
+  ~
+    write_csv(eval(as.name(paste0(&quot;demo_tracking_output_&quot;, .x))), here(
+      paste0(
+        &quot;TOD-ANNIKA/OUTPUT-FILES/&quot;,
+        .x,
+        &quot;_demo_tracking_output_&quot;,
+        format(Sys.Date(), &quot;%Y-%m-%d&quot;),
+        &quot;.csv&quot;
+      )
+    ))
+)
+rm(list = ls())</code></pre>
 </div>
 </div>
 

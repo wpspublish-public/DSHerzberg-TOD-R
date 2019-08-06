@@ -104,16 +104,6 @@ demos_input <-
     20,
     21
   )
-# give PEL column a manageable name
-colnames(demos_input)[7] <- c("PEL")
-# recode HS_grad PEL to strip out garbage character that comes in from Survey Monkey input.
-demos_input <- demos_input %>% 
-  mutate_at(
-    vars(PEL), 
-    ~ case_when(
-      .x == "High school graduate/GED" ~ "HS_grad", 
-      TRUE ~ .x)
-    )
 # strip all attributes and garbage from input table.
 attributes(demos_input) <- NULL
 names(demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
@@ -143,7 +133,7 @@ current_demos_input <- demos_input %>% enframe() %>% unnest() %>% unstack(value 
     ),
     PEL1 = case_when(
       PEL == "Did not complete high school" ~ "Less_than_HS",
-      PEL == "HS_grad" ~ "HS_degree",
+      PEL == "High school graduate/GED" ~ "HS_degree",
       PEL == "Some College or associate's degree" ~ "Some_college",
       PEL == "Bachelors degree or higher" ~ "BA_plus",
       TRUE ~ NA_character_

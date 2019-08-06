@@ -244,7 +244,7 @@ current_demos_input <- demos_input %>% enframe() %>% unnest() %>% unstack(value 
         inrange(zip, 97000, 99999) ~ "West",
       TRUE ~ NA_character_
     )
-  ) %>% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(form = form1, ethnic = ethnic1, PEL = PEL1)
+  ) %>% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(form = form1, ethnic = ethnic1, PEL = PEL1) %>% filter(ageyear >= 5)
 
 All_demos <- bind_rows(current_demos_input, old_demos_input_2019_05_22) %>%
   arrange(agestrat, ageyear, IDnum) %>% group_by(agestrat)
@@ -471,14 +471,109 @@ The anonymous function designated by `~` transforms the gender data from the inp
 `spread()` transforms the data object from a table with a single `gender` column to one with separate `Male` and `Female` columns containing the counts, by `agestrat`, for those values of `gender`. Prior to transformation, the data object has key-value pairs in a key column `gender`, and a value column `n`. `spread()` takes the names of the key and value columns as its first two arguments, and then drops these columns and creates new columns, one for each level of the key variable. The cells in these new `Male` and `Female` columns are populated by the counts from the value column `n`, within each agestrat. The resulting object now has a single row per agestrat, with columns showing the counts of males and females within each agestrat. This is the format required for the final output table. The `fill = 0` argument recodes missing (`NA`) counts to zero, so that all agestrats will be included in the table, even if there are no actual cases in those agestrats yet.
 
 
+`filter()` cleans up the table by removing an unneeded interim row that is missing on `agestrat`. `select()` keeps only `agestrat`, `Male`, and `Female` columns. `rename()` provides column names needed for final output table (the actual count of cases received in the _agestrat x gender_ cells). `assign()` is required to create an object in the global environment that can be manipulated by downstream code.
 ```{r demo_count, echo=1:14, eval=FALSE}
 ```
+<br>
 
+#### Assemble and write out final output tables
 
+###### VALID CODE TO RUN
+```{r final_tables, eval=FALSE}
+final_output_cols <- c( "agestrat", "target_n", "Male_census_pct", "Male_actual", 
+                        "Male_needed", "Female_census_pct", "Female_actual", "Female_needed", 
+                        "Less_than_HS_census_pct", "Less_than_HS_actual", "Less_than_HS_needed", 
+                        "HS_degree_census_pct", "HS_degree_actual", "HS_degree_needed", "Some_college_census_pct", 
+                        "Some_college_actual", "Some_college_needed", "BA_plus_census_pct", "BA_plus_actual", 
+                        "BA_plus_needed", "Hispanic_census_pct", "Hispanic_actual", "Hispanic_needed", 
+                        "Asian_census_pct", "Asian_actual", "Asian_needed", "Black_census_pct", "Black_actual", 
+                        "Black_needed", "White_census_pct", "White_actual", "White_needed", 
+                        "Other_census_pct", "Other_actual", "Other_needed", 
+                        "Northeast_census_pct", "Northeast_actual", "Northeast_needed", "South_census_pct", 
+                        "South_actual", "South_needed", "Midwest_census_pct", "Midwest_actual", 
+                        "Midwest_needed", "West_census_pct", "West_actual", "West_needed")
 
-spread(): at this point, the data object has key-value pairs in a key column (gender), and a value column (n). n gives the count of cases for each value of gender, within each agestrat. In spread(), the first two arguments give the names of the key and value columns, spread drops these columns and creates new columns, one for each level of the key var. The cells in those columsn are populated by the value from the value column (n) with each agestrat. So the resulting object now has a single row per agestrat,
-with columns showing how many males, females and NAs. The `fill = 0` argument recodes missing `NA` counts to zero, so that all agestrats will be included in the table, even if there are no cases in those agestrats yet.
-filter() cleans up table by removing an unneeded interim row that is missing on agestrat.
-select() keeps only agestrat, Male, and Female columns
-rename()provides column names needed for final output table (the actual count of cases received in the agestrat by gender cells)
-assign() is required to create an object in the global environment that can be manipulated by downstream code
+map(
+  frm,
+  ~
+    list(
+      eval(as.name(paste0("static_columns_", .x))),
+      eval(as.name(paste0("gender_input_", .x))),
+      eval(as.name(paste0("PEL_input_", .x))),
+      eval(as.name(paste0("ethnic_input_", .x))),
+      eval(as.name(paste0("region_input_", .x)))
+    ) %>%
+    reduce(left_join, by = "agestrat") %>%
+    mutate_if(is.numeric , replace_na, replace = 0) %>%
+    mutate(
+      Male_needed = (target_n * Male_census_pct) - Male_actual,
+      Female_needed = (target_n * Female_census_pct) - Female_actual,
+      Less_than_HS_needed = (target_n * Less_than_HS_census_pct) - Less_than_HS_actual,
+      HS_degree_needed = (target_n * HS_degree_census_pct) - HS_degree_actual,
+      Some_college_needed = (target_n * Some_college_census_pct) - Some_college_actual,
+      BA_plus_needed = (target_n * BA_plus_census_pct) - BA_plus_actual,
+      Hispanic_needed = (target_n * Hispanic_census_pct) - Hispanic_actual,
+      Asian_needed = (target_n * Asian_census_pct) - Asian_actual,
+      Black_needed = (target_n * Black_census_pct) - Black_actual,
+      White_needed = (target_n * White_census_pct) - White_actual,
+      Other_needed = (target_n * Other_census_pct) - Other_actual,
+      Northeast_needed = (target_n * Northeast_census_pct) - Northeast_actual,
+      South_needed = (target_n * South_census_pct) - South_actual,
+      Midwest_needed = (target_n * Midwest_census_pct) - Midwest_actual,
+      West_needed = (target_n * West_census_pct) - West_actual
+    ) %>%
+    select(final_output_cols) %>%
+    mutate_at(vars(contains("_needed")),
+              ~ case_when(.x < 0 ~ 0,
+                          TRUE ~ as.double(.x))) %>%
+    mutate(total_usable_cases = target_n - pmax((Male_needed + Female_needed),
+                                                (
+                                                  Less_than_HS_needed + HS_degree_needed + Some_college_needed + BA_plus_needed
+                                                ),
+                                                (
+                                                  Hispanic_needed + Asian_needed + Black_needed + White_needed + Other_needed
+                                                ),
+                                                (Northeast_needed + South_needed + Midwest_needed + West_needed)
+    )) %>%
+    mutate_at(vars(contains("_needed"), total_usable_cases), list(~round(., 0))) %>%
+    assign(paste0("demo_tracking_output_", .x), ., envir = .GlobalEnv))
+
+map(
+  frm,
+  ~
+    write_csv(eval(as.name(paste0("demo_tracking_output_", .x))), here(
+      paste0(
+        "TOD-ANNIKA/OUTPUT-FILES/",
+        .x,
+        "_demo_tracking_output_",
+        format(Sys.Date(), "%Y-%m-%d"),
+        ".csv"
+      )
+    ))
+)
+rm(list = ls())
+```
+
+###### COMMENTED CODE CHUNKS
+To assemble the final output tables, first initialize a character vector containing the output table column names in the required order.
+```{r final_tables, echo=1:12, eval=FALSE}
+```
+The final output tables join static columns (total cases needed per agestrat, census percentages) with actual counts from each demographic subcategory. Then columns are added to calculate cases still needed for each subcategory (by agestrat), and total usable cases (in which the total of cases per agestrat is determined by the demographic category that still requires the most cases. Thus, this total does not count extra cases in oversampled categories.)
+
+As in previous code, `map()` iterates separately over the input columns from `TOD` and `TOD_E` (the labels contained in `frm`). `map` executes an anonymous function, which begins by putting the static columns and demographic input columns into a `list` which can be piped through transformations.
+
+`purrr::reduce()` applies `dplyr::left_join()` over the list of input columns, aligning the rows by `agestrat`. `mutate_if()` operates only on columns that return `TRUE` on the logical test provided by `base::is.numeric`. It replaces `NA` values in these columns with `0`.
+
+`mutate()` is then used to calculate new columns giving the cases still needed, by `agestrat`, for each demographic subcategory. To get the cases needed, the code first multiplies `target_n` for each `agestrat` by `census_pct` for each demographic subcategory. It then subtracts the `actual` cases for that subcategory.
+
+The column structure of the final output tables is set up by calling `select()`, which takes as its argument `final_output_cols`, the vector previously created to represent the final, ordered column structure. `mutate_at()`, in conjunction with `case_when`, recodes any negative numbers in the `_needed` columns to `0` (when a subcategory is oversampled it generates a negative number in the `_needed` column, which means that `0` additional cases are required in that subcategory).
+
+`mutate()` then caculates the `total_useable_cases` column. The codes uses `dplyr::pmax()` to find the element-wise maximum of the sums of cases needed within each demographic category. (Note: `dplyr::max()` is not used here because it is a summary function and would not find the right maxium value in this context). The element-wise maximum is then substracted from `target_n` for each `agestrat`.
+
+The final transformation is to round the `_needed` columns to integers using `mutate_at()`. Remember, these columns are originally products of census percentages expressed as decimals, so they retain values to the right of the decimal point. The `list` expression in `mutate_at` is another way of formulating an anonymous function within a `dplyr` verb. Finally `assign()` is used to create output objects in the global environment.
+```{r final_tables, echo=14:58, eval=FALSE}
+```
+This final code chunk writes separate .csv output tables for `TOD` and `TOD_E`. Because `map()` is used once again to iterate over the form lables, `paste0()` is used to concatenate the strings representing the file path and file name. This allows the file name to be appended with today's date, using `base::Sys.Date()`. `base::rm()` clears all interim objects from the global environment.
+```{r final_tables, echo=59:72, eval=FALSE}
+```
+
