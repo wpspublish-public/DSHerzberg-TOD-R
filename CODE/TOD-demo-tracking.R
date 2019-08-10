@@ -88,7 +88,7 @@ old_demos_input_2019_05_22 <- old_demos_input %>% enframe() %>% unnest() %>% uns
   ) %>% select(IDnum, form1, ageyear, agestrat, gender, PEL1, ethnic1, region) %>% rename(form = form1, ethnic = ethnic1, PEL = PEL1)
 
 # Read in current demos per case from current survey, compute agestrat
-demos_input <-
+demos_input_bad_char <-
   suppressMessages(suppressWarnings(read_csv(here(
     'TOD-ANNIKA/INPUT-FILES/TOD-demos-current-input.csv'
   )))) %>% 
@@ -105,15 +105,26 @@ demos_input <-
     21
   )
 # give PEL column a manageable name
-colnames(demos_input)[7] <- c("PEL")
+colnames(demos_input_bad_char)[7] <- c("PEL")
 # recode HS_grad PEL to strip out garbage character that comes in from Survey Monkey input.
-demos_input <- demos_input %>% 
+demos_input_interim <- demos_input_bad_char %>% 
   mutate_at(
     vars(PEL), 
     ~ case_when(
       .x == "High school graduate/GED" ~ "HS_grad", 
       TRUE ~ .x)
-    )
+  )
+# write .csv with garbage character removed
+write_csv(demos_input_interim, 
+          here(
+            'TOD-ANNIKA/INPUT-FILES/demos_input_interim.csv'
+          )
+)
+# read this interim file back in as demos_input (coercing all vars to char to
+# avoid errors in unnest())
+demos_input <- suppressMessages(suppressWarnings(read_csv(
+  'TOD-ANNIKA/INPUT-FILES/demos_input_interim.csv'
+))) %>% mutate_all(as.character)
 # strip all attributes and garbage from input table.
 attributes(demos_input) <- NULL
 names(demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
@@ -144,7 +155,7 @@ current_demos_input <- demos_input %>% enframe() %>% unnest() %>% unstack(value 
     PEL1 = case_when(
       PEL == "Did not complete high school" ~ "Less_than_HS",
       PEL == "HS_grad" ~ "HS_degree",
-      is.na(PEL) ~ "HS_degree",
+      # is.na(PEL) ~ "HS_degree",
       PEL == "Some College or associate's degree" ~ "Some_college",
       PEL == "Bachelors degree or higher" ~ "BA_plus",
       TRUE ~ NA_character_
@@ -266,18 +277,18 @@ static_columns_TOD <-
         )
     ),
     (
-    fread(
-      here("DATA/STATIC_COLUMNS/Age_x_region_TOD_final.csv"),
-      select = c("Northeast", "Midwest", "South", "West")
-    ) %>%
-      rename(
-        Northeast_census_pct = Northeast,
-        Midwest_census_pct = Midwest,
-        South_census_pct = South,
-        West_census_pct = West
-      ) 
+      fread(
+        here("DATA/STATIC_COLUMNS/Age_x_region_TOD_final.csv"),
+        select = c("Northeast", "Midwest", "South", "West")
+      ) %>%
+        rename(
+          Northeast_census_pct = Northeast,
+          Midwest_census_pct = Midwest,
+          South_census_pct = South,
+          West_census_pct = West
+        ) 
+    )
   )
-)
 
 # Create TOD_E static columns by filtering, recoding TOD columns.
 static_columns_TOD_E <- static_columns_TOD %>% filter(agestrat %in% c("05", "06", "07", "08", "09")) %>% 
@@ -290,7 +301,7 @@ static_columns_TOD_E <- static_columns_TOD %>% filter(agestrat %in% c("05", "06"
       agestrat == "09" ~ 10,
       TRUE ~ NA_real_
     )))
-    
+
 
 # Individual demo input tables
 frm <- c("TOD", "TOD_E")
