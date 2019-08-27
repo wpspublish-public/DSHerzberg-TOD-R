@@ -1,4 +1,299 @@
-Examinee's ID,Which combination of the TOD did you administer?,Examinee's 5-digit zip code,Examinee's age in years,Examinee grade in school,Examinee's gender,PEL,"Is the examinee of Hispanic, Latino, or Spanish origin?",Examinee's race/ethnicity
+Examinee's ID,Which combination of the TOD did you administer?,Examinee's 5-digit zip code,Examinee's age in years,Examinee grade in school,Examinee's gender,PEL,"Is theˇexaminee of Hispanic, Latino, or Spanish origin?",Examinee's race/ethnicity
+309028,TOD-S + TOD,22032,17,11,Female,Some College or associate's degree,Yes,Other / Multiracial
+999002,TOD-S + TOD,85629,72,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,No,White
+309027,TOD-S + TOD,22180,8,3,Female,HS_grad,No,Asian
+309026,TOD-S + TOD-E,22180,6,1,Female,Some College or associate's degree,No,Asian
+309025,TOD-S + TOD,22180,9,4,Female,Some College or associate's degree,No,Asian
+309024,TOD-S + TOD,22180,9,4,Female,Some College or associate's degree,No,Asian
+243027,TOD-S + TOD,40223,15,10,Female,Bachelors degree or higher,No,White
+267011,TOD-S + TOD,97034,15,9,Male,Bachelors degree or higher,No,Other / Multiracial
+269003,TOD-S + TOD,27587,14,9,Female,Bachelors degree or higher,No,White
+269009,TOD-S + TOD,27610,12,8,Female,Bachelors degree or higher,No,Black/African American
+269011,TOD-S + TOD-E,27609,7,2,Male,Bachelors degree or higher,No,White
+223063,TOD-S + TOD,78543,12,7,Male,HS_grad,No,White
+223062,TOD-S + TOD,78543,14,9,Female,HS_grad,Yes,White
+223061,TOD-S + TOD,78543,18,12,Female,HS_grad,Yes,White
+309023,TOD-S + TOD,22042,16,11,Female,Did not complete high school,No,Black/African American
+309022,TOD-S + TOD,22032,16,11,Female,Some College or associate's degree,No,White
+307004,TOD-S + TOD,3079,6,2,Male,Some College or associate's degree,No,White
+307009,TOD-S + TOD,3079,12,7,Female,Bachelors degree or higher,No,White
+267010,TOD-S + TOD,97035,15,10,Male,Some College or associate's degree,No,Asian
+267009,TOD-S + TOD,97035,12,7,Male,Some College or associate's degree,No,Asian
+267008,TOD-S + TOD,97035,11,6,Male,Bachelors degree or higher,No,White
+257017,TOD-S + TOD-E,90293,8,2,Female,Some College or associate's degree,Yes,Other / Multiracial
+257016,TOD-S + TOD-E,90293,8,2,Female,Did not complete high school,Yes,Other / Multiracial
+267007,TOD-S + TOD,97035,14,9,Female,Bachelors degree or higher,No,White
+267006,TOD-S + TOD,97035,14,9,Male,Bachelors degree or higher,No,White
+211075,TOD-S + TOD-E,64055,11,6,Male,Bachelors degree or higher,No,White
+309017,TOD-S + TOD,20910,12,5,Female,Some College or associate's degree,No,White
+309020,TOD-S + TOD,22180,9,4,Female,HS_grad,No,Asian
+309021,TOD-S + TOD-E,22180,7,2,Female,Some College or associate's degree,No,Asian
+309019,TOD-S + TOD,20910,13,8,Female,Some College or associate's degree,No,White
+309018,TOD-S + TOD,20910,16,11,Female,Some College or associate's degree,No,White
+309016,TOD-S + TOD,22015,51,Not Applicable / NOT IN SCHOOL,Female,Some College or associate's degree,Yes,White
+309014,TOD-S + TOD-E,20112,6,1,Female,HS_grad,No,Black/African American
+309015,TOD-S + TOD-E,22030,7,2,Male,Some College or associate's degree,No,Asian
+212063,TOD-S + TOD,61805,17,12,Female,Did not complete high school,No,Black/African American
+223042,TOD-S + TOD,78538,15,10,Male,HS_grad,Yes,White
+223037,TOD-S + TOD,78538,8,3,Female,HS_grad,Yes,White
+223036,TOD-S + TOD,78538,11,6,Female,Did not complete high school,Yes,White
+309013,TOD-S + TOD,22043,13,8,Male,Did not complete high school,Yes,White
+309012,TOD-S + TOD,22043,16,11,Female,Did not complete high school,Yes,White
+309011,TOD-S + TOD,22043,17,12,Female,Did not complete high school,Yes,White
+309010,TOD-S + TOD,22042,11,6,Male,Did not complete high school,No,Black/African American
+226052,TOD-S + TOD-E,46055,9,2,Female,Some College or associate's degree,No,White
+207024,TOD-S + TOD-E,60629,5,K,Female,HS_grad,No,Black/African American
+207023,TOD-S + TOD-E,60644,5,K,Male,Some College or associate's degree,No,Black/African American
+210038,TOD-S + TOD,78573,43,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,Yes,White
+210037,TOD-S + TOD,78504,7,2,Female,Bachelors degree or higher,Yes,White
+210036,TOD-S + TOD,78504,11,6,Female,Bachelors degree or higher,Yes,White
+223064,TOD-S + TOD,78599,16,11,Male,Some College or associate's degree,Yes,White
+223065,TOD-S + TOD,78596,15,10,Male,Some College or associate's degree,Yes,White
+265019,TOD-S + TOD,48070,6,1,Male,Bachelors degree or higher,No,White
+256041,TOD-S + TOD,38401,12,7,Female,Some College or associate's degree,No,White
+256038,TOD-S + TOD,38401,11,11,Male,Some College or associate's degree,No,White
+256037,TOD-S + TOD,38401,8,3,Female,HS_grad,No,White
+256031,TOD-S + TOD,38401,18,12,Female,Bachelors degree or higher,No,White
+256022,TOD-S + TOD,38401,13,8,Male,HS_grad,No,White
+256021,TOD-S + TOD-E,38401,12,7,Female,HS_grad,No,White
+269010,TOD-S + TOD,27609,11,6,Male,Bachelors degree or higher,No,White
+269006,TOD-S + TOD,27587,15,10,Female,Bachelors degree or higher,No,White
+223058,TOD-S + TOD,78538,11,6,Male,Some College or associate's degree,Yes,White
+223057,TOD-S + TOD,78538,7,2,Male,Some College or associate's degree,Yes,White
+223066,TOD-S + TOD,78596,11,6,Male,Some College or associate's degree,Yes,White
+223067,TOD-S + TOD,78596,9,4,Male,Some College or associate's degree,Yes,White
+309009,TOD-S + TOD,22180,11,6,Male,Some College or associate's degree,No,Asian
+309008,TOD-S + TOD-E,22180,4,2,Male,Some College or associate's degree,No,Asian
+309007,TOD-S + TOD,22180,13,8,Female,HS_grad,No,Asian
+309006,TOD-S + TOD,22180,12,7,Male,HS_grad,No,Asian
+267005,TOD-S + TOD,97035,14,9,Male,Bachelors degree or higher,Yes,Other / Multiracial
+267004,TOD-S + TOD,97035,12,7,Female,Bachelors degree or higher,No,White
+267003,TOD-S + TOD,97035,11,6,Female,Bachelors degree or higher,No,White
+305010,TOD-S + TOD,92071,11,6,Male,Bachelors degree or higher,No,White
+309005,TOD-S + TOD,22015,11,6,Female,HS_grad,Yes,White
+271015,TOD-S + TOD,17313,13,8,Female,Bachelors degree or higher,No,White
+302017,TOD-S + TOD,38671,10,5,Male,Some College or associate's degree,No,Black/African American
+276002,TOD-S + TOD,97035,15,10,Female,Some College or associate's degree,No,White
+267001,TOD-S + TOD,97035,15,10,Female,HS_grad,No,White
+302027,TOD-S + TOD,38632,13,7,Male,Bachelors degree or higher,No,White
+302030,TOD-S + TOD,38632,15,10,Male,Bachelors degree or higher,No,White
+302016,TOD-S + TOD,38632,11,5,Male,Bachelors degree or higher,No,White
+302007,TOD-S + TOD-E,38671,7,2,Male,Some College or associate's degree,No,Black/African American
+302003,TOD-S + TOD-E,38632,6,1,Female,HS_grad,No,Other / Multiracial
+302022,TOD-S + TOD,38672,11,6,Female,Some College or associate's degree,No,White
+302023,TOD-S + TOD,38672,11,6,Female,Some College or associate's degree,No,White
+302012,TOD-S + TOD,38672,9,3,Male,Some College or associate's degree,No,White
+309003,TOD-S + TOD,22033,15,10,Female,Some College or associate's degree,No,White
+309004,TOD-S + TOD,22102,52,Not Applicable / NOT IN SCHOOL,Female,Some College or associate's degree,No,Asian
+212068,TOD-S + TOD,60649,19,College - Junior,Male,Some College or associate's degree,No,Black/African American
+305028,TOD-S + TOD,92026,12,7,Male,Bachelors degree or higher,No,White
+305029,TOD-S + TOD,92026,12,7,Male,Bachelors degree or higher,No,White
+212071,TOD-S + TOD,60649,58,Not Applicable / NOT IN SCHOOL,Female,HS_grad,No,Black/African American
+309002,TOD-S + TOD-E,22033,5,K,Female,Some College or associate's degree,No,White
+223051,TOD-S + TOD,78538,8,3,Male,Did not complete high school,No,White
+223053,TOD-S + TOD,78538,15,10,Female,Did not complete high school,Yes,White
+223052,TOD-S + TOD,78538,17,12,Female,Did not complete high school,Yes,White
+307007,TOD-S + TOD,3079,12,7,Female,Bachelors degree or higher,No,White
+223071,TOD-S + TOD,78596,8,3,Female,Did not complete high school,Yes,White
+309001,TOD-S + TOD,22033,10,5,Female,Some College or associate's degree,No,White
+211074,TOD-S + TOD,64064,10,5,Female,Bachelors degree or higher,Yes,White
+211054,TOD-S + TOD,64055,45,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,No,White
+211073,TOD-S + TOD-E,64064,6,1,Male,Bachelors degree or higher,Yes,White
+223002,TOD-S + TOD,78543,9,5,Male,HS_grad,Yes,White
+223054,TOD-S + TOD,78543,13,8,Male,Did not complete high school,Yes,White
+223055,TOD-S + TOD,78543,12,7,Female,HS_grad,Yes,White
+223056,TOD-S + TOD,78543,10,5,Female,HS_grad,Yes,White
+243020,TOD-S + TOD,40207,20,Not Applicable / NOT IN SCHOOL,Female,Some College or associate's degree,No,White
+243026,TOD-S + TOD-E,40217,6,1,Male,Bachelors degree or higher,No,White
+243025,TOD-S + TOD,40059,16,11,Male,Bachelors degree or higher,No,White
+271011,TOD-S + TOD,17404,13,8,Female,Bachelors degree or higher,No,White
+271004,TOD-S + TOD,17601,12,7,Female,Bachelors degree or higher,No,White
+271003,TOD-S + TOD,17406,12,7,Female,Some College or associate's degree,No,White
+271001,TOD-S + TOD,17406,7,2,Male,Some College or associate's degree,No,White
+269004,TOD-S + TOD,27571,16,11,Other,Bachelors degree or higher,No,White
+269007,TOD-S + TOD,27587,17,12,Female,Bachelors degree or higher,No,White
+269005,TOD-S + TOD,27571,13,8,Male,Some College or associate's degree,No,White
+269002,TOD-S + TOD,27587,11,6,Male,Bachelors degree or higher,No,White
+223071,TOD-S + TOD,78599,8,3,Female,Did not complete high school,Yes,White
+223070,TOD-S + TOD,78599,11,6,Female,Did not complete high school,Yes,White
+302026,TOD-S + TOD,38672,12,7,Female,Bachelors degree or higher,Yes,White
+302002,TOD-S + TOD-E,38672,6,1,Male,Bachelors degree or higher,Yes,White
+302011,TOD-S + TOD,38672,8,3,Female,Bachelors degree or higher,Yes,White
+302029,TOD-S + TOD,38672,16,10,Male,Bachelors degree or higher,No,Other / Multiracial
+302025,TOD-S + TOD,38671,12,7,Male,Some College or associate's degree,No,Other / Multiracial
+302021,TOD-S + TOD,38672,11,6,Female,Bachelors degree or higher,No,White
+302020,TOD-S + TOD,38671,11,6,Male,Bachelors degree or higher,No,White
+302019,TOD-S + TOD,38671,11,6,Female,Some College or associate's degree,No,Black/African American
+302015,TOD-S + TOD,38672,10,5,Female,Bachelors degree or higher,No,White
+302010,TOD-S + TOD,38672,8,3,Female,Bachelors degree or higher,No,White
+302009,TOD-S + TOD,38671,9,3,Male,Some College or associate's degree,No,Other / Multiracial
+302006,TOD-S + TOD-E,38672,7,2,Female,Bachelors degree or higher,No,White
+302005,TOD-S + TOD-E,38672,7,2,Male,Bachelors degree or higher,No,White
+302004,TOD-S + TOD-E,38672,9,2,Female,Bachelors degree or higher,No,White
+302001,TOD-S + TOD-E,38672,6,1,Male,Bachelors degree or higher,No,White
+302028,TOD-S + TOD,38671,14,9,Female,Bachelors degree or higher,No,White
+258033,TOD-S + TOD,94063,11,5,Female,Bachelors degree or higher,No,White
+258032,TOD-S + TOD,94303,8,2,Male,Did not complete high school,No,White
+258031,TOD-S + TOD,94306,58,Not Applicable / NOT IN SCHOOL,Female,HS_grad,No,White
+205030,TOD-S + TOD,20850,16,11,Male,Bachelors degree or higher,No,White
+223072,TOD-S + TOD,78543,8,3,Female,HS_grad,Yes,White
+223069,TOD-S + TOD,78562,11,6,Female,HS_grad,Yes,White
+223068,TOD-S + TOD,78562,14,9,Female,HS_grad,Yes,White
+260007,TOD-S + TOD,19702,8,1,Male,Bachelors degree or higher,No,White
+260050,TOD-S + TOD,19701,19,College - Sophomore,Male,Some College or associate's degree,No,Other / Multiracial
+265018,TOD-S + TOD,48237,11,6,Female,Bachelors degree or higher,No,Black/African American
+203028,TOD-S + TOD,57069,11,6,Male,Some College or associate's degree,No,White
+260049,TOD-S + TOD,19701,19,College - Sophomore,Male,Some College or associate's degree,No,White
+260048,TOD-S + TOD,19701,19,College - Sophomore,Male,Some College or associate's degree,No,White
+260047,TOD-S + TOD,19701,19,College - Sophomore,Male,Some College or associate's degree,No,White
+260046,TOD-S + TOD,19701,19,College - Sophomore,Male,Some College or associate's degree,No,White
+260045,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,White
+301008,TOD-S + TOD,24060,19,College - Sophomore,Female,Some College or associate's degree,No,White
+260043,TOD-S + TOD,19701,19,College - Sophomore,Male,Some College or associate's degree,No,Black/African American
+260042,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,Black/African American
+260041,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,White
+260040,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,Black/African American
+260039,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,White
+260038,TOD-S + TOD,19701,19,College - Sophomore,Male,Some College or associate's degree,No,Black/African American
+260037,TOD-S + TOD,19701,19,College - Sophomore,Male,Some College or associate's degree,Yes,Other / Multiracial
+260036,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,Yes,Other / Multiracial
+260035,TOD-S + TOD,19701,19,College - Sophomore,Male,Some College or associate's degree,No,White
+210035,TOD-S + TOD,78572,12,7,Female,HS_grad,Yes,White
+260034,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,Black/African American
+210034,TOD-S + TOD,78572,16,11,Male,HS_grad,Yes,White
+260033,TOD-S + TOD,19701,18,College - Freshman,Female,Some College or associate's degree,No,White
+260032,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,Other / Multiracial
+260031,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,Black/African American
+260030,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,White
+260029,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,White
+260028,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,White
+263008,TOD-S + TOD,34711,19,College - Freshman,Male,HS_grad,Yes,Other / Multiracial
+260027,TOD-S + TOD,19701,19,College - Sophomore,Female,Some College or associate's degree,No,Black/African American
+263007,TOD-S + TOD,34711,16,11,Male,Did not complete high school,No,Asian
+263006,TOD-S + TOD,34711,16,11,Male,Did not complete high school,No,Asian
+263005,TOD-S + TOD,34711,17,10,Male,Did not complete high school,No,Asian
+263004,TOD-S + TOD,34711,17,11,Male,Did not complete high school,No,Other / Multiracial
+263003,TOD-S + TOD,34711,17,12,Male,Did not complete high school,Yes,Other / Multiracial
+263002,TOD-S + TOD,34711,17,12,Male,Did not complete high school,Yes,Other / Multiracial
+263001,TOD-S + TOD,34711,15,11,Male,Did not complete high school,No,Asian
+259050,TOD-S + TOD,30055,6,1,Female,Bachelors degree or higher,No,White
+301009,TOD-S + TOD,60504,18,College - Freshman,Male,Bachelors degree or higher,Yes,White
+211069,TOD-S + TOD,64133,15,10,Male,HS_grad,No,White
+211068,TOD-S + TOD,64015,16,10,Male,HS_grad,No,White
+211070,TOD-S + TOD,64133,40,College - Freshman,Female,HS_grad,No,White
+211071,TOD-S + TOD,64014,15,10,Male,Some College or associate's degree,No,White
+211072,TOD-S + TOD-E,64014,6,1,Male,Some College or associate's degree,No,White
+243022,TOD-S + TOD-E,40245,7,1,Male,Bachelors degree or higher,No,White
+243023,TOD-S + TOD,40245,11,6,Male,Bachelors degree or higher,No,White
+243019,TOD-S + TOD,40299,16,11,Male,Bachelors degree or higher,No,White
+211067,TOD-S + TOD,64015,13,7,Male,HS_grad,Yes,White
+211066,TOD-S + TOD,64015,15,10,Female,HS_grad,Yes,White
+211065,TOD-S + TOD,64015,17,12,Female,HS_grad,Yes,White
+259049,TOD-S + TOD,30038,6,1,Female,Some College or associate's degree,No,Black/African American
+223065,TOD-S + TOD,78599,15,10,Male,Some College or associate's degree,Yes,White
+226055,TOD-S + TOD-E,46205,8,2,Male,Some College or associate's degree,No,Black/African American
+223067,TOD-S + TOD,78599,9,4,Male,Some College or associate's degree,Yes,White
+211064,TOD-S + TOD,64015,15,10,Female,Bachelors degree or higher,No,White
+211063,TOD-S + TOD,64015,13,8,Female,Bachelors degree or higher,No,White
+211062,TOD-S + TOD,64063,12,7,Female,Bachelors degree or higher,No,White
+211061,TOD-S + TOD,64133,18,College - Sophomore,Male,HS_grad,No,White
+211060,TOD-S + TOD,64133,17,College - Freshman,Male,HS_grad,No,White
+211059,TOD-S + TOD,64133,20,College - Junior,Female,Some College or associate's degree,No,White
+211058,TOD-S + TOD,64081,31,College - Sophomore,Female,Some College or associate's degree,No,White
+211057,TOD-S + TOD-E,64081,7,2,Male,Some College or associate's degree,No,White
+210033,TOD-S + TOD,78573,39,Not Applicable / NOT IN SCHOOL,Male,HS_grad,Yes,White
+210032,TOD-S + TOD,78573,13,8,Female,HS_grad,Yes,White
+210031,TOD-S + TOD,78573,15,10,Female,HS_grad,Yes,White
+258029,TOD-S + TOD,94303,23,Not Applicable / NOT IN SCHOOL,Male,Some College or associate's degree,No,White
+227005,TOD-S + TOD,49301,10,5,Male,Bachelors degree or higher,No,Black/African American
+227004,TOD-S + TOD,49301,10,4,Male,HS_grad,No,White
+223064,TOD-S + TOD,78599,16,11,Male,Some College or associate's degree,No,White
+226060,TOD-S + TOD-E,46236,5,K,Male,Bachelors degree or higher,No,White
+223066,TOD-S + TOD,78596,11,6,Male,Some College or associate's degree,Yes,White
+223049,TOD-S + TOD,78538,10,5,Male,HS_grad,Yes,White
+206016,TOD-S + TOD,1607,62,Not Applicable / NOT IN SCHOOL,Male,Some College or associate's degree,No,White
+223061,TOD-S + TOD,78543,18,12,Female,HS_grad,Yes,White
+223062,TOD-S + TOD,78543,14,9,Male,HS_grad,Yes,White
+223063,TOD-S + TOD,78543,12,7,Male,HS_grad,Yes,White
+203022,TOD-S + TOD,57069,22,College - Senior,Female,Bachelors degree or higher,No,White
+259048,TOD-S + TOD,30045,11,6,Male,Bachelors degree or higher,No,Black/African American
+259046,TOD-S + TOD,19611,9,4,Male,Some College or associate's degree,No,Black/African American
+259047,TOD-S + TOD,19611,7,2,Male,Some College or associate's degree,No,Black/African American
+305027,TOD-S + TOD,92128,9,4,Female,Bachelors degree or higher,No,White
+226059,TOD-S + TOD-E,46240,7,2,Female,Some College or associate's degree,No,White
+226058,TOD-S + TOD-E,46290,5,K,Female,Bachelors degree or higher,No,White
+211055,TOD-S + TOD,64055,21,College - Sophomore,Male,Some College or associate's degree,Yes,White
+223048,TOD-S + TOD,78538,11,6,Female,HS_grad,Yes,White
+223047,TOD-S + TOD,78538,14,9,Female,HS_grad,Yes,White
+211056,TOD-S + TOD-E,65034,7,1,Male,HS_grad,No,White
+211049,TOD-S + TOD,64034,16,11,Female,HS_grad,No,White
+223034,TOD-S + TOD,78543,14,9,Female,Some College or associate's degree,Yes,White
+305004,TOD-S + TOD,92128,8,3,Male,Bachelors degree or higher,No,White
+305011,TOD-S + TOD-E,92128,5,K,Female,Bachelors degree or higher,No,White
+223002,TOD-S + TOD,78543,9,5,Male,HS_grad,Yes,White
+226057,TOD-S + TOD-E,46240,5,K,Female,Bachelors degree or higher,No,White
+269008,TOD-S + TOD,27545,11,6,Female,Bachelors degree or higher,No,White
+210030,TOD-S + TOD,78501,17,12,Female,Bachelors degree or higher,Yes,White
+210029,TOD-S + TOD,78501,46,Not Applicable / NOT IN SCHOOL,Male,Some College or associate's degree,Yes,White
+210028,TOD-S + TOD,78572,21,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,Yes,White
+210027,TOD-S + TOD,78573,34,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,Yes,White
+210026,TOD-S + TOD,78573,41,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,Yes,White
+211047,TOD-S + TOD,64055,18,College - Freshman,Female,Bachelors degree or higher,No,Other / Multiracial
+211048,TOD-S + TOD,64138,38,Not Applicable / NOT IN SCHOOL,Female,Some College or associate's degree,No,White
+211045,TOD-S + TOD,64064,47,Not Applicable / NOT IN SCHOOL,Female,Some College or associate's degree,No,White
+211046,TOD-S + TOD,64064,20,College - Junior,Female,Some College or associate's degree,No,White
+211044,TOD-S + TOD-E,64055,15,10,Male,Bachelors degree or higher,No,Other / Multiracial
+211043,TOD-S + TOD-E,64055,5,1,Female,Bachelors degree or higher,No,Other / Multiracial
+211042,TOD-S + TOD,64055,14,9,Male,Bachelors degree or higher,No,White
+211050,TOD-S + TOD,64034,16,11,Male,HS_grad,No,White
+211052,TOD-S + TOD,64034,13,8,Male,HS_grad,No,White
+211051,TOD-S + TOD,64034,9,4,Female,HS_grad,No,White
+211053,TOD-S + TOD,64055,37,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,No,White
+211027,TOD-S + TOD,64138,14,8,Female,Bachelors degree or higher,No,White
+211028,TOD-S + TOD,64138,10,4,Female,Bachelors degree or higher,No,White
+211029,TOD-S + TOD,64055,15,9,Male,Some College or associate's degree,No,White
+211030,TOD-S + TOD,64055,17,11,Male,Bachelors degree or higher,No,White
+211031,TOD-S + TOD,64138,41,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,No,White
+211041,TOD-S + TOD,64133,14,9,Male,Bachelors degree or higher,Yes,Other / Multiracial
+211040,TOD-S + TOD,64133,47,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,Yes,Other / Multiracial
+305026,TOD-S + TOD-E,92128,6,1,Female,Bachelors degree or higher,No,White
+305025,TOD-S + TOD,92128,10,5,Male,Bachelors degree or higher,No,White
+258028,TOD-S + TOD,94050,21,Not Applicable / NOT IN SCHOOL,Female,Some College or associate's degree,No,Other / Multiracial
+271013,TOD-S + TOD,85310,67,Not Applicable / NOT IN SCHOOL,Female,HS_grad,No,White
+256036,TOD-S + TOD,38401,13,8,Male,Bachelors degree or higher,No,White
+256035,TOD-S + TOD,38401,10,5,Male,Bachelors degree or higher,No,White
+256034,TOD-S + TOD,38401,15,10,Male,Bachelors degree or higher,No,American Indian/Alaska Native
+256033,TOD-S + TOD,38461,10,5,Female,HS_grad,No,White
+256032,TOD-S + TOD,38461,14,9,Male,HS_grad,No,White
+256026,TOD-S + TOD,38451,8,3,Female,Some College or associate's degree,No,White
+256025,TOD-S + TOD,38401,12,8,Female,Some College or associate's degree,No,White
+256015,TOD-S + TOD,38401,14,9,Male,Bachelors degree or higher,No,White
+256014,TOD-S + TOD,38401,12,7,Female,Bachelors degree or higher,No,White
+256029,TOD-S + TOD,38451,11,7,Male,HS_grad,No,White
+256028,TOD-S + TOD,38401,10,5,Female,HS_grad,No,White
+256027,TOD-S + TOD,38401,9,4,Female,Some College or associate's degree,No,Black/African American
+256024,TOD-S + TOD,38401,11,11,Male,HS_grad,No,White
+256023,TOD-S + TOD,38402,14,9,Female,Some College or associate's degree,No,White
+256013,TOD-S + TOD,38401,17,12,Male,Some College or associate's degree,No,White
+256006,TOD-S + TOD,38401,7,2,Male,Bachelors degree or higher,No,White
+256003,TOD-S + TOD,38401,14,9,Male,Bachelors degree or higher,No,White
+210025,TOD-S + TOD,78573,9,4,Female,Bachelors degree or higher,Yes,White
+210024,TOD-S + TOD,78573,17,College - Freshman,Female,Bachelors degree or higher,Yes,White
+210023,TOD-S + TOD,78570,46,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,Yes,White
+205045,TOD-S + TOD,20817,48,Not Applicable / NOT IN SCHOOL,Male,Bachelors degree or higher,No,White
+223033,TOD-S + TOD,78516,9,4,Female,HS_grad,Yes,White
+223029,TOD-S + TOD,78516,8,3,Female,HS_grad,Yes,White
+203021,TOD-S + TOD,57069,20,College - Junior,Male,HS_grad,No,White
+305024,TOD-S + TOD,92128,15,10,Female,Bachelors degree or higher,No,White
+305014,TOD-S + TOD-E,92127,6,1,Female,Bachelors degree or higher,No,White
+305015,TOD-S + TOD-E,92127,4,K,Male,Bachelors degree or higher,No,White
+210022,TOD-S + TOD,78539,28,Not Applicable / NOT IN SCHOOL,Male,Bachelors degree or higher,Yes,White
+210021,TOD-S + TOD,78539,27,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,Yes,White
+210020,TOD-S + TOD,78577,19,Not Applicable / NOT IN SCHOOL,Male,Some College or associate's degree,Yes,White
+210015,TOD-S + TOD,78577,24,Not Applicable / NOT IN SCHOOL,Male,HS_grad,Yes,White
+205048,TOD-S + TOD,20871,8,3,Female,Bachelors degree or higher,No,White
+243021,TOD-S + TOD,40206,28,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,Yes,Other / Multiracial
+243017,TOD-S + TOD,40059,18,12,Male,HS_grad,No,White
 254025,TOD-S + TOD,37849,14,9,Female,Bachelors degree or higher,No,White
 254024,TOD-S + TOD,37849,14,7,Male,Bachelors degree or higher,No,White
 254019,TOD-S + TOD,37849,11,5,Male,Bachelors degree or higher,No,White
@@ -89,7 +384,7 @@ Examinee's ID,Which combination of the TOD did you administer?,Examinee's 5-digi
 256018,TOD-S + TOD,38401,10,4,Male,Bachelors degree or higher,No,White
 256017,TOD-S + TOD,38401,14,8,Female,Bachelors degree or higher,No,White
 256012,TOD-S + TOD,38401,13,7,Female,Bachelors degree or higher,No,White
-256011,TOD-S + TOD-E,38401,10,4,Male,Bachelors degree or higher,No,White
+256011,TOD-S + TOD,38401,10,4,Male,Bachelors degree or higher,No,White
 256010,TOD-S + TOD-E,38401,6,1,Female,Bachelors degree or higher,No,White
 256009,TOD-S + TOD,38401,8,2,Female,Bachelors degree or higher,No,White
 256005,TOD-S + TOD,38401,13,7,Male,HS_grad,No,White
@@ -250,7 +545,7 @@ Examinee's ID,Which combination of the TOD did you administer?,Examinee's 5-digi
 212017,TOD-S + TOD,60652,15,11,Female,HS_grad,No,Black/African American
 203015,TOD-S + TOD,57069,12,6,Male,Bachelors degree or higher,No,White
 203026,TOD-S + TOD,57069,70,Not Applicable / NOT IN SCHOOL,Male,HS_grad,No,White
-224006,TOD-S + TOD,0,49,Not Applicable / NOT IN SCHOOL,Male,Bachelors degree or higher,No,White
+224006,TOD-S + TOD,53719,49,Not Applicable / NOT IN SCHOOL,Male,Bachelors degree or higher,No,White
 257035,TOD-S + TOD-E,90723,6,K,Male,Some College or associate's degree,No,Black/African American
 203019,TOD-S + TOD,57069,20,College - Freshman,Male,Some College or associate's degree,No,White
 233020,TOD-S + TOD,62901,21,Not Applicable / NOT IN SCHOOL,Male,Did not complete high school,No,Black/African American
@@ -263,7 +558,7 @@ Examinee's ID,Which combination of the TOD did you administer?,Examinee's 5-digi
 233013,TOD-S + TOD,62901,21,Not Applicable / NOT IN SCHOOL,Female,HS_grad,No,Black/African American
 205041,TOD-S + TOD,20878,74,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,No,White
 205042,TOD-S + TOD,20878,63,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,No,White
-233010,TOD-S + TOD-E,62901,20,Not Applicable / NOT IN SCHOOL,Female,HS_grad,No,Black/African American
+233010,TOD-S + TOD,62901,20,Not Applicable / NOT IN SCHOOL,Female,HS_grad,No,Black/African American
 233009,TOD-S + TOD,62901,20,Not Applicable / NOT IN SCHOOL,Female,HS_grad,No,Black/African American
 233008,TOD-S + TOD,62901,20,Not Applicable / NOT IN SCHOOL,Female,HS_grad,No,Black/African American
 233007,TOD-S + TOD,62901,20,Not Applicable / NOT IN SCHOOL,Female,HS_grad,No,Black/African American
@@ -358,7 +653,7 @@ Examinee's ID,Which combination of the TOD did you administer?,Examinee's 5-digi
 210007,TOD-S + TOD,78573,10,5,Female,Bachelors degree or higher,Yes,White
 236043,TOD-S + TOD,53406,15,9,Female,Bachelors degree or higher,No,White
 236007,TOD-S + TOD,53406,8,2,Female,Bachelors degree or higher,No,White
-224007,TOD-S + TOD,0,64,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,No,White
+224007,TOD-S + TOD,53719,64,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,No,White
 223020,TOD-S + TOD,78538,15,8,Female,Did not complete high school,Yes,White
 261035,TOD-S + TOD,95988,16,10,Female,Bachelors degree or higher,No,White
 204018,TOD-S + TOD,39507,50,Not Applicable / NOT IN SCHOOL,Female,HS_grad,Yes,White
@@ -735,7 +1030,7 @@ Examinee's ID,Which combination of the TOD did you administer?,Examinee's 5-digi
 228005,TOD-S + TOD,64014,47,Not Applicable / NOT IN SCHOOL,Female,Some College or associate's degree,No,White
 228007,TOD-S + TOD,64014,12,6,Male,Did not complete high school,No,White
 228001,TOD-S + TOD,64015,49,Not Applicable / NOT IN SCHOOL,Male,Bachelors degree or higher,No,White
-2280006,TOD-S + TOD,64014,18,12,Male,HS_grad,No,White
+228006,TOD-S + TOD,64014,18,12,Male,HS_grad,No,White
 201042,TOD-S + TOD,28590,28,Not Applicable / NOT IN SCHOOL,Female,Bachelors degree or higher,No,White
 241026,TOD-S + TOD-E,48197,5,K,Male,Bachelors degree or higher,Yes,Other / Multiracial
 214040,TOD-S + TOD,76643,10,4,Female,Some College or associate's degree,No,White
