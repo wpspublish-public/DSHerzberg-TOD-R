@@ -133,7 +133,7 @@ current_demos_input <- demos_input %>% enframe() %>% unnest() %>% unstack(value 
     ),
     PEL1 = case_when(
       PEL == "Did not complete high school" ~ "Less_than_HS",
-      PEL == "HS_grad" ~ "HS_degree",
+      PEL == "High school graduate/GED" ~ "HS_degree",
       PEL == "Some College or associate's degree" ~ "Some_college",
       PEL == "Bachelors degree or higher" ~ "BA_plus",
       TRUE ~ NA_character_
