@@ -272,10 +272,10 @@ static_columns_TOD <-
 static_columns_TOD_E <- static_columns_TOD %>% filter(agestrat %in% c("05", "06", "07", "08", "09")) %>% 
   mutate_at(
     vars(target_n), list(~case_when(
-      agestrat == "05" ~ 225,
-      agestrat == "06" ~ 225,
-      agestrat == "07" ~ 225,
-      agestrat == "08" ~ 225,
+      agestrat == "05" ~ 150,
+      agestrat == "06" ~ 150,
+      agestrat == "07" ~ 150,
+      agestrat == "08" ~ 150,
       agestrat == "09" ~ 10,
       TRUE ~ NA_real_
     )))
