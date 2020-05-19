@@ -3,10 +3,10 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-file_name <- c('TOD-E-missing-2020-03-05-250var')
+file_name <- c("TOD-E-missing-2020-05-18-PV-LW-only")
 
 input_orig <- suppressMessages(read_csv(here(
-  paste0('INPUT-FILES/', file_name, '.csv')
+  paste0("INPUT-FILES/", file_name, ".csv")
 ))) 
 
 # get problematic columns, rows
@@ -20,13 +20,13 @@ NA_count
 input_orig[is.na(input_orig)] <- 999
 
 input_gathered <- input_orig %>%
-  gather('item','response',-id) %>% 
+  gather("item","response",-ID) %>% 
   group_by(!!sym(names(input_orig)[1])) %>% 
   arrange(!!sym(names(input_orig)[1])) %>% 
   mutate(item = as.factor(str_sub(item, 2, 4)))
 
 write_csv(input_gathered,
-          here(paste0(file_name, '-BLIMP-input.csv')),
+          here(paste0(file_name, "-BLIMP-input.csv")),
           col_names = F
 )
 
@@ -34,8 +34,8 @@ write_csv(input_gathered,
 # reformat imputed data set for downstream analysis
 temp1 <- suppressMessages(
   read_csv(
-    (here('TOD-impute1.csv')), col_names = F))
-names(temp1) <- c('id', 'item', 'response')
+    (here("TOD-impute1.csv")), col_names = F))
+names(temp1) <- c("id", "item", "response")
 temp2 <- temp1 %>% 
   spread(item, response) 
 names(temp2) <- names(input_orig)
@@ -45,8 +45,8 @@ NA_count
 
 write_csv(temp2, here(
   paste0(
-    'OUTPUT-FILES/',
+    "OUTPUT-FILES/",
     file_name,
-    '-noMiss.csv'
+    "-noMiss.csv"
   )
 ))

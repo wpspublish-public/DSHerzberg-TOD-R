@@ -1,6 +1,6 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
-suppressMessages(library(psych)) # DESCRIPTIVE TABLES
+suppressMessages(library(psych))
 
 grade <- suppressMessages(read_csv(here(
   'INPUT-FILES/ID-Grade-PV-LW.csv'
