@@ -45,7 +45,7 @@ NA_count
 
 write_csv(temp2, here(
   paste0(
-    "OUTPUT-FILES/",
+    "MISSING-DATA-BLIMP/",
     file_name,
     "-noMiss.csv"
   )
