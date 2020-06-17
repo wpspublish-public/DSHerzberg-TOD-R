@@ -1,3 +1,21 @@
+---
+title: "Recoding item responses above a ceiling threshold"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<br>
+
+#### OVERVIEW:
+This R Notebook (.rmd) contains chunks of runnable code along with detailed analysis and 
+
+<br>
+
+#### EXECUTABLE CODE
+```{r recode-above-ceiling, eval = FALSE}
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 suppressMessages(library(psych))
@@ -73,12 +91,11 @@ ceiling <-  input_tall %>%
      names_sep = "",
      values_from = new_val
    )
- 
- write_csv(recode_output,
-           here(str_c("OUTPUT-FILES/TOD-E-recode-",
-                      format(Sys.Date(), "%Y-%m-%d"),
-                      ".csv")),
-           na = "")
- 
-    
+```
 
+<br>
+
+#### COMMENTED SNIPPETS
+`mutate` recodes the demographic variables to desired formats and values, using `case_when` for 
+```{r recode-above-ceiling, echo=16:18, eval=FALSE}
+```
