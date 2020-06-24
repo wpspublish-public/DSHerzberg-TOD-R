@@ -1,4 +1,4 @@
-DATA: TOD-E-missing-2020-05-18-PV-LW-only-BLIMP-input.csv;
+DATA: TOD-E.DATA.3.5.20_forBLIMP6.18.20-BLIMP-input.csv;
 VARIABLES: id itemnum response;
 ORDINAL: response;
 NOMINAL: itemnum;
@@ -7,7 +7,7 @@ CLUSTERID: id;
 MISSING: 999;
 MODEL: response ~ itemnum;
 SEED: 90291;
-BURN: 3000;
+BURN: 1000;
 ITERATIONS: 1;
 #OPTIONS: psr;
-SAVE: separate = TOD-impute-2020-05-18-*.csv;
+SAVE: separate = TOD-impute-2020-06-23-*.csv;

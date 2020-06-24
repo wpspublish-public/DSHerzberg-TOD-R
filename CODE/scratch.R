@@ -1,85 +1,78 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
-suppressMessages(library(psych))
-suppressMessages(library(runner))
+set.seed(123)
 
-input <- suppressMessages(
-  read_csv(
-    here(
-      paste0("INPUT-FILES/TOD-E.DATA.3.5.20recodes6.9.20.csv")
+input1 <- tribble(
+  ~group, ~score, ~label,
+  1, 10, 'A',
+  1, 20, 'B',
+  1, 30, 'C',
+  1, 40, 'D',
+  2, 11, 'A',
+  2, 21, 'B',
+  2, 31, 'C',
+  2, 41, 'D',
+  3, 12, 'A',
+  3, 22, 'B',
+  4, 13, 'A',
+  4, 23, 'B',
+  4, 33, 'C',
+  4, 43, 'D'
+)
+
+input2 <- tibble(
+  ID = rep(1:5, each = 2),
+  a = sample(1:100, 10), 
+  b = sample(1:100, 10), 
+  c = sample(1:100, 10), 
+  d = sample(1:100, 10), 
+  e = sample(1:100, 10)
+) %>% 
+  mutate(
+    across(
+      everything(),
+      as.numeric
     )
   )
-) 
 
-input_tall <- input %>%
-  # group_by(ID) %>%
-  pivot_longer(
-    cols = -ID,
-    names_to = c("pre", "num"),
-    names_sep = 4
-  )  %>%
+# THIS WORKS: output1_at, output1_across are identical ----------------------
+
+output1_at <- input1 %>% 
+  mutate_at(
+  vars(label),
+  ~ case_when(
+    group == 2 ~ "Z",
+    T ~ .x
+  )
+)
+
+output1_across <- input1 %>%
   mutate(across(
-    c(pre),
+    c(label),
+         ~ case_when(
+           group == 2 ~ "Z",
+                     T ~ .x
+                     )
+    ))
+
+
+# THIS WORKS: output2_at, output2_across are identical ----------------------
+
+output2_at <- input2 %>% 
+  mutate_at(
+    vars(b:d),
     ~ case_when(
-      pre == "lske" & between(num, 1, 15) ~ "lske_A",
-      pre == "lske" & between(num, 16, 25) ~ "lske_B",
-      pre == "lske" & between(num, 26, 35) ~ "lske_C",
-      T ~ pre
+      ID == 2 ~ NA_real_,
+      T ~ .x
     )
-  )) %>%
-  group_by(ID, pre) %>%
-  mutate(
-    streak_val = case_when(value == 0 ~ streak_run(value, na_rm = F),
-                           T ~ NA_integer_),
-    ceiling = case_when((
-      pre %in% c("snwe", "sege", "lswe", "rhme") & streak_val == 5
-    ) |
-      (
-        pre %in% c("lske_A", "lske_B", "lske_C") & streak_val == 3
-      ) ~ 1,
-    T ~ 0)
   )
 
-ceiling <-  input_tall %>% 
-  group_by(ID, pre) %>% 
-  summarise(ceiling_count = sum(ceiling)) %>% 
-  mutate(ceiling_reached = case_when(
-    ceiling_count >= 1 ~ 1,
-    T ~ NA_real_
-  )) %>% 
-  select(-ceiling_count)
-
- recode_output <- input_tall %>% 
-  left_join(ceiling, by = c("ID", "pre")) %>% 
-  group_by(ID) %>%
-  mutate(
-    NA_status = case_when(
-      (pre != lead(pre) | is.na(lead(pre))) & is.na(value) & ceiling_reached == 1 ~ "offset_NA",
-      is.na(value) & !is.na(lag(value)) & pre == lag(pre) & ceiling_reached == 1 ~ "onset_NA",
-      T ~ NA_character_
-    )
-  ) %>% 
-   group_by(ID, pre) %>% 
-   mutate(
-     across(
-       c(NA_status),
-       ~ fill_run(.)
-     )
-   ) %>% 
- mutate(new_val = case_when(NA_status %in% c("onset_NA", "offset_NA") ~ 0,
-                            T ~ value)) %>%
-   pivot_wider(
-     id_cols = ID,
-     names_from = c(pre, num),
-     names_sep = "",
-     values_from = new_val
-   )
- 
- write_csv(recode_output,
-           here(str_c("OUTPUT-FILES/TOD-E-recode-",
-                      format(Sys.Date(), "%Y-%m-%d"),
-                      ".csv")),
-           na = "")
- 
-    
+output2_across <- input2 %>% 
+  mutate(across(
+    c(b:d),
+    ~ case_when(
+      ID == 2 ~ NA_real_,
+      T ~ .x
+    ))
+  )
 

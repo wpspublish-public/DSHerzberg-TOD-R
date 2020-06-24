@@ -10,7 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 #### OVERVIEW:
-This R Notebook (.rmd) contains chunks of runnable code along with detailed analysis and 
+The input file is from the Tests of Dyslexia (TOD project).
 
 <br>
 

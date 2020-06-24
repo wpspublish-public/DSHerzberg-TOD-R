@@ -3,7 +3,7 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-file_name <- c("TOD-E-missing-2020-05-18-PV-LW-only")
+file_name <- c("TOD-E.DATA.3.5.20_forBLIMP6.18.20")
 
 input_orig <- suppressMessages(read_csv(here(
   paste0("INPUT-FILES/", file_name, ".csv")
@@ -34,8 +34,8 @@ write_csv(input_gathered,
 # reformat imputed data set for downstream analysis
 temp1 <- suppressMessages(
   read_csv(
-    (here("TOD-impute-2020-05-18-1.csv")), col_names = F))
-names(temp1) <- c("id", "item", "response")
+    (here("MISSING-DATA-BLIMP/TOD-impute-2020-06-23-1.csv")), col_names = F))
+names(temp1) <- c("ID", "item", "response")
 temp2 <- temp1 %>% 
   spread(item, response) 
 names(temp2) <- names(input_orig)
@@ -44,9 +44,11 @@ NA_count <- sum(temp2 == 999)
 NA_count
 
 write_csv(temp2, here(
-  paste0(
+  str_c(
     "MISSING-DATA-BLIMP/",
     file_name,
-    "-noMiss.csv"
+    "-noMiss-",
+    format(Sys.Date(), "%Y-%m-%d"),
+    ".csv"
   )
 ))

@@ -35,12 +35,12 @@ ALGORITHMIC OPTIONS SPECIFIED:
 
 DATA INFORMATION:
 
-  Sample Size:            248724
-  Level-2 Clusters:       1974
+  Sample Size:            68145
+  Level-2 Clusters:       413
   Missing Data Code:      999.000  
   Missing Data Rates:
 
-              response = 51.51%
+              response =  2.16%
 
 ---------------------------------------------------------------------------
 
@@ -82,20 +82,32 @@ VARIABLES IN IMPUTATION MODEL:
                           itemnum#115 itemnum#116 itemnum#117 itemnum#118
                           itemnum#119 itemnum#120 itemnum#121
                           itemnum#122 itemnum#123 itemnum#124
-                          itemnum#125 itemnum#126
+                          itemnum#125 itemnum#126 itemnum#127
+                          itemnum#128 itemnum#129 itemnum#130 itemnum#131
+                          itemnum#132 itemnum#133 itemnum#134
+                          itemnum#135 itemnum#136 itemnum#137
+                          itemnum#138 itemnum#139 itemnum#140
+                          itemnum#141 itemnum#142 itemnum#143 itemnum#144
+                          itemnum#145 itemnum#146 itemnum#147
+                          itemnum#148 itemnum#149 itemnum#150
+                          itemnum#151 itemnum#152 itemnum#153
+                          itemnum#154 itemnum#155 itemnum#156 itemnum#157
+                          itemnum#158 itemnum#159 itemnum#160
+                          itemnum#161 itemnum#162 itemnum#163
+                          itemnum#164 itemnum#165
   Missing outcome:        response (ordinal)
 
 ---------------------------------------------------------------------------
 
 ITERATION HISTORY:
 
-Starting Burn-in on Mon May 18 23:42:13 2020
-    Burn-in iteration 750 completed on Mon May 18 23:57:48 2020
-    Burn-in iteration 1500 completed on Tue May 19 00:12:08 2020
-    Burn-in iteration 2250 completed on Tue May 19 00:26:21 2020
-    Burn-in iteration 3000 completed on Tue May 19 00:40:27 2020
-Burn-in completed on Tue May 19 00:40:27 2020
-    Imputation saved 1 on Tue May 19 00:40:28 2020
+Starting Burn-in on Tue Jun 23 19:31:49 2020
+    Burn-in iteration 250 completed on Tue Jun 23 19:32:59 2020
+    Burn-in iteration 500 completed on Tue Jun 23 19:34:11 2020
+    Burn-in iteration 750 completed on Tue Jun 23 19:35:22 2020
+    Burn-in iteration 1000 completed on Tue Jun 23 19:36:33 2020
+Burn-in completed on Tue Jun 23 19:36:33 2020
+    Imputation saved 1 on Tue Jun 23 19:36:34 2020
 
 ---------------------------------------------------------------------------
 
