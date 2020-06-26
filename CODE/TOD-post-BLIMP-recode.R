@@ -7,35 +7,16 @@ input_orig <- suppressMessages(read_csv(here(
   paste0("INPUT-FILES/", file_name, ".csv")
 ))) 
 
-miss1 <- input_orig %>%
-  filter(across(c(i001:i035),
-                ~ is.na(.))) %>% 
-  mutate(recode_cols = "i001:i035")
-miss2 <- input_orig %>%
-  filter(across(c(i036:i060),
-                ~ is.na(.))) %>% 
-  mutate(recode_cols = "i036:i060")
-miss3 <- input_orig %>%
-  filter(across(c(i061:i100),
-                ~ is.na(.))) %>% 
-  mutate(recode_cols = "i061:i100")
-miss4 <- input_orig %>%
-  filter(across(c(i101:i130),
-                ~ is.na(.))) %>% 
-  mutate(recode_cols = "i101:i130")
-miss5 <- input_orig %>%
-  filter(across(c(i131:i165),
-                ~ is.na(.))) %>% 
-  mutate(recode_cols = "i131:i165")
+col_range <- c("i001:i035", "i036:i060", "i061:i100", "i101:i130", "i131:i165")
 
-miss_recode <- bind_rows(
-  miss1, 
-  miss2, 
-  miss3, 
-  miss4, 
-  miss5
-) %>% 
-  select(ID, recode_cols)
+miss_recode <- col_range %>% 
+  map_df(~
+           input_orig %>%
+           filter(across(!!rlang::parse_expr(.x),
+                         ~ is.na(.))) %>% 
+           mutate(recode_cols = .x) %>% 
+           select(ID, recode_cols)
+  )
 
 temp3 <- temp2 %>%
   left_join(miss_recode, by = "ID") %>%
@@ -76,7 +57,8 @@ temp3 <- temp2 %>%
         T ~ .x
       )
     )
-  )
+  ) %>%
+  select(-recode_cols)
 
 NA_count <- sum(is.na(temp3))
 NA_count
@@ -89,4 +71,6 @@ write_csv(temp3, here(
     format(Sys.Date(), "%Y-%m-%d"),
     ".csv"
   )
-))
+),
+na = ""
+)

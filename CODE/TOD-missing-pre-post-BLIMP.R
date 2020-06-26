@@ -51,4 +51,7 @@ write_csv(temp2, here(
     format(Sys.Date(), "%Y-%m-%d"),
     ".csv"
   )
-))
+),
+na = ""
+)
+

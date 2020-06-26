@@ -1,78 +1,114 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
-set.seed(123)
 
-input1 <- tribble(
-  ~group, ~score, ~label,
-  1, 10, 'A',
-  1, 20, 'B',
-  1, 30, 'C',
-  1, 40, 'D',
-  2, 11, 'A',
-  2, 21, 'B',
-  2, 31, 'C',
-  2, 41, 'D',
-  3, 12, 'A',
-  3, 22, 'B',
-  4, 13, 'A',
-  4, 23, 'B',
-  4, 33, 'C',
-  4, 43, 'D'
-)
+file_name <- c("TOD-E.DATA.3.5.20_forBLIMP6.18.20")
 
-input2 <- tibble(
-  ID = rep(1:5, each = 2),
-  a = sample(1:100, 10), 
-  b = sample(1:100, 10), 
-  c = sample(1:100, 10), 
-  d = sample(1:100, 10), 
-  e = sample(1:100, 10)
-) %>% 
+input_orig <- suppressMessages(read_csv(here(
+  paste0("INPUT-FILES/", file_name, ".csv")
+))) 
+
+temp1 <- suppressMessages(
+  read_csv(
+    (here("MISSING-DATA-BLIMP/TOD-impute-2020-06-23-1.csv")), col_names = F))
+names(temp1) <- c("ID", "item", "response")
+temp2 <- temp1 %>% 
+  spread(item, response) 
+names(temp2) <- names(input_orig)
+
+col_range <- c("i001:i035", "i036:i060", "i061:i100", "i101:i130", "i131:i165")
+
+miss_recode <- col_range %>% 
+  map_df(~
+           input_orig %>%
+           filter(across(!!rlang::parse_expr(.x),
+                         ~ is.na(.))) %>% 
+           mutate(recode_cols = .x) %>% 
+           select(ID, recode_cols)
+  )
+
+# repeated use of across to recode over different subsets of columns
+temp3 <- temp2 %>%
+  left_join(miss_recode, by = "ID") %>%
+  relocate(recode_cols, .after = "ID") %>%
   mutate(
     across(
-      everything(),
-      as.numeric
+      c(i001:i035),
+      ~ case_when(
+        recode_cols == "i001:i035"  ~ NA_real_,
+        T ~ .x
+      )
+    ), 
+    across(
+      c(i036:i060),
+      ~ case_when(
+        recode_cols == "i036:i060"  ~ NA_real_,
+        T ~ .x
+      )
+    ), 
+    across(
+      c(i061:i100),
+      ~ case_when(
+        recode_cols == "i061:i100"  ~ NA_real_,
+        T ~ .x
+      )
+    ), 
+    across(
+      c(i101:i130),
+      ~ case_when(
+        recode_cols == "i101:i130"  ~ NA_real_,
+        T ~ .x
+      )
+    ), 
+    across(
+      c(i131:i165),
+      ~ case_when(
+        recode_cols == "i131:i165"  ~ NA_real_,
+        T ~ .x
+      )
     )
-  )
+  ) %>%
+  select(-recode_cols)
 
-# THIS WORKS: output1_at, output1_across are identical ----------------------
+# pivot longer to avoid repeated code
+temp4 <- temp2 %>%
+  left_join(miss_recode, by = "ID") %>%
+  relocate(recode_cols, .after = "ID") %>%
+  pivot_longer(cols = c(-ID,-recode_cols),
+               names_to = c("item")) %>%
+  extract(
+    recode_cols,
+    into = c("start", "end"),
+    "([:alnum:]{4})?\\:?(.*)",
+    remove = F
+  ) %>%
+  group_by(ID) %>%
+  mutate(
+    recode_run =
+      case_when(start == item ~ "onset",
+                end == item ~ "offset",
+                T ~ NA_character_),
+    across(c(recode_run),
+           ~ runner::fill_run(.,)),
+    across(
+      c(recode_run),
+      ~ case_when(recode_run == "offset" ~ NA_character_,
+                  T ~ recode_run)
+    ),
+    across(
+      c(recode_run),
+      ~ case_when(lag(recode_run) == "onset" ~ "onset",
+                  T ~ recode_run)
+    ),
+    across(c(value),
+           ~ case_when(recode_run == "onset" ~ NA_real_,
+                       T ~ value))
+  ) %>%
+  pivot_wider(
+    id_cols = ID,
+    names_from = c(item),
+    values_from = value
+  ) %>%
+  ungroup()
 
-output1_at <- input1 %>% 
-  mutate_at(
-  vars(label),
-  ~ case_when(
-    group == 2 ~ "Z",
-    T ~ .x
-  )
-)
-
-output1_across <- input1 %>%
-  mutate(across(
-    c(label),
-         ~ case_when(
-           group == 2 ~ "Z",
-                     T ~ .x
-                     )
-    ))
-
-
-# THIS WORKS: output2_at, output2_across are identical ----------------------
-
-output2_at <- input2 %>% 
-  mutate_at(
-    vars(b:d),
-    ~ case_when(
-      ID == 2 ~ NA_real_,
-      T ~ .x
-    )
-  )
-
-output2_across <- input2 %>% 
-  mutate(across(
-    c(b:d),
-    ~ case_when(
-      ID == 2 ~ NA_real_,
-      T ~ .x
-    ))
-  )
+identical(temp3, temp4)
 
