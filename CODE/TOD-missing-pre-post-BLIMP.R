@@ -3,7 +3,7 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-file_name <- c("TOD-E.DATA.3.5.20_forBLIMP6.18.20")
+file_name <- c("TOD.DATA.3.5.20_forBLIMP7.14.20")
 
 input_orig <- suppressMessages(read_csv(here(
   paste0("INPUT-FILES/", file_name, ".csv")
@@ -19,13 +19,13 @@ NA_count
 
 input_orig[is.na(input_orig)] <- 999
 
-input_gathered <- input_orig %>%
-  gather("item","response",-ID) %>% 
-  group_by(!!sym(names(input_orig)[1])) %>% 
-  arrange(!!sym(names(input_orig)[1])) %>% 
-  mutate(item = as.factor(str_sub(item, 2, 4)))
+input_tall <- input_orig %>%
+  pivot_longer(cols = -ID,
+               names_to = "item",
+               values_to = "response") %>%
+  mutate(across(item, ~ str_sub(., 2, 4)))
 
-write_csv(input_gathered,
+write_csv(input_tall,
           here(paste0("MISSING-DATA-BLIMP/", file_name, "-BLIMP-input.csv")),
           col_names = F
 )
