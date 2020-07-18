@@ -35,12 +35,12 @@ ALGORITHMIC OPTIONS SPECIFIED:
 
 DATA INFORMATION:
 
-  Sample Size:            68145
-  Level-2 Clusters:       413
+  Sample Size:            472023
+  Level-2 Clusters:       1611
   Missing Data Code:      999.000  
   Missing Data Rates:
 
-              response =  2.16%
+              response =  1.11%
 
 ---------------------------------------------------------------------------
 
@@ -94,20 +94,59 @@ VARIABLES IN IMPUTATION MODEL:
                           itemnum#154 itemnum#155 itemnum#156 itemnum#157
                           itemnum#158 itemnum#159 itemnum#160
                           itemnum#161 itemnum#162 itemnum#163
-                          itemnum#164 itemnum#165
+                          itemnum#164 itemnum#165 itemnum#166
+                          itemnum#167 itemnum#168 itemnum#169 itemnum#170
+                          itemnum#171 itemnum#172 itemnum#173
+                          itemnum#174 itemnum#175 itemnum#176
+                          itemnum#177 itemnum#178 itemnum#179
+                          itemnum#180 itemnum#181 itemnum#182 itemnum#183
+                          itemnum#184 itemnum#185 itemnum#186
+                          itemnum#187 itemnum#188 itemnum#189
+                          itemnum#190 itemnum#191 itemnum#192
+                          itemnum#193 itemnum#194 itemnum#195 itemnum#196
+                          itemnum#197 itemnum#198 itemnum#199
+                          itemnum#200 itemnum#201 itemnum#202
+                          itemnum#203 itemnum#204 itemnum#205
+                          itemnum#206 itemnum#207 itemnum#208 itemnum#209
+                          itemnum#210 itemnum#211 itemnum#212
+                          itemnum#213 itemnum#214 itemnum#215
+                          itemnum#216 itemnum#217 itemnum#218
+                          itemnum#219 itemnum#220 itemnum#221 itemnum#222
+                          itemnum#223 itemnum#224 itemnum#225
+                          itemnum#226 itemnum#227 itemnum#228
+                          itemnum#229 itemnum#230 itemnum#231
+                          itemnum#232 itemnum#233 itemnum#234 itemnum#235
+                          itemnum#236 itemnum#237 itemnum#238
+                          itemnum#239 itemnum#240 itemnum#241
+                          itemnum#242 itemnum#243 itemnum#244
+                          itemnum#245 itemnum#246 itemnum#247 itemnum#248
+                          itemnum#249 itemnum#250 itemnum#251
+                          itemnum#252 itemnum#253 itemnum#254
+                          itemnum#255 itemnum#256 itemnum#257
+                          itemnum#258 itemnum#259 itemnum#260 itemnum#261
+                          itemnum#262 itemnum#263 itemnum#264
+                          itemnum#265 itemnum#266 itemnum#267
+                          itemnum#268 itemnum#269 itemnum#270
+                          itemnum#271 itemnum#272 itemnum#273 itemnum#274
+                          itemnum#275 itemnum#276 itemnum#277
+                          itemnum#278 itemnum#279 itemnum#280
+                          itemnum#281 itemnum#282 itemnum#283
+                          itemnum#284 itemnum#285 itemnum#286 itemnum#287
+                          itemnum#288 itemnum#289 itemnum#290
+                          itemnum#291 itemnum#292 itemnum#293
   Missing outcome:        response (ordinal)
 
 ---------------------------------------------------------------------------
 
 ITERATION HISTORY:
 
-Starting Burn-in on Tue Jun 23 19:31:49 2020
-    Burn-in iteration 250 completed on Tue Jun 23 19:32:59 2020
-    Burn-in iteration 500 completed on Tue Jun 23 19:34:11 2020
-    Burn-in iteration 750 completed on Tue Jun 23 19:35:22 2020
-    Burn-in iteration 1000 completed on Tue Jun 23 19:36:33 2020
-Burn-in completed on Tue Jun 23 19:36:33 2020
-    Imputation saved 1 on Tue Jun 23 19:36:34 2020
+Starting Burn-in on Fri Jul 17 06:57:24 2020
+    Burn-in iteration 750 completed on Fri Jul 17 07:48:22 2020
+    Burn-in iteration 1500 completed on Fri Jul 17 08:41:01 2020
+    Burn-in iteration 2250 completed on Fri Jul 17 09:33:31 2020
+    Burn-in iteration 3000 completed on Fri Jul 17 10:26:08 2020
+Burn-in completed on Fri Jul 17 10:26:08 2020
+    Imputation saved 1 on Fri Jul 17 10:26:14 2020
 
 ---------------------------------------------------------------------------
 

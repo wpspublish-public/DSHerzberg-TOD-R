@@ -1,24 +1,11 @@
-test <- miss_recode %>% 
-  group_by(ID) %>% 
-  summarise(
-    range1 = nth(recode_cols, 1),
-    range2 = nth(recode_cols, 2),
-    range3 = nth(recode_cols, 3),
-    range4 = nth(recode_cols, 4)
-  )
+# Check for any dupIDs (anyDuplicated() returns row number of FIRST dup ID encountered)
+anyDuplicated(temp4$ID)
 
-ranges <- c("range1", "range2", "range3", "range4")
+# Check for any NAs on IDNumber, returns TRUE if NA exist
+any(is.na(miss_recode$ID))
 
-temp3 <- temp2 %>%
-  left_join(miss_recode, by = "ID") %>%
-  relocate(range1:range4, .after = "ID") %>%
-  mutate(
-    across(
-      c(i001:i035),
-      ~ case_when(
-        (range1 == "i001:i035") | (range2 == "i001:i035") |
-          (range3 == "i001:i035") | (range4 == "i001:i035") ~ NA_real_,
-        T ~ .x
-      )
-    )) 
-    
+# extract cases with Dup ID numbers or NA on IDNumber, write out for investigation
+dupMissIDs <- miss_recode %>%
+  mutate(dup = duplicated(ID)) %>%
+  filter(dup == TRUE | is.na(ID)) %>%
+  select(-dup) 

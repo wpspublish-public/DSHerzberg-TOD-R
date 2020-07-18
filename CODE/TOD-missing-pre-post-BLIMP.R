@@ -3,16 +3,16 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-file_name <- c("TOD.DATA.3.5.20_forBLIMP7.14.20")
+file_name <- c("TOD.DATA.3.5.20_forBLIMP7.16.20iws_lvc")
 
 input_orig <- suppressMessages(read_csv(here(
   paste0("INPUT-FILES/", file_name, ".csv")
 ))) 
 
 # get problematic columns, rows
-all_0orNA_cols <- input_orig %>% purrr::keep(~all(is.na(.x) | .x == 0)) %>% names
-all_1orNA_cols <- input_orig %>% purrr::keep(~all(is.na(.x) | .x == 1)) %>% names
-all_0orNA_rows <- input_orig %>% filter_at(names(input_orig)[-1], ~(is.na(.) | . == 0))
+all_0orNA_cols <- input_orig %>% keep(~all(is.na(.x) | .x == 0)) %>% names
+all_1orNA_cols <- input_orig %>% keep(~all(is.na(.x) | .x == 1)) %>% names
+all_0orNA_rows <- input_orig %>% filter(across(names(input_orig)[-1], ~(is.na(.) | . == 0)))
 
 NA_count <- sum(is.na(input_orig))
 NA_count
@@ -34,10 +34,13 @@ write_csv(input_tall,
 # reformat imputed data set for downstream analysis
 temp1 <- suppressMessages(
   read_csv(
-    (here("MISSING-DATA-BLIMP/TOD-impute-2020-06-23-1.csv")), col_names = F))
+    (here("MISSING-DATA-BLIMP/TOD-impute-2020-07-17-1.csv")), col_names = F))
 names(temp1) <- c("ID", "item", "response")
 temp2 <- temp1 %>% 
-  spread(item, response) 
+  pivot_wider(
+    names_from = item,
+    values_from = response
+  ) 
 names(temp2) <- names(input_orig)
 
 NA_count <- sum(temp2 == 999)
