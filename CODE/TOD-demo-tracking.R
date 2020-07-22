@@ -23,10 +23,11 @@ old_demos_input <-
 # strip all attributes and garbage from input table.
 attributes(old_demos_input) <- NULL
 names(old_demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
-old_demos_input_2019_05_22 <- old_demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>% 
+old_demos_input_2019_05_22 <- old_demos_input %>% enframe() %>% unnest(everything()) %>% 
+  unstack(value ~ name) %>% 
   select(IDnum, form, zip, ageyear, grade, gender, PEL, hispanic, ethnic) %>% 
-  mutate_at(vars(IDnum, zip, ageyear), as.integer) %>% 
   mutate(
+    across(c(IDnum, zip, ageyear), ~ as.integer(.)),
     agestrat = case_when(
       ageyear == 5 ~ "05",
       ageyear == 6 ~ "06",
@@ -107,10 +108,11 @@ demos_input<-
 # strip all attributes and garbage from input table.
 attributes(demos_input) <- NULL
 names(demos_input) <- c("IDnum", "form", "zip", "ageyear", "grade", "gender", "PEL", "hispanic", "ethnic")
-current_demos_input <- demos_input %>% enframe() %>% unnest() %>% unstack(value ~ name) %>% 
+current_demos_input <- demos_input %>% enframe() %>% unnest(everything()) %>% 
+  unstack(value ~ name) %>% 
   select(IDnum, form, zip, ageyear, grade, gender, PEL, hispanic, ethnic) %>% 
-  mutate_at(vars(IDnum, zip, ageyear), as.integer) %>% 
   mutate(
+    across(c(IDnum, zip, ageyear), ~ as.integer(.)),
     agestrat = case_when(
       ageyear == 5 ~ "05",
       ageyear == 6 ~ "06",
