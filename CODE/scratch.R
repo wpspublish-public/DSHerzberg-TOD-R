@@ -1,14 +1,16 @@
-test <- miss_recode %>% 
-  left_join(input_orig, by = "ID")
+ColNums_NotAllMissing <- function(df){ # helper function
+  as.vector(which(colSums(is.na(df)) != nrow(df)))
+}
 
-test2 <- slice_sample(input_orig, n = 100)
+test <- miss_recode %>%
+  select(ColNums_NotAllMissing(.))
 
-test3 <- bind_rows(test, test2) %>% 
-  arrange(ID) %>% 
-  filter(
-    !(ID %in% c(230010, 268005) & is.na(recode_cols1))
+test1 <- miss_recode %>%
+  select(across(
+    c(ID, recode_cols1, recode_cols2, recode_cols3),
+    ~ as.vector(which(colSums(is.na(.)) != nrow(.)))
+  ))
+    
+test2 <- miss_recode %>%
+  select(as.vector(which(colSums(is.na(.)) != nrow(.)))
   )
-
-anyDuplicated(test3$ID)
-
-write_csv(test3, here("test3.csv"))

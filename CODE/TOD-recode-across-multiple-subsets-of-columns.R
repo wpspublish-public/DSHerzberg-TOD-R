@@ -1,7 +1,7 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-file_name <- "TOD.DATA.3.5.20_forBLIMP7.16.20iws_lvc"
+file_name <- c("TOD.DATA.3.5.20_forBLIMP7.20.20rws_ssl")
 
 input_orig <- suppressMessages(read_csv(here(
   str_c(
@@ -11,14 +11,14 @@ input_orig <- suppressMessages(read_csv(here(
 
 blimp_output <- suppressMessages(
   read_csv(
-    (here("MISSING-DATA-BLIMP/TOD-impute-2020-07-17-1.csv")), col_names = F)) %>% 
+    (here("MISSING-DATA-BLIMP/TOD-impute-2020-07-26-1.csv")), col_names = F)) %>% 
   setNames(c("ID", "item", "response")) %>% 
   pivot_wider(names_from = item,
               values_from = response) %>%
   setNames(names(input_orig))
 
-col_subsets <- c("i001:i050", "i051:i084", "i085:i114", "i115:i185", 
-                 "i186:i206", "i207:i251", "i252:i293")
+col_subsets <- c("i001:i050", "i051:i070", "i071:i095", "i096:i145", 
+                 "i146:i166", "i167:i209", "i210:i251")
 
 miss_recode <- col_subsets %>%
   map_df(

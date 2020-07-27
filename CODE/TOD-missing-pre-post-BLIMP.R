@@ -32,21 +32,18 @@ write_csv(input_tall,
 
 
 # reformat imputed data set for downstream analysis
-temp1 <- suppressMessages(
+blimp_output <- suppressMessages(
   read_csv(
-    (here("MISSING-DATA-BLIMP/TOD-impute-2020-07-17-1.csv")), col_names = F))
-names(temp1) <- c("ID", "item", "response")
-temp2 <- temp1 %>% 
-  pivot_wider(
-    names_from = item,
-    values_from = response
-  ) 
-names(temp2) <- names(input_orig)
+    (here("MISSING-DATA-BLIMP/TOD-impute-2020-07-26-1.csv")), col_names = F)) %>% 
+  setNames(c("ID", "item", "response")) %>% 
+  pivot_wider(names_from = item,
+              values_from = response) %>%
+  setNames(names(input_orig))
 
-NA_count <- sum(temp2 == 999)
+NA_count <- sum(blimp_output == 999)
 NA_count
 
-write_csv(temp2, here(
+write_csv(blimp_output, here(
   str_c(
     "MISSING-DATA-BLIMP/",
     file_name,
