@@ -122,5 +122,11 @@ write_csv(
 )
 
 # write matchpool subsample that is matched to target group.
-
+write_csv(
+  TOD_matchpool_match,
+  here(
+    "OUTPUT-FILES/SAMPLE-MATCHING/TODS-matched-sample.csv"
+  ),
+  na = ""
+)
 
