@@ -1,0 +1,126 @@
+###### LOAD PACKAGES -----------------------------------------------------------
+suppressMessages(library(here)) 
+suppressMessages(suppressWarnings(library(tidyverse)))
+suppressMessages(library(psych))
+suppressMessages(library(MatchIt))
+
+# READ TARGET AND MATCHPOOL SAMPLES --------------------------------------------------
+
+TOD_target_preMatch <- 
+  suppressMessages(as_tibble(read_csv(
+    here("INPUT-FILES/SAMPLE-MATCHING/TODS_digital_smallfile.csv")
+  ))) %>% 
+  mutate(source = "target")
+
+TOD_matchpool_preMatch <-
+  suppressMessages(as_tibble(read_csv(
+    here("INPUT-FILES/SAMPLE-MATCHING/TODS_digital_largefile_v2.csv")
+  ))) %>% 
+  mutate(source = "matchpool")
+
+# EXTRACT MATCHED TYPICAL SAMPLE ------------------------------------------
+
+# This step encodes a logical var (Group), needed by matchit, that captures
+# target vs matchpool status
+TOD_target_matchpool_preMatch <- bind_rows(
+  TOD_target_preMatch,
+  TOD_matchpool_preMatch 
+) %>% 
+  mutate(Group = case_when(
+    source == "target" ~ TRUE,
+    TRUE ~ FALSE
+  ))
+
+# matchit cannot process NA. First get sum of NA for data. If that is 0,
+# proceed. If sum NA is positive, recode all NA to 999
+sum(is.na(TOD_target_matchpool_preMatch))
+
+# identify cols with NA
+na_cols <- TOD_target_matchpool_preMatch %>% select_if(~ any(is.na(.)))
+
+# in NA cols, replace NA with 999
+TOD_target_matchpool_preMatch <- TOD_target_matchpool_preMatch %>%
+  replace_na(
+    list(
+      ID = 999,
+      age = 999,
+      gender = 999,
+      ethnicity = 999,
+      SES = 999,
+      source = "999"
+    ))
+
+# run matchit to get 1:1 matching
+set.seed(39485703)
+match <- matchit(
+  Group ~ age + gender + SES + ethnicity, 
+  data = TOD_target_matchpool_preMatch, 
+  method = "nearest", 
+  ratio = 1)
+match_summ <- summary(match)
+
+# save matched samples into new df; split by source
+TOD_target_matchpool_match <- match.data(match) %>% 
+  select(-Group, -distance, -weights) 
+TOD_matchpool_match <- TOD_target_matchpool_match %>% 
+  filter(source == 'matchpool')
+TOD_target_match <- TOD_target_matchpool_match %>% 
+  filter(source == 'target')
+
+# demo counts
+
+var_order <- c("age", "gender", "SES", "ethnicity")
+
+match_dist_matchpool <- TOD_matchpool_match %>%
+  select(age, gender, SES, ethnicity) %>%
+  pivot_longer(everything(), names_to = "var", values_to = "cat") %>%
+  group_by(var, cat) %>%
+  count(var, cat) %>%
+  arrange(match(var, var_order), cat) %>%
+  ungroup() %>%
+  mutate(
+    var = case_when(
+      lag(var) == "age" & var == "age" ~ "",
+      lag(var) == "gender" & var == "gender" ~ "",
+      lag(var) == "SES" & var == "SES" ~ "",
+      lag(var) == "ethnicity" & var == "ethnicity" ~ "",
+      TRUE ~ var
+    )
+  ) %>%
+  mutate(group = case_when(row_number() == 1 ~ "matchpool",
+                           TRUE ~ "")) %>%
+  select(group, everything())
+
+match_dist_target <- TOD_target_match %>%
+  select(age, gender, SES, ethnicity) %>%
+  pivot_longer(everything(), names_to = "var", values_to = "cat") %>%
+  group_by(var, cat) %>%
+  count(var, cat) %>%
+  arrange(match(var, var_order), cat) %>%
+  ungroup() %>%
+  mutate(
+    var = case_when(
+      lag(var) == "age" & var == "age" ~ "",
+      lag(var) == "gender" & var == "gender" ~ "",
+      lag(var) == "SES" & var == "SES" ~ "",
+      lag(var) == "ethnicity" & var == "ethnicity" ~ "",
+      TRUE ~ var
+    )
+  ) %>%
+  mutate(group = case_when(row_number() == 1 ~ "target",
+                           TRUE ~ "")) %>%
+  select(group, everything())
+
+
+# write table of combined matchpool, target demo counts.
+write_csv(
+  bind_rows(match_dist_matchpool,
+            match_dist_target),
+  here(
+    "OUTPUT-FILES/SAMPLE-MATCHING/TOD-matchpool-target-demos.csv"
+  )
+)
+
+# write matchpool subsample that is matched to target group.
+
+
