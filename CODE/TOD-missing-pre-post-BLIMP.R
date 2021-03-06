@@ -3,19 +3,26 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-file_name <- c("TOD.DATA.3.5.20_forBLIMP7.20.20rws_ssl")
+file_name <- c("TOD-S.2.23.21-for-blimp")
 
 input_orig <- suppressMessages(read_csv(here(
   paste0("INPUT-FILES/", file_name, ".csv")
 ))) 
 
+# get report of file size and missing pct.
+cell_count <- nrow(input_orig) * ncol(input_orig)
+na_count <- sum(is.na(input_orig))
+na_pct <- round((na_count/cell_count) * 100, 2)
+
+na_summ <- tribble(
+  ~file_name, ~rows, ~cols, ~na, ~cells, ~na_pct,
+  file_name, nrow(input_orig), ncol(input_orig), na_count, cell_count, na_pct
+)
+
 # get problematic columns, rows
 all_0orNA_cols <- input_orig %>% keep(~all(is.na(.x) | .x == 0)) %>% names
 all_1orNA_cols <- input_orig %>% keep(~all(is.na(.x) | .x == 1)) %>% names
 all_0orNA_rows <- input_orig %>% filter(across(names(input_orig)[-1], ~(is.na(.) | . == 0)))
-
-NA_count <- sum(is.na(input_orig))
-NA_count
 
 input_orig[is.na(input_orig)] <- 999
 
