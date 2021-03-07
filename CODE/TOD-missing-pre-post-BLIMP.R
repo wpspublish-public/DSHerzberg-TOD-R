@@ -7,7 +7,8 @@ file_name <- c("TOD-S.2.23.21-for-blimp")
 
 input_orig <- suppressMessages(read_csv(here(
   paste0("INPUT-FILES/", file_name, ".csv")
-))) 
+))) %>% 
+  rename(id = ID)
 
 # get report of file size and missing pct.
 cell_count <- nrow(input_orig) * ncol(input_orig)
@@ -27,7 +28,7 @@ all_0orNA_rows <- input_orig %>% filter(across(names(input_orig)[-1], ~(is.na(.)
 input_orig[is.na(input_orig)] <- 999
 
 input_tall <- input_orig %>%
-  pivot_longer(cols = -ID,
+  pivot_longer(cols = -id,
                names_to = "item",
                values_to = "response") %>%
   mutate(across(item, ~ str_sub(., 2, 4)))
@@ -41,7 +42,7 @@ write_csv(input_tall,
 # reformat imputed data set for downstream analysis
 blimp_output <- suppressMessages(
   read_csv(
-    (here("MISSING-DATA-BLIMP/TOD-impute-2020-07-26-1.csv")), col_names = F)) %>% 
+    (here("MISSING-DATA-BLIMP/TOD-S-2021-03-07/TOD-S1.csv")), col_names = F)) %>% 
   setNames(c("ID", "item", "response")) %>% 
   pivot_wider(names_from = item,
               values_from = response) %>%
