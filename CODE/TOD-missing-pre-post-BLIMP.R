@@ -53,7 +53,7 @@ NA_count
 
 write_csv(blimp_output, here(
   str_c(
-    "MISSING-DATA-BLIMP/",
+    "MISSING-DATA-BLIMP/TOD-S-2021-03-07/",
     file_name,
     "-noMiss-",
     format(Sys.Date(), "%Y-%m-%d"),
