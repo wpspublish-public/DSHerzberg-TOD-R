@@ -20,10 +20,10 @@ input_tall <- input %>%
   group_by(ID, pre) %>%
   mutate(
     streak_val = case_when(value == 0 ~ streak_run(value, na_rm = F),
-                           T ~ NA_integer_),
+                           TRUE ~ NA_integer_),
     ceiling = case_when(
       streak_val == 5 ~ 1,
-    T ~ 0)
+    TRUE ~ 0)
   )
 
 ceiling <-  input_tall %>% 
@@ -31,7 +31,7 @@ ceiling <-  input_tall %>%
   summarise(ceiling_count = sum(ceiling)) %>% 
   mutate(ceiling_reached = case_when(
     ceiling_count >= 1 ~ 1,
-    T ~ NA_real_
+    TRUE ~ NA_real_
   )) %>% 
   select(-ceiling_count)
 
@@ -42,7 +42,7 @@ ceiling <-  input_tall %>%
     NA_status = case_when(
       (pre != lead(pre) | is.na(lead(pre))) & is.na(value) & ceiling_reached == 1 ~ "offset_NA",
       is.na(value) & !is.na(lag(value)) & pre == lag(pre) & ceiling_reached == 1 ~ "onset_NA",
-      T ~ NA_character_
+      TRUE ~ NA_character_
     )
   ) %>% 
    group_by(ID, pre) %>% 
@@ -53,7 +53,7 @@ ceiling <-  input_tall %>%
      )
    ) %>% 
  mutate(new_val = case_when(NA_status %in% c("onset_NA", "offset_NA") ~ 0,
-                            T ~ value)) %>%
+                            TRUE ~ value)) %>%
    pivot_wider(
      id_cols = ID,
      names_from = c(pre, num),

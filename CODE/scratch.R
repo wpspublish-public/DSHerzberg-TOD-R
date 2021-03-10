@@ -1,16 +1,17 @@
-ColNums_NotAllMissing <- function(df){ # helper function
-  as.vector(which(colSums(is.na(df)) != nrow(df)))
-}
+urlRemote_path  <- "https://raw.githubusercontent.com/"
+github_path <- "DSHerzberg/TOD-R/master/INPUT-FILES/"
+fileName_path   <- "TODC-TODS2.23.21forceilingrecodes.csv"
 
-test <- miss_recode %>%
-  select(ColNums_NotAllMissing(.))
+input <- suppressMessages(read_csv(url(
+  str_c(urlRemote_path, github_path, fileName_path),
+  "rb"
+)))
 
-test1 <- miss_recode %>%
-  select(across(
-    c(ID, recode_cols1, recode_cols2, recode_cols3),
-    ~ as.vector(which(colSums(is.na(.)) != nrow(.)))
-  ))
-    
-test2 <- miss_recode %>%
-  select(as.vector(which(colSums(is.na(.)) != nrow(.)))
-  )
+con <- url("http://www.imdb.com/title/tt1490017/", "rb") 
+
+"https://raw.githubusercontent.com/DSHerzberg/TOD-R/master/INPUT-FILES/TODC-TODS2.23.21forceilingrecodes.csv"
+
+
+input <- suppressMessages(read_csv(url(
+  "https://raw.githubusercontent.com/DSHerzberg/TOD-R/master/INPUT-FILES/TODC-TODS2.23.21forceilingrecodes.csv"
+)))
