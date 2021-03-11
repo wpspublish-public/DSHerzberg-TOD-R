@@ -1,11 +1,10 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
-suppressMessages(library(psych))
 suppressMessages(library(runner))
 
 urlRemote_path  <- "https://raw.githubusercontent.com/"
 github_path <- "DSHerzberg/TOD-R/master/INPUT-FILES/"
-fileName_path   <- "TOD.DATA.3.5.20.forceilingrecode7.2.20.csv"
+fileName_path   <- "TOD-E-recode-above-ceiling-input.csv"
 
 input <- suppressMessages(read_csv(url(
   str_c(urlRemote_path, github_path, fileName_path)
@@ -15,7 +14,7 @@ input_tall <- input %>%
   pivot_longer(
     cols = -ID,
     names_to = c("pre", "num"),
-    names_sep = 3
+    names_sep = 4
   )  %>%
   group_by(ID, pre) %>%
   mutate(
