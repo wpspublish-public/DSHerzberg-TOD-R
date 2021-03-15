@@ -2,8 +2,8 @@ suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 suppressMessages(library(runner))
 
-urlRemote_path  <- "https://raw.githubusercontent.com/"
-github_path <- "DSHerzberg/TOD-R/master/INPUT-FILES/"
+urlRemote_path  <- "https://raw.github.com/"
+github_path <- "wpspublish/DSHerzberg-TOD-R/master/INPUT-FILES/"
 fileName_path   <- "TOD-E-recode-above-ceiling-input.csv"
 
 input <- suppressMessages(read_csv(url(

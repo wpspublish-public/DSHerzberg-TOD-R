@@ -3,7 +3,7 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-file_name <- c("TOD-S.2.23.21-for-blimp")
+file_name <- c("TODC2.23.21for BLIMPpart2")
 
 input_orig <- suppressMessages(read_csv(here(
   paste0("INPUT-FILES/", file_name, ".csv")
