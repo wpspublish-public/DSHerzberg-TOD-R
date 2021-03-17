@@ -1,7 +1,7 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-file_name <- c("TOD.DATA.3.5.20_forBLIMP7.20.20rws_ssl")
+file_name <- c("TODC2.23.21for BLIMPpart2")
 
 input_orig <- suppressMessages(read_csv(here(
   str_c(
@@ -11,7 +11,7 @@ input_orig <- suppressMessages(read_csv(here(
 
 blimp_output <- suppressMessages(
   read_csv(
-    (here("MISSING-DATA-BLIMP/TOD-impute-2020-07-26-1.csv")), col_names = F)) %>% 
+    (here("MISSING-DATA-BLIMP/TOD-C-2021-03-12/TOD-C-part2-impute.csv")), col_names = F)) %>% 
   setNames(c("ID", "item", "response")) %>% 
   pivot_wider(names_from = item,
               values_from = response) %>%
@@ -48,19 +48,19 @@ blimp_recode <- blimp_output %>%
   extract(
     recode_cols1,
     into = c("start1", "end1"),
-    "([:alnum:]{4})?\\:?(.*)",
+    "([[:alnum:]]{4})?\\:?(.*)",
     remove = F
   ) %>%
   extract(
     recode_cols2,
     into = c("start2", "end2"),
-    "([:alnum:]{4})?\\:?(.*)",
+    "([[:alnum:]]{4})?\\:?(.*)",
     remove = F
   ) %>%
   extract(
     recode_cols3,
     into = c("start3", "end3"),
-    "([:alnum:]{4})?\\:?(.*)",
+    "([[:alnum:]]{4})?\\:?(.*)",
     remove = F
   ) %>%
   group_by(ID) %>%
