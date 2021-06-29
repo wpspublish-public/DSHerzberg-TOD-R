@@ -3,10 +3,11 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-file_name <- c("TODC2.23.21for BLIMPpart2")
+file_name <- c("TODC_6.28.21_forBLIMPpart1_rev")
+folder_name <- c("TOD-C-2021-06-28")
 
 input_orig <- suppressMessages(read_csv(here(
-  paste0("INPUT-FILES/", file_name, ".csv")
+  str_c("MISSING-DATA-BLIMP/", folder_name, "/", file_name, ".csv")
 ))) %>% 
   rename(id = ID)
 
@@ -34,7 +35,7 @@ input_tall <- input_orig %>%
   mutate(across(item, ~ str_sub(., 2, 4)))
 
 write_csv(input_tall,
-          here(paste0("MISSING-DATA-BLIMP/", file_name, "-BLIMP-input.csv")),
+          here(paste0("MISSING-DATA-BLIMP/", folder_name, "/", file_name, "-BLIMP-input.csv")),
           col_names = F
 )
 
