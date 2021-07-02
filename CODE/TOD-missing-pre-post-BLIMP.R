@@ -3,7 +3,7 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-file_name <- c("TODC_6.28.21_forBLIMPpart1_rev2")
+file_name <- c("TODC_6.28.21_forBLIMPpart2_rev2")
 folder_name <- c("TOD-C-2021-06-28")
 
 input_orig <- suppressMessages(read_csv(here(
@@ -43,7 +43,7 @@ write_csv(input_tall,
 # reformat imputed data set for downstream analysis
 blimp_output <- suppressMessages(
   read_csv(
-    (here("MISSING-DATA-BLIMP/TOD-S-2021-03-07/TOD-S1.csv")), col_names = F)) %>% 
+    (here(str_c("MISSING-DATA-BLIMP/", folder_name, "/TOD-C1.csv"))), col_names = F)) %>% 
   setNames(c("ID", "item", "response")) %>% 
   pivot_wider(names_from = item,
               values_from = response) %>%
@@ -54,7 +54,7 @@ NA_count
 
 write_csv(blimp_output, here(
   str_c(
-    "MISSING-DATA-BLIMP/TOD-S-2021-03-07/",
+    "MISSING-DATA-BLIMP/", folder_name, "/",
     file_name,
     "-noMiss-",
     format(Sys.Date(), "%Y-%m-%d"),
