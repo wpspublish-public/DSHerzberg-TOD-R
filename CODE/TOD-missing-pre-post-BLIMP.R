@@ -43,7 +43,7 @@ write_csv(input_tall,
 # reformat imputed data set for downstream analysis
 blimp_output <- suppressMessages(
   read_csv(
-    (here(str_c("MISSING-DATA-BLIMP/", folder_name, "/TOD-C1-part2.csv"))), col_names = F)) %>% 
+    (here(str_c("MISSING-DATA-BLIMP/", folder_name, "/TOD-S1.csv"))), col_names = F)) %>% 
   setNames(c("ID", "item", "response")) %>% 
   pivot_wider(names_from = item,
               values_from = response) %>%
