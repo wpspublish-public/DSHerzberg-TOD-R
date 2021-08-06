@@ -4,21 +4,21 @@ suppressMessages(suppressWarnings(library(survey)))
 
 set.seed(123)
 
-var_order <- c("age", "age_range", "gender", "educ", "ethnic", "region", "clin_status")
+var_order <- c("Age", "Gender", "HighestEducation", "Ethnicity", "Region")
 
 var_order_census_match  <- c("gender", "educ", "ethnic", "region")
 
 cat_order <- c(
-  NA, "5", "6", "7", "8", "9", "10", "11", "12",
-  NA, "5 to 8 yo", "9 to 12 yo", 
+  NA, "6", "7", "8", "9", "10", "11", "12", "13", 
+      "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"
   NA, "male", "female",
   NA, "no_HS", "HS_grad", "some_college", "BA_plus",
   NA, "hispanic", "asian", "black", "white", "other",
   NA, "northeast", "south", "midwest", "west")
 
 urlRemote_path  <- "https://raw.github.com/"
-github_path <- "wpspublish/DSHerzberg-WEIGHTING-DATA/master/INPUT-FILES/"
-fileName_path   <- "unweighted-input.csv"
+github_path <- "wpspublish/DSHerzberg-TOD-R/master/INPUT-FILES/DATA-WEIGHTING/"
+fileName_path   <- "TODCgr1-12-unweighted.csv"
 
 original_input <- suppressMessages(read_csv(url(
   str_c(urlRemote_path, github_path, fileName_path)
