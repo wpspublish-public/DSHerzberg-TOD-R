@@ -16,6 +16,8 @@ cat_order <- c(
   NA, "hispanic", "asian", "black", "white", "other",
   NA, "northeast", "south", "midwest", "west")
 
+last_item <- 44
+
 file_name <- "TODCgr1-12-"
 
 urlRemote_path  <- "https://raw.github.com/"
@@ -94,15 +96,17 @@ input_demo_wts <- bind_cols(
 
 rm(list = ls(pattern = "object|rake"))
 
-unweighted_output <- input_demo_wts %>% 
+unweighted_output_old <- input_demo_wts %>% 
   select(-c(samp_prob, ratio)) %>%
   rename_with(~ str_c("i", str_pad(
-    as.character(1:44), 2, side = "left", pad = "0"), "_uw"), 
-    i01:i44) %>% 
+    as.character(1:last_item), 2, side = "left", pad = "0"), "_uw"), 
+    i01:!!sym(str_c("i", last_item))) %>%
   mutate(
     TOT_raw_unweight = rowSums(.[grep("*_uw", names(.))]
   )) %>%
   relocate(TOT_raw_unweight, .after = demo_wt)
+
+# START HERE: FINISH TOKENIZATION OF last_item
 
 write_csv(unweighted_output,
           here(
