@@ -96,7 +96,7 @@ input_demo_wts <- bind_cols(
 
 rm(list = ls(pattern = "object|rake"))
 
-unweighted_output_old <- input_demo_wts %>% 
+unweighted_output <- input_demo_wts %>% 
   select(-c(samp_prob, ratio)) %>%
   rename_with(~ str_c("i", str_pad(
     as.character(1:last_item), 2, side = "left", pad = "0"), "_uw"), 
@@ -105,8 +105,6 @@ unweighted_output_old <- input_demo_wts %>%
     TOT_raw_unweight = rowSums(.[grep("*_uw", names(.))]
   )) %>%
   relocate(TOT_raw_unweight, .after = demo_wt)
-
-# START HERE: FINISH TOKENIZATION OF last_item
 
 write_csv(unweighted_output,
           here(
@@ -121,10 +119,10 @@ write_csv(unweighted_output,
 weighted_output <- original_input %>%
   left_join(unweighted_output[c("ID", "demo_wt")], by = "ID") %>%
   rename_with(~ str_c("i", str_pad(
-    as.character(1:44), 2, side = "left", pad = "0"
+    as.character(1:last_item), 2, side = "left", pad = "0"
   ), "_w"),
-  i01:i44) %>%
-  mutate(across(c(i01_w:i44_w),
+  i01:!!sym(str_c("i", last_item))) %>%
+  mutate(across(c(i01_w:!!sym(str_c("i", last_item, "_w"))),
                 ~ . * demo_wt)) %>%
   mutate(
     TOT_raw_weight = rowSums(.[grep("*_w$", names(.))]
@@ -175,7 +173,7 @@ knitr::kable(
         ethnic == "white" &
         region == "northeast"
     ) %>%
-    select(-Noweight,-age_combined,-(i01_w:i44_w),-TOT_raw_weight) %>%
+    select(-Noweight,-age_combined,-(i01_w:!!sym(str_c("i", last_item, "_w"))),-TOT_raw_weight) %>%
     sample_n(1),
   digits = 2,
   caption = "Table 2: Demographic multiplier from under-sampled cell"
@@ -189,7 +187,7 @@ knitr::kable(
         ethnic == "hispanic" &
         region == "west"
     ) %>%
-    select(-Noweight,-age_combined,-(i01_w:i44_w),-TOT_raw_weight) %>%
+    select(-Noweight,-age_combined,-(i01_w:!!sym(str_c("i", last_item, "_w"))),-TOT_raw_weight) %>%
     sample_n(1),
   digits = 2,
   caption = "Table 3: Demographic mupltiplier from accurately sampled cell"
