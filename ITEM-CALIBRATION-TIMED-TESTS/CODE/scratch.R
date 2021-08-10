@@ -1,18 +1,15 @@
-suppressMessages(library(here))
-suppressMessages(library(tidyverse))
-suppressMessages(library(lavaan))
-
-input_scored <-
-  suppressMessages(read_csv(
-    here(
-      "ITEM-CALIBRATION-TIMED-TESTS/INPUT-FILES/TODS_QRF-scored.csv"
-    )
-  ))
-
-input_unscored <-
-  suppressMessages(read_csv(
-    here(
-      "ITEM-CALIBRATION-TIMED-TESTS/INPUT-FILES/TODS6.24.21_QRF-unscored.csv"
-    )
-  ))
-
+demo_weight_by_crossing <- weighted_output %>%
+  group_by(demo_wt) %>%
+  summarize(
+    gender = first(gender),
+    educ = first(educ),
+    ethnic = first(ethnic),
+    region = first(region)
+  ) %>%
+  relocate(demo_wt, .after = region) %>%
+  arrange(
+    match(gender, cat_order),
+    match(educ, cat_order),
+    match(ethnic, cat_order),
+    match(region, cat_order)
+  )

@@ -139,6 +139,32 @@ write_csv(weighted_output,
           ),
           na = "")
 
+demo_weight_by_crossing <- weighted_output %>%
+  group_by(demo_wt) %>%
+  summarize(
+    gender = first(gender),
+    educ = first(educ),
+    ethnic = first(ethnic),
+    region = first(region)
+  ) %>%
+  relocate(demo_wt, .after = region) %>%
+  arrange(
+    match(gender, cat_order),
+    match(educ, cat_order),
+    match(ethnic, cat_order),
+    match(region, cat_order)
+  )
+
+write_csv(demo_weight_by_crossing,
+          here(
+            str_c(
+              "OUTPUT-FILES/DATA-WEIGHTING/",
+              file_name,
+              "weights-per-demo-crossing.csv"
+            )
+          ),
+          na = "")
+
 # PROOF OF CONCEPT
 
 cat_count_comp <-
@@ -173,7 +199,9 @@ knitr::kable(
         ethnic == "white" &
         region == "northeast"
     ) %>%
-    select(-Noweight,-age_combined,-(i01_w:!!sym(str_c("i", last_item, "_w"))),-TOT_raw_weight) %>%
+    select(-Noweight, -age_combined, -(i01_w:!!sym(
+      str_c("i", last_item, "_w")
+    )), -TOT_raw_weight) %>%
     sample_n(1),
   digits = 2,
   caption = "Table 2: Demographic multiplier from under-sampled cell"
@@ -187,32 +215,37 @@ knitr::kable(
         ethnic == "hispanic" &
         region == "west"
     ) %>%
-    select(-Noweight,-age_combined,-(i01_w:!!sym(str_c("i", last_item, "_w"))),-TOT_raw_weight) %>%
+    select(-Noweight, -age_combined, -(i01_w:!!sym(
+      str_c("i", last_item, "_w")
+    )), -TOT_raw_weight) %>%
     sample_n(1),
   digits = 2,
   caption = "Table 3: Demographic mupltiplier from accurately sampled cell"
 )
 
-
-# #######START HERE
-
 knitr::kable(
   tail(input_demo_wts) %>%
-    select(-age_range, -clin_status, -(i01:i50), -ratio),
+    select(-Noweight, -age_combined, -(i01:!!sym(
+      str_c("i", last_item)
+    )),-ratio),
   digits = 2,
   caption = "Table 4: Cases from under-sampled cells"
 )
 
 knitr::kable(
   filter(input_demo_wts, between(samp_prob, .98, 1.02)) %>%
-    select(-age_range, -clin_status, -(i01:i50), -ratio),
+    select(-Noweight, -age_combined, -(i01:!!sym(
+      str_c("i", last_item)
+    )),-ratio),
   digits = 2,
   caption = "Table 5: Cases from accurately sampled cells"
 )
 
 knitr::kable(
   head(input_demo_wts) %>%
-    select(-age_range, -clin_status, -(i01:i50), -ratio),
+    select(-Noweight, -age_combined, -(i01:!!sym(
+      str_c("i", last_item)
+    )),-ratio),
   digits = 2,
   caption = "Table 6: Cases from over-sampled cells"
 )
