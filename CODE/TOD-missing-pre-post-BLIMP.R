@@ -3,8 +3,8 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-file_name <- c("TODS_PV&LWforBLIMP7.10.21")
-folder_name <- c("TOD-S-2021-07-10")
+file_name <- c("TODE-forblimp-8.6.21")
+folder_name <- c("TOD-E-2021-08-06")
 
 input_orig <- suppressMessages(read_csv(here(
   str_c("MISSING-DATA-BLIMP/", folder_name, "/", file_name, ".csv")

@@ -1,21 +1,24 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-# read original pre-BLIMP so col names are available to rename output cols
-file_name <- c("TOD-E.DATA.3.5.20_forBLIMP6.18.20")
+# read original pre-BLIMP input so col names are available to rename output cols
+file_name <- c("TODE-forblimp-8.6.21")
+folder_name <- c("TOD-E-2021-08-06")
 
 input_orig <- suppressMessages(read_csv(here(
-  paste0("INPUT-FILES/", file_name, ".csv")
-))) 
+  str_c("MISSING-DATA-BLIMP/", folder_name, "/", file_name, ".csv")
+))) %>%
+  rename(id = ID)
 
 # read post BLIMP imputed data, apply original col names
-temp1 <- suppressMessages(
-  read_csv(
-    (here("MISSING-DATA-BLIMP/TOD-impute-2020-06-23-1.csv")), col_names = F))
-names(temp1) <- c("ID", "item", "response")
-temp2 <- temp1 %>% 
-  spread(item, response) 
-names(temp2) <- names(input_orig)
+temp1 <- suppressMessages(read_csv((here(
+  str_c("MISSING-DATA-BLIMP/", folder_name, "/TOD-S1.csv")
+  )), col_names = F))
+names(temp1) <- c("id", "item", "response")
+temp2 <- temp1 %>%
+  pivot_wider(names_from = item,
+              values_from = response) %>%
+  setNames(names(input_orig))
 
 # verify no missing
 NA_count <- sum(temp2 == 999)
@@ -41,14 +44,14 @@ col_range <- c("i001:i035", "i036:i060", "i061:i100", "i101:i130", "i131:i165")
 # labeled (by the value of recode_cols) on the group of cols on which they are
 # all missing. By using map_df(), we stack these retained rows on top of each
 # other, into a single data frame, as the function iterates over the elements of
-# col_range. select() keeps only ID and recode_col, so these can be joined back
+# col_range. select() keeps only id and recode_col, so these can be joined back
 # with the post-BLIMP data.
 
 # The code can handle cases that are missing all cols on multiple col ranges. In
 # this case, because the entire item set is divided into five col ranges, the
 # code is set up to handle cases with all NA on up to four of those ranges (the
 # assumption is that a case missing on all five ranges would have no data, and
-# would have been dropped at an earlier srage of data cleanup). The summarize()
+# would have been dropped at an earlier stage of data cleanup). The summarize()
 # call creates four new variables (range1, etc) to hold the labels for up to
 # four col ranges per case that are all NA.
 miss_recode <- col_range %>% 
@@ -57,10 +60,10 @@ miss_recode <- col_range %>%
            filter(across(!!rlang::parse_expr(.x),
                          ~ is.na(.))) %>% 
            mutate(recode_cols = .x) %>% 
-           select(ID, recode_cols)
+           select(id, recode_cols)
   ) %>% 
-  arrange(ID) %>% 
-  group_by(ID) %>% 
+  arrange(id) %>% 
+  group_by(id) %>% 
   summarize(
     range1 = nth(recode_cols, 1),
     range2 = nth(recode_cols, 2),
@@ -75,8 +78,8 @@ miss_recode <- col_range %>%
 # recoding to NA all cols within the range wherever the value of range1, range2,
 # range3, or range4 designates a case for which those cols need to be recoded.
 temp3 <- temp2 %>%
-  left_join(miss_recode, by = "ID") %>%
-  relocate(range1:range4, .after = "ID") %>%
+  left_join(miss_recode, by = "id") %>%
+  relocate(range1:range4, .after = "id") %>%
   mutate(
     across(
       c(i001:i035),
@@ -127,8 +130,10 @@ NA_count
 write_csv(temp3, here(
   str_c(
     "MISSING-DATA-BLIMP/",
+    folder_name,
+    "/", 
     file_name,
-    "-noMiss-",
+    "-noMiss-recodeToMiss-",
     format(Sys.Date(), "%Y-%m-%d"),
     ".csv"
   )
