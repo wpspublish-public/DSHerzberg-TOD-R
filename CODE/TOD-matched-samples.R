@@ -6,17 +6,33 @@ suppressMessages(library(MatchIt))
 
 # READ TARGET AND MATCHPOOL SAMPLES --------------------------------------------------
 
-TOD_target_preMatch <- 
-  suppressMessages(as_tibble(read_csv(
-    here("INPUT-FILES/SAMPLE-MATCHING/TODS_digital_smallfile.csv")
-  ))) %>% 
-  mutate(source = "target")
+smallfile_name <- "TODC&TODS_masks_smallfile"
+largefile_name <- "TODC&TODS_masks_largefile"
+name_stem <- "TODC&TODS_masks"
+
+TOD_target_preMatch <-
+  suppressMessages(as_tibble(read_csv(here(
+    str_c("INPUT-FILES/SAMPLE-MATCHING/", smallfile_name, ".csv")
+  )))) %>%
+  mutate(source = "target") %>%
+  rename(
+    age = age_combined,
+    gender = Gender,
+    SES = HighestEducation,
+    ethnicity = Ethnicity
+  )
 
 TOD_matchpool_preMatch <-
-  suppressMessages(as_tibble(read_csv(
-    here("INPUT-FILES/SAMPLE-MATCHING/TODS_digital_largefile_v2.csv")
-  ))) %>% 
-  mutate(source = "matchpool")
+  suppressMessages(as_tibble(read_csv(here(
+    str_c("INPUT-FILES/SAMPLE-MATCHING/", largefile_name, ".csv")
+  )))) %>%
+  mutate(source = "matchpool") %>% 
+  rename(
+    age = age_combined,
+    gender = Gender,
+    SES = HighestEducation,
+    ethnicity = Ethnicity
+  )
 
 # EXTRACT MATCHED TYPICAL SAMPLE ------------------------------------------
 
@@ -61,9 +77,11 @@ match_summ <- summary(match)
 
 # save matched samples into new df; split by source
 TOD_target_matchpool_match <- match.data(match) %>% 
-  select(-Group, -distance, -weights) 
+  select(-Group, -distance, -weights, -subclass) 
 TOD_matchpool_match <- TOD_target_matchpool_match %>% 
   filter(source == 'matchpool')
+TOD_matchpool_match_output <- TOD_matchpool_match %>% 
+  select(-source)
 TOD_target_match <- TOD_target_matchpool_match %>% 
   filter(source == 'target')
 
@@ -87,7 +105,7 @@ match_dist_matchpool <- TOD_matchpool_match %>%
       TRUE ~ var
     )
   ) %>%
-  mutate(group = case_when(row_number() == 1 ~ "matchpool",
+  mutate(group = case_when(row_number() == 1 ~ "matched_sample",
                            TRUE ~ "")) %>%
   select(group, everything())
 
@@ -107,7 +125,7 @@ match_dist_target <- TOD_target_match %>%
       TRUE ~ var
     )
   ) %>%
-  mutate(group = case_when(row_number() == 1 ~ "target",
+  mutate(group = case_when(row_number() == 1 ~ "orig_smallfile_sample",
                            TRUE ~ "")) %>%
   select(group, everything())
 
@@ -117,15 +135,15 @@ write_csv(
   bind_rows(match_dist_matchpool,
             match_dist_target),
   here(
-    "OUTPUT-FILES/SAMPLE-MATCHING/TOD-matchpool-target-demos.csv"
+    str_c("OUTPUT-FILES/SAMPLE-MATCHING/", name_stem, "-matchedSample-target-demos.csv")
   )
 )
 
 # write matchpool subsample that is matched to target group.
 write_csv(
-  TOD_matchpool_match,
+  TOD_matchpool_match_output,
   here(
-    "OUTPUT-FILES/SAMPLE-MATCHING/TODS-matched-sample.csv"
+    str_c("OUTPUT-FILES/SAMPLE-MATCHING/", name_stem, "-matched-sample.csv")
   ),
   na = ""
 )
