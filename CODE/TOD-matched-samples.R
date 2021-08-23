@@ -6,9 +6,9 @@ suppressMessages(library(MatchIt))
 
 # READ TARGET AND MATCHPOOL SAMPLES --------------------------------------------------
 
-smallfile_name <- "TODC&TODS_masks_smallfile"
-largefile_name <- "TODC&TODS_masks_largefile"
-name_stem <- "TODC&TODS_masks"
+smallfile_name <- "TODC&TODS_masks_smallfile_rev"
+largefile_name <- "TODC&TODS_masks_largefile_rev"
+name_stem <- "TODC&TODS_masks_rev"
 
 TOD_target_preMatch <-
   suppressMessages(as_tibble(read_csv(here(
@@ -16,9 +16,7 @@ TOD_target_preMatch <-
   )))) %>%
   mutate(source = "target") %>%
   rename(
-    age = age_combined,
     gender = Gender,
-    SES = HighestEducation,
     ethnicity = Ethnicity
   )
 
@@ -28,9 +26,7 @@ TOD_matchpool_preMatch <-
   )))) %>%
   mutate(source = "matchpool") %>% 
   rename(
-    age = age_combined,
     gender = Gender,
-    SES = HighestEducation,
     ethnicity = Ethnicity
   )
 
@@ -69,7 +65,7 @@ TOD_target_matchpool_preMatch <- TOD_target_matchpool_preMatch %>%
 # run matchit to get 1:1 matching
 set.seed(39485703)
 match <- matchit(
-  Group ~ age + gender + SES + ethnicity, 
+  Group ~ age + gender + SES + ethnicity + clinical, 
   data = TOD_target_matchpool_preMatch, 
   method = "nearest", 
   ratio = 1)
@@ -87,10 +83,10 @@ TOD_target_match <- TOD_target_matchpool_match %>%
 
 # demo counts
 
-var_order <- c("age", "gender", "SES", "ethnicity")
+var_order <- c("age", "gender", "SES", "ethnicity", "clinical")
 
 match_dist_matchpool <- TOD_matchpool_match %>%
-  select(age, gender, SES, ethnicity) %>%
+  select(age, gender, SES, ethnicity, clinical) %>%
   pivot_longer(everything(), names_to = "var", values_to = "cat") %>%
   group_by(var, cat) %>%
   count(var, cat) %>%
@@ -102,6 +98,7 @@ match_dist_matchpool <- TOD_matchpool_match %>%
       lag(var) == "gender" & var == "gender" ~ "",
       lag(var) == "SES" & var == "SES" ~ "",
       lag(var) == "ethnicity" & var == "ethnicity" ~ "",
+      lag(var) == "clinical" & var == "clinical" ~ "",
       TRUE ~ var
     )
   ) %>%
@@ -110,7 +107,7 @@ match_dist_matchpool <- TOD_matchpool_match %>%
   select(group, everything())
 
 match_dist_target <- TOD_target_match %>%
-  select(age, gender, SES, ethnicity) %>%
+  select(age, gender, SES, ethnicity, clinical) %>%
   pivot_longer(everything(), names_to = "var", values_to = "cat") %>%
   group_by(var, cat) %>%
   count(var, cat) %>%
@@ -122,6 +119,7 @@ match_dist_target <- TOD_target_match %>%
       lag(var) == "gender" & var == "gender" ~ "",
       lag(var) == "SES" & var == "SES" ~ "",
       lag(var) == "ethnicity" & var == "ethnicity" ~ "",
+      lag(var) == "clinical" & var == "clinical" ~ "",
       TRUE ~ var
     )
   ) %>%
