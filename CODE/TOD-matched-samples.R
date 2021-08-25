@@ -6,9 +6,9 @@ suppressMessages(library(MatchIt))
 
 # READ TARGET AND MATCHPOOL SAMPLES --------------------------------------------------
 
-smallfile_name <- "TODC&TODS_masks_smallfile_rev"
-largefile_name <- "TODC&TODS_masks_largefile_rev"
-name_stem <- "TODC&TODS_masks_rev"
+smallfile_name <- "TODS_group_smallfile"
+largefile_name <- "TODS_group_largefile"
+name_stem <- "TODS_group"
 
 TOD_target_preMatch <-
   suppressMessages(as_tibble(read_csv(here(
