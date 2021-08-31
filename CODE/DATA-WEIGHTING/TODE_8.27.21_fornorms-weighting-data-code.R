@@ -180,20 +180,39 @@ write_csv(demo_weight_by_crossing,
           ),
           na = "")
 
-weighted_sum_scores <- original_input %>% 
-  mutate(ORF_noNeg = ORF + 100) %>% 
-  select(-ORF, -(i01:!!sym(str_c("i", last_item)))) %>% 
-  left_join(demo_weight_by_crossing, by = c("gender", "educ", "ethnic", "region")) %>% 
-  relocate(agestrat:gradestrat, .before = gender) 
-
-# START HERE, FIGURE OUT HOW TO APPLY MULTIPLIERS TO SUM SCORES, BUT ONLY FOR NA ON noweight
-
-%>% 
+weighted_sum_scores <- original_input %>%
+  mutate(ORF_noNeg = ORF + 100) %>%
+  select(-ORF,-(i01:!!sym(str_c("i", last_item)))) %>%
+  left_join(demo_weight_by_crossing,
+            by = c("gender", "educ", "ethnic", "region")) %>%
+  relocate(agestrat:gradestrat, .before = gender) %>%
   mutate(
-    across(c(sege_sum:ORF_noNeg),
-           
-           )
+    sege_sum_w = sege_sum,
+    rlne_sum_w = rlne_sum,
+    rhme_sum_w = rhme_sum,
+    snwe_sum_w = snwe_sum,
+    lswe_sum_w = lswe_sum,
+    lske_sum_w = lske_sum,
+    ORF_noNeg_w = ORF_noNeg
+  ) %>%
+  mutate(sege_sum_w = case_when(
+    is.na(noweight) ~ round(sege_sum_w * demo_wt, 0),
+    TRUE ~ sege_sum_w
   )
+  ) %>%
+  # mutate(across(c(sege_sum_w:ORF_noNeg_w),
+  #               ~
+  #                 round(. * demo_wt), 0)) %>% 
+  select(ID:region, demo_wt, 
+         sege_sum, sege_sum_w,
+         rlne_sum, rlne_sum_w,
+         rhme_sum, rhme_sum_w,
+         snwe_sum, snwe_sum_w,
+         lswe_sum, lswe_sum_w,
+         lske_sum, lske_sum_w,
+         ORF_noNeg, ORF_noNeg_w
+  )
+
 
 # PROOF OF CONCEPT
 
