@@ -4,39 +4,54 @@ suppressMessages(suppressWarnings(library(survey)))
 
 set.seed(123)
 
-var_order <- c("age", "gender", "educ", "ethnic", "region")
+var_order <- c("agestrat", "gradestrat", "gender", "educ", "ethnic", "region")
 
 var_order_census_match  <- c("gender", "educ", "ethnic", "region")
 
 cat_order <- c(
-  NA, "6", "7", "8", "9", "10", "11", "12", "13", 
-      "14", "15", "16", "17", "18", "19", "20", "21", "22", "23",
+  NA, "5:0-5:7", "5:8-5:11", "6:0-6:3", "6:4-6:7", "6:8-6:11", "7:0-7:5", 
+  "7:6-7:11", "8:0-9:3",
+  NA, "K_Fall", "K_Spring", "1_Fall", "1_Spring", "2_Fall", "2_Spring", 
   NA, "male", "female",
   NA, "no_HS", "HS_grad", "some_college", "BA_plus",
   NA, "hispanic", "asian", "black", "white", "other",
   NA, "northeast", "south", "midwest", "west")
 
-last_item <- 44
+last_item <- 32
 
-file_name <- "TODCgr1-12-"
+file_name <- "TODE_8.27.21_fornorms-"
 
 urlRemote_path  <- "https://raw.github.com/"
-github_path <- "wpspublish/DSHerzberg-TOD-R/master/INPUT-FILES/DATA-WEIGHTING/"
-fileName_path   <- "TODCgr1-12-unweighted.csv"
+github_path <- "wpspublish/DSHerzberg-TOD-R/master/INPUT-FILES/NORMS/"
+fileName_path   <- "TODE_8.27.21_fornorms.csv"
 
 original_input <- suppressMessages(read_csv(url(
   str_c(urlRemote_path, github_path, fileName_path)
 ))) %>% rename(
-  age = Age,
   gender = Gender,
-  educ = HighestEducation,
+  educ = SES,
   ethnic = Ethnicity,
 ) %>% 
-  filter(is.na(Noweight) & gender %in% c(1,2)) %>% 
   mutate(
+    across(agestrat, ~ case_when(
+      . == 1 ~ "5:0-5:7",
+      . == 2 ~ "5:8-5:11",
+      . == 3 ~ "6:0-6:3",
+      . == 4 ~ "6:4-6:7",
+      . == 5 ~ "6:8-6:11",
+      . == 6 ~ "7:0-7:5",
+      . == 7 ~ "7:6-7:11",
+      . == 8 ~ "8:0-9:3")),
+    across(gradestrat, ~ case_when(
+      . == 1 ~ "K_Fall",
+      . == 2 ~ "K_Spring",
+      . == 3 ~ "1_Fall",
+      . == 4 ~ "1_Spring",
+      . == 5 ~ "2_Fall",
+      . == 6 ~ "2_Spring")),
     across(gender, ~ case_when(
-    . == 1 ~ "male",
-    . == 2 ~ "female")),
+      . == 1 ~ "male",
+      . == 2 ~ "female")),
     across(educ, ~ case_when(
       . == 1 ~ "no_HS",
       . == 2 ~ "HS_grad",
@@ -55,7 +70,7 @@ original_input <- suppressMessages(read_csv(url(
       . == 4 ~ "west"))
   )
 
-fileName_path   <- "TODCgr1-12-census-pct.csv"
+fileName_path   <- "census_pct.csv"
 
 census_match_cat_count <- suppressMessages(read_csv(url(
   str_c(urlRemote_path, github_path, fileName_path)
@@ -109,7 +124,7 @@ unweighted_output <- input_demo_wts %>%
 write_csv(unweighted_output,
           here(
             str_c(
-              "OUTPUT-FILES/DATA-WEIGHTING/",
+              "OUTPUT-FILES/NORMS/",
               file_name,
               "unweighted-data-for-analysis.csv"
             )
@@ -132,7 +147,7 @@ weighted_output <- original_input %>%
 write_csv(weighted_output,
           here(
             str_c(
-              "OUTPUT-FILES/DATA-WEIGHTING/",
+              "OUTPUT-FILES/NORMS/",
               file_name,
               "weighted-data-for-analysis.csv"
             )
@@ -158,12 +173,27 @@ demo_weight_by_crossing <- weighted_output %>%
 write_csv(demo_weight_by_crossing,
           here(
             str_c(
-              "OUTPUT-FILES/DATA-WEIGHTING/",
+              "OUTPUT-FILES/NORMS/",
               file_name,
               "weights-per-demo-crossing.csv"
             )
           ),
           na = "")
+
+weighted_sum_scores <- original_input %>% 
+  mutate(ORF_noNeg = ORF + 100) %>% 
+  select(-ORF, -(i01:!!sym(str_c("i", last_item)))) %>% 
+  left_join(demo_weight_by_crossing, by = c("gender", "educ", "ethnic", "region")) %>% 
+  relocate(agestrat:gradestrat, .before = gender) 
+
+# START HERE, FIGURE OUT HOW TO APPLY MULTIPLIERS TO SUM SCORES, BUT ONLY FOR NA ON noweight
+
+%>% 
+  mutate(
+    across(c(sege_sum:ORF_noNeg),
+           
+           )
+  )
 
 # PROOF OF CONCEPT
 
@@ -194,12 +224,12 @@ knitr::kable(cat_count_comp %>%
 knitr::kable(
   weighted_output %>%
     filter(
-      gender == "male" &
-        educ == "some_college" &
+      gender == "female" &
+        educ == "no_HS" &
         ethnic == "white" &
         region == "northeast"
     ) %>%
-    select(-Noweight, -age_combined, -(i01_w:!!sym(
+    select(-noweight, -(sege_sum:gradestrat), -(i01_w:!!sym(
       str_c("i", last_item, "_w")
     )), -TOT_raw_weight) %>%
     sample_n(1),
@@ -211,11 +241,11 @@ knitr::kable(
   weighted_output %>%
     filter(
       gender == "female" &
-        educ == "HS_grad" &
-        ethnic == "hispanic" &
-        region == "west"
+        educ == "BA_plus" &
+        ethnic == "white" &
+        region == "northeast"
     ) %>%
-    select(-Noweight, -age_combined, -(i01_w:!!sym(
+    select(-noweight, -(sege_sum:gradestrat), -(i01_w:!!sym(
       str_c("i", last_item, "_w")
     )), -TOT_raw_weight) %>%
     sample_n(1),
@@ -225,7 +255,7 @@ knitr::kable(
 
 knitr::kable(
   tail(input_demo_wts) %>%
-    select(-Noweight, -age_combined, -(i01:!!sym(
+    select(-noweight, -(sege_sum:gradestrat), -(i01:!!sym(
       str_c("i", last_item)
     )),-ratio),
   digits = 2,
@@ -234,7 +264,7 @@ knitr::kable(
 
 knitr::kable(
   filter(input_demo_wts, between(samp_prob, .98, 1.02)) %>%
-    select(-Noweight, -age_combined, -(i01:!!sym(
+    select(-noweight, -(sege_sum:gradestrat), -(i01:!!sym(
       str_c("i", last_item)
     )),-ratio),
   digits = 2,
@@ -243,7 +273,7 @@ knitr::kable(
 
 knitr::kable(
   head(input_demo_wts) %>%
-    select(-Noweight, -age_combined, -(i01:!!sym(
+    select(-noweight, -(sege_sum:gradestrat), -(i01:!!sym(
       str_c("i", last_item)
     )),-ratio),
   digits = 2,
