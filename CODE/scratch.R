@@ -82,3 +82,21 @@ temp4 <-
       )
   ) %>% 
   select(gender:n_input, n_census)
+
+
+gender <- c("male", "female")
+educ <- c("no_HS", "HS_grad", "some_college", "BA_plus")
+ethnic <- c("hispanic", "asian", "black", "white", "other")
+region <- c("northeast", "south", "midwest", "west")
+
+temp5 <- expand_grid(
+  gender = gender,
+  educ = educ,
+  ethnic = ethnic,
+  region = region
+)
+
+
+temp6 <- temp5 %>% 
+  left_join(temp4, by = c("gender", "educ", "ethnic", "region"))
+
