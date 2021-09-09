@@ -160,9 +160,10 @@ demo_weight_by_crossing <- weighted_output %>%
     gender = first(gender),
     educ = first(educ),
     ethnic = first(ethnic),
+    n_input = n(),
     region = first(region)
   ) %>%
-  relocate(demo_wt, .after = region) %>%
+  relocate(c(demo_wt, n_input), .after = region) %>%
   arrange(
     match(gender, cat_order),
     match(educ, cat_order),
@@ -195,14 +196,14 @@ weighted_sum_scores <- original_input %>%
     lske_sum_w = lske_sum,
     ORF_noNeg_w = ORF_noNeg
   ) %>%
-  mutate(sege_sum_w = case_when(
-    is.na(noweight) ~ round(sege_sum_w * demo_wt, 0),
-    TRUE ~ sege_sum_w
-  )
-  ) %>%
-  # mutate(across(c(sege_sum_w:ORF_noNeg_w),
-  #               ~
-  #                 round(. * demo_wt), 0)) %>% 
+  mutate(across(c(sege_sum_w:ORF_noNeg_w),
+                ~
+                  case_when(
+                    is.na(noweight) ~ round(. * demo_wt, 0),
+                    TRUE ~ .
+                    )
+                )
+         ) %>%
   select(ID:region, demo_wt, 
          sege_sum, sege_sum_w,
          rlne_sum, rlne_sum_w,
@@ -212,6 +213,16 @@ weighted_sum_scores <- original_input %>%
          lske_sum, lske_sum_w,
          ORF_noNeg, ORF_noNeg_w
   )
+
+write_csv(weighted_sum_scores,
+          here(
+            str_c(
+              "OUTPUT-FILES/NORMS/",
+              file_name,
+              "weighted-sum-scores.csv"
+            )
+          ),
+          na = "")
 
 
 # PROOF OF CONCEPT
