@@ -4,6 +4,11 @@ suppressMessages(suppressWarnings(library(survey)))
 
 set.seed(123)
 
+gender <- c("male", "female")
+educ <- c("no_HS", "HS_grad", "some_college", "BA_plus")
+ethnic <- c("hispanic", "asian", "black", "white", "other")
+region <- c("northeast", "south", "midwest", "west")
+
 var_order <- c("agestrat", "gradestrat", "gender", "educ", "ethnic", "region")
 
 var_order_census_match  <- c("gender", "educ", "ethnic", "region")
@@ -76,6 +81,13 @@ census_match_cat_count <- suppressMessages(read_csv(url(
   str_c(urlRemote_path, github_path, fileName_path)
 ))) %>% 
   mutate(n_census = round(nrow(original_input)*(pct_census/100), 0))
+
+census_match_pct_wide <- suppressMessages(read_csv(url(
+  str_c(urlRemote_path, github_path, fileName_path)
+))) %>%
+  select(-var) %>%
+  pivot_wider(names_from = cat,
+              values_from = pct_census)
 
 rm(list = ls(pattern = "_path"))
 
@@ -154,7 +166,7 @@ write_csv(weighted_output,
           ),
           na = "")
 
-demo_weight_by_crossing <- weighted_output %>%
+demo_weight_by_crossing_input <- weighted_output %>%
   group_by(demo_wt) %>%
   summarize(
     gender = first(gender),
@@ -171,12 +183,77 @@ demo_weight_by_crossing <- weighted_output %>%
     match(region, cat_order)
   )
 
-write_csv(demo_weight_by_crossing,
+write_csv(demo_weight_by_crossing_input,
           here(
             str_c(
               "OUTPUT-FILES/NORMS/",
               file_name,
-              "weights-per-demo-crossing.csv"
+              "weights-per-demo-crossing-input.csv"
+            )
+          ),
+          na = "")
+
+demo_crossings_all <- expand_grid(
+  gender = gender,
+  educ = educ,
+  ethnic = ethnic,
+  region = region
+)
+
+demo_weight_by_crossing_all <- demo_crossings_all %>% 
+  left_join(demo_weight_by_crossing_input, by = c("gender", "educ", "ethnic", "region")) %>% 
+  bind_cols(
+    census_match_pct_wide
+  ) %>% 
+  mutate(
+    pct_census_gender = case_when(
+      gender == "male" ~ male,
+      TRUE ~ female
+    ), 
+    pct_census_educ = case_when(
+      educ == "no_HS" ~ no_HS,
+      educ == "HS_grad" ~ HS_grad,
+      educ == "some_college" ~ some_college,
+      TRUE ~ BA_plus
+    ), 
+    pct_census_ethnic = case_when(
+      ethnic == "hispanic" ~ hispanic,
+      ethnic == "asian" ~ asian,
+      ethnic == "black" ~ black,
+      ethnic == "white" ~ white,
+      TRUE ~ other
+    ), 
+    pct_census_region = case_when(
+      region == "northeast" ~ northeast,
+      region == "south" ~ south,
+      region == "midwest" ~ midwest,
+      TRUE ~ west
+    ), 
+    across(
+      c(
+        pct_census_gender,
+        pct_census_educ,
+        pct_census_ethnic,
+        pct_census_region,
+      ),
+      ~
+        . * .01
+    ),
+    n_census = round(
+      (pct_census_gender * pct_census_educ * 
+         pct_census_ethnic * pct_census_region) *
+        nrow(original_input), 
+      2
+    )
+  ) %>% 
+  select(gender:n_input, n_census)
+
+write_csv(demo_weight_by_crossing_all,
+          here(
+            str_c(
+              "OUTPUT-FILES/NORMS/",
+              file_name,
+              "weights-per-demo-crossing-all.csv"
             )
           ),
           na = "")
@@ -184,7 +261,7 @@ write_csv(demo_weight_by_crossing,
 weighted_sum_scores <- original_input %>%
   mutate(ORF_noNeg = ORF + 100) %>%
   select(-ORF,-(i01:!!sym(str_c("i", last_item)))) %>%
-  left_join(demo_weight_by_crossing,
+  left_join(demo_weight_by_crossing_input,
             by = c("gender", "educ", "ethnic", "region")) %>%
   relocate(agestrat:gradestrat, .before = gender) %>%
   mutate(
@@ -223,7 +300,6 @@ write_csv(weighted_sum_scores,
             )
           ),
           na = "")
-
 
 # PROOF OF CONCEPT
 

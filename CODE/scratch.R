@@ -1,25 +1,27 @@
+urlRemote_path  <- "https://raw.github.com/"
+github_path <- "wpspublish/DSHerzberg-TOD-R/master/INPUT-FILES/NORMS/"
 fileName_path   <- "census_pct.csv"
 
-temp1 <- suppressMessages(read_csv(url(
-  str_c(urlRemote_path, github_path, fileName_path)
-))) %>% 
-  mutate(
-    cat_gender = cat,
-    cat_educ = cat,
-    cat_ethnic = cat,
-    cat_region = cat
-  ) %>%
-  select(-var, -cat)
-
-
-temp2 <- demo_weight_by_crossing %>% 
-  left_join(
-    temp1, 
-    by = c(
-      "gender" = "cat_gender"
-      )
-  )
-
+# temp1 <- suppressMessages(read_csv(url(
+#   str_c(urlRemote_path, github_path, fileName_path)
+# ))) %>% 
+#   mutate(
+#     cat_gender = cat,
+#     cat_educ = cat,
+#     cat_ethnic = cat,
+#     cat_region = cat
+#   ) %>%
+#   select(-var, -cat)
+# 
+# 
+# temp2 <- demo_weight_by_crossing %>% 
+#   left_join(
+#     temp1, 
+#     by = c(
+#       "gender" = "cat_gender"
+#       )
+#   )
+# 
 
 # "educ" = "cat_educ", 
 # "ethnic" = "cat_ethnic", 
@@ -35,9 +37,21 @@ temp3 <- suppressMessages(read_csv(url(
     
   )
 
-temp4 <- 
+gender <- c("male", "female")
+educ <- c("no_HS", "HS_grad", "some_college", "BA_plus")
+ethnic <- c("hispanic", "asian", "black", "white", "other")
+region <- c("northeast", "south", "midwest", "west")
+
+temp5 <- expand_grid(
+  gender = gender,
+  educ = educ,
+  ethnic = ethnic,
+  region = region
+)
+
+temp4 <- temp5 %>% 
+  left_join(demo_weight_by_crossing, by = c("gender", "educ", "ethnic", "region")) %>% 
   bind_cols(
-    demo_weight_by_crossing,
     temp3
   ) %>% 
   mutate(
@@ -84,19 +98,8 @@ temp4 <-
   select(gender:n_input, n_census)
 
 
-gender <- c("male", "female")
-educ <- c("no_HS", "HS_grad", "some_college", "BA_plus")
-ethnic <- c("hispanic", "asian", "black", "white", "other")
-region <- c("northeast", "south", "midwest", "west")
-
-temp5 <- expand_grid(
-  gender = gender,
-  educ = educ,
-  ethnic = ethnic,
-  region = region
-)
-
-
 temp6 <- temp5 %>% 
   left_join(temp4, by = c("gender", "educ", "ethnic", "region"))
+
+write_csv(temp6, here("temp.csv"), na = "")
 
