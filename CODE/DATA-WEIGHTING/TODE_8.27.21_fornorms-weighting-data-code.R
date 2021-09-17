@@ -73,7 +73,17 @@ original_input <- suppressMessages(read_csv(url(
       . == 2 ~ "midwest",
       . == 3 ~ "south",
       . == 4 ~ "west"))
-  )
+  ) %>% 
+# Get rid of zero values for "sum" scores by adding 1 to all
+  mutate(
+    across(
+      c(sege_sum:lske_sum),
+      ~
+        .x + 1
+    )
+  ) %>% 
+  # remove two outliers
+  filter(!(ID %in% c(326013, 234011)))
 
 fileName_path   <- "census_pct.csv"
 
