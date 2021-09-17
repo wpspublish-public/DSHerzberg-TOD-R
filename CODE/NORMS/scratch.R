@@ -11,6 +11,8 @@ freq1 <- as.data.frame(table(input_orig$demo_wt)) %>%
   mutate(demo_wt = as.numeric(as.character(Var1))) %>% 
   select(demo_wt, Freq)
 
+freq2 <- as.data.frame(table(input$normValue))
+
 mean(freq1$demo_wt)
 sd(freq1$demo_wt)
 mean_plus_2sd <- round(mean(freq1$demo_wt) + (2 * sd(freq1$demo_wt)), 2)
@@ -34,6 +36,11 @@ score_means_sds_agestrat <- input_orig %>%
   select(group1, scale, n, mean, sd)
 
 
+plotNormCurves(
+  model,
+  normList = c(80, 90, 100, 110, 120)
+)
+plotDerivative(model)
 
 
 ggplot(data = input, aes(raw)) +

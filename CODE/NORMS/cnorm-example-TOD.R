@@ -53,17 +53,22 @@ map(
 
 # read single score input.
 
-input_file_name <- "ORF_noNeg_w-norms-input.csv"
+input_file_name <- "sege_sum-norms-input.csv"
 
 input <- suppressMessages(read_csv(here(str_c(
   input_file_path, input_file_name
-))))
+)))) %>% 
+  filter(group != 8)
 
 # Calculation of the manifest percentiles and subsequent normal rank
 # transformation to determine location (proxy for a norm-referenced score, i.e.,
 # NOT a raw score)
 
-input <- rankByGroup(input, scale = "IQ")
+input <- rankByGroup(input, scale = "IQ") %>%
+  mutate(across(normValue,
+                ~
+                  case_when(normValue > 120 ~ 120,
+                            TRUE ~ .x)))
 
 
 # Calculation of powers and interactions of

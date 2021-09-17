@@ -26,13 +26,13 @@ last_item <- 32
 
 file_name <- "TODE_8.27.21_fornorms-"
 
-urlRemote_path  <- "https://raw.github.com/"
-github_path <- "wpspublish/DSHerzberg-TOD-R/master/INPUT-FILES/NORMS/"
+input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
+output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 fileName_path   <- "TODE_8.27.21_fornorms.csv"
 
-original_input <- suppressMessages(read_csv(url(
-  str_c(urlRemote_path, github_path, fileName_path)
-))) %>% rename(
+original_input <- suppressMessages(read_csv(
+  str_c(input_file_path, fileName_path)
+)) %>% rename(
   gender = Gender,
   educ = SES,
   ethnic = Ethnicity,
@@ -87,19 +87,17 @@ original_input <- suppressMessages(read_csv(url(
 
 fileName_path   <- "census_pct.csv"
 
-census_match_cat_count <- suppressMessages(read_csv(url(
-  str_c(urlRemote_path, github_path, fileName_path)
-))) %>% 
+census_match_cat_count <- suppressMessages(read_csv(
+  str_c(input_file_path, fileName_path)
+)) %>% 
   mutate(n_census = round(nrow(original_input)*(pct_census/100), 0))
 
-census_match_pct_wide <- suppressMessages(read_csv(url(
-  str_c(urlRemote_path, github_path, fileName_path)
-))) %>%
+census_match_pct_wide <- suppressMessages(read_csv(
+  str_c(input_file_path, fileName_path)
+)) %>%
   select(-var) %>%
   pivot_wider(names_from = cat,
               values_from = pct_census)
-
-rm(list = ls(pattern = "_path"))
 
 var_order_census_match %>%
   map(
@@ -146,7 +144,7 @@ unweighted_output <- input_demo_wts %>%
 write_csv(unweighted_output,
           here(
             str_c(
-              "OUTPUT-FILES/NORMS/",
+              output_file_path,
               file_name,
               "unweighted-data-for-analysis.csv"
             )
@@ -169,7 +167,7 @@ weighted_output <- original_input %>%
 write_csv(weighted_output,
           here(
             str_c(
-              "OUTPUT-FILES/NORMS/",
+              output_file_path,
               file_name,
               "weighted-data-for-analysis.csv"
             )
@@ -196,7 +194,7 @@ demo_weight_by_crossing_input <- weighted_output %>%
 write_csv(demo_weight_by_crossing_input,
           here(
             str_c(
-              "OUTPUT-FILES/NORMS/",
+              output_file_path,
               file_name,
               "weights-per-demo-crossing-input.csv"
             )
@@ -261,7 +259,7 @@ demo_weight_by_crossing_all <- demo_crossings_all %>%
 write_csv(demo_weight_by_crossing_all,
           here(
             str_c(
-              "OUTPUT-FILES/NORMS/",
+              output_file_path,
               file_name,
               "weights-per-demo-crossing-all.csv"
             )
@@ -301,10 +299,21 @@ weighted_sum_scores <- original_input %>%
          ORF_noNeg, ORF_noNeg_w
   )
 
+# write weighted_sum_scores twice, because it is both output from weighting, and
+# input to norming.
 write_csv(weighted_sum_scores,
           here(
             str_c(
-              "OUTPUT-FILES/NORMS/",
+              input_file_path,
+              file_name,
+              "weighted-sum-scores.csv"
+            )
+          ),
+          na = "")
+write_csv(weighted_sum_scores,
+          here(
+            str_c(
+              output_file_path,
               file_name,
               "weighted-sum-scores.csv"
             )
