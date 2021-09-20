@@ -30,6 +30,9 @@ input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 fileName_path   <- "TODE_8.27.21_fornorms.csv"
 
+outlier_IDs <- c(326013, 234011, 235029, 262026, 
+                 305022, 326018, 231001, 231007, 338006)
+
 original_input <- suppressMessages(read_csv(
   str_c(input_file_path, fileName_path)
 )) %>% rename(
@@ -82,8 +85,8 @@ original_input <- suppressMessages(read_csv(
         .x + 1
     )
   ) %>% 
-  # remove two outliers
-  filter(!(ID %in% c(326013, 234011)))
+  # remove outliers
+  filter(!(ID %in% outlier_IDs))
 
 fileName_path   <- "census_pct.csv"
 

@@ -57,18 +57,26 @@ input_file_name <- "sege_sum-norms-input.csv"
 
 input <- suppressMessages(read_csv(here(str_c(
   input_file_path, input_file_name
-)))) %>% 
-  filter(group != 8)
+))))
+
+# DROP OLDEST AGE GROUP
+# input <- suppressMessages(read_csv(here(str_c(
+#   input_file_path, input_file_name
+# )))) %>% 
+#   filter(group != 8)
 
 # Calculation of the manifest percentiles and subsequent normal rank
 # transformation to determine location (proxy for a norm-referenced score, i.e.,
 # NOT a raw score)
 
-input <- rankByGroup(input, scale = "IQ") %>%
-  mutate(across(normValue,
-                ~
-                  case_when(normValue > 120 ~ 120,
-                            TRUE ~ .x)))
+input <- rankByGroup(input, scale = "IQ")
+
+# TRUNCATE UPPER BOUND OF SS DISTRIBUTION
+# input <- rankByGroup(input, scale = "IQ") %>%
+#   mutate(across(normValue,
+#                 ~
+#                   case_when(normValue > 120 ~ 120,
+#                             TRUE ~ .x)))
 
 
 # Calculation of powers and interactions of

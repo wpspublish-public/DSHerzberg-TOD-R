@@ -1,6 +1,8 @@
 library(psych)
 
-input_file_path <- "OUTPUT-FILES/NORMS/"
+# input_file_path <- "OUTPUT-FILES/NORMS/"
+combined_input_file_name <- "TODE_8.27.21_fornorms-weighted-sum-scores.csv"
+input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 
 
 input_orig <- suppressMessages(read_csv(here(str_c(
