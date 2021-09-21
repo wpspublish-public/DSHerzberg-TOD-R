@@ -54,4 +54,4 @@ outlier <- input_orig %>% filter(ID == 234011)
 
 # outlier is id# 234011
 
-write_csv(outlier, here("outlier.csv"))
+write_csv(input, here("input-TOD-cNORM-reprex1.csv"))
