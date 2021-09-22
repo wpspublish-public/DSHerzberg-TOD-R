@@ -8,9 +8,9 @@ library(writexl)
 
 combined_input_file_name <- "TODE_8.27.21_fornorms-weighted-sum-scores.csv"
 input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
-# scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w", 
+# scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
 #             "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
-scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum", 
+scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
             "lswe_sum", "lske_sum", "ORF_noNeg")
 
 # Next block reads an input containing multiple raw score columns per person,
@@ -25,7 +25,15 @@ map(
       str_c(input_file_path, combined_input_file_name)
     ))) %>%
     select(ID, agestrat, !!sym(.x)) %>%
-    mutate(across(
+    drop_na(!!sym(.x)) %>% 
+    mutate(
+      agestrat2 = case_when(
+        agestrat %in% c("5:0-5:7", "5:8-5:11") ~ 5,
+        agestrat %in% c("6:0-6:3", "6:4-6:7", "6:8-6:11") ~ 6,
+        agestrat %in% c("7:0-7:5", "7:6-7:11", "8:0-9:3") ~ 7,
+        TRUE ~ NA_real_
+      ),
+      across(
       agestrat,
       ~ case_when(
         .x == "5:0-5:7" ~ 5,
@@ -39,8 +47,10 @@ map(
         TRUE ~ NA_real_
       )
     )) %>%
-    rename(group = agestrat,
-           raw = !!sym(.x))
+    # rename(group = agestrat,
+    rename(group = agestrat2,
+                  raw = !!sym(.x)) %>% 
+    select(ID, group, raw)
 ) %>%
   set_names(scores) %>%
   map2(scores,
@@ -87,7 +97,7 @@ input <- computePowers(input)
 
 # Determining the best model with specified R2
 
-model <- bestModel(input, terms = 3)
+model <- bestModel(input, terms = 5)
 
 
 # Numerical check of the bijectivity between raw score and normal score
