@@ -2,6 +2,7 @@ library(cNORM)
 suppressMessages(suppressWarnings(library(tidyverse)))
 suppressMessages(library(here))
 library(writexl)
+suppressMessages(library(lubridate))
 
 # Prep input data file. Parse to three cols: personID, group (explanatory var  -
 # age), raw score
@@ -12,6 +13,22 @@ input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 #             "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
 scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
             "lswe_sum", "lske_sum", "ORF_noNeg")
+
+# to use age as predictor in cNORM, read in DOB, date_admin, calculate
+# chronological age as decimal value.
+age_contin <- suppressMessages(read_csv(here(
+  str_c(input_file_path, "TODE_8.27.21_fornorms_datesOnly.csv")
+))) %>% 
+  mutate(
+    across(
+      c(DOB, admin_date),
+      ~
+        mdy(.x)
+    ),
+    age = (DOB %--% admin_date) / years (1)
+  ) %>% 
+  select(ID, age)
+
 
 # Next block reads an input containing multiple raw score columns per person,
 # processes into separate dfs that are input files into cNORM for norming one
