@@ -19,15 +19,28 @@ scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
 age_contin <- suppressMessages(read_csv(here(
   str_c(input_file_path, "TODE_8.27.21_fornorms_datesOnly.csv")
 ))) %>% 
+  # drop age outlier
+  filter(ID != 210039) %>% 
   mutate(
     across(
       c(DOB, admin_date),
       ~
+        # lubridate::mdy() coerces string into date-time type
         mdy(.x)
     ),
+    # [start_date] %--% [end_date] uses lubridate operator %--% to create a time
+    # interval (duration). Dividing interval by a period (years(1) = 1 year)
+    # returns age in years-months-days as a decimal value (e.g., 5 years, 6
+    # months, 0 days = 5.5)
     age = (DOB %--% admin_date) / years (1)
-  ) %>% 
-  select(ID, age)
+  ) %>%
+  # here bind_cols joins a col created by cNORM::getGroups(), which returns vec
+  # with equal size age strata, where value of col is a label for the age stratum that
+  # each row belongs to, and that label is the arithmetic mean of chronological
+  # age within that group
+  bind_cols(getGroups(.$age)) %>% 
+  rename(group = ...5) %>% 
+  select(ID, age, group)
 
 
 # Next block reads an input containing multiple raw score columns per person,
@@ -35,39 +48,62 @@ age_contin <- suppressMessages(read_csv(here(
 # raw score. Within the process, a list of dfs is created and those dfs are
 # eventually written out as .csvs, but the list itself is invisible, it's never
 # preserved in the global environment,
+# map(
+#   scores,
+#   ~
+#     suppressMessages(read_csv(here(
+#       str_c(input_file_path, combined_input_file_name)
+#     ))) %>%
+#     select(ID, agestrat, !!sym(.x)) %>%
+#     drop_na(!!sym(.x)) %>% 
+#     mutate(
+#       agestrat2 = case_when(
+#         agestrat %in% c("5:0-5:7", "5:8-5:11") ~ 5,
+#         agestrat %in% c("6:0-6:3", "6:4-6:7", "6:8-6:11") ~ 6,
+#         agestrat %in% c("7:0-7:5", "7:6-7:11", "8:0-9:3") ~ 7,
+#         TRUE ~ NA_real_
+#       ),
+#       across(
+#         agestrat,
+#         ~ case_when(
+#           .x == "5:0-5:7" ~ 5,
+#           .x == "5:8-5:11" ~ 5.67,
+#           .x == "6:0-6:3" ~ 6,
+#           .x == "6:4-6:7" ~ 6.33,
+#           .x == "6:8-6:11" ~ 6.67,
+#           .x == "7:0-7:5" ~ 7,
+#           .x == "7:6-7:11" ~ 7.5,
+#           .x == "8:0-9:3" ~ 8,
+#           TRUE ~ NA_real_
+#         )
+#       )) %>%
+#     # rename(group = agestrat,
+#     rename(group = agestrat2,
+#            raw = !!sym(.x)) %>% 
+#     select(ID, group, raw)
+# ) %>%
+#   set_names(scores) %>%
+#   map2(scores,
+#        ~
+#          write_csv(.x,
+#                    here(
+#                      str_c(input_file_path, .y, "-norms-input.csv")
+#                    ))) %>% 
+#   invisible(.)
+
 map(
   scores,
   ~
     suppressMessages(read_csv(here(
       str_c(input_file_path, combined_input_file_name)
     ))) %>%
-    select(ID, agestrat, !!sym(.x)) %>%
+    # drop age outlier
+    filter(ID != 210039) %>% 
+    select(ID, !!sym(.x)) %>%
     drop_na(!!sym(.x)) %>% 
-    mutate(
-      agestrat2 = case_when(
-        agestrat %in% c("5:0-5:7", "5:8-5:11") ~ 5,
-        agestrat %in% c("6:0-6:3", "6:4-6:7", "6:8-6:11") ~ 6,
-        agestrat %in% c("7:0-7:5", "7:6-7:11", "8:0-9:3") ~ 7,
-        TRUE ~ NA_real_
-      ),
-      across(
-      agestrat,
-      ~ case_when(
-        .x == "5:0-5:7" ~ 5,
-        .x == "5:8-5:11" ~ 5.67,
-        .x == "6:0-6:3" ~ 6,
-        .x == "6:4-6:7" ~ 6.33,
-        .x == "6:8-6:11" ~ 6.67,
-        .x == "7:0-7:5" ~ 7,
-        .x == "7:6-7:11" ~ 7.5,
-        .x == "8:0-9:3" ~ 8,
-        TRUE ~ NA_real_
-      )
-    )) %>%
-    # rename(group = agestrat,
-    rename(group = agestrat2,
-                  raw = !!sym(.x)) %>% 
-    select(ID, group, raw)
+    left_join(age_contin, by = "ID") %>% 
+    rename(raw = !!sym(.x)) %>% 
+    select(ID, age, group, raw)
 ) %>%
   set_names(scores) %>%
   map2(scores,
@@ -85,6 +121,59 @@ input_file_name <- "sege_sum-norms-input.csv"
 input <- suppressMessages(read_csv(here(str_c(
   input_file_path, input_file_name
 ))))
+
+# Alex Lenhard's solution. Key points:
+
+# Use the all-in-one cnorm(), that combines several important functions from my
+# code above
+
+# "group" var is used by cnorm() to determine percentile ranks. Value for this
+# var should be the mean value of chronological age for cases with each group
+# (age strata), or some close approximation of this value. Other values (e.g.,
+# lower-bound of age group) introduce error.
+
+# The two key diagnostics are plotPercentileSeries() and checkConsitency(). Both
+# target the same problem: violations of monotonicty, or intersecting percentile
+# curves. With plotPercntileSeries(), you can use "end" argument to set upper
+# limit of predictors, and "percentiles" to provide a vector of %ile scores to
+# model.
+
+# Alex recoded the input age groupings into "group2", collapsing existing age
+# strata to get larger groups. She recommends n >= 100 for age strata, so
+# collapse groups to get to this number.
+
+#modelTOD
+model <- cnorm(raw = input$raw, group = input$group, k = 5, t = 2, terms = 5, scale = "IQ")
+plot(model, "series", end = 10)
+plot(model, "subset")
+plot(model, "percentiles")
+plotDerivative(model)
+checkConsistency(model)
+plotPercentiles(model, percentiles=c(0.001, .5, .999))
+normTable(model, A = 5.5)
+rawTable(model, A=9.25)
+
+#alternative modelling with exact age = date_eval minus DOB, expressed as a decimal.
+model_age <- cnorm(
+  raw = input$raw,
+  group = input$group,
+  age = input$age,
+  k = 5,
+  t = 2,
+  terms = 5,
+  scale = "IQ"
+)
+plot(model_age, "series", end = 10)
+
+
+
+
+
+
+
+
+
+
 
 # DROP OLDEST AGE GROUP
 # input <- suppressMessages(read_csv(here(str_c(
