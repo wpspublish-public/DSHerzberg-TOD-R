@@ -42,6 +42,19 @@ age_contin <- suppressMessages(read_csv(here(
   rename(group = ...5) %>% 
   select(ID, age, group)
 
+age_contin %>% 
+  select(ID, age) %>% 
+  write_csv(here(
+    str_c(input_file_path, "TOD-AL-age-contin.csv")
+  ))
+
+age_contin %>% 
+  rename(getGroup = group) %>% 
+  select(ID, age, getGroup) %>% 
+  write_csv(here(
+    str_c(input_file_path, "TOD-AL-age-contin-getGroup.csv")
+  ))
+
 
 # Next block reads an input containing multiple raw score columns per person,
 # processes into separate dfs that are input files into cNORM for norming one
