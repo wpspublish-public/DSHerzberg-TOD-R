@@ -9,10 +9,11 @@ suppressMessages(library(lubridate))
 
 combined_input_file_name <- "TODE_8.27.21_fornorms-weighted-sum-scores.csv"
 input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
-# scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
-#             "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
-scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
-            "lswe_sum", "lske_sum", "ORF_noNeg")
+output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
+scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
+            "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
+# scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
+#             "lswe_sum", "lske_sum", "ORF_noNeg")
 
 # to use age as predictor in cNORM, read in DOB, date_admin, calculate
 # chronological age as decimal value.
@@ -129,7 +130,8 @@ map(
 
 # read single score input.
 
-input_file_name <- "sege_sum-norms-input.csv"
+input_file_stem <- "sege_sum_w"
+input_file_name <- str_c(input_file_stem, "-norms-input.csv")
 
 input <- suppressMessages(read_csv(here(str_c(
   input_file_path, input_file_name
@@ -151,12 +153,8 @@ input <- suppressMessages(read_csv(here(str_c(
 # limit of predictors, and "percentiles" to provide a vector of %ile scores to
 # model.
 
-# Alex recoded the input age groupings into "group2", collapsing existing age
-# strata to get larger groups. She recommends n >= 100 for age strata, so
-# collapse groups to get to this number.
-
 #modelTOD
-model <- cnorm(raw = input$raw, group = input$group, k = 5, t = 2, terms = 5, scale = "IQ")
+model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 3, scale = "IQ")
 plot(model, "series", end = 10)
 plot(model, "subset")
 plot(model, "percentiles")
@@ -166,18 +164,18 @@ plotPercentiles(model, percentiles=c(0.001, .5, .999))
 normTable(model, A = 5.5)
 rawTable(model, A=9.25)
 
-#alternative modelling with exact age = date_eval minus DOB, expressed as a decimal.
-model_age <- cnorm(
-  raw = input$raw,
-  group = input$group,
-  age = input$age,
-  k = 5,
-  t = 2,
-  terms = 5,
-  scale = "IQ"
-)
-plot(model_age, "series", end = 10)
-
+# #alternative modelling with exact age = date_eval minus DOB, expressed as a decimal.
+# model_age <- cnorm(
+#   raw = input$raw,
+#   group = input$group,
+#   age = input$age,
+#   k = 5,
+#   t = 2,
+#   terms = 5,
+#   scale = "IQ"
+# )
+# plot(model_age, "series", end = 10)
+# 
 
 
 
@@ -198,7 +196,7 @@ plot(model_age, "series", end = 10)
 # transformation to determine location (proxy for a norm-referenced score, i.e.,
 # NOT a raw score)
 
-input <- rankByGroup(input, scale = "IQ")
+# input <- rankByGroup(input, scale = "IQ")
 
 # TRUNCATE UPPER BOUND OF SS DISTRIBUTION
 # input <- rankByGroup(input, scale = "IQ") %>%
@@ -211,22 +209,22 @@ input <- rankByGroup(input, scale = "IQ")
 # Calculation of powers and interactions of
 # location and grouping variable
 
-input <- computePowers(input)
+# input <- computePowers(input)
 
 
 # Determining the best model with specified R2
 
-model <- bestModel(input, terms = 5)
+# model <- bestModel(input, terms = 6)
 
 
 # Numerical check of the bijectivity between raw score and normal score
 
-checkConsistency(model)
+# checkConsistency(model)
 
 
 # Illustration of R2 by number of predictors
 
-plotSubset(model, type= 0)
+# plotSubset(model, type= 0)
 
 # Checking the limits of model validity via first order derivative
 # to location outside the age range of the test (= horizontal interpolation)
@@ -237,7 +235,7 @@ plotSubset(model, type= 0)
 
 # Illustration of percentile curves of the identified best model
 
-plotPercentiles(input, model)
+# plotPercentiles(input, model)
 
 
 # Alternatively, a whole series of charts can be generated, whereby
@@ -245,7 +243,7 @@ plotPercentiles(input, model)
 # If no further information is given, the chart is set to actually
 # occurring raw scores and age groups of the original data set.
 
-plotPercentileSeries(input, model)
+# plotPercentileSeries(input, model)
 
 # Transforms a specified series of normal scores into raw scores for
 # third graders, ninth month of school year (explanatory variable = 3.75)
@@ -255,20 +253,17 @@ plotPercentileSeries(input, model)
 
 # Alternative: Output of standard scores for a series of raw scores
 
-tab_names <- c("5.0", "5.3", "5.6", "5.9", "6.0", "6.3", "6.6", "6.9", 
-               "7.0", "7.3", "7.6", "7.9", "8.0", "8.6", "9.0", "9.6", 
-               "10.0", "10.6", "11.0", "11.6", "12.0", "12.6", "13.0", 
-               "14.0", "15.0", "16-18", "19-21")
+tab_names <- c("5.0", "5.6", "6.0", "6.6", "7.0", "7.6", "8.0")
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(
-  unique(input$group), 
+  c(5.25, 5.75, 6.25, 6.75, 7.25, 7.75, 8.25), 
   model, 
   step = 1, 
   minNorm = 40, 
-  maxNorm = 160, 
-  minRaw = 0, 
-  maxRaw = 61
+  maxNorm = 130, 
+  minRaw = 1, 
+  maxRaw = 26
   ) %>% 
   set_names(tab_names) %>% 
   map( 
@@ -281,6 +276,8 @@ norms_list <- rawTable(
 # Write assignments by coder into tabbed, xlsx workbook. To create named tabs,
 # supply writexl::write_xlsx() with a named list of dfs for each tab, tab names
 # will be the names of the list elements
-# write_xlsx(norms_list,
-#            here("OUTPUT-FILES/ANT-raw-ss-lookup.xlsx"))
+write_xlsx(norms_list,
+           here(str_c(
+             output_file_path, input_file_stem, "-raw-ss-lookup.xlsx"
+           )))
 

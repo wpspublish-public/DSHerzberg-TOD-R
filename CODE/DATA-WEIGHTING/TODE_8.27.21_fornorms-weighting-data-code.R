@@ -30,8 +30,8 @@ input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 fileName_path   <- "TODE_8.27.21_fornorms.csv"
 
-outlier_IDs <- c(326013, 234011, 235029, 262026, 
-                 305022, 326018, 231001, 231007, 338006)
+# outlier_IDs <- c(326013, 234011, 235029, 262026, 
+#                  305022, 326018, 231001, 231007, 338006)
 
 original_input <- suppressMessages(read_csv(
   str_c(input_file_path, fileName_path)
@@ -41,22 +41,22 @@ original_input <- suppressMessages(read_csv(
   ethnic = Ethnicity,
 ) %>% 
   mutate(
-    across(agestrat, ~ case_when(
-      . == 1 ~ "5:0-5:7",
-      . == 2 ~ "5:8-5:11",
-      . == 3 ~ "6:0-6:3",
-      . == 4 ~ "6:4-6:7",
-      . == 5 ~ "6:8-6:11",
-      . == 6 ~ "7:0-7:5",
-      . == 7 ~ "7:6-7:11",
-      . == 8 ~ "8:0-9:3")),
-    across(gradestrat, ~ case_when(
-      . == 1 ~ "K_Fall",
-      . == 2 ~ "K_Spring",
-      . == 3 ~ "1_Fall",
-      . == 4 ~ "1_Spring",
-      . == 5 ~ "2_Fall",
-      . == 6 ~ "2_Spring")),
+    # across(agestrat, ~ case_when(
+    #   . == 1 ~ "5:0-5:7",
+    #   . == 2 ~ "5:8-5:11",
+    #   . == 3 ~ "6:0-6:3",
+    #   . == 4 ~ "6:4-6:7",
+    #   . == 5 ~ "6:8-6:11",
+    #   . == 6 ~ "7:0-7:5",
+    #   . == 7 ~ "7:6-7:11",
+    #   . == 8 ~ "8:0-9:3")),
+    # across(gradestrat, ~ case_when(
+    #   . == 1 ~ "K_Fall",
+    #   . == 2 ~ "K_Spring",
+    #   . == 3 ~ "1_Fall",
+    #   . == 4 ~ "1_Spring",
+    #   . == 5 ~ "2_Fall",
+    #   . == 6 ~ "2_Spring")),
     across(gender, ~ case_when(
       . == 1 ~ "male",
       . == 2 ~ "female")),
@@ -84,9 +84,10 @@ original_input <- suppressMessages(read_csv(
       ~
         .x + 1
     )
-  ) %>% 
-  # remove outliers
-  filter(!(ID %in% outlier_IDs))
+  )
+  # ) %>% 
+  # # remove outliers
+  # filter(!(ID %in% outlier_IDs))
 
 fileName_path   <- "census_pct.csv"
 
@@ -274,7 +275,7 @@ weighted_sum_scores <- original_input %>%
   select(-ORF,-(i01:!!sym(str_c("i", last_item)))) %>%
   left_join(demo_weight_by_crossing_input,
             by = c("gender", "educ", "ethnic", "region")) %>%
-  relocate(agestrat:gradestrat, .before = gender) %>%
+  # relocate(agestrat:gradestrat, .before = gender) %>%
   mutate(
     sege_sum_w = sege_sum,
     rlne_sum_w = rlne_sum,
