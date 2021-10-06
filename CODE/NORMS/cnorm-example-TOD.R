@@ -20,8 +20,6 @@ scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
 age_contin <- suppressMessages(read_csv(here(
   str_c(input_file_path, "TODE_8.27.21_fornorms_datesOnly.csv")
 ))) %>% 
-  # drop age outlier
-  filter(ID != 210039) %>% 
   mutate(
     across(
       c(DOB, admin_date),
@@ -111,8 +109,6 @@ map(
     suppressMessages(read_csv(here(
       str_c(input_file_path, combined_input_file_name)
     ))) %>%
-    # drop age outlier
-    filter(ID != 210039) %>% 
     select(ID, !!sym(.x)) %>%
     drop_na(!!sym(.x)) %>% 
     left_join(age_contin, by = "ID") %>% 
