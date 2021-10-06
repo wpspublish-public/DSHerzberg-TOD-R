@@ -1,105 +1,14 @@
-urlRemote_path  <- "https://raw.github.com/"
-github_path <- "wpspublish/DSHerzberg-TOD-R/master/INPUT-FILES/NORMS/"
-fileName_path   <- "census_pct.csv"
-
-# temp1 <- suppressMessages(read_csv(url(
-#   str_c(urlRemote_path, github_path, fileName_path)
-# ))) %>% 
-#   mutate(
-#     cat_gender = cat,
-#     cat_educ = cat,
-#     cat_ethnic = cat,
-#     cat_region = cat
-#   ) %>%
-#   select(-var, -cat)
-# 
-# 
-# temp2 <- demo_weight_by_crossing %>% 
-#   left_join(
-#     temp1, 
-#     by = c(
-#       "gender" = "cat_gender"
-#       )
-#   )
-# 
-
-# "educ" = "cat_educ", 
-# "ethnic" = "cat_ethnic", 
-# "region" = "cat_region"
-
-temp3 <- suppressMessages(read_csv(url(
-  str_c(urlRemote_path, github_path, fileName_path)
-))) %>% 
-  select(-var) %>% 
-  pivot_wider(
-    names_from = cat,
-    values_from = pct_census
-    
-  )
-
-gender <- c("male", "female")
-educ <- c("no_HS", "HS_grad", "some_college", "BA_plus")
-ethnic <- c("hispanic", "asian", "black", "white", "other")
-region <- c("northeast", "south", "midwest", "west")
-
-temp5 <- expand_grid(
-  gender = gender,
-  educ = educ,
-  ethnic = ethnic,
-  region = region
+age5 <- data.frame(
+  raw = c(5, 4, 3, 2, 1), 
+  ss = c(120, 110, 100, 90, 80)
+)
+age6 <- data.frame(
+  raw = c(5, 4, 3, 2, 1), 
+  ss = c(117, 107, 97, 87, 77)
+)
+age7 <- data.frame(
+  raw = c(5, 4, 3, 2, 1), 
+  ss = c(115, 105, 95, 85, 75)
 )
 
-temp4 <- temp5 %>% 
-  left_join(demo_weight_by_crossing, by = c("gender", "educ", "ethnic", "region")) %>% 
-  bind_cols(
-    temp3
-  ) %>% 
-  mutate(
-    pct_census_gender = case_when(
-      gender == "male" ~ male,
-      TRUE ~ female
-    ), 
-    pct_census_educ = case_when(
-      educ == "no_HS" ~ no_HS,
-      educ == "HS_grad" ~ HS_grad,
-      educ == "some_college" ~ some_college,
-      TRUE ~ BA_plus
-    ), 
-    pct_census_ethnic = case_when(
-      ethnic == "hispanic" ~ hispanic,
-      ethnic == "asian" ~ asian,
-      ethnic == "black" ~ black,
-      ethnic == "white" ~ white,
-      TRUE ~ other
-    ), 
-    pct_census_region = case_when(
-      region == "northeast" ~ northeast,
-      region == "south" ~ south,
-      region == "midwest" ~ midwest,
-      TRUE ~ west
-    ), 
-    across(
-      c(
-        pct_census_gender,
-        pct_census_educ,
-        pct_census_ethnic,
-        pct_census_region,
-      ),
-      ~
-        . * .01
-    ),
-    n_census = round(
-      (pct_census_gender * pct_census_educ * 
-                  pct_census_ethnic * pct_census_region) *
-      nrow(original_input), 
-      2
-      )
-  ) %>% 
-  select(gender:n_input, n_census)
-
-
-temp6 <- temp5 %>% 
-  left_join(temp4, by = c("gender", "educ", "ethnic", "region"))
-
-write_csv(temp6, here("temp.csv"), na = "")
-
+lookup_list <- lst(age5, age6, age7)

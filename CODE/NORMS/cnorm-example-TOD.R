@@ -163,6 +163,13 @@ checkConsistency(model)
 plotPercentiles(model, percentiles=c(0.001, .5, .999))
 normTable(model, A = 5.5)
 rawTable(model, A=9.25)
+plotRaw(model)
+plotNorm(model)
+getNormCurve(130, model)
+plotNormCurves(model, c(70, 85, 100, 115, 130))
+predictNorm(20, 8, model)
+
+
 
 # #alternative modelling with exact age = date_eval minus DOB, expressed as a decimal.
 # model_age <- cnorm(
