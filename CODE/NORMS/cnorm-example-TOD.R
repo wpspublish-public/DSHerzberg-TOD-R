@@ -10,10 +10,10 @@ suppressMessages(library(lubridate))
 combined_input_file_name <- "TODE_8.27.21_fornorms-weighted-sum-scores.csv"
 input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
-scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
-            "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
-# scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
-#             "lswe_sum", "lske_sum", "ORF_noNeg")
+# scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
+#             "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
+scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
+            "lswe_sum", "lske_sum", "ORF_noNeg")
 
 # to use age as predictor in cNORM, read in DOB, date_admin, calculate
 # chronological age as decimal value.
@@ -126,7 +126,7 @@ map(
 
 # read single score input.
 
-input_file_stem <- "sege_sum_w"
+input_file_stem <- "sege_sum"
 input_file_name <- str_c(input_file_stem, "-norms-input.csv")
 
 input <- suppressMessages(read_csv(here(str_c(
@@ -150,7 +150,7 @@ input <- suppressMessages(read_csv(here(str_c(
 # model.
 
 #modelTOD
-model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 3, scale = "IQ")
+model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 4, scale = "IQ")
 plot(model, "series", end = 10)
 plot(model, "subset")
 plot(model, "percentiles")
@@ -164,24 +164,6 @@ plotNorm(model)
 getNormCurve(130, model)
 plotNormCurves(model, c(70, 85, 100, 115, 130))
 predictNorm(20, 8, model)
-
-
-
-# #alternative modelling with exact age = date_eval minus DOB, expressed as a decimal.
-# model_age <- cnorm(
-#   raw = input$raw,
-#   group = input$group,
-#   age = input$age,
-#   k = 5,
-#   t = 2,
-#   terms = 5,
-#   scale = "IQ"
-# )
-# plot(model_age, "series", end = 10)
-# 
-
-
-
 
 
 
@@ -258,6 +240,20 @@ predictNorm(20, 8, model)
 
 tab_names <- c("5.0", "5.6", "6.0", "6.6", "7.0", "7.6", "8.0")
 
+# The max scores are as follows:
+#   Snwe = 32
+# Sege = 25
+# rlne= 120
+# lswe = 38
+# rhme = 30
+# lske = 33
+# orf = each grade is given a different passage to read within 1 minute and 
+# it is unlikely anyone would read the whole thing with zero errors, 
+# but the total max for each passage is: Kinder 114, 1st grade fall = 119, 
+# 1st grade spring = 112, 2nd grade = 163
+
+
+
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(
   c(5.25, 5.75, 6.25, 6.75, 7.25, 7.75, 8.25), 
@@ -266,7 +262,7 @@ norms_list <- rawTable(
   minNorm = 40, 
   maxNorm = 130, 
   minRaw = 1, 
-  maxRaw = 26
+  maxRaw = 30
   ) %>% 
   set_names(tab_names) %>% 
   map( 
