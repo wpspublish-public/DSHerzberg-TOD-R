@@ -10,10 +10,10 @@ suppressMessages(library(lubridate))
 combined_input_file_name <- "TODE_8.27.21_fornorms-weighted-sum-scores.csv"
 input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
-# scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
-#             "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
-scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
-            "lswe_sum", "lske_sum", "ORF_noNeg")
+scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
+            "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
+# scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
+#             "lswe_sum", "lske_sum", "ORF_noNeg")
 
 # to use age as predictor in cNORM, read in DOB, date_admin, calculate
 # chronological age as decimal value.
@@ -59,50 +59,9 @@ age_contin %>%
 # processes into separate dfs that are input files into cNORM for norming one
 # raw score. Within the process, a list of dfs is created and those dfs are
 # eventually written out as .csvs, but the list itself is invisible, it's never
-# preserved in the global environment,
-# map(
-#   scores,
-#   ~
-#     suppressMessages(read_csv(here(
-#       str_c(input_file_path, combined_input_file_name)
-#     ))) %>%
-#     select(ID, agestrat, !!sym(.x)) %>%
-#     drop_na(!!sym(.x)) %>% 
-#     mutate(
-#       agestrat2 = case_when(
-#         agestrat %in% c("5:0-5:7", "5:8-5:11") ~ 5,
-#         agestrat %in% c("6:0-6:3", "6:4-6:7", "6:8-6:11") ~ 6,
-#         agestrat %in% c("7:0-7:5", "7:6-7:11", "8:0-9:3") ~ 7,
-#         TRUE ~ NA_real_
-#       ),
-#       across(
-#         agestrat,
-#         ~ case_when(
-#           .x == "5:0-5:7" ~ 5,
-#           .x == "5:8-5:11" ~ 5.67,
-#           .x == "6:0-6:3" ~ 6,
-#           .x == "6:4-6:7" ~ 6.33,
-#           .x == "6:8-6:11" ~ 6.67,
-#           .x == "7:0-7:5" ~ 7,
-#           .x == "7:6-7:11" ~ 7.5,
-#           .x == "8:0-9:3" ~ 8,
-#           TRUE ~ NA_real_
-#         )
-#       )) %>%
-#     # rename(group = agestrat,
-#     rename(group = agestrat2,
-#            raw = !!sym(.x)) %>% 
-#     select(ID, group, raw)
-# ) %>%
-#   set_names(scores) %>%
-#   map2(scores,
-#        ~
-#          write_csv(.x,
-#                    here(
-#                      str_c(input_file_path, .y, "-norms-input.csv")
-#                    ))) %>% 
-#   invisible(.)
-
+# preserved in the global environment. These new input files for cnorm()
+# incorporate the continuous age variable and age grouping veriable creaed in
+# the previous step.
 map(
   scores,
   ~
@@ -126,7 +85,7 @@ map(
 
 # read single score input.
 
-input_file_stem <- "sege_sum"
+input_file_stem <- "lswe_sum_w"
 input_file_name <- str_c(input_file_stem, "-norms-input.csv")
 
 input <- suppressMessages(read_csv(here(str_c(
@@ -136,21 +95,21 @@ input <- suppressMessages(read_csv(here(str_c(
 # Alex Lenhard's solution. Key points:
 
 # Use the all-in-one cnorm(), that combines several important functions from my
-# code above
+# code above. Compare diagnostics from two approaches to defining age groups: -
+# 1. omit group argument: cnorm() defaults to rankBySlidingWindow, but this can
+# be problematic when there are few cases on the tails of the age distribution -
+# 2. use getGroups() to create equal size groups out of the age distributions,
+# use "groups = " argument within cnorm() to refer to column holding this
+# grouping code
 
-# "group" var is used by cnorm() to determine percentile ranks. Value for this
-# var should be the mean value of chronological age for cases with each group
-# (age strata), or some close approximation of this value. Other values (e.g.,
-# lower-bound of age group) introduce error.
-
-# The two key diagnostics are plotPercentileSeries() and checkConsitency(). Both
+# The two key diagnostics are plotPercentileSeries() and checkConsistency(). Both
 # target the same problem: violations of monotonicty, or intersecting percentile
 # curves. With plotPercntileSeries(), you can use "end" argument to set upper
 # limit of predictors, and "percentiles" to provide a vector of %ile scores to
 # model.
 
-#modelTOD
-model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 4, scale = "IQ")
+model <- cnorm(raw = input$raw, group = input$group, k = 5, terms = 4, scale = "IQ")
+# model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
 plot(model, "series", end = 10)
 plot(model, "subset")
 plot(model, "percentiles")
@@ -166,81 +125,9 @@ plotNormCurves(model, c(70, 85, 100, 115, 130))
 predictNorm(20, 8, model)
 
 
-
-
-
-
-
-# DROP OLDEST AGE GROUP
-# input <- suppressMessages(read_csv(here(str_c(
-#   input_file_path, input_file_name
-# )))) %>% 
-#   filter(group != 8)
-
-# Calculation of the manifest percentiles and subsequent normal rank
-# transformation to determine location (proxy for a norm-referenced score, i.e.,
-# NOT a raw score)
-
-# input <- rankByGroup(input, scale = "IQ")
-
-# TRUNCATE UPPER BOUND OF SS DISTRIBUTION
-# input <- rankByGroup(input, scale = "IQ") %>%
-#   mutate(across(normValue,
-#                 ~
-#                   case_when(normValue > 120 ~ 120,
-#                             TRUE ~ .x)))
-
-
-# Calculation of powers and interactions of
-# location and grouping variable
-
-# input <- computePowers(input)
-
-
-# Determining the best model with specified R2
-
-# model <- bestModel(input, terms = 6)
-
-
-# Numerical check of the bijectivity between raw score and normal score
-
-# checkConsistency(model)
-
-
-# Illustration of R2 by number of predictors
-
-# plotSubset(model, type= 0)
-
-# Checking the limits of model validity via first order derivative
-# to location outside the age range of the test (= horizontal interpolation)
-# The gradient should not fall below zero.
-# plotDerivative(model, minAge=60, maxAge=228, minNorm=50, maxNorm=150)
-
-
-
-# Illustration of percentile curves of the identified best model
-
-# plotPercentiles(input, model)
-
-
-# Alternatively, a whole series of charts can be generated, whereby
-# the number of predictors is incremented by one at a time.
-# If no further information is given, the chart is set to actually
-# occurring raw scores and age groups of the original data set.
-
-# plotPercentileSeries(input, model)
-
-# Transforms a specified series of normal scores into raw scores for
-# third graders, ninth month of school year (explanatory variable = 3.75)
-
-# normTable(3.75, model, step=1, minNorm=25, maxNorm=75)
-
-
-# Alternative: Output of standard scores for a series of raw scores
-
 tab_names <- c("5.0", "5.6", "6.0", "6.6", "7.0", "7.6", "8.0")
 
-# The max scores are as follows:
+# The max raw scores are as follows:
 #   Snwe = 32
 # Sege = 25
 # rlne= 120
@@ -252,8 +139,6 @@ tab_names <- c("5.0", "5.6", "6.0", "6.6", "7.0", "7.6", "8.0")
 # but the total max for each passage is: Kinder 114, 1st grade fall = 119, 
 # 1st grade spring = 112, 2nd grade = 163
 
-
-
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(
   c(5.25, 5.75, 6.25, 6.75, 7.25, 7.75, 8.25), 
@@ -262,7 +147,7 @@ norms_list <- rawTable(
   minNorm = 40, 
   maxNorm = 130, 
   minRaw = 1, 
-  maxRaw = 30
+  maxRaw = 38
   ) %>% 
   set_names(tab_names) %>% 
   map( 
