@@ -71,3 +71,10 @@ write_xlsx(norms_list_temp,
            )))
 
 
+age_contin <- suppressMessages(read_csv(here(
+  str_c(input_file_path, "TODE_8.27.21_fornorms.csv")
+)))
+
+
+temp1 <- age_contin %>% filter(ID %in% c(234032, 234033, 234034, 234035, 262027))
+

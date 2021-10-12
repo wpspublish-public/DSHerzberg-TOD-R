@@ -18,7 +18,7 @@ scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
 # to use age as predictor in cNORM, read in DOB, date_admin, calculate
 # chronological age as decimal value.
 age_contin <- suppressMessages(read_csv(here(
-  str_c(input_file_path, "TODE_8.27.21_fornorms_datesOnly.csv")
+  str_c(input_file_path, "TODE_8.27.21_fornorms.csv")
 ))) %>% 
   mutate(
     across(
@@ -38,7 +38,7 @@ age_contin <- suppressMessages(read_csv(here(
   # each row belongs to, and that label is the arithmetic mean of chronological
   # age within that group
   bind_cols(getGroups(.$age)) %>% 
-  rename(group = ...5) %>% 
+  rename(group = ...51) %>% 
   select(ID, age, group)
 
 age_contin %>% 
@@ -85,7 +85,7 @@ map(
 
 # read single score input.
 
-input_file_stem <- "lswe_sum_w"
+input_file_stem <- "lske_sum_w"
 input_file_name <- str_c(input_file_stem, "-norms-input.csv")
 
 input <- suppressMessages(read_csv(here(str_c(
@@ -108,7 +108,7 @@ input <- suppressMessages(read_csv(here(str_c(
 # limit of predictors, and "percentiles" to provide a vector of %ile scores to
 # model.
 
-model <- cnorm(raw = input$raw, group = input$group, k = 5, terms = 4, scale = "IQ")
+model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 2, scale = "IQ")
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
 plot(model, "series", end = 10)
 plot(model, "subset")
@@ -147,7 +147,7 @@ norms_list <- rawTable(
   minNorm = 40, 
   maxNorm = 130, 
   minRaw = 1, 
-  maxRaw = 38
+  maxRaw = 33
   ) %>% 
   set_names(tab_names) %>% 
   map( 
