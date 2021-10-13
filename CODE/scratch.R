@@ -44,23 +44,48 @@ ggplot(lookup_combo, aes(age, raw)) +
   )
 
 
-norms_list_temp <- rawTable(
-  c(5.25, 5.75, 6.25, 6.75, 7.25, 7.75, 8.25), 
-  model, 
-  step = 1, 
-  minNorm = 40, 
-  maxNorm = 130, 
-  minRaw = 1, 
-  maxRaw = 30,
+urlRemote_path  <- "https://raw.github.com/"
+github_path <- "wpspublish/DSHerzberg-TOD-R/master/INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
+input_file_name <- "input-TOD-cNORM-reprex1.csv"
+
+input <- suppressMessages(read_csv(url(
+  paste0(urlRemote_path, github_path, input_file_name)
+)))
+
+model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 4, scale = "IQ")
+
+tab_names <- c(5.00, 5.67, 6.00, 6.33, 6.67, 7.00, 7.50, 8.00)
+
+norms_combo_table <- rawTable(
+  c(5.00, 5.67, 6.00, 6.33, 6.67, 7.00, 7.50, 8.00),
+  model,
+  step = 1,
+  minNorm = 40,
+  maxNorm = 160,
+  minRaw = 1,
+  maxRaw = 26,
   pretty = FALSE
-) %>% 
-  set_names(tab_names) %>% 
-  map( 
-    ~
-      select(.x, raw, norm) %>% 
-      summarize(raw = raw,
-                ss = round(norm, 0))
+) %>%
+  map(~
+        select(.x, raw, norm) %>%
+        summarize(raw = raw,
+                  ss = round(norm, 0))) %>%
+  reduce(left_join,
+         by = "raw") %>% 
+  set_names("raw", tab_names) %>% 
+  pivot_longer(-raw, names_to = "agestrat", values_to = "ss") %>% 
+  group_by(raw) %>% 
+  mutate(
+    reversal = case_when(
+      lag(ss) < ss ~ 1
+    )
   )
+
+reversal_report <- norms_combo_table %>% 
+  filter(reversal == 1) %>% 
+  select(raw, agestrat)
+
+
 
 # Write assignments by coder into tabbed, xlsx workbook. To create named tabs,
 # supply writexl::write_xlsx() with a named list of dfs for each tab, tab names

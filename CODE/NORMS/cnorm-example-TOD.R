@@ -10,10 +10,10 @@ suppressMessages(library(lubridate))
 combined_input_file_name <- "TODE_8.27.21_fornorms-weighted-sum-scores.csv"
 input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
-scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
-            "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
-# scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
-#             "lswe_sum", "lske_sum", "ORF_noNeg")
+# scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
+#             "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
+scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
+            "lswe_sum", "lske_sum", "ORF_noNeg")
 
 # to use age as predictor in cNORM, read in DOB, date_admin, calculate
 # chronological age as decimal value.
@@ -85,7 +85,7 @@ map(
 
 # read single score input.
 
-input_file_stem <- "lske_sum_w"
+input_file_stem <- "ORF_noNeg"
 input_file_name <- str_c(input_file_stem, "-norms-input.csv")
 
 input <- suppressMessages(read_csv(here(str_c(
@@ -108,7 +108,7 @@ input <- suppressMessages(read_csv(here(str_c(
 # limit of predictors, and "percentiles" to provide a vector of %ile scores to
 # model.
 
-model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 2, scale = "IQ")
+model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 3, scale = "IQ")
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
 plot(model, "series", end = 10)
 plot(model, "subset")
@@ -147,21 +147,48 @@ norms_list <- rawTable(
   minNorm = 40, 
   maxNorm = 130, 
   minRaw = 1, 
-  maxRaw = 33
+  maxRaw = 163,
+  pretty = FALSE
   ) %>% 
   set_names(tab_names) %>% 
   map( 
     ~
       select(.x, raw, norm) %>% 
       summarize(raw = raw,
-        ss = round(norm, 0))
-  )
+                ss = round(norm, 0))
+                # ss = norm)
+)
 
-# Write assignments by coder into tabbed, xlsx workbook. To create named tabs,
+# prepare reversal report
+reversal_report <- norms_list %>%
+  reduce(left_join,
+         by = "raw") %>%
+  set_names("raw", tab_names) %>%
+  pivot_longer(-raw, names_to = "agestrat", values_to = "ss") %>%
+  group_by(raw) %>%
+  mutate(reversal = case_when(lag(ss) < ss ~ 1)) %>%
+  filter(reversal == 1) %>%
+  select(raw, agestrat) %>%
+  write_csv(here(
+    str_c(output_file_path, input_file_stem, "-reversal-report.csv")
+  ))
+
+
+# Write raw-to-ss lookups by agestrat¿ into tabbed, xlsx workbook. To create named tabs,
 # supply writexl::write_xlsx() with a named list of dfs for each tab, tab names
 # will be the names of the list elements
 write_xlsx(norms_list,
            here(str_c(
-             output_file_path, input_file_stem, "-raw-ss-lookup.xlsx"
+             output_file_path, input_file_stem, "-raw-ss-lookup-tabbed.xlsx"
            )))
 
+# write raw-to-ss-lookups to single-sheet table
+table <- norms_list %>%
+  reduce(left_join,
+         by = "raw") %>%
+  set_names("raw", tab_names)
+
+write_csv(table, 
+          here(
+  str_c(output_file_path, input_file_stem, "-raw-ss-lookup-table.csv")
+))
