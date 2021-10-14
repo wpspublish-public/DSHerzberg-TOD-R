@@ -7,13 +7,24 @@ suppressMessages(library(lubridate))
 # Prep input data file. Parse to three cols: personID, group (explanatory var  -
 # age), raw score
 
-combined_input_file_name <- "TODE_8.27.21_fornorms-weighted-sum-scores.csv"
+# General tokens
+combined_score_to_norm_file_name <- "TODE_8.27.21_fornorms-weighted-sum-scores.csv"
 input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
+
+# Tokens to toggle between using weighted vs. unweighted scores as the basis for
+# the norms.
+
 # scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
-#             "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
+# "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
 scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
             "lswe_sum", "lske_sum", "ORF_noNeg")
+
+# Tokens setting the specific score to be normed on this iteration of the
+# script.
+score_to_norm_stem <- "ORF_noNeg"
+score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
+
 
 # to use age as predictor in cNORM, read in DOB, date_admin, calculate
 # chronological age as decimal value.
@@ -41,6 +52,7 @@ age_contin <- suppressMessages(read_csv(here(
   rename(group = ...51) %>% 
   select(ID, age, group)
 
+# write versions of age, group vars for consultant Alex Lenhard.
 age_contin %>% 
   select(ID, age) %>% 
   write_csv(here(
@@ -60,13 +72,13 @@ age_contin %>%
 # raw score. Within the process, a list of dfs is created and those dfs are
 # eventually written out as .csvs, but the list itself is invisible, it's never
 # preserved in the global environment. These new input files for cnorm()
-# incorporate the continuous age variable and age grouping veriable creaed in
+# incorporate the continuous age variable and age grouping variable created in
 # the previous step.
 map(
   scores,
   ~
     suppressMessages(read_csv(here(
-      str_c(input_file_path, combined_input_file_name)
+      str_c(input_file_path, combined_score_to_norm_file_name)
     ))) %>%
     select(ID, !!sym(.x)) %>%
     drop_na(!!sym(.x)) %>% 
@@ -85,11 +97,8 @@ map(
 
 # read single score input.
 
-input_file_stem <- "ORF_noNeg"
-input_file_name <- str_c(input_file_stem, "-norms-input.csv")
-
 input <- suppressMessages(read_csv(here(str_c(
-  input_file_path, input_file_name
+  input_file_path, score_to_norm_file_name
 ))))
 
 # Alex Lenhard's solution. Key points:
@@ -111,19 +120,18 @@ input <- suppressMessages(read_csv(here(str_c(
 model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 3, scale = "IQ")
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
 plot(model, "series", end = 10)
-plot(model, "subset")
-plot(model, "percentiles")
-plotDerivative(model)
+# plot(model, "subset")
+# plot(model, "percentiles")
+# plotDerivative(model)
 checkConsistency(model)
-plotPercentiles(model, percentiles=c(0.001, .5, .999))
-normTable(model, A = 5.5)
-rawTable(model, A=9.25)
-plotRaw(model)
-plotNorm(model)
-getNormCurve(130, model)
-plotNormCurves(model, c(70, 85, 100, 115, 130))
-predictNorm(20, 8, model)
-
+# plotPercentiles(model, percentiles=c(0.001, .5, .999))
+# normTable(model, A = 5.5)
+# rawTable(model, A=9.25)
+# plotRaw(model)
+# plotNorm(model)
+# getNormCurve(130, model)
+# plotNormCurves(model, c(70, 85, 100, 115, 130))
+# predictNorm(20, 8, model)
 
 tab_names <- c("5.0", "5.6", "6.0", "6.6", "7.0", "7.6", "8.0")
 
@@ -138,6 +146,10 @@ tab_names <- c("5.0", "5.6", "6.0", "6.6", "7.0", "7.6", "8.0")
 # it is unlikely anyone would read the whole thing with zero errors, 
 # but the total max for each passage is: Kinder 114, 1st grade fall = 119, 
 # 1st grade spring = 112, 2nd grade = 163
+
+
+# START HERE: TO AUTOMATE MAX RAW, CREATE A DF COLUMN WITH MAX RAW FOR SCORE TO
+# BE NORMED, THEN COLLAPSE TO SINGLE VALUE WITH unique(df$max_raw)
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(
@@ -170,17 +182,25 @@ reversal_report <- norms_list %>%
   filter(reversal == 1) %>%
   select(raw, agestrat) %>%
   write_csv(here(
-    str_c(output_file_path, input_file_stem, "-reversal-report.csv")
+    str_c(output_file_path, score_to_norm_stem, "-reversal-report.csv")
   ))
 
 
-# Write raw-to-ss lookups by agestrat¿ into tabbed, xlsx workbook. To create named tabs,
-# supply writexl::write_xlsx() with a named list of dfs for each tab, tab names
-# will be the names of the list elements
+# Write raw-to-ss lookups by agestrat into tabbed, xlsx workbook. To create
+# named tabs, supply writexl::write_xlsx() with a named list of dfs for each
+# tab, tab names will be the names of the list elements
 write_xlsx(norms_list,
            here(str_c(
-             output_file_path, input_file_stem, "-raw-ss-lookup-tabbed.xlsx"
+             output_file_path, score_to_norm_stem, "-raw-ss-lookup-tabbed.xlsx"
            )))
+
+# write model summary to text file, so you can replicate model later.
+capture.output(
+  summary(model),
+  file = here(
+    str_c(output_file_path, score_to_norm_stem, "-model-summ.txt")  )
+)
+
 
 # write raw-to-ss-lookups to single-sheet table
 table <- norms_list %>%
@@ -190,5 +210,16 @@ table <- norms_list %>%
 
 write_csv(table, 
           here(
-  str_c(output_file_path, input_file_stem, "-raw-ss-lookup-table.csv")
+  str_c(output_file_path, score_to_norm_stem, "-raw-ss-lookup-table.csv")
 ))
+
+# write model summary to text file, so you can replicate model later.
+capture.output(
+  str_c(score_to_norm_stem, " model summary"), 
+  summary(model),
+  file = here(
+    str_c(output_file_path, score_to_norm_stem, "-model-summ.txt")  )
+)
+
+
+

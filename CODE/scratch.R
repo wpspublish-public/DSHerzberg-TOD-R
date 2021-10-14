@@ -103,3 +103,16 @@ age_contin <- suppressMessages(read_csv(here(
 
 temp1 <- age_contin %>% filter(ID %in% c(234032, 234033, 234034, 234035, 262027))
 
+
+sink(h)
+i <- 1:10
+outer(i, i, "*")
+sink()
+
+capture.output(
+  summary(model),
+  file = here(
+    str_c(output_file_path, input_file_stem, "-model-summ.txt")  )
+)
+
+temp2 <- data.frame(mutate(max = 3))

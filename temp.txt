@@ -1,0 +1,5 @@
+User specified solution: 3 terms
+R-Square Adj. = 0.97419
+Final regression model: raw ~ L2A1 + L3A2 + L4A3
+Regression function: raw ~ 106.9506661 + (-0.005065770592*L2A1) + (1.203842393e-05*L3A2) + (-5.93727567e-09*L4A3)
+Raw Score RMSE = 6.69419
