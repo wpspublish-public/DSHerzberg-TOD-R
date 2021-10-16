@@ -24,6 +24,20 @@ scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
 # script.
 score_to_norm_stem <- "ORF_noNeg"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
+score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
+  mutate(
+    max_raw = case_when(
+      test == "snwe" ~ 32,
+      test == "sege" ~ 120,
+      test == "lswe" ~ 38,
+      test == "rlne" ~ 120,
+      test == "rhme" ~ 30,
+      test == "lske" ~ 33,
+      test == "snwe" ~ 32,
+      test == "ORF_noNeg" ~ 163
+    )
+  ) %>%
+  pull(max_raw)
 
 
 # to use age as predictor in cNORM, read in DOB, date_admin, calculate
@@ -159,7 +173,7 @@ norms_list <- rawTable(
   minNorm = 40, 
   maxNorm = 130, 
   minRaw = 1, 
-  maxRaw = 163,
+  maxRaw = score_to_norm_max_raw,
   pretty = FALSE
   ) %>% 
   set_names(tab_names) %>% 
@@ -168,7 +182,6 @@ norms_list <- rawTable(
       select(.x, raw, norm) %>% 
       summarize(raw = raw,
                 ss = round(norm, 0))
-                # ss = norm)
 )
 
 # prepare reversal report

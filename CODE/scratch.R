@@ -115,4 +115,26 @@ capture.output(
     str_c(output_file_path, input_file_stem, "-model-summ.txt")  )
 )
 
-temp2 <- data.frame(mutate(max = 3))
+max_raw <- data.frame(test = "lswe") %>%
+  mutate(
+    max_raw = case_when(
+      test == "snwe" ~ 32,
+      test == "sege" ~ 120,
+      test == "lswe" ~ 38,
+      test == "rlne" ~ 120,
+      test == "rhme" ~ 30,
+      test == "lske" ~ 33,
+      test == "snwe" ~ 32,
+      test == "ORF_noNeg" ~ 163
+    )
+  ) %>%
+  pull(max_raw)
+
+max_raw <- temp2$max_raw
+
+# lske = 33
+# orf = each grade is given a different passage to read within 1 minute and 
+# it is unlikely anyone would read the whole thing with zero errors, 
+# but the total max for each passage is: Kinder 114, 1st grade fall = 119, 
+# 1st grade spring = 112, 2nd grade = 163
+

@@ -1,4 +1,4 @@
-[1] "ORF_noNegmodel summary"
+[1] "ORF_noNeg model summary"
 User specified solution: 3 terms
 R-Square Adj. = 0.97419
 Final regression model: raw ~ L2A1 + L3A2 + L4A3
