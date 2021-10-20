@@ -15,14 +15,14 @@ output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 # Tokens to toggle between using weighted vs. unweighted scores as the basis for
 # the norms.
 
-# scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
-# "lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
-scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
-            "lswe_sum", "lske_sum", "ORF_noNeg")
+scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
+"lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
+# scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
+#             "lswe_sum", "lske_sum", "ORF_noNeg")
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "lske_sum"
+score_to_norm_stem <- "lske_sum_w"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -101,7 +101,7 @@ input <- suppressMessages(read_csv(here(str_c(
 # curves. With plot(model, "series"), you can use "end" argument to set upper
 # limit of predictors.
 
-model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 4, scale = "IQ")
+model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 3, scale = "IQ")
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
 plot(model, "series", end = 10)
 checkConsistency(model)
