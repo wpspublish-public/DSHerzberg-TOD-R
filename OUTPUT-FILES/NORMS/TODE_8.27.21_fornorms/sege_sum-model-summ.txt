@@ -1,0 +1,6 @@
+[1] "sege_sum model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.982671
+Final regression model: raw ~ L4 + L2A2 + L3A3 + L4A4
+Regression function: raw ~ -42.40503262 + (1.46104344e-08*L4) + (0.0004545732093*L2A2) + (-6.688613026e-07*L3A3) + (2.771980271e-10*L4A4)
+Raw Score RMSE = 0.8133

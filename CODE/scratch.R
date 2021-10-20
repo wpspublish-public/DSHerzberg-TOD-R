@@ -138,3 +138,7 @@ max_raw <- temp2$max_raw
 # but the total max for each passage is: Kinder 114, 1st grade fall = 119, 
 # 1st grade spring = 112, 2nd grade = 163
 
+temp1 <- suppressMessages(read_csv(here(
+  str_c(input_file_path, combined_score_to_norm_file_name)
+)))
+

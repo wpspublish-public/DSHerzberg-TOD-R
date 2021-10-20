@@ -22,7 +22,7 @@ scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "ORF_noNeg"
+score_to_norm_stem <- "lske_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -101,13 +101,13 @@ input <- suppressMessages(read_csv(here(str_c(
 # curves. With plot(model, "series"), you can use "end" argument to set upper
 # limit of predictors.
 
-model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 3, scale = "IQ")
+model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 4, scale = "IQ")
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
 plot(model, "series", end = 10)
 checkConsistency(model)
 
 # Token for names of output age groups
-tab_names <- c("5:0-5:3", "5:4-5:7", "5:8-5:11", "6:0-6:5", "6:6-6:11", "7:0-9:3")
+tab_names <- c("5.0-5.3", "5.4-5.7", "5.8-5.11", "6.0-6.5", "6.6-6.11", "7.0-9.3")
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(

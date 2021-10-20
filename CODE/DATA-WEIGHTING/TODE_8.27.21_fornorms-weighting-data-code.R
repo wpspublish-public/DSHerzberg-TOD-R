@@ -76,15 +76,16 @@ original_input <- suppressMessages(read_csv(
       . == 2 ~ "midwest",
       . == 3 ~ "south",
       . == 4 ~ "west"))
-  ) %>% 
-# Get rid of zero values for "sum" scores by adding 1 to all
-  mutate(
-    across(
-      c(sege_sum:lske_sum),
-      ~
-        .x + 1
-    )
   )
+  # ) %>% 
+  # Get rid of zero values for "sum" scores by adding 1 to all
+  # mutate(
+  #   across(
+  #     c(sege_sum:lske_sum),
+  #     ~
+  #       .x + 1
+  #   )
+  # )
   # ) %>% 
   # # remove outliers
   # filter(!(ID %in% outlier_IDs))
