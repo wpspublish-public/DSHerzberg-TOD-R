@@ -118,14 +118,13 @@ capture.output(
 max_raw <- data.frame(test = "lswe") %>%
   mutate(
     max_raw = case_when(
-      test == "snwe" ~ 32,
-      test == "sege" ~ 120,
-      test == "lswe" ~ 38,
-      test == "rlne" ~ 120,
-      test == "rhme" ~ 30,
-      test == "lske" ~ 33,
-      test == "snwe" ~ 32,
-      test == "ORF_noNeg" ~ 163
+      str_detect(test, "sege") ~ 25,
+      str_detect(test, "rlne") ~ 120,
+      str_detect(test, "rhme") ~ 30,
+      str_detect(test, "snwe") ~ 32,
+      str_detect(test, "lswe") ~ 38,
+      str_detect(test, "lske") ~ 33,
+      str_detect(test, "ORF_noNeg") ~ 263
     )
   ) %>%
   pull(max_raw)
@@ -138,7 +137,50 @@ max_raw <- temp2$max_raw
 # but the total max for each passage is: Kinder 114, 1st grade fall = 119, 
 # 1st grade spring = 112, 2nd grade = 163
 
-temp1 <- suppressMessages(read_csv(here(
+temp2 <- suppressMessages(read_csv(here(
   str_c(input_file_path, combined_score_to_norm_file_name)
 )))
+
+model_w <- cnorm(
+  raw = input$raw, 
+  group = input$group, 
+  weights = input$demo_wt, 
+  k = 4, 
+  terms = 4, 
+  scale = "IQ"
+  )
+# plot(model_w, "series", end = 10)
+# checkConsistency(model_w)
+
+
+# Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
+norms_list_w <- rawTable(
+  c(5.167, 5.5, 5.833, 6.25, 6.75, 8.167), 
+  model_w, 
+  step = 1, 
+  minNorm = 40, 
+  maxNorm = 130, 
+  minRaw = 1, 
+  maxRaw = score_to_norm_max_raw,
+  pretty = FALSE
+) %>% 
+  set_names(tab_names) %>% 
+  map( 
+    ~
+      select(.x, raw, norm) %>% 
+      summarize(raw = raw,
+                ss = round(norm, 0))
+  )
+
+# write raw-to-ss-lookups to single-sheet table
+table_w <- norms_list_w %>%
+  reduce(left_join,
+         by = "raw") %>%
+  set_names("raw", tab_names)
+
+write_csv(table_w, 
+          here(
+            str_c(output_file_path, score_to_norm_stem, "-raw-ss-lookup-table-w.csv")
+          ))
+
 

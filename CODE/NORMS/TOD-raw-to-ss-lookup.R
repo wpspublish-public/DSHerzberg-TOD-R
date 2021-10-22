@@ -22,19 +22,18 @@ scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "lske_sum_w"
+score_to_norm_stem <- "sege_sum_w"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
     max_raw = case_when(
-      test == "snwe" ~ 32,
-      test == "sege" ~ 120,
-      test == "lswe" ~ 38,
-      test == "rlne" ~ 120,
-      test == "rhme" ~ 30,
-      test == "lske" ~ 33,
-      test == "snwe" ~ 32,
-      test == "ORF_noNeg" ~ 263
+      str_detect(test, "sege") ~ 25,
+      str_detect(test, "rlne") ~ 120,
+      str_detect(test, "rhme") ~ 30,
+      str_detect(test, "snwe") ~ 32,
+      str_detect(test, "lswe") ~ 38,
+      str_detect(test, "lske") ~ 33,
+      str_detect(test, "ORF_noNeg") ~ 263
     )
   ) %>%
   pull(max_raw)
@@ -65,11 +64,11 @@ map(
     suppressMessages(read_csv(here(
       str_c(input_file_path, combined_score_to_norm_file_name)
     ))) %>%
-    select(ID, !!sym(.x)) %>%
+    select(ID, demo_wt, !!sym(.x)) %>%
     drop_na(!!sym(.x)) %>% 
     left_join(age_contin, by = "ID") %>% 
     rename(raw = !!sym(.x)) %>% 
-    select(ID, age, group, raw)
+    select(ID, demo_wt, age, group, raw)
 ) %>%
   set_names(scores) %>%
   map2(scores,
@@ -101,9 +100,9 @@ input <- suppressMessages(read_csv(here(str_c(
 # curves. With plot(model, "series"), you can use "end" argument to set upper
 # limit of predictors.
 
-model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 3, scale = "IQ")
+model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 2, scale = "IQ")
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
-plot(model, "series", end = 10)
+# plot(model, "series", end = 10)
 checkConsistency(model)
 
 # Token for names of output age groups
