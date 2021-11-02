@@ -55,6 +55,10 @@ age_contin <- suppressMessages(read_csv(here(
   rename(group = ...51) %>% 
   select(ID, age, group)
 
+
+##################
+# START HERE, NEED TO BRING IN cell_pct COL
+
 # Next block reads an input containing multiple raw score columns per person,
 # processes into separate dfs that are input files into cNORM for norming one
 # raw score. 
