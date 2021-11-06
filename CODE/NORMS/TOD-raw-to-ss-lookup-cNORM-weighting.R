@@ -119,11 +119,12 @@ model <- cnorm(
 checkConsistency(model)
 
 # Token for names of output age groups
-tab_names <- c("5.0-5.3", "5.4-5.7", "5.8-5.11", "6.0-6.5", "6.6-6.11", "7.0-9.3")
+tab_names <- c("5.0-5.3", "5.4-5.7", "5.8-5.11", "6.0-6.5", 
+               "6.6-6.11", "7.0-7.5", "7.6-7.11", "8.0-8.5", "8.6-9.3")
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(
-  c(5.167, 5.5, 5.833, 6.25, 6.75, 8.167), 
+  c(5.167, 5.5, 5.833, 6.25, 6.75, 7.25, 7.75, 8.25, 8.917), 
   model, 
   step = 1, 
   minNorm = 40, 

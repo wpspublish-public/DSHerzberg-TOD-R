@@ -1,0 +1,64 @@
+We have two separate data sets for TOD-C:
+1) school age (grades 1-12)
+2) adults (including college students)
+
+Everything is the same for both data sets with two exceptions: 1)we will do age norms for ORF in the adult sample because all individuals took the same passage, but will not do them for the school age sample (I’m still including the raw scores because we will need them for grade-based scores later). 2) there are two versions of PFL that should be normed separately. The school age sample has some individuals who took part 1 and some who took part 2; the adult sample only has part 2.
+
+Maximum raw scores for each test are as follows:
+iws_sum – 44
+bln_sum - 29
+seg_sum - 29
+rln_sum - 200
+iwr_sum - 55
+riw_sum - 100
+lem_sum - 20
+pan_sum - 40
+lvc_sum - 38
+wpc_sum - 59
+rws_sum - 44
+sub_sum -20
+del_sum -25
+rnl_sum -200
+nwr_sum- 47
+rnw_sum -60
+wom_sum -20
+gea_sum -40
+ssl_sum -42
+pflsum1 - 63
+pflsum2 - 51
+orf_sum (adult only) - 384
+
+I’m attaching 5 files to this email: the 2 data sets, a document with demographic variable labels, and two census percent docs (I’ve appended _adult and _school so you can differentiate and then remove that from the name when you’re running the weighting procedure).
+
+The desired output tables should be stratified as follows:
+
+School age
+6:0-6:3
+6:4-6:7
+6:8-6:11
+7:0-7:3
+7:4-7:7
+7:8-7:11
+8:0-8:5
+8:6-8:11
+9:0-9:5
+9:6-9:11
+10:0-10:5
+10:6-10:11
+11:0-11:5
+11:6-11:11
+12:0-12:5
+12:6-12:11
+13:0-13:11
+14:0-14:11
+15:0-16:11
+17:0-23:4
+
+Adult
+18:0-23:11 - we may need to separate college students out into their own group, but I’m not sure how that works with developmental modeling – let’s talk more about it.
+24:0-39:11
+40:0-49:11
+50:0-59:11
+60:0-69:11
+70:0-89:11
+

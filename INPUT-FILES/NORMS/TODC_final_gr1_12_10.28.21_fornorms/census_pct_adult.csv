@@ -1,0 +1,16 @@
+var,cat,pct_census
+gender,male,49.1
+gender,female,50.9
+educ,no_HS,12.5
+educ,HS_grad,27.3
+educ,some_college,29.3
+educ,BA_plus,31
+ethnic,hispanic,16.3
+ethnic,asian,5.3
+ethnic,black,12.4
+ethnic,white,63.1
+ethnic,other,2.9
+region,northeast,17.9
+region,south,37.4
+region,midwest,21.3
+region,west,23.4
