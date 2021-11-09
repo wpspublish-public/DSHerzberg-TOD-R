@@ -30,6 +30,8 @@ input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 fileName_path   <- "TODE_8.27.21_fornorms.csv"
 
+######### START HERE: move POM transformation to post-weighting (per notes)
+
 original_input <- suppressMessages(read_csv(
   str_c(input_file_path, fileName_path)
 )) %>% rename(
@@ -57,12 +59,12 @@ original_input <- suppressMessages(read_csv(
       . == 2 ~ "midwest",
       . == 3 ~ "south",
       . == 4 ~ "west")),
-    sege_pom = sege_sum/25, 
-    rlne_pom = rlne_sum/120, 
-    rhme_pom = rhme_sum/30, 
-    snwe_pom = snwe_sum/32, 
-    lswe_pom = lswe_sum/38, 
-    lske_pom = lske_sum/33, 
+    # sege_pom = sege_sum/25, 
+    # rlne_pom = rlne_sum/120, 
+    # rhme_pom = rhme_sum/30, 
+    # snwe_pom = snwe_sum/32, 
+    # lswe_pom = lswe_sum/38, 
+    # lske_pom = lske_sum/33, 
   )
   # ) %>% 
   # select(-(sege_sum:i32))
@@ -248,42 +250,56 @@ write_csv(demo_weight_by_crossing_all,
           ),
           na = "")
 
-weighted_pom_scores <- original_input %>%
+#########START HERE: FIX ROUNDING
+
+weighted_sum_scores_pom_rescale <- original_input %>%
   # mutate(ORF_noNeg = ORF + 100) %>%
   select(-ORF,-(i01:!!sym(str_c("i", last_item)))) %>%
   left_join(demo_weight_by_crossing_input,
             by = c("gender", "educ", "ethnic", "region")) %>%
   # relocate(agestrat:gradestrat, .before = gender) %>%
   mutate(
-    sege_pom_w = sege_pom,
-    rlne_pom_w = rlne_pom,
-    rhme_pom_w = rhme_pom,
-    snwe_pom_w = snwe_pom,
-    lswe_pom_w = lswe_pom,
-    lske_pom_w = lske_pom
+    sege_sum_w_pom = sege_sum,
+    rlne_sum_w_pom = rlne_sum,
+    rhme_sum_w_pom = rhme_sum,
+    snwe_sum_w_pom = snwe_sum,
+    lswe_sum_w_pom = lswe_sum,
+    lske_sum_w_pom = lske_sum
     # ORF_noNeg_w = ORF_noNeg
   ) %>%
-  mutate(across(c(sege_pom_w:lske_pom_w),
+  mutate(across(c(sege_sum_w_pom:lske_sum_w_pom),
                 ~
                   case_when(
                     is.na(noweight) ~ round(. * demo_wt, 0),
                     TRUE ~ .
                     )
+                ),
+         across(c(sege_sum_w_pom:lske_sum_w_pom),
+                ~
+                  . / max(., na.rm = TRUE)
                 )
          ) %>%
+  mutate(
+    sege_sum_w = round(sege_sum_w_pom / 25, 0),
+    rlne_sum_w = round(rlne_sum_w_pom / 120, 0),
+    rhme_sum_w = round(rhme_sum_w_pom / 30, 0),
+    snwe_sum_w = round(snwe_sum_w_pom / 32, 0),
+    lswe_sum_w = round(lswe_sum_w_pom / 38, 0),
+    lske_sum_w = round(lske_sum_w_pom / 33, 0),
+  ) %>% 
   select(ID:region, demo_wt, 
-         sege_pom, sege_pom_w,
-         rlne_pom, rlne_pom_w,
-         rhme_pom, rhme_pom_w,
-         snwe_pom, snwe_pom_w,
-         lswe_pom, lswe_pom_w,
-         lske_pom, lske_pom_w
+         sege_sum, sege_sum_w,
+         rlne_sum, rlne_sum_w,
+         rhme_sum, rhme_sum_w,
+         snwe_sum, snwe_sum_w,
+         lswe_sum, lswe_sum_w,
+         lske_sum, lske_sum_w
          # ORF_noNeg, ORF_noNeg_w
   )
 
-# write weighted_pom_scores twice, because it is both output from weighting, and
+# write weighted_sum_scores_pom_rescale twice, because it is both output from weighting, and
 # input to norming.
-write_csv(weighted_pom_scores,
+write_csv(weighted_sum_scores_pom_rescale,
           here(
             str_c(
               input_file_path,
@@ -292,7 +308,7 @@ write_csv(weighted_pom_scores,
             )
           ),
           na = "")
-write_csv(weighted_pom_scores,
+write_csv(weighted_sum_scores_pom_rescale,
           here(
             str_c(
               output_file_path,
