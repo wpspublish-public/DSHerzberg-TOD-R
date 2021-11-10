@@ -5,10 +5,38 @@ suppressMessages(suppressWarnings(library(survey)))
 
 set.seed(123)
 
+### SET TOKENS FOR DEMOGRAPHIC STRATIFICATION
+# toggle token sets for:
+# full crossing of demo var/cats (160 cells) - this often results in empty cells
+# simplified stratification (24 cells) - use this to eliminate empty cells
+
+# TOKENS FOR ***160 CELL*** STRATIFICATION
+# gender <- c("male", "female")
+# educ <- c("no_HS", "HS_grad", "some_college", "BA_plus")
+# ethnic <- c("hispanic", "asian", "black", "white", "other")
+# region <- c("northeast", "south", "midwest", "west")
+# 
+# var_order <- c("agestrat", "gradestrat", "gender", "educ", "ethnic", "region")
+# 
+# var_order_census_match  <- c("gender", "educ", "ethnic", "region")
+# 
+# cat_order <- c(
+#   NA, "5:0-5:7", "5:8-5:11", "6:0-6:3", "6:4-6:7", "6:8-6:11", "7:0-7:5",
+#   "7:6-7:11", "8:0-9:3",
+#   NA, "K_Fall", "K_Spring", "1_Fall", "1_Spring", "2_Fall", "2_Spring",
+#   NA, "male", "female",
+#   NA, "no_HS", "HS_grad", "some_college", "BA_plus",
+#   NA, "hispanic", "asian", "black", "white", "other",
+#   NA, "northeast", "south", "midwest", "west")
+# 
+# fileName_path_census   <- "census_pct.csv"
+# END TOKENS FOR ***160 CELL*** STRATIFICATION
+
+# TOKENS FOR ***24 CELL*** STRATIFICATION
 gender <- c("male", "female")
-educ <- c("no_HS", "HS_grad", "some_college", "BA_plus")
-ethnic <- c("hispanic", "asian", "black", "white", "other")
-region <- c("northeast", "south", "midwest", "west")
+educ <- c("no_college", "college_plus")
+ethnic <- c("hispanic", "black", "white_asian_other")
+region <- c("northeast_south", "midwest_west")
 
 var_order <- c("agestrat", "gradestrat", "gender", "educ", "ethnic", "region")
 
@@ -19,9 +47,12 @@ cat_order <- c(
   "7:6-7:11", "8:0-9:3",
   NA, "K_Fall", "K_Spring", "1_Fall", "1_Spring", "2_Fall", "2_Spring", 
   NA, "male", "female",
-  NA, "no_HS", "HS_grad", "some_college", "BA_plus",
-  NA, "hispanic", "asian", "black", "white", "other",
-  NA, "northeast", "south", "midwest", "west")
+  NA, "no_college", "college_plus",
+  NA, "hispanic", "black", "white_asian_other",
+  NA, "northeast_south", "midwest_west")
+
+fileName_path_census   <- "census_pct_alt.csv"
+# END TOKENS FOR ***24 CELL*** STRATIFICATION
 
 last_item <- 32
 
@@ -31,8 +62,6 @@ input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 fileName_path   <- "TODE_8.27.21_fornorms.csv"
 
-######### START HERE: move POM transformation to post-weighting (per notes)
-
 original_input <- suppressMessages(read_csv(
   str_c(input_file_path, fileName_path)
 )) %>% rename(
@@ -41,25 +70,40 @@ original_input <- suppressMessages(read_csv(
   ethnic = Ethnicity,
 ) %>% 
   mutate(
+    # TOGGLE DEMO CODING 160 VS 24 CELL
+    # across(gender, ~ case_when(
+    #   . == 1 ~ "male",
+    #   . == 2 ~ "female")),
+    # across(educ, ~ case_when(
+    #   . == 1 ~ "no_HS",
+    #   . == 2 ~ "HS_grad",
+    #   . == 3 ~ "some_college",
+    #   . == 4 ~ "BA_plus")),
+    # across(ethnic, ~ case_when(
+    #   . == 1 ~ "asian",
+    #   . == 2 ~ "black",
+    #   . == 3 ~ "white",
+    #   . %in% c(4, 5, 6) ~ "other",
+    #   . == 7 ~ "hispanic")),
+    # across(region, ~ case_when(
+    #   . == 1 ~ "northeast",
+    #   . == 2 ~ "midwest",
+    #   . == 3 ~ "south",
+    #   . == 4 ~ "west")),
     across(gender, ~ case_when(
       . == 1 ~ "male",
       . == 2 ~ "female")),
     across(educ, ~ case_when(
-      . == 1 ~ "no_HS",
-      . == 2 ~ "HS_grad",
-      . == 3 ~ "some_college",
-      . == 4 ~ "BA_plus")),
+      . %in% c(1, 2) ~ "no_college",
+      . %in% c(3, 4) ~ "college_plus")),
     across(ethnic, ~ case_when(
-      . == 1 ~ "asian",
       . == 2 ~ "black",
-      . == 3 ~ "white",
-      . %in% c(4, 5, 6) ~ "other",
+      . %in% c(1, 3, 4, 5, 6) ~ "white_asian_other",
       . == 7 ~ "hispanic")),
     across(region, ~ case_when(
-      . == 1 ~ "northeast",
-      . == 2 ~ "midwest",
-      . == 3 ~ "south",
-      . == 4 ~ "west")),
+      . %in% c(1, 3) ~ "northeast_south",
+      . %in% c(2, 4) ~ "midwest_west")),
+    
     # sege_pom = sege_sum/25, 
     # rlne_pom = rlne_sum/120, 
     # rhme_pom = rhme_sum/30, 
@@ -70,15 +114,13 @@ original_input <- suppressMessages(read_csv(
   # ) %>% 
   # select(-(sege_sum:i32))
 
-fileName_path   <- "census_pct.csv"
-
 census_match_cat_count <- suppressMessages(read_csv(
-  str_c(input_file_path, fileName_path)
+  str_c(input_file_path, fileName_path_census)
 )) %>% 
   mutate(n_census = round(nrow(original_input)*(pct_census/100), 0))
 
 census_match_pct_wide <- suppressMessages(read_csv(
-  str_c(input_file_path, fileName_path)
+  str_c(input_file_path, fileName_path_census)
 )) %>%
   select(-var) %>%
   pivot_wider(names_from = cat,
@@ -199,28 +241,46 @@ demo_weight_by_crossing_all <- demo_crossings_all %>%
     census_match_pct_wide
   ) %>% 
   mutate(
+    # TOGGLE RECODE 160 VS 24 CELL STRATIFICATION
+    # pct_census_gender = case_when(
+    #   gender == "male" ~ male,
+    #   TRUE ~ female
+    # ), 
+    # pct_census_educ = case_when(
+    #   educ == "no_HS" ~ no_HS,
+    #   educ == "HS_grad" ~ HS_grad,
+    #   educ == "some_college" ~ some_college,
+    #   TRUE ~ BA_plus
+    # ), 
+    # pct_census_ethnic = case_when(
+    #   ethnic == "hispanic" ~ hispanic,
+    #   ethnic == "asian" ~ asian,
+    #   ethnic == "black" ~ black,
+    #   ethnic == "white" ~ white,
+    #   TRUE ~ other
+    # ), 
+    # pct_census_region = case_when(
+    #   region == "northeast" ~ northeast,
+    #   region == "south" ~ south,
+    #   region == "midwest" ~ midwest,
+    #   TRUE ~ west
+    # ), 
     pct_census_gender = case_when(
       gender == "male" ~ male,
       TRUE ~ female
     ), 
     pct_census_educ = case_when(
-      educ == "no_HS" ~ no_HS,
-      educ == "HS_grad" ~ HS_grad,
-      educ == "some_college" ~ some_college,
-      TRUE ~ BA_plus
+      educ == "no_college" ~ no_college,
+      TRUE ~ college_plus
     ), 
     pct_census_ethnic = case_when(
       ethnic == "hispanic" ~ hispanic,
-      ethnic == "asian" ~ asian,
       ethnic == "black" ~ black,
-      ethnic == "white" ~ white,
-      TRUE ~ other
+      TRUE ~ white_asian_other
     ), 
     pct_census_region = case_when(
-      region == "northeast" ~ northeast,
-      region == "south" ~ south,
-      region == "midwest" ~ midwest,
-      TRUE ~ west
+      region == "northeast_south" ~ northeast_south,
+      TRUE ~ midwest_west
     ), 
     across(
       c(
@@ -251,7 +311,7 @@ write_csv(demo_weight_by_crossing_all,
           ),
           na = "")
 
-weighted_sum_scores_pom_rescale <- original_input %>%
+weighted_sum_scores <- original_input %>%
   # mutate(ORF_noNeg = ORF + 100) %>%
   select(-ORF,-(i01:!!sym(str_c("i", last_item)))) %>%
   left_join(demo_weight_by_crossing_input,
@@ -269,7 +329,7 @@ weighted_sum_scores_pom_rescale <- original_input %>%
   mutate(across(c(sege_sum_w_pom:lske_sum_w_pom),
                 ~
                   case_when(
-                    is.na(noweight) ~ round(. * demo_wt, 0),
+                    is.na(noweight) ~ . * demo_wt,
                     TRUE ~ .
                     )
                 ),
@@ -296,23 +356,23 @@ weighted_sum_scores_pom_rescale <- original_input %>%
          # ORF_noNeg, ORF_noNeg_w
   )
 
-# write weighted_sum_scores_pom_rescale twice, because it is both output from weighting, and
+# write weighted_sum_scores twice, because it is both output from weighting, and
 # input to norming.
-write_csv(weighted_sum_scores_pom_rescale,
+write_csv(weighted_sum_scores,
           here(
             str_c(
               input_file_path,
               file_name,
-              "weighted-pom-scores.csv"
+              "weighted-sum-scores.csv"
             )
           ),
           na = "")
-write_csv(weighted_sum_scores_pom_rescale,
+write_csv(weighted_sum_scores,
           here(
             str_c(
               output_file_path,
               file_name,
-              "weighted-pom-scores.csv"
+              "weighted-sum-scores.csv"
             )
           ),
           na = "")
