@@ -16,13 +16,13 @@ output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 # the norms.
 
 scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
-"lswe_sum_w", "lske_sum_w", "ORF_noNeg_w")
+"lswe_sum_w", "lske_sum_w")
 # scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
-#             "lswe_sum", "lske_sum", "ORF_noNeg")
+#             "lswe_sum", "lske_sum")
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "sege_sum_w"
+score_to_norm_stem <- "lske_sum_w"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -33,7 +33,7 @@ score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
       str_detect(test, "snwe") ~ 32,
       str_detect(test, "lswe") ~ 38,
       str_detect(test, "lske") ~ 33,
-      str_detect(test, "ORF_noNeg") ~ 263
+      # str_detect(test, "ORF_noNeg") ~ 263
     )
   ) %>%
   pull(max_raw)
@@ -54,10 +54,6 @@ age_contin <- suppressMessages(read_csv(here(
   bind_cols(getGroups(.$age)) %>% 
   rename(group = ...51) %>% 
   select(ID, age, group)
-
-
-##################
-# START HERE, NEED TO BRING IN cell_pct COL
 
 # Next block reads an input containing multiple raw score columns per person,
 # processes into separate dfs that are input files into cNORM for norming one
@@ -104,17 +100,24 @@ input <- suppressMessages(read_csv(here(str_c(
 # curves. With plot(model, "series"), you can use "end" argument to set upper
 # limit of predictors.
 
-model <- cnorm(raw = input$raw, group = input$group, k = 4, terms = 2, scale = "IQ")
+model <- cnorm(
+  raw = input$raw, 
+  group = input$group, 
+  k = 5, 
+  terms = 3, 
+  scale = "IQ"
+  )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
-# plot(model, "series", end = 10)
+plot(model, "series", end = 10)
 checkConsistency(model)
 
 # Token for names of output age groups
-tab_names <- c("5.0-5.3", "5.4-5.7", "5.8-5.11", "6.0-6.5", "6.6-6.11", "7.0-9.3")
+tab_names <- c("5.0-5.3", "5.4-5.7", "5.8-5.11", "6.0-6.5", 
+               "6.6-6.11", "7.0-7.5", "7.6-7.11", "8.0-8.5", "8.6-9.3")
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(
-  c(5.167, 5.5, 5.833, 6.25, 6.75, 8.167), 
+  c(5.167, 5.5, 5.833, 6.25, 6.75, 7.25, 7.75, 8.25, 8.917), 
   model, 
   step = 1, 
   minNorm = 40, 
@@ -144,7 +147,6 @@ reversal_report <- norms_list %>%
   write_csv(here(
     str_c(output_file_path, score_to_norm_stem, "-reversal-report.csv")
   ))
-
 
 # Write raw-to-ss lookups by agestrat into tabbed, xlsx workbook.
 write_xlsx(norms_list,
