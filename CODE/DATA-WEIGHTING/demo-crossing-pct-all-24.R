@@ -2,16 +2,16 @@ suppressMessages(suppressWarnings(library(tidyverse)))
 suppressMessages(library(here))
 
 input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
-fileName_path   <- "census_pct.csv"
+fileName_path   <- "census_pct_alt.csv"
 
 census_pct_by_cat <- suppressMessages(read_csv(
   str_c(input_file_path, fileName_path)
 )) 
 
 gender <- c("male", "female")
-educ <- c("no_HS", "HS_grad", "some_college", "BA_plus")
-ethnic <- c("hispanic", "asian", "black", "white", "other")
-region <- c("northeast", "south", "midwest", "west")
+educ <- c("no_college", "college_plus")
+ethnic <- c("hispanic", "black", "white_asian_other")
+region <- c("northeast_south", "midwest_west")
 gender_pct <- census_pct_by_cat %>% filter(var == "gender") %>% pull(pct_census)
 educ_pct <- census_pct_by_cat %>% filter(var == "educ") %>% pull(pct_census)
 ethnic_pct <- census_pct_by_cat %>% filter(var == "ethnic") %>% pull(pct_census)
@@ -41,14 +41,14 @@ pct_all <- expand_grid(
   # 100 to get these cell proportions back into the metric of a conventional
   # percentages. Now these percentages sum to ~100 across all demographic
   # crossings.
-mutate(across(everything(),
-              ~
-                . / 100),
-       cell_pct = (gender_pct * educ_pct * ethnic_pct * region_pct) * 100)
+  mutate(across(everything(),
+                ~
+                  . / 100),
+         cell_pct = (gender_pct * educ_pct * ethnic_pct * region_pct) * 100)
 
 sum_cell_pct <- sum(pct_all$cell_pct)
 
-demo_crossing_pct_all_160 <- bind_cols(
+demo_crossing_pct_all_24 <- bind_cols(
   names_all,
   pct_all
 ) %>% 
@@ -56,7 +56,7 @@ demo_crossing_pct_all_160 <- bind_cols(
   write_csv(
     here(
       str_c(
-        input_file_path, "demo_crossing_pct_all_160.csv"
+        input_file_path, "demo_crossing_pct_all_24.csv"
       )
     )
   )
