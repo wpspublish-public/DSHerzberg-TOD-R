@@ -1,0 +1,6 @@
+[1] "iwr_sum model summary"
+User specified solution: 5 terms
+R-Square Adj. = 0.961127
+Final regression model: raw ~ L1A1 + L2A1 + L2A2 + L3A3 + L4A4
+Regression function: raw ~ -103.0311334 + (0.359212919*L1A1) + (0.000112539629*L2A1) + (-0.0003756321574*L2A2) + (1.678821872e-07*L3A3) + (-2.716746221e-11*L4A4)
+Raw Score RMSE = 1.40164

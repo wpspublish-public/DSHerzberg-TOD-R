@@ -25,9 +25,11 @@ write_csv(
   "/Users/dherzberg/Desktop/R/WEIGHTING-DATA/INPUT-FILES/example-rescale-weighted-raw-scores-input.csv"
 )
 
-# sege_pom = sege_sum/25, 
-# rlne_pom = rlne_sum/120, 
-# rhme_pom = rhme_sum/30, 
-# snwe_pom = snwe_sum/32, 
-# lswe_pom = lswe_sum/38, 
-# lske_pom = lske_sum/33, 
+input <- read_csv(here(
+  str_c(input_file_path, combined_score_to_norm_file_name)
+))
+
+n_age_group <- age_contin %>% 
+  group_by(group) %>% 
+  count(group)
+"5.0-5.3", "5.4-5.7", "5.8-5.11"
