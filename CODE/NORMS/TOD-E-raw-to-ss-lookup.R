@@ -8,21 +8,27 @@ suppressMessages(library(lubridate))
 # age), raw score
 
 # General tokens
-combined_score_to_norm_file_name <- "TODE_8.27.21_fornorms-weighted-sum-scores.csv"
+
+# data file with both weighted and unweighted sum scores
+# combined_score_to_norm_file_name <- "TODE_8.27.21_fornorms-weighted-sum-scores.csv"
+
+# data file with only unweighted sum scores
+combined_score_to_norm_file_name <- "TODE_8.27.21_fornorms.csv"
+
 input_file_path <- "INPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODE_8.27.21_fornorms/"
 
 # Tokens to toggle between using weighted vs. unweighted scores as the basis for
 # the norms.
 
-scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
-"lswe_sum_w", "lske_sum_w")
-# scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
-#             "lswe_sum", "lske_sum")
+# scores <- c("sege_sum_w", "rlne_sum_w", "rhme_sum_w", "snwe_sum_w",
+# "lswe_sum_w", "lske_sum_w")
+scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
+            "lswe_sum", "lske_sum", "ORF")
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "lske_sum_w"
+score_to_norm_stem <- "lske_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -33,7 +39,7 @@ score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
       str_detect(test, "snwe") ~ 32,
       str_detect(test, "lswe") ~ 38,
       str_detect(test, "lske") ~ 33,
-      # str_detect(test, "ORF_noNeg") ~ 263
+      str_detect(test, "ORF") ~ 263
     )
   ) %>%
   pull(max_raw)
@@ -52,7 +58,7 @@ age_contin <- suppressMessages(read_csv(here(
     age = (DOB %--% admin_date) / years (1)
   ) %>%
   bind_cols(getGroups(.$age)) %>% 
-  rename(group = ...51) %>% 
+  rename(group = ...17) %>% 
   select(ID, age, group)
 
 # Next block reads an input containing multiple raw score columns per person,
@@ -64,11 +70,11 @@ map(
     suppressMessages(read_csv(here(
       str_c(input_file_path, combined_score_to_norm_file_name)
     ))) %>%
-    select(ID, demo_wt, !!sym(.x)) %>%
+    select(ID, !!sym(.x)) %>%
     drop_na(!!sym(.x)) %>% 
     left_join(age_contin, by = "ID") %>% 
     rename(raw = !!sym(.x)) %>% 
-    select(ID, demo_wt, age, group, raw)
+    select(ID, age, group, raw)
 ) %>%
   set_names(scores) %>%
   map2(scores,
@@ -104,7 +110,7 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 5, 
-  terms = 3, 
+  terms = 4, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")

@@ -25,7 +25,7 @@ write_csv(
   "/Users/dherzberg/Desktop/R/WEIGHTING-DATA/INPUT-FILES/example-rescale-weighted-raw-scores-input.csv"
 )
 
-input <- read_csv(here(
+temp1 <- read_csv(here(
   str_c(input_file_path, combined_score_to_norm_file_name)
 ))
 
