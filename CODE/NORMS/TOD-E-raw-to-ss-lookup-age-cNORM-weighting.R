@@ -152,14 +152,14 @@ reversal_report <- norms_list %>%
   filter(reversal == 1) %>%
   select(raw, agestrat) %>%
   write_csv(here(
-    str_c(output_file_path, score_to_norm_stem, "-reversal-report-cNORM-weighting.csv")
+    str_c(output_file_path, score_to_norm_stem, "-reversal-report-cNORM-weighting-age.csv")
   ))
 
 
 # Write raw-to-ss lookups by agestrat into tabbed, xlsx workbook.
 write_xlsx(norms_list,
            here(str_c(
-             output_file_path, score_to_norm_stem, "-raw-ss-lookup-tabbed-cNORM-weighting.xlsx"
+             output_file_path, score_to_norm_stem, "-raw-ss-lookup-tabbed-cNORM-weighting-age.xlsx"
            )))
 
 # write raw-to-ss-lookups to single-sheet table
@@ -170,7 +170,7 @@ table <- norms_list %>%
 
 write_csv(table, 
           here(
-  str_c(output_file_path, score_to_norm_stem, "-raw-ss-lookup-table-cNORM-weighting.csv")
+  str_c(output_file_path, score_to_norm_stem, "-raw-ss-lookup-table-cNORM-weighting-age.csv")
 ))
 
 # write model summary to text file, so you can replicate model later.
@@ -178,7 +178,7 @@ capture.output(
   str_c(score_to_norm_stem, " model summary"), 
   summary(model),
   file = here(
-    str_c(output_file_path, score_to_norm_stem, "-model-summ-cNORM-weighting.txt")  )
+    str_c(output_file_path, score_to_norm_stem, "-model-summ-cNORM-weighting-age.txt")  )
 )
 
 

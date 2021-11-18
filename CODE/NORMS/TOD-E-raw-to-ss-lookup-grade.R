@@ -5,7 +5,7 @@ library(writexl)
 suppressMessages(library(lubridate))
 
 # Prep input data file. Parse to three cols: personID, group (explanatory var  -
-# age), raw score
+# grade), raw score
 
 # General tokens
 
@@ -28,7 +28,7 @@ scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "lske_sum"
+score_to_norm_stem <- "sege_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -44,23 +44,6 @@ score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   ) %>%
   pull(max_raw)
 
-# to use age as predictor in cNORM, read in DOB, date_admin, calculate
-# chronological age as decimal value.
-age_contin <- suppressMessages(read_csv(here(
-  str_c(input_file_path, "TODE_8.27.21_fornorms.csv")
-))) %>% 
-  mutate(
-    across(
-      c(DOB, admin_date),
-      ~
-        mdy(.x)
-    ),
-    age = (DOB %--% admin_date) / years (1)
-  ) %>%
-  bind_cols(getGroups(.$age)) %>% 
-  rename(group = ...17) %>% 
-  select(ID, age, group)
-
 # Next block reads an input containing multiple raw score columns per person,
 # processes into separate dfs that are input files into cNORM for norming one
 # raw score. 
@@ -70,11 +53,10 @@ map(
     suppressMessages(read_csv(here(
       str_c(input_file_path, combined_score_to_norm_file_name)
     ))) %>%
-    select(ID, !!sym(.x)) %>%
+    select(ID, GradeSemester, !!sym(.x)) %>%
     drop_na(!!sym(.x)) %>% 
-    left_join(age_contin, by = "ID") %>% 
-    rename(raw = !!sym(.x)) %>% 
-    select(ID, age, group, raw)
+    rename(raw = !!sym(.x), group = GradeSemester) %>% 
+    select(ID, group, raw) 
 ) %>%
   set_names(scores) %>%
   map2(scores,
@@ -109,8 +91,8 @@ input <- suppressMessages(read_csv(here(str_c(
 model <- cnorm(
   raw = input$raw, 
   group = input$group, 
-  k = 5, 
-  terms = 4, 
+  k = 4, 
+  terms = 6, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
@@ -118,12 +100,12 @@ plot(model, "series", end = 10)
 checkConsistency(model)
 
 # Token for names of output age groups
-tab_names <- c("5.0-5.3", "5.4-5.7", "5.8-5.11", "6.0-6.5", 
-               "6.6-6.11", "7.0-7.5", "7.6-7.11", "8.0-8.5", "8.6-9.3")
+tab_names <- c("K-Fall", "K-Spring", "1-Fall", "1-Spring", 
+               "2-Fall", "2-Spring")
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(
-  c(5.167, 5.5, 5.833, 6.25, 6.75, 7.25, 7.75, 8.25, 8.917), 
+  c(1, 2, 3, 4, 5, 6), 
   model, 
   step = 1, 
   minNorm = 40, 
@@ -151,13 +133,13 @@ reversal_report <- norms_list %>%
   filter(reversal == 1) %>%
   select(raw, agestrat) %>%
   write_csv(here(
-    str_c(output_file_path, score_to_norm_stem, "-reversal-report.csv")
+    str_c(output_file_path, score_to_norm_stem, "-reversal-report-grade.csv")
   ))
 
 # Write raw-to-ss lookups by agestrat into tabbed, xlsx workbook.
 write_xlsx(norms_list,
            here(str_c(
-             output_file_path, score_to_norm_stem, "-raw-ss-lookup-tabbed.xlsx"
+             output_file_path, score_to_norm_stem, "-raw-ss-lookup-tabbed-grade.xlsx"
            )))
 
 # write raw-to-ss-lookups to single-sheet table
@@ -168,7 +150,7 @@ table <- norms_list %>%
 
 write_csv(table, 
           here(
-  str_c(output_file_path, score_to_norm_stem, "-raw-ss-lookup-table.csv")
+  str_c(output_file_path, score_to_norm_stem, "-raw-ss-lookup-table-grade.csv")
 ))
 
 # write model summary to text file, so you can replicate model later.
@@ -176,7 +158,7 @@ capture.output(
   str_c(score_to_norm_stem, " model summary"), 
   summary(model),
   file = here(
-    str_c(output_file_path, score_to_norm_stem, "-model-summ.txt")  )
+    str_c(output_file_path, score_to_norm_stem, "-model-summ-grade.txt")  )
 )
 
 
