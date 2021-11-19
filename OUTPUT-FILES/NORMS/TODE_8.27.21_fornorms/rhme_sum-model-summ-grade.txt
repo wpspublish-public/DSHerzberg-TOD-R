@@ -1,0 +1,6 @@
+[1] "rhme_sum model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.950699
+Final regression model: raw ~ L4 + L5 + L1A1 + L4A2
+Regression function: raw ~ -15.66824822 + (4.298639062e-07*L4) + (-2.41344011e-09*L5) + (0.05594752149*L1A1) + (-3.320294652e-09*L4A2)
+Raw Score RMSE = 1.92016

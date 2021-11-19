@@ -109,7 +109,7 @@ input <- suppressMessages(read_csv(here(str_c(
 model <- cnorm(
   raw = input$raw, 
   group = input$group, 
-  k = 4, 
+  k = 5, 
   terms = 4, 
   scale = "IQ"
   )
