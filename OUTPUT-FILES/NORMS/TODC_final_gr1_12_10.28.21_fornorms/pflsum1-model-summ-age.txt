@@ -1,0 +1,6 @@
+[1] "pflsum1 model summary"
+User specified solution: 2 terms
+R-Square Adj. = 0.980373
+Final regression model: raw ~ L1A1 + L2A4
+Regression function: raw ~ -24.88558893 + (0.05226062028*L1A1) + (-7.301889687e-08*L2A4)
+Raw Score RMSE = 0.93267

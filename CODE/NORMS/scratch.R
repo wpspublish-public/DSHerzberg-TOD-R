@@ -33,3 +33,11 @@ n_age_group <- age_contin %>%
   group_by(group) %>% 
   count(group)
 "5.0-5.3", "5.4-5.7", "5.8-5.11"
+
+temp2 <- temp1 %>% 
+  filter(!(is.na(pflsum2)))
+
+write_csv(temp2,
+          here(
+            str_c(input_file_path, "TODC_final_gr1_12_10.28.21_fornorms-pflsum2.csv")
+          ))

@@ -52,7 +52,13 @@ School age
 13:0-13:11
 14:0-14:11
 15:0-16:11
-17:0-23:4
+17:0-18:11
+
+Note: PFLsum1 and PFLsum2 have different agestrat breakdowns
+a. PFLsum1 covers the agestrat of 6.0-6.3 thru 12.6-12.11
+b. PFLsum2 covers the agestrat of 10.0-10.5 thru 17.0-18.11
+
+
 
 Adult
 18:0-23:11 - we may need to separate college students out into their own group, but I’m not sure how that works with developmental modeling – let’s talk more about it.
