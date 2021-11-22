@@ -12,8 +12,7 @@ combined_score_to_norm_file_name <- "TODC_final_gr1_12_10.28.21_fornorms.csv"
 input_file_path <- "INPUT-FILES/NORMS/TODC_final_gr1_12_10.28.21_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODC_final_gr1_12_10.28.21_fornorms/"
 
-# Tokens to toggle between using weighted vs. unweighted scores as the basis for
-# the norms.
+# Tokens for score names
 
 scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum", "riw_sum", "lem_sum", "pan_sum", 
 "lvc_sum", "wpc_sum", "rws_sum", "sub_sum", "del_sum", "rnl_sum", "nwr_sum", "rnw_sum", 

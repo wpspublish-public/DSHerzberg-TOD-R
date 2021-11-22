@@ -16,7 +16,7 @@ temp1 <- weighted_sum_scores %>%
 
 unique(temp1$sege_sum_w)
 
-temp1 %>% 
+temp3 %>% 
   select(-ID) %>% 
   describe(fast = TRUE)
 

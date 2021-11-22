@@ -1,0 +1,6 @@
+[1] "bln_sum model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.914399
+Final regression model: raw ~ L3 + A4 + L3A1 + L4A1
+Regression function: raw ~ 8.077513121 + (6.546136417e-06*L3) + (-2.437922126e-06*A4) + (9.910490688e-07*L3A1) + (-6.28465794e-09*L4A1)
+Raw Score RMSE = 1.26833

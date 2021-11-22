@@ -1,4 +1,4 @@
-library(cNORM)
+suppressMessages(library(cNORM))
 suppressMessages(suppressWarnings(library(tidyverse)))
 suppressMessages(library(here))
 library(writexl)
@@ -54,6 +54,22 @@ map(
       str_c(input_file_path, combined_score_to_norm_file_name)
     ))) %>%
     select(ID, GradeSemester, !!sym(.x)) %>%
+    # recode grade variable to reflect weeks in school, centers grade norms at
+    # the chronological center of the semester.
+    mutate(
+      across(
+        GradeSemester,
+        ~
+          case_when(
+            . == 1 ~ 8,
+            . == 2 ~ 34,
+            . == 3 ~ 60,
+            . == 4 ~ 86,
+            . == 5 ~ 112,
+            . == 6 ~ 138
+          )
+      )
+    ) %>% 
     drop_na(!!sym(.x)) %>% 
     rename(raw = !!sym(.x), group = GradeSemester) %>% 
     select(ID, group, raw) 
@@ -96,7 +112,7 @@ model <- cnorm(
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
-plot(model, "series", end = 10)
+plot(model, "series", end = 8)
 checkConsistency(model)
 
 # Token for names of output age groups
@@ -105,7 +121,7 @@ tab_names <- c("K-Fall", "K-Spring", "1-Fall", "1-Spring",
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(
-  c(1, 2, 3, 4, 5, 6), 
+  c(8, 34, 60, 8, 112, 138), 
   model, 
   step = 1, 
   minNorm = 40, 
@@ -154,12 +170,15 @@ write_csv(table,
 ))
 
 # write model summary to text file, so you can replicate model later.
-capture.output(
-  str_c(score_to_norm_stem, " model summary"), 
-  summary(model),
-  file = here(
-    str_c(output_file_path, score_to_norm_stem, "-model-summ-grade.txt")  )
-)
+capture.output(str_c(score_to_norm_stem, " model summary"),
+               summary(model),
+               file = here(
+                 str_c(
+                   output_file_path,
+                   score_to_norm_stem,
+                   "-model-summ-grade.txt"
+                 )
+               ))
 
 
 

@@ -1,6 +1,6 @@
 [1] "ORF model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.977186
-Final regression model: raw ~ L2A1 + L2A2 + L3A1 + L4A2
-Regression function: raw ~ -4.900333478 + (-0.009707151235*L2A1) + (0.0009011280398*L2A2) + (0.0001004873588*L3A1) + (-7.168120962e-08*L4A2)
-Raw Score RMSE = 6.35265
+R-Square Adj. = 0.972176
+Final regression model: raw ~ L3 + L3A4 + L4A2 + L4A3
+Regression function: raw ~ -41.45917583 + (4.085478365e-05*L3) + (5.897880271e-13*L3A4) + (1.388541488e-10*L4A2) + (-1.499979894e-12*L4A3)
+Raw Score RMSE = 7.01556
