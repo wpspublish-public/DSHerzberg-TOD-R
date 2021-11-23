@@ -58,6 +58,14 @@ score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
 # Next block reads an input containing multiple raw score columns per person,
 # processes into separate dfs that are input files into cNORM for norming one
 # raw score. 
+
+# here, the "GradeSemester" variable is coded as an integer (1:26) representing
+# k-fall, k-spring, 1-fall, 1-spring . . . 12-fall, 12-spring. This coding is
+# suitable for input into cNORM modeling, because it represents the equal
+# interval stratification of the school year. You could take the extra step of
+# recoding grade into weeks of schooling (with a linear transformation), but
+# this is not necessary and yields no improvement in the modeling of the norms,
+# according to the cNORM developers.
 map(
   scores,
   ~
@@ -126,9 +134,17 @@ tab_names <- c("K-Fall", "K-Spring",
                "12-Fall", "12-Spring"
                )
 
-# Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
+# Prepare a list of data frames, each df is raw-to-ss lookup table for a grade
+# strata. Here, the first argument to rawTable() is the A argument, which
+# specifies of vector of "center points" for the grade-stratified lookup tables.
+# In the modeling input, gradeSemester was coded in semester intervals, with
+# each numerical value representing the beginning of a semester. On the output
+# side, we are working with the same 1:26 metric representing the beginning
+# points of 26 consecutive semesters. For the A argument, then, we specify the
+# vector c(1.5, 2.5, . .  ., 26.5) to create tables centered at the midpoint of
+# each semester,
 norms_list <- rawTable(
-  c(1:26), 
+  seq(1.5, 26.5, 1), 
   model, 
   step = 1, 
   minNorm = 40, 

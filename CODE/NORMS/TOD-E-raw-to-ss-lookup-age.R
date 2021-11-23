@@ -1,4 +1,4 @@
-library(cNORM)
+suppressMessages(library(cNORM))
 suppressMessages(suppressWarnings(library(tidyverse)))
 suppressMessages(library(here))
 library(writexl)
@@ -28,7 +28,7 @@ scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "rhme_sum"
+score_to_norm_stem <- "lswe_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -110,11 +110,11 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 4, 
-  terms = 5, 
+  terms = 4, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
-plot(model, "series", end = 10)
+plot(model, "series", end = 8)
 checkConsistency(model)
 
 # Token for names of output age groups

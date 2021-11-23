@@ -28,7 +28,7 @@ scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "lske_sum"
+score_to_norm_stem <- "ORF"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -126,7 +126,7 @@ norms_list <- rawTable(
   step = 1, 
   minNorm = 40, 
   maxNorm = 130, 
-  minRaw = 1, 
+  minRaw = -20, 
   maxRaw = score_to_norm_max_raw,
   pretty = FALSE
   ) %>% 
