@@ -25,7 +25,7 @@ scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum", "riw_sum", "l
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "rws_sum"
+score_to_norm_stem <- "iws_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -111,7 +111,7 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 4, 
-  terms = 2, 
+  terms = 4, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
@@ -120,35 +120,40 @@ checkConsistency(model)
 
 # Token for names of output grade groups
 tab_names <- c( 
-               "1-Fall", "1-Spring", 
-               "2-Fall", "2-Spring", 
-               "3-Fall", "3-Spring", 
-               "4-Fall", "4-Spring", 
-               "5-Fall", "5-Spring", 
-               "6-Fall", "6-Spring", 
-               "7-Fall", "7-Spring", 
-               "8-Fall", "8-Spring", 
-               "9-Fall", "9-Spring", 
-               "10-Fall", "10-Spring", 
-               "11-Fall", "11-Spring", 
+               "1-Fall", "1-Spring",
+               "2-Fall", "2-Spring",
+               "3-Fall", "3-Spring",
+               "4-Fall", "4-Spring",
+               "5-Fall", "5-Spring",
+               # end pflsum1 gradestrat, begin pflsum2 gradestrat
+               "6-Fall", "6-Spring",
+               "7-Fall", "7-Spring",
+               "8-Fall", "8-Spring",
+               "9-Fall", "9-Spring",
+               "10-Fall", "10-Spring",
+               "11-Fall", "11-Spring",
                "12-Fall", "12-Spring"
                )
 
-# Prepare a list of data frames, each df is raw-to-ss lookup table for a grade
-# strata. Here, the first argument to rawTable() is the A argument, which
-# specifies of vector of "center points" for the grade-stratified lookup tables.
-# In the modeling input, gradeSemester was coded in semester intervals, with
-# each numerical value representing the beginning of a semester. On the output
-# side, we are working with the same 1:26 metric representing the beginning
-# points of 26 consecutive semesters. For the A argument, then, we specify the
-# vector c(1.5, 2.5, . .  ., 26.5) to create tables centered at the midpoint of
-# each semester,
+# In rawTable(), we pass A = 3:26 as the specification for the lookup table
+# grade strata. This is identical to the coding of GradeSemester on the input
+# side, where 3:26 represents the equal interval grouping structure of 1-fall,
+# 1-spring, 2-fall, .  . ., 12-spring. In the TOD data, testing was performed on
+# indiscriminate dates throughout each semester (as opposed to, say, all testing
+# was done on the monday of the 10th week). Because of this, we can plausibly
+# assume that the 3:26 input vector also represent the midpoint of each semester
+# on the output side, which is what we want for the lookup tables. By centering
+# these tables on the midpoint of each semester, we minimize the residuals of
+# any child's distance (in terms of when in the semester he/she was tested) from
+# that center point.
 
-# NOTE: NEED CONFIRMATION FROM WOLFGANG THAT THE ABOVE CONCEPTUALIZATION OF THE
-# A ARGUMENT IS DEFENSIBLE, UNTIL THEN, WILL USE "A = 1:26"
+# Note that the code below includes versions of the A argument for restricted
+# gradestrats of pflsum1 and pflsum2.
 
 norms_list <- rawTable(
-  3:26, 
+  3:26,
+  # 3:12,
+  # 13:26,
   model, 
   step = 1, 
   minNorm = 40, 

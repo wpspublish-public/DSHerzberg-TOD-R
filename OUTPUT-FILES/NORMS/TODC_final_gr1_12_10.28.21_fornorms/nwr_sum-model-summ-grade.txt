@@ -1,0 +1,6 @@
+[1] "nwr_sum model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.943241
+Final regression model: raw ~ L1 + A2 + L1A1 + L3A1
+Regression function: raw ~ -59.21628495 + (0.7639513585*L1) + (-0.04525784117*A2) + (0.04100240624*L1A1) + (-1.900220572e-06*L3A1)
+Raw Score RMSE = 2.40628
