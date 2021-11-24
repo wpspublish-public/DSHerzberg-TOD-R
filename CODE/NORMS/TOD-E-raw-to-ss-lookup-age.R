@@ -28,7 +28,7 @@ scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "lswe_sum"
+score_to_norm_stem <- "sege_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -102,7 +102,7 @@ input <- suppressMessages(read_csv(here(str_c(
 # be problematic when there are few cases on the tails of the age distribution -
 
 # The two key diagnostics are plot(model, "series") and checkConsistency(). Both
-# target the same problem: violations of monotonicty, or intersecting percentile
+# target the same problem: violations of monotonicity, or intersecting percentile
 # curves. With plot(model, "series"), you can use "end" argument to set upper
 # limit of predictors.
 

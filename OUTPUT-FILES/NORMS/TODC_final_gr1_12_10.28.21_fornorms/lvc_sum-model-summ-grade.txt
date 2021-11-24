@@ -1,0 +1,6 @@
+[1] "lvc_sum model summary"
+User specified solution: 5 terms
+R-Square Adj. = 0.971661
+Final regression model: raw ~ L1 + A1 + L1A1 + L2A1 + L2A2
+Regression function: raw ~ -14.51969018 + (0.2018435453*L1) + (-1.283556167*A1) + (0.03798342231*L1A1) + (-0.0001055289664*L2A1) + (-2.223692581e-06*L2A2)
+Raw Score RMSE = 1.20062

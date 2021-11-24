@@ -25,7 +25,7 @@ scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum", "riw_sum", "l
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "seg_sum"
+score_to_norm_stem <- "rws_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -111,7 +111,7 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 4, 
-  terms = 4, 
+  terms = 2, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
@@ -119,7 +119,7 @@ plot(model, "series", end = 8)
 checkConsistency(model)
 
 # Token for names of output grade groups
-tab_names <- c("K-Fall", "K-Spring", 
+tab_names <- c( 
                "1-Fall", "1-Spring", 
                "2-Fall", "2-Spring", 
                "3-Fall", "3-Spring", 
@@ -143,8 +143,12 @@ tab_names <- c("K-Fall", "K-Spring",
 # points of 26 consecutive semesters. For the A argument, then, we specify the
 # vector c(1.5, 2.5, . .  ., 26.5) to create tables centered at the midpoint of
 # each semester,
+
+# NOTE: NEED CONFIRMATION FROM WOLFGANG THAT THE ABOVE CONCEPTUALIZATION OF THE
+# A ARGUMENT IS DEFENSIBLE, UNTIL THEN, WILL USE "A = 1:26"
+
 norms_list <- rawTable(
-  seq(1.5, 26.5, 1), 
+  3:26, 
   model, 
   step = 1, 
   minNorm = 40, 

@@ -1,0 +1,6 @@
+[1] "rln_sum model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.96812
+Final regression model: raw ~ L1 + L1A1 + L1A2 + L1A3
+Regression function: raw ~ -62.82620204 + (0.847991322*L1) + (0.06306355737*L1A1) + (-0.001581934345*L1A2) + (1.936461972e-05*L1A3)
+Raw Score RMSE = 5.28931
