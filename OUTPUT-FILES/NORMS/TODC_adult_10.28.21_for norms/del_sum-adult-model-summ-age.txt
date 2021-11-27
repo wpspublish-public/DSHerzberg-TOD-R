@@ -1,0 +1,6 @@
+[1] "del_sum model summary"
+User specified solution: 8 terms
+R-Square Adj. = 0.984231
+Final regression model: raw ~ L1 + L2 + L1A1 + L1A2 + L2A1 + L3A2 + L4A1 + L4A2
+Regression function: raw ~ -107.0887576 + (2.392129024*L1) + (-0.01084774118*L2) + (0.04041000003*L1A1) + (-0.0003087453754*L1A2) + (-0.0005508956995*L2A1) + (7.526114454e-08*L3A2) + (1.524469984e-08*L4A1) + (-4.532581191e-10*L4A2)
+Raw Score RMSE = 0.39814

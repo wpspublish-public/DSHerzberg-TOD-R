@@ -1,0 +1,6 @@
+[1] "lem_sum model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.993229
+Final regression model: raw ~ L2 + L4 + L1A3 + L3A4
+Regression function: raw ~ -1.129162574 + (0.001189230237*L2) + (-1.448970242e-08*L4) + (-8.85411258e-08*L1A3) + (4.119548537e-14*L3A4)
+Raw Score RMSE = 0.21802
