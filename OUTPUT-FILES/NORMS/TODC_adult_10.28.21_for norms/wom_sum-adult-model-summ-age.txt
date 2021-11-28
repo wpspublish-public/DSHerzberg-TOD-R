@@ -1,0 +1,6 @@
+[1] "wom_sum model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.984696
+Final regression model: raw ~ L3 + A2 + L1A1 + L4A1
+Regression function: raw ~ 1.43851562 + (5.594601862e-06*L3) + (-0.001081085094*A2) + (0.001025087661*L1A1) + (-2.690960016e-10*L4A1)
+Raw Score RMSE = 0.3109

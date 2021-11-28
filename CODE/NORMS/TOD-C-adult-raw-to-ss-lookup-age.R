@@ -22,7 +22,7 @@ scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum",
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "rnl_sum"
+score_to_norm_stem <- "orf_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-adult-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(

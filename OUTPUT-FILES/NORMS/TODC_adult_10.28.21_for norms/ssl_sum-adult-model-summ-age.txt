@@ -1,0 +1,6 @@
+[1] "ssl_sum model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.977999
+Final regression model: raw ~ L3 + L1A4 + L2A2 + L3A1
+Regression function: raw ~ 0.8896374078 + (1.126708007e-05*L3) + (5.813646209e-09*L1A4) + (-9.392228282e-07*L2A2) + (4.551623678e-07*L3A1)
+Raw Score RMSE = 1.34708
