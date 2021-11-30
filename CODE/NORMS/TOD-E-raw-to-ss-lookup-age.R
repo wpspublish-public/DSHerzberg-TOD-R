@@ -28,7 +28,7 @@ scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "sege_sum"
+score_to_norm_stem <- "rhme_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -58,7 +58,7 @@ age_contin <- suppressMessages(read_csv(here(
     age = (DOB %--% admin_date) / years (1)
   ) %>%
   bind_cols(getGroups(.$age)) %>% 
-  rename(group = ...17) %>% 
+  rename(group = ...18) %>% 
   select(ID, age, group)
 
 # Next block reads an input containing multiple raw score columns per person,
@@ -110,7 +110,7 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 4, 
-  terms = 4, 
+  terms = 5, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
@@ -118,7 +118,7 @@ plot(model, "series", end = 8)
 checkConsistency(model)
 
 # Token for names of output age groups
-tab_names <- c("5.0-5.3", "5.4-5.7", "5.8-5.11", "6.0-6.5", 
+tab_names <- c("5.0-5.3", "5.4-5.7", "5.8-5.11", "6.0-6.5",
                "6.6-6.11", "7.0-7.5", "7.6-7.11", "8.0-8.5", "8.6-9.3")
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
@@ -128,7 +128,8 @@ norms_list <- rawTable(
   step = 1, 
   minNorm = 40, 
   maxNorm = 130, 
-  minRaw = 1, 
+  # minRaw = 1, 
+  minRaw = 0, 
   maxRaw = score_to_norm_max_raw,
   pretty = FALSE
   ) %>% 

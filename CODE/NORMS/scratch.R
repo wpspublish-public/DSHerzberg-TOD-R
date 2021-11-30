@@ -1,8 +1,25 @@
 library(psych)
-descriptives <- weighted_sum_scores_pom_rescale %>% 
-  select(contains("sum")) %>%
+descriptives <- data.frame(input) %>% 
+  filter(age < 6) %>% 
+  select(raw) %>%
   describe(fast = T) %>% 
   rownames_to_column(var = "scale")
+
+hist_data <- data.frame(input) %>% 
+  filter(age < 6) %>% 
+  select(raw)
+  
+  
+
+hist(hist_data$raw, 
+     main="rhme: 5:0-5:11",
+     freq = TRUE,
+     xlab="raw score", 
+     border="blue", 
+     col="green",
+     xlim=c(0,30),
+     las=1, 
+     breaks=30)
 
 
 temp1 <- weighted_sum_scores %>% 
