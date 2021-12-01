@@ -1,6 +1,6 @@
 [1] "lske_sum model summary"
-User specified solution: 2 terms
-R-Square Adj. = 0.890149
-Final regression model: raw ~ L1 + A1
-Regression function: raw ~ -23.40234413 + (0.3998315264*L1) + (0.1155580411*A1)
-Raw Score RMSE = 2.62991
+User specified solution: 3 terms
+R-Square Adj. = 0.944709
+Final regression model: raw ~ L1 + A1 + L3A2
+Regression function: raw ~ -36.96130476 + (0.5124418946*L1) + (0.2111147413*A1) + (-6.194466747e-10*L3A2)
+Raw Score RMSE = 1.86304
