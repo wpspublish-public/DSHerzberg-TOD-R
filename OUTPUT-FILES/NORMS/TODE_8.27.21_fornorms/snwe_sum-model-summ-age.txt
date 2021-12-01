@@ -1,6 +1,6 @@
 [1] "snwe_sum model summary"
 User specified solution: 3 terms
-R-Square Adj. = 0.980108
+R-Square Adj. = 0.979682
 Final regression model: raw ~ L1 + L1A2 + L2A4
-Regression function: raw ~ -26.82141381 + (0.2132351092*L1) + (0.006418403327*L1A2) + (-3.236850287e-07*L2A4)
-Raw Score RMSE = 0.9358
+Regression function: raw ~ -27.1099015 + (0.2138444199*L1) + (0.006505438164*L1A2) + (-3.315954323e-07*L2A4)
+Raw Score RMSE = 0.94992
