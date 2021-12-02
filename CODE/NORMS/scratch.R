@@ -56,7 +56,7 @@ temp2 <- temp1 %>%
 
 write_csv(temp2,
           here(
-            str_c(input_file_path, "TODC_final_gr1_12_10.28.21_fornorms-pflsum2.csv")
+            str_c(input_file_path, "TODC_final_gr1_12_10.28.21_fornorms-pflsum1.csv")
           ))
 
 # gradestrat for pflsum1

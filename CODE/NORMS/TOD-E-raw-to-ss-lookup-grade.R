@@ -126,7 +126,7 @@ norms_list <- rawTable(
   step = 1, 
   minNorm = 40, 
   maxNorm = 130, 
-  minRaw = -20, 
+  minRaw = 0, 
   maxRaw = score_to_norm_max_raw,
   pretty = FALSE
   ) %>% 
