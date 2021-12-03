@@ -1,4 +1,4 @@
-[1] "rhme_sum model summary"
+[1] "rhme_sumage model summary"
 User specified solution: 5 terms
 R-Square Adj. = 0.983776
 Final regression model: raw ~ L1A1 + L2A2 + L2A4 + L3A3 + L4A4

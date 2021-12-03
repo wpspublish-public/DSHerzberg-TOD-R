@@ -20,7 +20,7 @@ scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum", "riw_sum", "l
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "iws_sum"
+score_to_norm_stem <- "seg_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -64,7 +64,7 @@ age_contin <- suppressMessages(read_csv(here(
     age = (DOB %--% admin_date) / years (1)
   ) %>%
   bind_cols(getGroups(.$age)) %>% 
-  rename(group = ...35) %>% 
+  rename(group = ...33) %>% 
   select(ID, age, group)
 
 # Next block reads an input containing multiple raw score columns per person,
@@ -190,7 +190,7 @@ write_csv(table,
 
 # write model summary to text file, so you can replicate model later.
 capture.output(
-  str_c(score_to_norm_stem, " model summary"), 
+  str_c(score_to_norm_stem, "age model summary"), 
   summary(model),
   file = here(
     str_c(output_file_path, score_to_norm_stem, "-model-summ-age.txt")  )

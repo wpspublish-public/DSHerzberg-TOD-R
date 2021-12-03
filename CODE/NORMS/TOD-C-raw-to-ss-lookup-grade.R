@@ -203,7 +203,7 @@ write_csv(table,
 
 # write model summary to text file, so you can replicate model later.
 capture.output(
-  str_c(score_to_norm_stem, " model summary"), 
+  str_c(score_to_norm_stem, "grade model summary"), 
   summary(model),
   file = here(
     str_c(output_file_path, score_to_norm_stem, "-model-summ-grade.txt")  )

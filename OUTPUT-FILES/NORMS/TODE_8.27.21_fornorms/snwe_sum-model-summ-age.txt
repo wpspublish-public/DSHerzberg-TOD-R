@@ -1,4 +1,4 @@
-[1] "snwe_sum model summary"
+[1] "snwe_sumage model summary"
 User specified solution: 3 terms
 R-Square Adj. = 0.979682
 Final regression model: raw ~ L1 + L1A2 + L2A4

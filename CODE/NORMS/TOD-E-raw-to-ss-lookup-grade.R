@@ -108,7 +108,7 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 4, 
-  terms = 3, 
+  terms = 4, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
@@ -121,7 +121,7 @@ tab_names <- c("K-Fall", "K-Spring", "1-Fall", "1-Spring",
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(
-  c(8, 34, 60, 8, 112, 138), 
+  c(8, 34, 60, 86, 112, 138), 
   model, 
   step = 1, 
   minNorm = 40, 
@@ -170,7 +170,7 @@ write_csv(table,
 ))
 
 # write model summary to text file, so you can replicate model later.
-capture.output(str_c(score_to_norm_stem, " model summary"),
+capture.output(str_c(score_to_norm_stem, "grade model summary"),
                summary(model),
                file = here(
                  str_c(

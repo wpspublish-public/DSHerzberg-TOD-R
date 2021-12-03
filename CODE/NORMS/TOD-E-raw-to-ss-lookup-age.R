@@ -28,7 +28,7 @@ scores <- c("sege_sum", "rlne_sum", "rhme_sum", "snwe_sum",
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "ORF"
+score_to_norm_stem <- "lske_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -110,7 +110,7 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 4, 
-  terms = 3, 
+  terms = 4, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
@@ -128,7 +128,6 @@ norms_list <- rawTable(
   step = 1, 
   minNorm = 40, 
   maxNorm = 130, 
-  # minRaw = 1, 
   minRaw = 0, 
   maxRaw = score_to_norm_max_raw,
   pretty = FALSE
@@ -174,7 +173,7 @@ write_csv(table,
 
 # write model summary to text file, so you can replicate model later.
 capture.output(
-  str_c(score_to_norm_stem, " model summary"), 
+  str_c(score_to_norm_stem, "age model summary"), 
   summary(model),
   file = here(
     str_c(output_file_path, score_to_norm_stem, "-model-summ-age.txt")  )
