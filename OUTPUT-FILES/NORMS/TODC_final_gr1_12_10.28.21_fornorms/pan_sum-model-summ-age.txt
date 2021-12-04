@@ -1,6 +1,6 @@
-[1] "pan_sum model summary"
-User specified solution: 6 terms
-R-Square Adj. = 0.969795
-Final regression model: raw ~ L1 + L2 + L3 + L4 + A1 + A2
-Regression function: raw ~ 214.832933 + (-10.12014066*L1) + (0.1586991996*L2) + (-0.001022886419*L3) + (2.383135082e-06*L4) + (2.401691881*A1) + (-0.07024187857*A2)
-Raw Score RMSE = 1.18185
+[1] "pan_sumage model summary"
+User specified solution: 5 terms
+R-Square Adj. = 0.969171
+Final regression model: raw ~ L2 + L4 + A1 + A2 + A3
+Regression function: raw ~ -47.0808042 + (0.004688349483*L2) + (-1.211557143e-07*L4) + (6.984906436*A1) + (-0.4556987534*A2) + (0.01034413257*A3)
+Raw Score RMSE = 1.19483

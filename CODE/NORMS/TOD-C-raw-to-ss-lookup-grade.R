@@ -124,7 +124,7 @@ tab_names <- c(
                "2-Fall", "2-Spring",
                "3-Fall", "3-Spring",
                "4-Fall", "4-Spring",
-               "5-Fall", "5-Spring",
+               "5-Fall", "5-Spring", 
                # end pflsum1 gradestrat, begin pflsum2 gradestrat
                "6-Fall", "6-Spring",
                "7-Fall", "7-Spring",
@@ -158,7 +158,7 @@ norms_list <- rawTable(
   step = 1, 
   minNorm = 40, 
   maxNorm = 130, 
-  minRaw = 1, 
+  minRaw = 0, 
   maxRaw = score_to_norm_max_raw,
   pretty = FALSE
   ) %>% 

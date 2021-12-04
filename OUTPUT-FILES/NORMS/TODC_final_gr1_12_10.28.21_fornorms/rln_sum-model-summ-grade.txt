@@ -1,4 +1,4 @@
-[1] "rln_sum model summary"
+[1] "rln_sumgrade model summary"
 User specified solution: 4 terms
 R-Square Adj. = 0.96812
 Final regression model: raw ~ L1 + L1A1 + L1A2 + L1A3

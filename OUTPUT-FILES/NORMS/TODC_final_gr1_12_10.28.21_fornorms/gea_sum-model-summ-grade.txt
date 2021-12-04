@@ -1,6 +1,6 @@
-[1] "gea_sum model summary"
-User specified solution: 3 terms
-R-Square Adj. = 0.957573
-Final regression model: raw ~ L1 + L2A1 + L3A2
-Regression function: raw ~ -21.56285464 + (0.2609688544*L1) + (0.0001689003901*L2A1) + (-3.489651719e-08*L3A2)
-Raw Score RMSE = 1.7539
+[1] "gea_sumgrade model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.965522
+Final regression model: raw ~ L2 + L1A2 + L2A1 + L3A1
+Regression function: raw ~ -15.95502062 + (0.001987420949*L2) + (-0.0003733462448*L1A2) + (0.0004042643806*L2A1) + (-2.242607941e-06*L3A1)
+Raw Score RMSE = 1.58082

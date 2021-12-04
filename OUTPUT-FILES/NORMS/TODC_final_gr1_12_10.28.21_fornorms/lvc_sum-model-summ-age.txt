@@ -1,4 +1,4 @@
-[1] "lvc_sum model summary"
+[1] "lvc_sumage model summary"
 User specified solution: 4 terms
 R-Square Adj. = 0.974786
 Final regression model: raw ~ L3 + A1 + L1A1 + L2A2

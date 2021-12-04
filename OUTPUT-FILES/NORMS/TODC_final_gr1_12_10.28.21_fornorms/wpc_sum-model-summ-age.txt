@@ -1,6 +1,6 @@
-[1] "wpc_sum model summary"
+[1] "wpc_sumage model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.981098
+R-Square Adj. = 0.981117
 Final regression model: raw ~ L2A3 + L3A2 + L4A3 + L4A4
-Regression function: raw ~ -8.870090807 + (-1.186630187e-06*L2A3) + (7.136022175e-07*L3A2) + (-3.854507351e-10*L4A3) + (1.069300232e-11*L4A4)
-Raw Score RMSE = 1.99887
+Regression function: raw ~ -8.882028653 + (-1.187148175e-06*L2A3) + (7.139397741e-07*L3A2) + (-3.857094291e-10*L4A3) + (1.070124185e-11*L4A4)
+Raw Score RMSE = 1.99827

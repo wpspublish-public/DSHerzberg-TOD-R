@@ -1,6 +1,6 @@
-[1] "pan_sum model summary"
+[1] "pan_sumgrade model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.945019
+R-Square Adj. = 0.944963
 Final regression model: raw ~ L2 + L4 + A1 + A2
-Regression function: raw ~ -19.22821907 + (0.004633028333*L2) + (-1.202328898e-07*L4) + (0.8799188319*A1) + (-0.01821294752*A2)
-Raw Score RMSE = 1.59567
+Regression function: raw ~ -19.25690927 + (0.004636208901*L2) + (-1.203609017e-07*L4) + (0.8813706195*A1) + (-0.01825650058*A2)
+Raw Score RMSE = 1.59701

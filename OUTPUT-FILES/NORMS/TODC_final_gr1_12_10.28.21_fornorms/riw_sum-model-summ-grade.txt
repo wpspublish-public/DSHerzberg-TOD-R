@@ -1,6 +1,6 @@
-[1] "riw_sum model summary"
+[1] "riw_sumgrade model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.942965
+R-Square Adj. = 0.943016
 Final regression model: raw ~ L1 + A2 + L1A1 + L2A1
-Regression function: raw ~ -127.9591212 + (1.431048795*L1) + (-0.1436070869*A2) + (0.1584066196*L1A1) + (-0.0009286796958*L2A1)
-Raw Score RMSE = 5.44145
+Regression function: raw ~ -128.0141471 + (1.431522232*L1) + (-0.1436350633*A2) + (0.1584538357*L1A1) + (-0.0009290465941*L2A1)
+Raw Score RMSE = 5.43954

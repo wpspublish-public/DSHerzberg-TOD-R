@@ -1,4 +1,4 @@
-[1] "pflsum1 model summary"
+[1] "pflsum1grade model summary"
 User specified solution: 4 terms
 R-Square Adj. = 0.982437
 Final regression model: raw ~ L1 + A1 + L1A3 + L3A4

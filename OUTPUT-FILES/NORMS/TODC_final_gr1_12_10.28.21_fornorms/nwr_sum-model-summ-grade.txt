@@ -1,4 +1,4 @@
-[1] "nwr_sum model summary"
+[1] "nwr_sumgrade model summary"
 User specified solution: 4 terms
 R-Square Adj. = 0.943241
 Final regression model: raw ~ L1 + A2 + L1A1 + L3A1
