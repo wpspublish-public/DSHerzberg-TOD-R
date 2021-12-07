@@ -1,6 +1,6 @@
-[1] "bln_sum model summary"
+[1] "bln_sumadult age model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.978183
-Final regression model: raw ~ L3 + L4 + L2A4 + L4A3
-Regression function: raw ~ 4.056372854 + (4.332742539e-05*L3) + (-2.468782602e-07*L4) + (-5.323043802e-11*L2A4) + (2.276424901e-13*L4A3)
-Raw Score RMSE = 0.7427
+R-Square Adj. = 0.981558
+Final regression model: raw ~ L3 + L4 + L1A4 + L3A3
+Regression function: raw ~ 4.165606617 + (4.117485901e-05*L3) + (-2.277742243e-07*L4) + (-1.64666838e-09*L1A4) + (8.650643064e-12*L3A3)
+Raw Score RMSE = 0.70476
