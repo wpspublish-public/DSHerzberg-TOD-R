@@ -1,6 +1,6 @@
-[1] "pan_sum model summary"
-User specified solution: 6 terms
-R-Square Adj. = 0.978195
-Final regression model: raw ~ L2 + L3 + A1 + L1A2 + L2A3 + L2A4
-Regression function: raw ~ -36.73475598 + (0.01119462605*L2) + (-5.773189632e-05*L3) + (0.8355435204*A1) + (-0.0002013568218*L1A2) + (2.138491954e-08*L2A3) + (-1.061781907e-10*L2A4)
-Raw Score RMSE = 0.9298
+[1] "pan_sumadult age model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.970784
+Final regression model: raw ~ L2 + L3 + A3 + L1A1
+Regression function: raw ~ -16.33511282 + (0.008680522743*L2) + (-4.449898139e-05*L3) + (-1.164394234e-05*A3) + (0.0009347775102*L1A1)
+Raw Score RMSE = 1.11798

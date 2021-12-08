@@ -22,7 +22,7 @@ scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum",
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "iwr_sum"
+score_to_norm_stem <- "pan_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-adult-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -117,8 +117,8 @@ input <- suppressMessages(read_csv(here(str_c(
 model <- cnorm(
   raw = input$raw, 
   group = input$group, 
-  k = 5, 
-  terms = 7, 
+  k = 4, 
+  terms = 4, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
