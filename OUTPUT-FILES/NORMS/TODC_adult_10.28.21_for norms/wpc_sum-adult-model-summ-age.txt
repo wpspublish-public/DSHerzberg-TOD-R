@@ -1,6 +1,6 @@
-[1] "wpc_sum model summary"
-User specified solution: 3 terms
-R-Square Adj. = 0.975212
-Final regression model: raw ~ L3 + L4 + A4
-Regression function: raw ~ -13.76862052 + (0.0001272536563*L3) + (-6.994860948e-07*L4) + (-6.48871914e-07*A4)
-Raw Score RMSE = 2.38424
+[1] "wpc_sumadult age model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.985763
+Final regression model: raw ~ L3 + L4 + L3A2 + L4A2
+Regression function: raw ~ -20.11154516 + (0.0001621833665*L3) + (-9.663780386e-07*L4) + (-9.967573252e-09*L3A2) + (7.701530473e-11*L4A2)
+Raw Score RMSE = 1.82676
