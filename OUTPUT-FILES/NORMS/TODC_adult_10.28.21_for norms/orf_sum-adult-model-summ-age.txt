@@ -1,6 +1,6 @@
-[1] "orf_sum model summary"
+[1] "orf_sumadult age model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.910008
-Final regression model: raw ~ L2 + L3 + L4 + L3A4
-Regression function: raw ~ -250.1390357 + (0.1888706309*L2) + (-0.002380262168*L3) + (8.836524209e-06*L4) + (-8.772282002e-13*L3A4)
-Raw Score RMSE = 11.10788
+R-Square Adj. = 0.915911
+Final regression model: raw ~ L2 + L3 + L4 + A3
+Regression function: raw ~ -283.6970822 + (0.2102152992*L2) + (-0.002653489182*L3) + (9.769374498e-06*L4) + (-2.838363028e-05*A3)
+Raw Score RMSE = 10.9442

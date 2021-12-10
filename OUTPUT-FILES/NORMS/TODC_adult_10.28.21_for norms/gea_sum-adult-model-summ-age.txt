@@ -1,6 +1,6 @@
-[1] "gea_sum model summary"
-User specified solution: 4 terms
-R-Square Adj. = 0.968149
-Final regression model: raw ~ L1 + L1A3 + L2A2 + L3A1
-Regression function: raw ~ -34.36294594 + (0.6829083049*L1) + (-1.807212822e-06*L1A3) + (1.825251523e-06*L2A2) + (-5.790587175e-07*L3A1)
-Raw Score RMSE = 1.42971
+[1] "gea_sumadult age model summary"
+User specified solution: 3 terms
+R-Square Adj. = 0.951726
+Final regression model: raw ~ L2 + L3 + A3
+Regression function: raw ~ -20.42603098 + (0.009344324202*L2) + (-4.447644498e-05*L3) + (-9.591968263e-06*A3)
+Raw Score RMSE = 1.82848

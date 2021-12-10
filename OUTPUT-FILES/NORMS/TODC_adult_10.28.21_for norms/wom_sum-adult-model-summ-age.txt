@@ -1,6 +1,6 @@
-[1] "wom_sum model summary"
+[1] "wom_sumadult age model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.984696
-Final regression model: raw ~ L3 + A2 + L1A1 + L4A1
-Regression function: raw ~ 1.43851562 + (5.594601862e-06*L3) + (-0.001081085094*A2) + (0.001025087661*L1A1) + (-2.690960016e-10*L4A1)
-Raw Score RMSE = 0.3109
+R-Square Adj. = 0.984758
+Final regression model: raw ~ L3 + L2A3 + L3A2 + L4A1
+Regression function: raw ~ 1.882840332 + (7.554454433e-06*L3) + (-1.563454097e-09*L2A3) + (2.147889121e-09*L3A2) + (-9.438945465e-10*L4A1)
+Raw Score RMSE = 0.31337

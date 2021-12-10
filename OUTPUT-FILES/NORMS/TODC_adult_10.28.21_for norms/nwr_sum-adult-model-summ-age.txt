@@ -1,6 +1,6 @@
-[1] "nwr_sum model summary"
-User specified solution: 4 terms
-R-Square Adj. = 0.905545
-Final regression model: raw ~ L1 + L2 + A4 + L1A3
-Regression function: raw ~ -138.3679193 + (3.302625345*L1) + (-0.01481376368*L2) + (-1.03284869e-06*A4) + (6.618081568e-07*L1A3)
-Raw Score RMSE = 2.52676
+[1] "nwr_sumadult age model summary"
+User specified solution: 8 terms
+R-Square Adj. = 0.966564
+Final regression model: raw ~ L1 + L2 + L3 + L4 + A1 + A3 + L1A3 + L2A1
+Regression function: raw ~ 1388.702932 + (-66.22567367*L1) + (1.135705366*L2) + (-0.008296310408*L3) + (2.214380021e-05*L4) + (0.9494943258*A1) + (-0.0001961296288*A3) + (1.798906798e-06*L1A3) + (-8.004897387e-05*L2A1)
+Raw Score RMSE = 1.61627

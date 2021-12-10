@@ -21,11 +21,11 @@ output_file_path <- "OUTPUT-FILES/NORMS/TODC_final_gr1_12_10.28.21_fornorms/"
 
 scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum", "riw_sum", "lem_sum", "pan_sum", 
             "lvc_sum", "wpc_sum", "rws_sum", "sub_sum", "del_sum", "rnl_sum", "nwr_sum", "rnw_sum", 
-            "wom_sum", "gea_sum", "ssl_sum", "pflsum1", "pflsum2")
+            "wom_sum", "gea_sum", "ssl_sum", "pflsum1", "pflsum2", "orf_sum")
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "iws_sum"
+score_to_norm_stem <- "orf_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -50,7 +50,8 @@ score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
       str_detect(test, "gea_sum") ~ 40,
       str_detect(test, "ssl_sum") ~ 42,
       str_detect(test, "pflsum1") ~ 63,
-      str_detect(test, "pflsum2") ~ 51
+      str_detect(test, "pflsum2") ~ 51,
+      str_detect(test, "orf_sum") ~ 384
     )
   ) %>%
   pull(max_raw)
