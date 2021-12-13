@@ -20,7 +20,7 @@ scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum", "riw_sum", "l
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "pflsum2"
+score_to_norm_stem <- "pflsum1"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -129,8 +129,9 @@ tab_names <- c(
                "8.0-8.5", "8.6-8.11", "9.0-9.5",
                "9.6-9.11", 
   "10.0-10.5", "10.6-10.11", "11.0-11.5",
-               "11.6-11.11", "12.0-12.5", "12.6-12.11",
-               "13.0-13.11", "14.0-14.11", "15.0-16.11", "17.0-18.11")
+  "11.6-11.11", "12.0-12.5", "12.6-12.11")
+  # "11.6-11.11", "12.0-12.5", "12.6-12.11",
+  # "13.0-13.11", "14.0-14.11", "15.0-16.11", "17.0-18.11")
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(
@@ -138,8 +139,9 @@ norms_list <- rawTable(
     6.167, 6.5, 6.833, 7.167, 7.5, 7.833, 8.25, 8.75,
     9.25, 9.75, 
     10.25, 10.75, 11.25, 11.75, 12.25,
-    12.75,
-    13.5, 14.5, 16, 18.0
+    12.75
+    # 12.75,
+    # 13.5, 14.5, 16, 18.0
   ), 
   model, 
   step = 1, 
@@ -190,7 +192,7 @@ write_csv(table,
 
 # write model summary to text file, so you can replicate model later.
 capture.output(
-  str_c(score_to_norm_stem, "age model summary"), 
+  str_c(score_to_norm_stem, " age model summary"), 
   summary(model),
   file = here(
     str_c(output_file_path, score_to_norm_stem, "-model-summ-age.txt")  )
