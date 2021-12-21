@@ -1,6 +1,6 @@
 [1] "riw_sumadult age model summary"
-User specified solution: 9 terms
-R-Square Adj. = 0.968757
-Final regression model: raw ~ L2 + L3 + L4 + A1 + A2 + L1A1 + L1A2 + L2A1 + L3A2
-Regression function: raw ~ -537.3930621 + (0.242472021*L2) + (-0.002504470245*L3) + (7.088477093e-06*L4) + (29.9629505*A1) + (-0.19177467*A2) + (-0.5464589571*L1A1) + (0.002607393593*L1A2) + (0.002484830881*L2A1) + (-7.092199325e-08*L3A2)
-Raw Score RMSE = 2.76172
+User specified solution: 4 terms
+R-Square Adj. = 0.877488
+Final regression model: raw ~ L1 + L2 + A1 + A2
+Regression function: raw ~ -244.502991 + (5.661674957*L1) + (-0.02413685229*L2) + (0.6631084501*A1) + (-0.00617965195*A2)
+Raw Score RMSE = 5.50933

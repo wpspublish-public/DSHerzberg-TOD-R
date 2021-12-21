@@ -21,6 +21,17 @@ hist(hist_data$raw,
      las=1, 
      breaks=30)
 
+hist(input$age, 
+     main="TOD-S age",
+     freq = TRUE,
+     xlab="age", 
+     border="blue", 
+     col="green",
+     xlim=c(0, 100),
+     las=1, 
+     breaks=20)
+
+
 
 temp1 <- weighted_sum_scores %>% 
   select(ID, sege_sum, sege_sum_w_pom) %>% 
@@ -51,8 +62,8 @@ n_age_group <- age_contin %>%
   count(group)
 "5.0-5.3", "5.4-5.7", "5.8-5.11"
 
-temp2 <- temp1 %>% 
-  filter(!(is.na(pflsum1)))
+temp2 <- input %>% 
+  filter(group >= 50)
 
 write_csv(temp2,
           here(
