@@ -1,0 +1,6 @@
+[1] "lw_ability age model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.972262
+Final regression model: raw ~ A3 + L1A3 + L2A3 + L4A2
+Regression function: raw ~ 63.20422215 + (-0.4257331289*A3) + (0.01163920052*L1A3) + (-7.709943407e-05*L2A3) + (1.023256577e-08*L4A2)
+Raw Score RMSE = 2.38083

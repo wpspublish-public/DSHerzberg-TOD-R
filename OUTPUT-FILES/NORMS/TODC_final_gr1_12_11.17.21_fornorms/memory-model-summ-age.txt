@@ -1,0 +1,6 @@
+[1] "memory age model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.972026
+Final regression model: raw ~ L1 + A1 + A2 + L4A1
+Regression function: raw ~ -17.2597075 + (0.1546620139*L1) + (1.577437544*A1) + (-0.04568617974*A2) + (2.216966381e-09*L4A1)
+Raw Score RMSE = 0.78092

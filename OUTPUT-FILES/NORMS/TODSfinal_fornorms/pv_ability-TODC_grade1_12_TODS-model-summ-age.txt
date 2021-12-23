@@ -1,0 +1,6 @@
+[1] "pv_ability age model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.966285
+Final regression model: raw ~ L3 + L1A1 + L2A2 + L3A3
+Regression function: raw ~ 36.64832213 + (1.131123191e-05*L3) + (0.1458940049*L1A1) + (-9.035770019e-05*L2A2) + (2.031783487e-08*L3A3)
+Raw Score RMSE = 2.14537

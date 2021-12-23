@@ -1,0 +1,6 @@
+[1] "wrf_sum age model summary"
+User specified solution: 3 terms
+R-Square Adj. = 0.987077
+Final regression model: raw ~ L4 + L1A3 + L1A4
+Regression function: raw ~ -18.86998813 + (5.445332479e-08*L4) + (0.002891479171*L1A3) + (-0.0002656862637*L1A4)
+Raw Score RMSE = 1.06213

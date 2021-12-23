@@ -1,0 +1,6 @@
+[1] "PAgrade model summary"
+User specified solution: 7 terms
+R-Square Adj. = 0.956772
+Final regression model: raw ~ L3 + L4 + A2 + L1A1 + L2A3 + L3A1 + L4A1
+Regression function: raw ~ -41.16233343 + (0.0001234456349*L3) + (-6.808506978e-07*L4) + (-0.1207230347*A2) + (0.1077211293*L1A1) + (1.499983749e-07*L2A3) + (-1.425076044e-05*L3A1) + (6.720848262e-08*L4A1)
+Raw Score RMSE = 1.8581
