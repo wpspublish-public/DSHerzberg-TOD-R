@@ -1,3 +1,12 @@
+NEW APPROACH: SPIT TODS NORMS INTO THREE AGE RANGES
+
+Here are the three TOD-S files for TOD-E, TOD-C grades 1-12, and TOD-C adult. Please use the same agestrat output as the other runs you’ve done previously. For TOD-E and TOD-C grade 1-12, please run grade norms as well.
+
+TOD-E and TOD-C grades 1-12 have an LW_ability and PV_ability score, and either wrf_sum or qrf_sum.
+TOD-C adult has LW_ability and PV_ability score, and qrf_sum
+
+
+*************
 Hi Dave,
 Here is the .csv file with the four TOD-S tests. Every case has an LW_ability and PV_ability score, and either wrf_sum or qrf_sum.
 Raw score/ability score ranges are:

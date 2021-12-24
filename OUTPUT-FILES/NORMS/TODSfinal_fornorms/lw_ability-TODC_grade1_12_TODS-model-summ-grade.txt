@@ -1,0 +1,6 @@
+[1] "lw_ability grade model summary"
+User specified solution: 5 terms
+R-Square Adj. = 0.961613
+Final regression model: raw ~ L2 + L1A1 + L2A2 + L2A3 + L3A3
+Regression function: raw ~ 46.98378804 + (0.003379851702*L2) + (0.07708902776*L1A1) + (-4.537126133e-05*L2A2) + (2.786852037e-07*L2A3) + (6.507263688e-09*L3A3)
+Raw Score RMSE = 2.75602

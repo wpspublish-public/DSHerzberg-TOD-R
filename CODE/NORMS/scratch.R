@@ -62,8 +62,8 @@ n_age_group <- age_contin %>%
   count(group)
 "5.0-5.3", "5.4-5.7", "5.8-5.11"
 
-temp2 <- input %>% 
-  filter(group >= 50)
+temp2 <- temp1 %>% 
+  filter(!is.na(qrf_sum))
 
 write_csv(temp2,
           here(

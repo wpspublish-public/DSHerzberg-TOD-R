@@ -1,0 +1,6 @@
+[1] "pv_ability grade model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.952133
+Final regression model: raw ~ L1 + L1A2 + L2A2 + L3A1
+Regression function: raw ~ 47.38063663 + (0.4916872753*L1) + (0.01952210398*L1A2) + (-0.000205727817*L2A2) + (4.354699108e-06*L3A1)
+Raw Score RMSE = 2.46756
