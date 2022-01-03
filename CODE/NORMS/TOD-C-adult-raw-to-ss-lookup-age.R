@@ -8,21 +8,22 @@ suppressMessages(library(lubridate))
 # age), raw score
 
 # General tokens
-combined_score_to_norm_file_name <- "TODC_adult_10.28.21_for norms.csv"
-input_file_path <- "INPUT-FILES/NORMS/TODC_adult_10.28.21_for norms/"
-output_file_path <- "OUTPUT-FILES/NORMS/TODC_adult_10.28.21_for norms/"
+combined_score_to_norm_file_name <- "TODC_final_11.17.21_adult_fornorms.csv"
+input_file_path <- "INPUT-FILES/NORMS/TODC_final_11.17.21_adult_fornorms/"
+output_file_path <- "OUTPUT-FILES/NORMS/TODC_final_11.17.21_adult_fornorms/"
 
 # Tokens for score names
 
-scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum", 
-            "riw_sum", "lem_sum", "pan_sum", "lvc_sum", "wpc_sum", 
-            "rws_sum", "sub_sum", "del_sum", "rnl_sum", "nwr_sum", 
-            "rnw_sum", "wom_sum", "gea_sum", "ssl_sum", "pflsum2", 
-            "orf_sum")
+# scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum", 
+#             "riw_sum", "lem_sum", "pan_sum", "lvc_sum", "wpc_sum", 
+#             "rws_sum", "sub_sum", "del_sum", "rnl_sum", "nwr_sum", 
+#             "rnw_sum", "wom_sum", "gea_sum", "ssl_sum", "pflsum2", 
+#             "orf_sum", "PA")
+scores <- "PA"
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "riw_sum"
+score_to_norm_stem <- "PA"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-adult-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -47,7 +48,8 @@ score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
       str_detect(test, "gea_sum") ~ 40,
       str_detect(test, "ssl_sum") ~ 42,
       str_detect(test, "pflsum2") ~ 51, 
-      str_detect(test, "orf_sum") ~ 384
+      str_detect(test, "orf_sum") ~ 384,
+      str_detect(test, "PA") ~ 45
     )
   ) %>%
   pull(max_raw)
@@ -66,7 +68,7 @@ age_contin <- suppressMessages(read_csv(here(
     age = (DOB %--% admin_date) / years (1)
   ) %>%
   bind_cols(getGroups(.$age)) %>% 
-  rename(group = ...32) %>% 
+  rename(group = ...6) %>% 
   select(ID, age, group)
 
 # Next block reads an input containing multiple raw score columns per person,
@@ -118,7 +120,7 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 4, 
-  terms = 4, 
+  terms = 6, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")

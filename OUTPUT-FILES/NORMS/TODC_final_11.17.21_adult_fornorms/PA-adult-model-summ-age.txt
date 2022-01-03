@@ -1,0 +1,6 @@
+[1] "PAadult age model summary"
+User specified solution: 6 terms
+R-Square Adj. = 0.979484
+Final regression model: raw ~ L2 + L3 + L4 + L1A4 + L2A4 + L3A4
+Regression function: raw ~ -56.31260311 + (0.05149198084*L2) + (-0.0006403711174*L3) + (2.254240536e-06*L4) + (-8.394401679e-08*L1A4) + (1.507137756e-09*L2A4) + (-6.760582813e-12*L3A4)
+Raw Score RMSE = 0.86533
