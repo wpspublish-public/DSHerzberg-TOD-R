@@ -22,12 +22,12 @@ hist(hist_data$raw,
      breaks=30)
 
 hist(input$age, 
-     main="TOD-S age",
+     main="TOD-S age for qrf_sum",
      freq = TRUE,
      xlab="age", 
      border="blue", 
      col="green",
-     xlim=c(0, 100),
+     xlim=c(0, 20),
      las=1, 
      breaks=20)
 

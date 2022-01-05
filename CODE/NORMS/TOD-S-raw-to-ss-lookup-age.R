@@ -8,15 +8,14 @@ suppressMessages(library(lubridate))
 # age), raw score
 
 # General tokens
-combined_score_to_norm_file_name <- "TODC_adult_TODSfinal.csv"
-file_name_stem <- "TODC_adult_TODS"
+combined_score_to_norm_file_name <- "TODSfinal_fornorms-v2.csv"
+file_name_stem <- "TODSfinal_fornorms-v2"
 input_file_path <- "INPUT-FILES/NORMS/TODSfinal_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODSfinal_fornorms/"
 
 # Tokens for score names
 
-# scores <- c("lw_ability", "pv_ability", "wrf_sum", "qrf_sum")
-scores <- c("lw_ability", "pv_ability", "qrf_sum")
+scores <- c("lw_ability", "pv_ability", "wrf_sum", "qrf_sum")
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
@@ -130,8 +129,21 @@ tab_names <- c(
   # "11.6-11.11", "12.0-12.5", "12.6-12.11",
   # "13.0-13.11", "14.0-14.11", "15.0-16.11", "17.0-18.11"
   # todC adult runs below this line
-  "18.0-23.11", "24.0-39.11", "40.0-49.11", "50.0-59.11", 
-  "60.0-69.11", "70.0-89.11"
+  # "18.0-23.11", "24.0-39.11", "40.0-49.11", "50.0-59.11", 
+  # "60.0-69.11", "70.0-89.11"
+  # todE-todC combined runs below this line
+  "5.0-5.3", "5.4-5.7", "5.8-5.11", 
+  "6.0-6.3", "6.4-6.7", "6.8-6.11", 
+  "7.0-7.3", "7.4-7.7", "7.8-7.11",
+  "8.0-8.5", "8.6-8.11", 
+  "9.0-9.5", "9.6-9.11",
+  "10.0-10.5", "10.6-10.11", 
+  "11.0-11.5", "11.6-11.11", 
+  "12.0-12.5", "12.6-12.11",
+  "13.0-13.11", 
+  "14.0-14.11", 
+  "15.0-16.11", 
+  "17.0-18.11"
   )
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
@@ -146,7 +158,14 @@ norms_list <- rawTable(
     # 12.75,
     # 13.5, 14.5, 16, 18.0
     # todC adult runs below this line
-    21, 32, 45, 55, 65, 80
+    # 21, 32, 45, 55, 65, 80
+    # todE-todC combined runs below this line
+    5.167, 5.5, 5.833,
+    6.167, 6.5, 6.833, 7.167, 7.5, 7.833, 8.25, 8.75,
+    9.25, 9.75,
+    10.25, 10.75, 11.25, 11.75, 12.25,
+    12.75,
+    13.5, 14.5, 16, 18.0
   ), 
   model, 
   step = 1, 

@@ -1,0 +1,119 @@
+Hi Dave,
+The attached file contains the TOD-S tests for TOD-E and TOD-C grades 1-12 as we discussed. Please run both age and grade norms.
+LV and PW span the full age/grade range described below
+WRF norms should go from kinder fall thru 1st spring, and age 5.0-5.3 thru 7.8-7.11
+QRF norms should go from 2nd grade fall thru 12th grade spring, and age 7.0-7.3 thru 17.0-18.11
+ 
+Please create age based scores using the following agestrat output (we can change this if cNorm thinks there are better groupings at the younger ages):
+5.0-5.3
+5.4-5.7
+5.8-5.11
+6.0-6.3
+6.4-6.7
+6.8-6.11
+7.0-7.3
+7.4-7.7
+7.8-7.11
+8.0-8.5
+8.6-8.11
+9.0-9.5
+9.6-9.11
+10.0-10.5
+10.6-10.11
+11.0-11.5
+11.6-11.11
+12.0-12.5
+12.6-12.11
+13.0-13.11
+14.0-14.11
+15.0-16.11
+17.0-18.11
+ 
+Please create grade based scores for kinder thru 12th grade based on the “gradesemester” variable (this will only be part of the sample).
+1
+=
+kinder fall
+2
+=
+kinder spring
+3
+=
+1st fall
+4
+=
+1st spring
+5
+=
+2nd fall
+6
+=
+2nd spring
+7
+=
+3rd fall
+8
+=
+3rd spring
+9
+=
+4th fall
+10
+=
+4th spring
+11
+=
+5th fall
+12
+=
+5th spring
+13
+=
+6th fall
+14
+=
+6th spring
+15
+=
+7th fall
+16
+=
+7th spring
+17
+=
+8th fall
+18
+=
+8th spring
+19
+=
+9th fall
+20
+=
+9th spring
+21
+=
+10th fall
+22
+=
+10th spring
+23
+=
+11th fall
+24
+=
+11th spring
+25
+=
+12th fall
+26
+=
+12th spring
+ 
+ 
+Raw score/ability score ranges are:
+LW_ability: 29 - 168
+PV_ability: 29 - 173
+wrf_sum: 0 - 68
+qrf_sum: 0 - 93
+ 
+ 
