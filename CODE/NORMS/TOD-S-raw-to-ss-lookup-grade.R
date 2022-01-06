@@ -8,16 +8,14 @@ suppressMessages(library(lubridate))
 # grade), raw score
 
 # General tokens
-combined_score_to_norm_file_name <- "TODC_grade1_12_TODSfinal.csv"
-file_name_stem <- "TODC_grade1_12_TODS"
+combined_score_to_norm_file_name <- "TODSfinal_fornorms-v2.csv"
+file_name_stem <- "TODSfinal_fornorms-v2"
 input_file_path <- "INPUT-FILES/NORMS/TODSfinal_fornorms/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODSfinal_fornorms/"
 
 # Tokens for score names
 
-# scores <- c("lw_ability", "pv_ability", "wrf_sum", "qrf_sum")
-scores <- c("lw_ability", "pv_ability", "qrf_sum")
-# scores <- c("lw_ability", "pv_ability", "wrf_sum")
+scores <- c("lw_ability", "pv_ability", "wrf_sum", "qrf_sum")
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
@@ -79,7 +77,10 @@ map(
 
 input <- suppressMessages(read_csv(here(str_c(
   input_file_path, score_to_norm_file_name
-))))
+# ))))
+      # run grade-filtering if needed.)
+)))) %>%
+  filter(group > 4)
 
 # Alex Lenhard's recommended approach with cNORM
 
@@ -100,24 +101,53 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 4, 
-  terms = 3, 
+  terms = 4, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
 plot(model, "series", end = 8)
 checkConsistency(model)
 
-# Token for names of output age groups
+# Token for names of output grade groups
 tab_names <- c(
   # todE runs below this line
   # "K-Fall", "K-Spring", "1-Fall", "1-Spring", 
   # "2-Fall", "2-Spring"
   # todC gr1-12 runs below this line
-  "1-Fall", "1-Spring",
+  # "1-Fall", "1-Spring",
+  # "2-Fall", "2-Spring",
+  # "3-Fall", "3-Spring",
+  # "4-Fall", "4-Spring",
+  # "5-Fall", "5-Spring", 
+  # "6-Fall", "6-Spring",
+  # "7-Fall", "7-Spring",
+  # "8-Fall", "8-Spring",
+  # "9-Fall", "9-Spring",
+  # "10-Fall", "10-Spring",
+  # "11-Fall", "11-Spring",
+  # "12-Fall", "12-Spring"
+  # todE-todC combined runs below this line
+  # "K-Fall", "K-Spring", 
+  # "1-Fall", "1-Spring",
+  # "2-Fall", "2-Spring",
+  # "3-Fall", "3-Spring",
+  # "4-Fall", "4-Spring",
+  # "5-Fall", "5-Spring", 
+  # "6-Fall", "6-Spring",
+  # "7-Fall", "7-Spring",
+  # "8-Fall", "8-Spring",
+  # "9-Fall", "9-Spring",
+  # "10-Fall", "10-Spring",
+  # "11-Fall", "11-Spring",
+  # "12-Fall", "12-Spring"
+  # todE-todC combined wrf-sum runs below this line
+  # "K-Fall", "K-Spring", 
+  # "1-Fall", "1-Spring"
+  # todE-todC combined qrf-sum runs below this line
   "2-Fall", "2-Spring",
   "3-Fall", "3-Spring",
   "4-Fall", "4-Spring",
-  "5-Fall", "5-Spring", 
+  "5-Fall", "5-Spring",
   "6-Fall", "6-Spring",
   "7-Fall", "7-Spring",
   "8-Fall", "8-Spring",
@@ -144,8 +174,14 @@ norms_list <- rawTable(
     # todE runs below this line
     # 1:6
     # todC gr1-12 runs below this line
-    3:26
-), 
+    # 3:26
+    # todE-todC combined runs below this line
+    # 1:26
+    # todE-todC combined wrf-sum runs below this line
+    # 1:4
+    # todE-todC combined qrf-sum runs below this line
+    5:26
+  ), 
   model, 
   step = 1, 
   minNorm = 40, 

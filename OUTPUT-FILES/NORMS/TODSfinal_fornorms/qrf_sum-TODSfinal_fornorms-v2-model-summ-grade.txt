@@ -1,0 +1,6 @@
+[1] "qrf_sum grade model summary"
+User specified solution: 5 terms
+R-Square Adj. = 0.974638
+Final regression model: raw ~ L1 + A1 + A2 + A3 + L3A2
+Regression function: raw ~ -62.33108535 + (0.6335819165*L1) + (5.05530432*A1) + (-0.2094547971*A2) + (0.002833129654*A3) + (2.30783892e-08*L3A2)
+Raw Score RMSE = 2.55376

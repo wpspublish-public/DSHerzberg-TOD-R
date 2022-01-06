@@ -1,0 +1,6 @@
+[1] "wrf_sum grade model summary"
+User specified solution: 2 terms
+R-Square Adj. = 0.967296
+Final regression model: raw ~ L3 + L1A1
+Regression function: raw ~ -8.233094096 + (1.477337745e-05*L3) + (0.04199957349*L1A1)
+Raw Score RMSE = 1.79295

@@ -19,7 +19,7 @@ scores <- c("lw_ability", "pv_ability", "wrf_sum", "qrf_sum")
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "qrf_sum"
+score_to_norm_stem <- "lw_ability"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -86,10 +86,17 @@ map(
 
 # read single score input.
 
-input <- suppressMessages(read_csv(here(str_c(
-  input_file_path, score_to_norm_file_name
-))))
-
+input <- suppressMessages(read_csv(here(
+  str_c(input_file_path, score_to_norm_file_name)
+)))
+#       # run age-filtering if needed.)
+  # )))) %>%
+  #   filter(age > 7) %>%
+  #   select(-group) %>%
+  #   mutate(group =
+  #            getGroups(.$age)) %>% 
+  # relocate(group, .after = "age")
+  
 # Alex Lenhard's recommended approach with cNORM
 
 # Use the all-in-one cnorm() function to create the model.
@@ -109,7 +116,7 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 4, 
-  terms = 4, 
+  terms = 3, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
@@ -132,19 +139,34 @@ tab_names <- c(
   # "18.0-23.11", "24.0-39.11", "40.0-49.11", "50.0-59.11", 
   # "60.0-69.11", "70.0-89.11"
   # todE-todC combined runs below this line
-  "5.0-5.3", "5.4-5.7", "5.8-5.11", 
-  "6.0-6.3", "6.4-6.7", "6.8-6.11", 
+  "5.0-5.3", "5.4-5.7", "5.8-5.11",
+  "6.0-6.3", "6.4-6.7", "6.8-6.11",
   "7.0-7.3", "7.4-7.7", "7.8-7.11",
-  "8.0-8.5", "8.6-8.11", 
+  "8.0-8.5", "8.6-8.11",
   "9.0-9.5", "9.6-9.11",
-  "10.0-10.5", "10.6-10.11", 
-  "11.0-11.5", "11.6-11.11", 
+  "10.0-10.5", "10.6-10.11",
+  "11.0-11.5", "11.6-11.11",
   "12.0-12.5", "12.6-12.11",
-  "13.0-13.11", 
-  "14.0-14.11", 
-  "15.0-16.11", 
+  "13.0-13.11",
+  "14.0-14.11",
+  "15.0-16.11",
   "17.0-18.11"
-  )
+  # todE-todC combined wrf-sum runs below this line
+  # "5.0-5.3", "5.4-5.7", "5.8-5.11",
+  # "6.0-6.3", "6.4-6.7", "6.8-6.11",
+  # "7.0-7.3", "7.4-7.7", "7.8-7.11"
+  # todE-todC combined qrf-sum runs below this line
+  # "7.0-7.3", "7.4-7.7", "7.8-7.11",
+  # "8.0-8.5", "8.6-8.11",
+  # "9.0-9.5", "9.6-9.11",
+  # "10.0-10.5", "10.6-10.11",
+  # "11.0-11.5", "11.6-11.11",
+  # "12.0-12.5", "12.6-12.11",
+  # "13.0-13.11",
+  # "14.0-14.11",
+  # "15.0-16.11",
+  # "17.0-18.11"
+)
 
 # Prepare a list of data frames, each df is raw-to-ss lookup table for an age group.
 norms_list <- rawTable(
@@ -166,6 +188,18 @@ norms_list <- rawTable(
     10.25, 10.75, 11.25, 11.75, 12.25,
     12.75,
     13.5, 14.5, 16, 18.0
+    # todE-todC combined wrf-sum runs below this line
+    # 5.167, 5.5, 5.833,
+    # 6.167, 6.5, 6.833, 
+    # 7.167, 7.5, 7.833
+    # todE-todC combined qrf-sum runs below this line
+    # 7.167, 7.5, 7.833, 
+    # 8.25, 8.75,
+    # 9.25, 9.75,
+    # 10.25, 10.75, 
+    # 11.25, 11.75, 
+    # 12.25, 12.75,
+    # 13.5, 14.5, 16, 18.0
   ), 
   model, 
   step = 1, 
