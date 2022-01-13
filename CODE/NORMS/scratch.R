@@ -75,3 +75,9 @@ write_csv(temp2,
 
 # gradestrat for pflsum2
 # 13 14 15 16 17 18 19 20 21 22 23 24 25 26
+
+temp_out <- temp1 %>% 
+  filter(is.na(Noweight)) %>% 
+  select(-Noweight)
+
+sort(unique(temp_out$Age))
