@@ -81,3 +81,8 @@ temp_out <- temp1 %>%
   select(-Noweight)
 
 sort(unique(temp_out$Age))
+
+write_csv(temp_out,
+          here(
+            str_c(input_file_path, "TOD-psychometrica.csv")
+          ))
