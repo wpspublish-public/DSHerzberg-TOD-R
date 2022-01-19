@@ -147,106 +147,28 @@ write_csv(all_lookup_basic,
           ),
           na = '')
 
-############## START HERE
-
 # GENERATE PRINT FORMAT RAW-TO-T LOOKUP TABLE -----------------------------------------
 
 all_lookup_print <- all_lookup_basic %>% 
-pivot_longer(contains("nt"), names_to = "scale", values_to = "NT") %>% 
+  pivot_longer(contains("_t"), names_to = "scale", values_to = "Tscore") %>% 
   arrange(scale) %>% 
   group_by(scale) %>%
-  complete(NT = 40:80) %>% 
-  group_by(scale, NT) %>%
+  complete(Tscore = 40:80) %>% 
+  group_by(scale, Tscore) %>%
   filter(n() == 1 | n() > 1 & row_number()  %in% c(1, n())) %>%
   summarize(raw = str_c(raw, collapse = '--')) %>%
   mutate(across(raw, ~ case_when(is.na(.x) ~ '-', TRUE ~ .x))) %>%
-  arrange(scale, desc(NT)) %>% 
+  arrange(scale, desc(Tscore)) %>% 
   pivot_wider(names_from = scale,
               values_from = raw) %>% 
-  rename_with(~ str_replace_all(., "_nt", "_raw")) %>%
-  rename(T_score = NT) %>% 
+  rename_with(~ str_replace_all(., "_t", "_raw")) %>%
+  rename(T_score = Tscore) %>% 
   filter(!is.na(T_score))
 
 write_csv(all_lookup_print,
-          here(str_c(
-            "OUTPUT-FILES/TABLES/",
-            str_c("raw-T-lookup-print",
-                  age_range_name,
-                  form_name,
-                  sep = "-"),
-            ".csv"
-          )),
+          here(
+            str_c(output_file_path, input_file_stem,
+                  "-raw-T-lookup-print.csv")
+          ),
           na = '')
 
-# RAW SCORE DESCRIPTIVES AND DEMOGRAPHIC COUNTS -----------------------------------------
-
-assign(
-  str_c("raw_score_desc", age_range_name, form_name, sep = "_"),
-  get(str_c("data", age_range_name, form_name, sep = "_")) %>%
-    select(contains("raw")) %>%
-    describe(fast = TRUE) %>%
-    rownames_to_column(var = "scale") %>%
-    select(scale, n, mean, sd) %>%
-    mutate(across(c(mean, sd), ~ (round(
-      ., 2
-    ))))
-)
-
-write_csv(get(str_c(
-  "raw_score_desc", age_range_name, form_name, sep = "_"
-)),
-here(str_c(
-  "OUTPUT-FILES/TABLES/",
-  str_c("raw-score-desc",
-        age_range_name,
-        form_name,
-        sep = "-"),
-  ".csv"
-)),
-na = '')
-
-var_order <- c("age_range", "gender", "educ", "ethnic", "region")
-
-cat_order <- c(
-  # age_range
-  str_sort(unique(get(str_c("data", age_range_name, form_name, sep = "_"))$age_range)),
-  # gender
-  str_sort(unique(get(str_c("data", age_range_name, form_name, sep = "_"))$gender), 
-           decreasing = TRUE),
-  # educ
-  "no_HS", "HS_grad", "some_college", "BA_plus" , 
-  # ethnic
-  "hispanic", "asian", "black", "white", "other",
-  # Region
-  "northeast", "midwest", "south", "west")
-
-assign(
-  str_c("demo_counts", age_range_name, form_name, sep = "_"),
-  get(str_c("data", age_range_name, form_name, sep = "_")) %>%
-    select(all_of(var_order)) %>%
-    pivot_longer(everything(), names_to = "variable", values_to = "category") %>%
-    group_by(variable, category) %>%
-    count(variable, category) %>%
-    arrange(match(variable, var_order), match(category, cat_order)) %>%
-    ungroup() %>%
-    mutate(across(
-      variable,
-      ~
-        case_when(lag(.x) == .x ~ NA_character_,
-                  TRUE ~ .x)
-    ))
-)
-
-# write demo counts table to .csv
-write_csv(get(str_c(
-  "demo_counts", age_range_name, form_name, sep = "_"
-)),
-here(str_c(
-  "OUTPUT-FILES/TABLES/",
-  str_c("demo-counts",
-        age_range_name,
-        form_name,
-        sep = "-"),
-  ".csv"
-)),
-na = '')
