@@ -7,12 +7,15 @@ suppressMessages(library(bestNormalize))
 
 input_file_path  <- "INPUT-FILES/NORMS/TODEratingscales/"
 input_file_name <- "TODEratingscales.csv"
+input_file_stem <- "TODEratingscales"
+output_file_path  <- "OUTPUT-FILES/NORMS/TODEratingscales/"
+
 
 # scale_prefix <- "TODE"
 # scale_suffix <- c("parent_tot", "teacher_tot")
 # age_range_name <- "child"
 # form_name <- "parent"
-# all_raw_range <- 10:200
+all_raw_range <- 26:108
 # TOT_raw_lower_bound <- 50
 # subscale_raw_upper_bound <- 40
 t_score_lower_bound <- 40
@@ -40,154 +43,111 @@ norm_input_teacher <- input_teacher %>%
   as_vector() %>%
   set_names(NULL)
 
-
-
-# DETERMINE BEST NORMALIZATION MODEL, CALC NORMALIZED T-SCORES PER CASE  ------------------------
+# DETERMINE BEST NORMALIZATION MODEL
 
 set.seed(12345)
-TOT_nz_obj <- bestNormalize(norm_input_parent)
-TOT_nz_obj$chosen_transform
-chosen_transform <- class(TOT_nz_obj$chosen_transform)[1]
+TOT_nz_obj_parent <- bestNormalize(norm_input_parent)
+TOT_nz_obj_parent$chosen_transform
+chosen_transform_parent <- class(TOT_nz_obj_parent$chosen_transform)[1]
 
-ntScore_perCase <- sqrt_x(norm_input_parent) %>%
+TOT_nz_obj_teacher <- bestNormalize(norm_input_teacher)
+TOT_nz_obj_teacher$chosen_transform
+chosen_transform_teacher <- class(TOT_nz_obj_teacher$chosen_transform)[1]
+
+# CALC NORMALIZED T-SCORES PER CASE, write out .csv  ------------------------
+  
+ntScore_perCase_parent <- get(chosen_transform_parent)(norm_input_parent) %>%
   pluck("x.t") %>%
   tibble() %>%
   bind_cols(input_parent) %>%
   rename(TODEparent_tot_nz = ".") %>%
-  relocate(TODEparent_tot_nz, .after = TODEparent_tot) %>%
+  select(ID, TODEparent_tot_nz) %>%
   mutate(across(TODEparent_tot_nz,
                 ~
                   (round(. * 10) + 50))) %>% 
   mutate(across(TODEparent_tot_nz,
                 ~
-                    case_when(
-                      . < t_score_lower_bound ~ t_score_lower_bound,
-                      . > t_score_upper_bound ~ t_score_upper_bound,
-                      TRUE ~ .
-                    ) %>%
+                  case_when(
+                    . < t_score_lower_bound ~ t_score_lower_bound,
+                    . > t_score_upper_bound ~ t_score_upper_bound,
+                    TRUE ~ .
+                  ) %>%
                   as.integer)) %>% 
   rename(TODEparent_tot_nt = TODEparent_tot_nz)
 
-########## START HERE i've gotten all the way to NT scores per case for parent
-#scale, now recreate that for teach scale, better yet, do it in one run for both
-#teacher adn parent by mapping over a list
-
-
-
-# mutate(
-#   across(
-#     TODEparent_tot_nz,
-#     ~
-#       (round(. * 10) + 50) %>%
-#       {
-#         case_when(
-#           . < t_score_lower_bound ~ t_score_lower_bound,
-#           . > t_score_upper_bound ~ t_score_upper_bound,
-#           TRUE ~ .
-#         )
-#       } %>%
-#       as.integer))
-
-
-ntScore_perCase <- nzScore_perCase %>%
-  mutate(across(everything(),
+ntScore_perCase_teacher <- get(chosen_transform_teacher)(norm_input_teacher) %>%
+  pluck("x.t") %>%
+  tibble() %>%
+  bind_cols(input_teacher) %>%
+  rename(TODEteacher_tot_nz = ".") %>%
+  select(ID, TODEteacher_tot_nz) %>%
+  mutate(across(TODEteacher_tot_nz,
                 ~
-                  (round(. * 10) + 50) %>%
-                  {
-                    case_when(
-                      . < t_score_lower_bound ~ t_score_lower_bound,
-                      . > t_score_upper_bound ~ t_score_upper_bound,
-                      TRUE ~ .
-                    )
-                  } %>%
-                  as.integer)) %>%
-  rename_with( ~ str_c(scale_prefix, str_replace_all(., "nz", "nt")))
+                  (round(. * 10) + 50))) %>% 
+  mutate(across(TODEteacher_tot_nz,
+                ~
+                  case_when(
+                    . < t_score_lower_bound ~ t_score_lower_bound,
+                    . > t_score_upper_bound ~ t_score_upper_bound,
+                    TRUE ~ .
+                  ) %>%
+                  as.integer)) %>% 
+  rename(TODEteacher_tot_nt = TODEteacher_tot_nz)
 
-assign(
-  str_c("data", age_range_name, form_name, "nt", sep = "_"),
-  get(str_c("data", age_range_name, form_name, sep = "_")) %>% bind_cols(ntScore_perCase) %>%
-    mutate(clin_status = 'typ',
-           clin_dx = NA) %>%
-    select(
-      ID:region,
-      clin_status,
-      clin_dx,
-      contains("raw"),
-      contains("nt"),
-      everything()
-    )
-)
+output_ntScore_perCase <- list(input_all, ntScore_perCase_parent, ntScore_perCase_teacher) %>% 
+  reduce(left_join, by = c("ID"))
 
-write_csv(get(str_c(
-  "data", age_range_name, form_name, "nt", sep = "_"
-)),
-here(str_c(
-  "OUTPUT-FILES/TABLES/",
-  str_c("nt-Scores-per-case",
-        age_range_name,
-        form_name,
-        sep = "-"),
-  ".csv"
-)),
-na = '')
+write_csv(output_ntScore_perCase,
+          here(
+            str_c(output_file_path, input_file_stem,
+                  "-ntScore-percase.csv")
+          ),
+          na = '')
 
-get(str_c("data", age_range_name, form_name, "nt", sep = "_")) %>%
-  select(contains("TOT_nt")) %>%
-  as_vector() %>%
-  MASS::truehist(.,
-                 h = 1,
-                 prob = FALSE,
-                 xlab = "TOT_nt")
-
-# GENERATE BASIC FORMAT RAW-TO-T LOOKUP TABLE -----------------------------------------
+# GENERATE BASIC FORMAT RAW-TO-T LOOKUP TABLE, write to .csv -----------------------------------------
 
 all_lookup_basic <- map(
-  scale_suffix,
-  ~ get(str_c(
-    "data", age_range_name, form_name, "nt", sep = "_"
-  )) %>%
-    group_by(!!sym(str_c(
-      scale_prefix, .x, "_raw"
-    ))) %>%
-    summarize(!!sym(str_c(
-      scale_prefix, .x, "_nt"
-    )) := min(!!sym(
-      str_c(scale_prefix, .x, "_nt")
-    ))) %>%
-    complete(!!sym(str_c(
-      scale_prefix, .x, "_raw"
-    )) := all_raw_range) %>%
-    fill(!!sym(str_c(
-      scale_prefix, .x, "_nt"
-    )),
-    .direction = "downup") %>%
-    rename(raw = !!sym(str_c(
-      scale_prefix, .x, "_raw"
-    ))) 
+  c("TODEparent_tot", "TODEteacher_tot"), 
+  ~
+  output_ntScore_perCase %>% 
+  group_by(!!sym(.x)) %>% 
+  summarize(!!sym(str_c(.x, "_nt")) := min(!!sym(str_c(.x, "_nt")))) %>% 
+  complete(!!sym(.x) := all_raw_range) %>% 
+  drop_na(!!sym(.x)) %>% 
+  fill(!!sym(str_c(.x, "_nt")), .direction = "downup") %>% 
+  rename(raw = !!sym(.x))
 ) %>%
   reduce(left_join,
          by = 'raw') %>% 
-mutate(across(
-  contains(scale_suffix[-length(scale_suffix)]),
-  ~ case_when(raw > subscale_raw_upper_bound ~ NA_integer_,
-              TRUE ~ .x)
-),
-across(
-  contains(scale_suffix[length(scale_suffix)]),
-  ~ case_when(raw < TOT_raw_lower_bound ~ NA_integer_,
-              TRUE ~ .x)
-))
+  rename(
+    parent_t = TODEparent_tot_nt,
+    teacher_t = TODEteacher_tot_nt
+  ) %>% 
+  mutate(
+    across(
+      parent_t,
+      ~
+        case_when(
+          raw %in% c(27:108) ~ .x,
+          TRUE ~ NA_integer_)
+    ), 
+    across(
+      teacher_t,
+      ~
+        case_when(
+          raw %in% c(26:104) ~ .x,
+          TRUE ~ NA_integer_)
+    ), 
+  )
 
 write_csv(all_lookup_basic,
-here(str_c(
-  "OUTPUT-FILES/TABLES/",
-  str_c("raw-T-lookup",
-        age_range_name,
-        form_name,
-        sep = "-"),
-  ".csv"
-)),
-na = '')
+          here(
+            str_c(output_file_path, input_file_stem,
+                  "-raw-T-lookup-basic.csv")
+          ),
+          na = '')
+
+############## START HERE
 
 # GENERATE PRINT FORMAT RAW-TO-T LOOKUP TABLE -----------------------------------------
 
