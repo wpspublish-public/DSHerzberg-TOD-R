@@ -1,0 +1,6 @@
+[1] "TODparent_tot age model summary"
+User specified solution: 3 terms
+R-Square Adj. = 0.979713
+Final regression model: raw ~ L3 + L4 + A1
+Regression function: raw ~ 25.13643848 + (0.0005716076053*L3) + (-5.307797324e-06*L4) + (-0.7143381073*A1)
+Raw Score RMSE = 2.15993
