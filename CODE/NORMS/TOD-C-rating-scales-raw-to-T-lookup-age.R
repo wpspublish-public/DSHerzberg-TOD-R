@@ -18,7 +18,7 @@ scores <- c("TODparent_tot", "TODteacher_tot", "TODself_tot")
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "TODparent_tot"
+score_to_norm_stem <- "TODself_tot"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
