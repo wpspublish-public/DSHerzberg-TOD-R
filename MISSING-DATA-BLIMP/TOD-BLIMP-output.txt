@@ -19,6 +19,9 @@
 ---------------------------------------------------------------------------
 
 
+NOTE: Setting number of iterations to 2
+      to match number of chains requested.
+
 ALGORITHMIC OPTIONS SPECIFIED:
 
   Imputation method:                 Fully Bayesian model-based
@@ -29,129 +32,77 @@ ALGORITHMIC OPTIONS SPECIFIED:
   Prior for residual variance:       Zero sum of squares, df = -2 (PRIOR2)
   Prior for covariate model:         Unit sum of squares, df = 2 (XPRIOR1)
   Diagnostics:                       No potential scale reduction (NOPSR)
+  Chain Starting Values:             Same starting values
   Imputation format:                 Separate files (SEPARATE)
 
 ---------------------------------------------------------------------------
 
 DATA INFORMATION:
 
-  Sample Size:            472023
-  Level-2 Clusters:       1611
+  Sample Size:            4590
+  Level-2 Clusters:       30
   Missing Data Code:      999.000  
   Missing Data Rates:
 
-              response =  1.11%
+                 score =  4.34%
 
 ---------------------------------------------------------------------------
 
 VARIABLES IN IMPUTATION MODEL:
 
   Level-2 identifier:     id
-  Fixed covariates:       itemnum#2 itemnum#3 itemnum#4 itemnum#5 itemnum#6
-                          itemnum#7 itemnum#8 itemnum#9
-                          itemnum#10 itemnum#11 itemnum#12 itemnum#13
-                          itemnum#14 itemnum#15 itemnum#16 itemnum#17
-                          itemnum#18 itemnum#19 itemnum#20
-                          itemnum#21 itemnum#22 itemnum#23 itemnum#24
-                          itemnum#25 itemnum#26 itemnum#27
-                          itemnum#28 itemnum#29 itemnum#30 itemnum#31
-                          itemnum#32 itemnum#33 itemnum#34
-                          itemnum#35 itemnum#36 itemnum#37 itemnum#38
-                          itemnum#39 itemnum#40 itemnum#41
-                          itemnum#42 itemnum#43 itemnum#44 itemnum#45
-                          itemnum#46 itemnum#47 itemnum#48
-                          itemnum#49 itemnum#50 itemnum#51 itemnum#52
-                          itemnum#53 itemnum#54 itemnum#55 itemnum#56
-                          itemnum#57 itemnum#58 itemnum#59
-                          itemnum#60 itemnum#61 itemnum#62 itemnum#63
-                          itemnum#64 itemnum#65 itemnum#66
-                          itemnum#67 itemnum#68 itemnum#69 itemnum#70
-                          itemnum#71 itemnum#72 itemnum#73
-                          itemnum#74 itemnum#75 itemnum#76 itemnum#77
-                          itemnum#78 itemnum#79 itemnum#80
-                          itemnum#81 itemnum#82 itemnum#83 itemnum#84
-                          itemnum#85 itemnum#86 itemnum#87
-                          itemnum#88 itemnum#89 itemnum#90 itemnum#91
-                          itemnum#92 itemnum#93 itemnum#94 itemnum#95
-                          itemnum#96 itemnum#97 itemnum#98
-                          itemnum#99 itemnum#100 itemnum#101
-                          itemnum#102 itemnum#103 itemnum#104 itemnum#105
-                          itemnum#106 itemnum#107 itemnum#108
-                          itemnum#109 itemnum#110 itemnum#111
-                          itemnum#112 itemnum#113 itemnum#114
-                          itemnum#115 itemnum#116 itemnum#117 itemnum#118
-                          itemnum#119 itemnum#120 itemnum#121
-                          itemnum#122 itemnum#123 itemnum#124
-                          itemnum#125 itemnum#126 itemnum#127
-                          itemnum#128 itemnum#129 itemnum#130 itemnum#131
-                          itemnum#132 itemnum#133 itemnum#134
-                          itemnum#135 itemnum#136 itemnum#137
-                          itemnum#138 itemnum#139 itemnum#140
-                          itemnum#141 itemnum#142 itemnum#143 itemnum#144
-                          itemnum#145 itemnum#146 itemnum#147
-                          itemnum#148 itemnum#149 itemnum#150
-                          itemnum#151 itemnum#152 itemnum#153
-                          itemnum#154 itemnum#155 itemnum#156 itemnum#157
-                          itemnum#158 itemnum#159 itemnum#160
-                          itemnum#161 itemnum#162 itemnum#163
-                          itemnum#164 itemnum#165 itemnum#166
-                          itemnum#167 itemnum#168 itemnum#169 itemnum#170
-                          itemnum#171 itemnum#172 itemnum#173
-                          itemnum#174 itemnum#175 itemnum#176
-                          itemnum#177 itemnum#178 itemnum#179
-                          itemnum#180 itemnum#181 itemnum#182 itemnum#183
-                          itemnum#184 itemnum#185 itemnum#186
-                          itemnum#187 itemnum#188 itemnum#189
-                          itemnum#190 itemnum#191 itemnum#192
-                          itemnum#193 itemnum#194 itemnum#195 itemnum#196
-                          itemnum#197 itemnum#198 itemnum#199
-                          itemnum#200 itemnum#201 itemnum#202
-                          itemnum#203 itemnum#204 itemnum#205
-                          itemnum#206 itemnum#207 itemnum#208 itemnum#209
-                          itemnum#210 itemnum#211 itemnum#212
-                          itemnum#213 itemnum#214 itemnum#215
-                          itemnum#216 itemnum#217 itemnum#218
-                          itemnum#219 itemnum#220 itemnum#221 itemnum#222
-                          itemnum#223 itemnum#224 itemnum#225
-                          itemnum#226 itemnum#227 itemnum#228
-                          itemnum#229 itemnum#230 itemnum#231
-                          itemnum#232 itemnum#233 itemnum#234 itemnum#235
-                          itemnum#236 itemnum#237 itemnum#238
-                          itemnum#239 itemnum#240 itemnum#241
-                          itemnum#242 itemnum#243 itemnum#244
-                          itemnum#245 itemnum#246 itemnum#247 itemnum#248
-                          itemnum#249 itemnum#250 itemnum#251
-                          itemnum#252 itemnum#253 itemnum#254
-                          itemnum#255 itemnum#256 itemnum#257
-                          itemnum#258 itemnum#259 itemnum#260 itemnum#261
-                          itemnum#262 itemnum#263 itemnum#264
-                          itemnum#265 itemnum#266 itemnum#267
-                          itemnum#268 itemnum#269 itemnum#270
-                          itemnum#271 itemnum#272 itemnum#273 itemnum#274
-                          itemnum#275 itemnum#276 itemnum#277
-                          itemnum#278 itemnum#279 itemnum#280
-                          itemnum#281 itemnum#282 itemnum#283
-                          itemnum#284 itemnum#285 itemnum#286 itemnum#287
-                          itemnum#288 itemnum#289 itemnum#290
-                          itemnum#291 itemnum#292 itemnum#293
-  Missing outcome:        response (ordinal)
+  Fixed covariates:       item#2 item#3 item#4 item#5 item#6 item#7
+                          item#8 item#9 item#10 item#11 item#12
+                          item#13 item#14 item#15 item#16 item#17
+                          item#18 item#19 item#20 item#21 item#22
+                          item#23 item#24 item#25 item#26 item#27
+                          item#28 item#29 item#30 item#31 item#32
+                          item#33 item#34 item#35 item#36 item#37
+                          item#38 item#39 item#40 item#41 item#42
+                          item#43 item#44 item#45 item#46 item#47
+                          item#48 item#49 item#50 item#51
+                          item#52 item#53 item#54 item#55 item#56
+                          item#57 item#58 item#59 item#60 item#61
+                          item#62 item#63 item#64 item#65 item#66
+                          item#67 item#68 item#69 item#70 item#71
+                          item#72 item#73 item#74 item#75 item#76
+                          item#77 item#78 item#79 item#80 item#81
+                          item#82 item#83 item#84 item#85 item#86
+                          item#87 item#88 item#89 item#90
+                          item#91 item#92 item#93 item#94 item#95
+                          item#96 item#97 item#98 item#99 item#100
+                          item#101 item#102 item#103 item#104
+                          item#105 item#106 item#107 item#108 item#109
+                          item#110 item#111 item#112 item#113
+                          item#114 item#115 item#116 item#117
+                          item#118 item#119 item#120 item#121 item#122
+                          item#123 item#124 item#125 item#126
+                          item#127 item#128 item#129 item#130
+                          item#131 item#132 item#133 item#134 item#135
+                          item#136 item#137 item#138 item#139
+                          item#140 item#141 item#142 item#143
+                          item#144 item#145 item#146 item#147 item#148
+                          item#149 item#150 item#151 item#152
+                          item#153
+  Missing outcome:        score (ordinal)
 
 ---------------------------------------------------------------------------
 
-ITERATION HISTORY:
+CHAIN HISTORY:
 
-Starting Burn-in on Fri Jul 17 06:57:24 2020
-    Burn-in iteration 750 completed on Fri Jul 17 07:48:22 2020
-    Burn-in iteration 1500 completed on Fri Jul 17 08:41:01 2020
-    Burn-in iteration 2250 completed on Fri Jul 17 09:33:31 2020
-    Burn-in iteration 3000 completed on Fri Jul 17 10:26:08 2020
-Burn-in completed on Fri Jul 17 10:26:08 2020
-    Imputation saved 1 on Fri Jul 17 10:26:14 2020
+Chain 1 online with seed of 158875 
+Chain 2 online with seed of 150835 
+    Chain 1 completed burn-in on Mon Jan 31 11:21:23 2022
+    Chain 1 saved imputation 1 on Mon Jan 31 11:23:39 2022
+Chain 1 finished on Mon Jan 31 11:23:39 2022
+    Chain 2 completed burn-in on Mon Jan 31 11:21:23 2022
+    Chain 2 saved imputation 2 on Mon Jan 31 11:23:40 2022
+Chain 2 finished on Mon Jan 31 11:23:40 2022
 
 ---------------------------------------------------------------------------
 
 VARIABLE ORDER IN SAVED DATA:
 
-   id itemnum response
+   id item score
 
 ---------------------------------------------------------------------------
