@@ -1,4 +1,4 @@
-DATA: TODE_RETEST_forBLIMP_rev1.28.22-BLIMP-input.csv;
+DATA: TOD-S.DATA.Retest_PV&LWforBLIMP-BLIMP-input.csv;
 VARIABLES: id item score;
 ORDINAL: score;
 NOMINAL: item;
@@ -7,8 +7,8 @@ CLUSTERID: id;
 MISSING: 999;
 MODEL: score ~ item;
 SEED: 90291;
-BURN: 6000;
+BURN: 1000;
 ITERATIONS: 1;
-# OPTIONS: psr;
 CHAINS: 2 processors 2;
-SAVE: separate = TOD-E-impute-2022-01-31-*.csv;
+NIMPS: 1;
+SAVE: separate = TOD-E*.csv;
