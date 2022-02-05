@@ -79,9 +79,13 @@ age_strat_dfs <-  print_lookup_list %>%
 # TASK: RENAME ELEMENTS OF INNER LIST SO THAT NAMES INCLUDE TEST AND AGESTRAT
 
 
+temp1 <-
+  map(test_names,
+      ~
+        age_strat_dfs %>%
+        pluck(.x, "5.0-5.3")) %>% 
+  set_names(test_names)
 
-
-         
 
 # # nested map calls
 # df_list <- input_files %>%
