@@ -2,6 +2,35 @@ suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 library(writexl)
 
+# The purpose of this script is to convert lookup tables from cNORM, that have been
+# modified by a project direct (e.g., hand-smoothing  has been applied) into print-format
+# lookup tables. Because there is a step of human-intervention outside cNORM, the process
+# cannot be automated as part of the basic cNORM workflow.
+
+# The input tables embody a hierarchy of data in which there is one table per test, and each
+# of these tables holds the lookup columns for all age strats. In addition, you lookup raw scores
+# in the left-ward column and read to the right to find the associated standard scores. here
+# is the head of one such table.
+
+# The desired output, on the other hand, reverses the two hiearchies described for the input
+# tables. In the output tables, there is one table per age strat, and each of these tables
+# holds the lookup columns for all tests. On the output tables, you look up raw scores
+# in the rightward columns and read to the left to find the associated standard scores. here
+# is the head of one such output table.
+
+# What the script accomplishes is a transformation of the essential hierarchies of the data(
+# structures of the input, and a reformating of the cells themselves. Recall that the lookup
+# relationship between raw scores and standard scores is many-to-one. That is, a range of raw scores
+# (multiple raw scores) can  map onto a single standard score, but each raw score on its own
+# maps onto one and only one standard score. Thus, the initial transformation of the work flow
+# is to collapse the incremental sequence of raw scores so that each standard score occupies
+# only a single row. Prior to this transformation, there could be duplicate standard score rows.
+# )
+
+# The second transformation is to invert the hierarchy of the inputs, in which each test is a 
+# container for all age strats. This hierarchy is reversed in the output, such that after
+# transformation, each age strat is a container for all tests.
+
 test_names <- c("lske", "lswe", "rhme", "rlne", "sege", "snwe")
 norm_type <- "age"
 input_file_path <- "PRINT-FORMAT-NORMS-TABLES/POST-cNORM-HAND-SMOOTHED-TABLES/"
