@@ -12,7 +12,7 @@ library(writexl)
 # in the left-ward column and read to the right to find the associated standard scores. here
 # is the head of one such table.
 
-# The desired output, on the other hand, reverses the two hiearchies described for the input
+# The desired output, on the other hand, reverses the two hierarchies described for the input
 # tables. In the output tables, there is one table per age strat, and each of these tables
 # holds the lookup columns for all tests. On the output tables, you look up raw scores
 # in the rightward columns and read to the left to find the associated standard scores. here
@@ -31,25 +31,32 @@ library(writexl)
 # container for all age strats. This hierarchy is reversed in the output, such that after
 # transformation, each age strat is a container for all tests.
 
-test_names <- c("lske", "lswe", "rhme", "rlne", "sege", "snwe")
+# In order to track the transformation of the hierarchy through the code, we
+# name objects with the suffix "ta" (test>>age) when they express the input hierarchy,
+# and we use the suffix "at" (age>>test) to label the output hierarchy, and "flat" to
+# denote an absence of either hierarchy.
+
+input_test_names <- c("lske", "lswe", "rhme", "rlne", "sege", "snwe")
+output_test_names <- c("LSK-E", "LSW-E", "RHY-E", "RLN-E", "SEG-E", "SPW-E")
+tod_form <- "TOD-E"
 norm_type <- "age"
 input_file_path <- "PRINT-FORMAT-NORMS-TABLES/POST-cNORM-HAND-SMOOTHED-TABLES/"
-# output_file_path <- "OUTPUT-FILES/NORMS/TODC_final_11.17.21_adult_fornorms/"
+output_file_path <- "PRINT-FORMAT-NORMS-TABLES/OUTPUT-FILES/"
 
-input_files <- map(
-  test_names,
+input_files_ta <- map(
+  input_test_names,
   ~
   suppressMessages(read_csv(here(str_c(
   input_file_path, .x, "-", norm_type, ".csv"
 ))))
 ) %>% 
-  set_names(test_names)
+  set_names(input_test_names)
 
 perc_ss_cols <- suppressMessages(read_csv(here(
   "PRINT-FORMAT-NORMS-TABLES/perc-ss-cols.csv"
 )))
 
-age_strat <- input_files[[1]] %>% 
+age_strat <- input_files_ta[[1]] %>% 
   select(-raw) %>% 
   names()
 
@@ -57,7 +64,7 @@ age_strat <- input_files[[1]] %>%
 # tables for each test, in the print format. Each table has lookup cols for all
 # age strats, each containing raw scores (or ranges) that are looked up against
 # the ss col on the left.
-print_lookup_list <- input_files %>%
+print_lookups_ta <- input_files_ta %>%
   map(~
         .x %>% 
   pivot_longer(contains("-"), names_to = "age_strat", values_to = "ss") %>%
@@ -75,14 +82,14 @@ print_lookup_list <- input_files %>%
   right_join(perc_ss_cols, by = "ss") %>%
   relocate(perc, .before = "ss")
 ) %>% 
-  set_names(test_names)
+  set_names(input_test_names)
 
 # age_strat_dfs is a transformation of print_lookup_list using nested map calls.
 # The table for each test of print_look_up_list is broken down into separate
 # look-up dfs, one for each age_strat col. So age_strat_dfs is a list of lists,
 # the top level being a list for each test, and the lower level being the list of
 # age-strat specific lookup tables within each test.
-age_strat_dfs <-  print_lookup_list %>%
+age_strat_cols_ta <-  print_lookups_ta %>%
   map( ~
          map(age_strat,
              ~
@@ -92,14 +99,14 @@ age_strat_dfs <-  print_lookup_list %>%
 
 
 # create vec of names (length = 54) of all crosssings of age_strat and test names.
-as_tn_names <- cross2(age_strat, test_names) %>% 
+age_test_names_flat <- cross2(age_strat, input_test_names) %>% 
   map_chr(str_c, collapse = "_")
 
 # flatten age_strat_dfs so that it is a one-level list holding all 54 single
 # age-strat lookups spread over the six tests. rename the list elements with
 # as_tn_names so that each element of the list can be identified.
-as_tn_dfs <- flatten(age_strat_dfs) %>% 
-  set_names(as_tn_names)
+age_test_cols_flat <- flatten(age_strat_cols_ta) %>% 
+  set_names(age_test_names_flat)
 
 # as_tn_dfs_per_age_strat reconsitutes a new two-level list from the flattened
 # as_tn_dfs. Whereas in age_strat dfs, the hierarchy was test --> age_strat, in
@@ -113,11 +120,13 @@ as_tn_dfs <- flatten(age_strat_dfs) %>%
 # age_strat) against the names of the flattened as_tn_dfs, and returns the
 # positions (indices) of any names that match the pattern. Passing those indices
 # to the single brackets returns the age_strat specific lookups, one for each
-# test, giving the new two-level list the desired hierarchy.
-as_tn_dfs_per_age_strat <- map(
+# test, giving the new two-level list the desired hierarchy. Note: now grep(),
+# code has been replaced with tidyverse code - yields identical results).
+age_test_cols_at <- map(
   age_strat,
   ~
-    as_tn_dfs[grep(.x, names(as_tn_dfs))]  
+    # age_test_cols_flat[grep(.x, names(age_test_cols_flat))] 
+  keep(age_test_cols_flat, str_detect(names(age_test_cols_flat), .x))
 )
 
 # tabbed_output transforms as_tn_dfs_per_age_strat into a list suitable for
@@ -134,21 +143,24 @@ as_tn_dfs_per_age_strat <- map(
 # the names of their corresponding age_strats, using set_names. Naming the list
 # elements here is crucial for output, as these names become the tabbed names on
 # the .xlsx output file.
-tabbed_output <- as_tn_dfs_per_age_strat %>% 
+print_lookups_at <- age_test_cols_at %>% 
   map(
     ~
       .x %>% 
       reduce(left_join, by = c("perc", "ss")) %>% 
-      rename_with(~ test_names, contains("-"))
+      rename_with(~ output_test_names, contains("-"))
   ) %>% 
   set_names(age_strat)
-
 
 # Write raw-to-ss lookups by agestrat into tabbed, xlsx workbook. To create
 # named tabs, supply writexl::write_xlsx() with a named list of dfs for each
 # tab, tab names will be the names of the list elements
-write_xlsx(tabbed_output,
-           here("print-format-table-age.xlsx"))
+write_xlsx(print_lookups_at,
+           here(
+             str_c(
+               output_file_path, tod_form, "-print-lookup-tables-", norm_type, ".xlsx"
+             ))
+           )
 
 
 
