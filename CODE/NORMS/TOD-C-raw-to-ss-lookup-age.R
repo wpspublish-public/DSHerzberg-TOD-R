@@ -8,20 +8,22 @@ suppressMessages(library(lubridate))
 # age), raw score
 
 # General tokens
-combined_score_to_norm_file_name <- "TODC_final_gr1_12_11.17.21_fornorms.csv"
-input_file_path <- "INPUT-FILES/NORMS/TODC_final_gr1_12_11.17.21_fornorms/"
-output_file_path <- "OUTPUT-FILES/NORMS/TODC_final_gr1_12_11.17.21_fornorms/"
+combined_score_to_norm_file_name <- "TODC_final_gr1_12_10.28.21_fornorms.csv"
+input_file_path <- "INPUT-FILES/NORMS/TODC_final_gr1_12_10.28.21_fornorms/"
+output_file_path <- "OUTPUT-FILES/NORMS/TODC_final_gr1_12_10.28.21_fornorms/"
 
 # Tokens for score names
 
 # scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum", "riw_sum", "lem_sum", "pan_sum", 
 #             "lvc_sum", "wpc_sum", "rws_sum", "sub_sum", "del_sum", "rnl_sum", "nwr_sum", "rnw_sum", 
 #             "wom_sum", "gea_sum", "ssl_sum", "pflsum1", "pflsum2")
-scores <- c("memory", "PA")
+# scores <- c("memory", "PA")
+scores <- c("iws_sum", "bln_sum", "riw_sum", "nwr_sum")
+
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "PA"
+score_to_norm_stem <- "nwr_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -68,7 +70,7 @@ age_contin <- suppressMessages(read_csv(here(
   ) %>%
   bind_cols(getGroups(.$age)) %>% 
   # rename(group = ...33) %>% 
-  rename(group = ...8) %>% 
+  rename(group = ...9) %>% 
   select(ID, age, group)
 
 # Next block reads an input containing multiple raw score columns per person,
