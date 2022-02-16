@@ -3,7 +3,7 @@ suppressMessages(library(tidyverse))
 library(writexl)
 
 # The purpose of this script is to convert lookup tables from cNORM, that have been
-# modified by a project direct (e.g., hand-smoothing  has been applied) into print-format
+# modified by a project director (e.g., hand-smoothing  has been applied) into print-format
 # lookup tables. Because there is a step of human-intervention outside cNORM, the process
 # cannot be automated as part of the basic cNORM workflow.
 
@@ -18,14 +18,17 @@ library(writexl)
 # in the rightward columns and read to the left to find the associated standard scores. here
 # is the head of one such output table.
 
-# What the script accomplishes is a transformation of the essential hierarchies of the data(
-# structures of the input, and a reformating of the cells themselves. Recall that the lookup
-# relationship between raw scores and standard scores is many-to-one. That is, a range of raw scores
-# (multiple raw scores) can  map onto a single standard score, but each raw score on its own
-# maps onto one and only one standard score. Thus, the initial transformation of the work flow
-# is to collapse the incremental sequence of raw scores so that each standard score occupies
-# only a single row. Prior to this transformation, there could be duplicate standard score rows.
-# )
+# What the script accomplishes is a transformation of the essential hierarchies
+# of the data structures of the input, and a reformation of the cells
+# themselves. Recall that the lookup relationship between raw scores and
+# standard scores is many-to-one. That is, a range of raw scores (multiple raw
+# scores) can  map onto a single standard score, but each raw score on its own
+# maps onto one and only one standard score. Thus, the initial transformation of
+# the work flow is to collapse the incremental sequence of raw scores so that
+# each standard score occupies only a single row in the output. Prior to this
+# transformation, there could be duplicate standard score rows. To preserve the
+# many-to-one raw to SS relationship, any ss row may map onto a range of raw
+# scores (e.g., 88-91)
 
 # The second transformation is to invert the hierarchy of the inputs, in which each test is a 
 # container for all age strats. This hierarchy is reversed in the output, such that after
@@ -36,6 +39,8 @@ library(writexl)
 # and we use the suffix "at" (age>>test) to label the output hierarchy, and "flat" to
 # denote an absence of either hierarchy.
 
+# PART I: SET UP TOKENS AND INPUT FILES
+
 input_test_names <- c("lske", "lswe", "rhme", "rlne", "sege", "snwe")
 output_test_names <- c("LSK-E", "LSW-E", "RHY-E", "RLN-E", "SEG-E", "SPW-E")
 tod_form <- "TOD-E"
@@ -43,6 +48,7 @@ norm_type <- "age"
 input_file_path <- "PRINT-FORMAT-NORMS-TABLES/POST-cNORM-HAND-SMOOTHED-TABLES/"
 output_file_path <- "PRINT-FORMAT-NORMS-TABLES/OUTPUT-FILES/"
 
+# read the six input files (test>>age) into a list.
 input_files_ta <- map(
   input_test_names,
   ~
@@ -52,10 +58,13 @@ input_files_ta <- map(
 ) %>% 
   set_names(input_test_names)
 
+# read in static columns with all possible SS mapped onto associated percentiles
 perc_ss_cols <- suppressMessages(read_csv(here(
   "PRINT-FORMAT-NORMS-TABLES/perc-ss-cols.csv"
 )))
 
+# read in a char vector of age-strats, by extracting these elements from the col
+# names of one of the input dfs
 age_strat <- input_files_ta[[1]] %>% 
   select(-raw) %>% 
   names()
