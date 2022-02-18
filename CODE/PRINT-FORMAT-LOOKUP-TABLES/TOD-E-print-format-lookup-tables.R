@@ -69,10 +69,12 @@ age_strat <- input_files_ta[[1]] %>%
   select(-raw) %>% 
   names()
 
-# print_look_up_list contains the transformed input files. These are new lookup
-# tables for each test, in the print format. Each table has lookup cols for all
-# age strats, each containing raw scores (or ranges) that are looked up against
-# the ss col on the left.
+# print_look_up_list_ta contains the transformed input files. These are new
+# lookup tables for each test, in the print format. Each table has lookup cols
+# for all age strats, each containing raw scores (or ranges) that are looked up
+# against the ss col on the left. The tables in this list preserve the
+# (test>>age) hiearchy of the input files, with one look-up row for each
+# possible SS value.
 print_lookups_ta <- input_files_ta %>%
   map(~
         .x %>% 
@@ -93,11 +95,13 @@ print_lookups_ta <- input_files_ta %>%
 ) %>% 
   set_names(input_test_names)
 
-# age_strat_dfs is a transformation of print_lookup_list using nested map calls.
-# The table for each test of print_look_up_list is broken down into separate
-# look-up dfs, one for each age_strat col. So age_strat_dfs is a list of lists,
-# the top level being a list for each test, and the lower level being the list of
-# age-strat specific lookup tables within each test.
+# age_strat_cols_ta is a transformation of print_lookup_list using nested map
+# calls. The table for each test of print_look_up_list is broken down into
+# separate look-up dfs, one for each age_strat col. So age_strat_cols_ta is a
+# list of lists, the top level being a list for each test, and the lower level
+# being the list of age-strat specific lookup tables within each test. We say
+# that the (test>>age) hierarchy of the input is preserved here, because the
+# lowest level col labels are age-strat labels, as they are on the input files.
 age_strat_cols_ta <-  print_lookups_ta %>%
   map( ~
          map(age_strat,
@@ -113,34 +117,33 @@ age_test_names_flat <- cross2(age_strat, input_test_names) %>%
 
 # flatten age_strat_dfs so that it is a one-level list holding all 54 single
 # age-strat lookups spread over the six tests. rename the list elements with
-# as_tn_names so that each element of the list can be identified.
+# as_tn_names so that each element (df) of the list can be identified.
 age_test_cols_flat <- flatten(age_strat_cols_ta) %>% 
   set_names(age_test_names_flat)
 
-# as_tn_dfs_per_age_strat reconsitutes a new two-level list from the flattened
-# as_tn_dfs. Whereas in age_strat dfs, the hierarchy was test --> age_strat, in
-# as_tn_dfs_per_agestrat, that hierarchy is reversed to age_strat --> test,
-# which is the hierarchy required for the final output. Now we have a list of
-# lists in which the top level is a list for each age_strat, and within those
-# lists are the list of lookup tables for that age_strat, for all six tests.
-# This transformation is accomplished via subsetting with single brackets [].
-# Using map(), we subset as_tn_dfs 9 times, mapping across the 9 elements of
-# age_strat. grep() matches the pattern supplied by .x (here a particular
-# age_strat) against the names of the flattened as_tn_dfs, and returns the
-# positions (indices) of any names that match the pattern. Passing those indices
-# to the single brackets returns the age_strat specific lookups, one for each
-# test, giving the new two-level list the desired hierarchy. Note: now grep(),
-# code has been replaced with tidyverse code - yields identical results).
+# age_test_cols_at reconstitutes a new two-level list from the flattened
+# as_tn_dfs. Whereas in age_strat_cols_ta, the hierarchy was test --> age_strat,
+# in age_test_cols_at, that hierarchy is reversed to age_strat --> test, which
+# is the hierarchy required for the final output. Now we have a list of lists in
+# which the top level is a list for each age_strat, and within those lists are
+# the list of lookup tables for that age_strat, for all six tests. This
+# transformation is accomplished via purrr::keep(), which subsets list elements.
+# Using map(), we subset age_test_cols_flat 9 times, mapping across the 9
+# elements of age_strat. str_detect() matches the pattern supplied by .x (here a
+# particular age_strat) against the names of the flattened age_test_cols_flat,
+# and returns list elements whose names contain a match for the the pattern
+# (i.e., a particular age-strat). These retained elements are complete sets of
+# test-specific lookup columns, one set for each agestrat, giving the new
+# two-level list the desired output hierarchy (age_strat --> test).
 age_test_cols_at <- map(
   age_strat,
   ~
-    # age_test_cols_flat[grep(.x, names(age_test_cols_flat))] 
   keep(age_test_cols_flat, str_detect(names(age_test_cols_flat), .x))
 )
 
-# tabbed_output transforms as_tn_dfs_per_age_strat into a list suitable for
-# writing out as a tabbed .xlsx file. Recall that each element of
-# as_tn_dfs_per_age_strat is a list of the test-wise look up dfs for each
+# print_lookups_at is a transformation of age_test_cols_at into a list suitable
+# for writing out as a tabbed .xlsx file. Recall that each element of
+# age_test_cols_at is a list of the test-wise look up dfs for each
 # age_strat. reduce() joins the list of dfs into a single df with right-ward raw
 # score lookup cols for each test within each age_strat. The call of rename_with
 # renames the raw score cols of the newly joined dfs, taking advantage of a
