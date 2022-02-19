@@ -26,7 +26,7 @@ scores <- c("iws_sum", "bln_sum", "seg_sum", "rln_sum", "iwr_sum", "riw_sum", "l
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "iwr_sum"
+score_to_norm_stem <- "PA"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -114,8 +114,8 @@ input <- suppressMessages(read_csv(here(str_c(
 model <- cnorm(
   raw = input$raw, 
   group = input$group, 
-  k = 4, 
-  terms = 4, 
+  k =3, 
+  terms = 7, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
@@ -128,7 +128,7 @@ tab_names <- c(
                "2-Fall", "2-Spring",
                "3-Fall", "3-Spring",
                "4-Fall", "4-Spring",
-               "5-Fall", "5-Spring", 
+               "5-Fall", "5-Spring",
                # end pflsum1 gradestrat, begin pflsum2 gradestrat
                "6-Fall", "6-Spring",
                "7-Fall", "7-Spring",

@@ -1,6 +1,6 @@
 [1] "rnl_sumgrade model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.962626
-Final regression model: raw ~ L1 + A2 + L1A1 + L2A1
-Regression function: raw ~ -76.8283517 + (1.159430841*L1) + (-0.08954802*A2) + (0.08255664137*L1A1) + (-0.0002436385121*L2A1)
-Raw Score RMSE = 6.24051
+R-Square Adj. = 0.964564
+Final regression model: raw ~ L1 + L2 + L1A1 + L1A2
+Regression function: raw ~ -90.88909446 + (1.602855461*L1) + (-0.002828028386*L2) + (0.05785230121*L1A1) + (-0.0008772353905*L1A2)
+Raw Score RMSE = 6.1098

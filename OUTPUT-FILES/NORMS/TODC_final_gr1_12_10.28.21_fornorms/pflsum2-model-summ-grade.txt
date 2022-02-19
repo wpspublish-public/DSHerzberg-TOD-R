@@ -1,6 +1,6 @@
 [1] "pflsum2grade model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.972701
-Final regression model: raw ~ L1 + L1A1 + L1A2 + L1A3
-Regression function: raw ~ -29.73635623 + (-0.577939857*L1) + (0.1611232933*L1A1) + (-0.007768877121*L1A2) + (0.000128651276*L1A3)
-Raw Score RMSE = 1.49013
+R-Square Adj. = 0.968658
+Final regression model: raw ~ L4 + L1A1 + L1A3 + L1A4
+Regression function: raw ~ -33.92178421 + (-1.673823101e-08*L4) + (0.0578807228*L1A1) + (-0.0001291494547*L1A3) + (3.179792544e-06*L1A4)
+Raw Score RMSE = 1.58387
