@@ -1,6 +1,6 @@
-[1] "rnw_sumage model summary"
+[1] "rnw_sum age model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.97653
-Final regression model: raw ~ L2A1 + L3A1 + L3A2 + L4A3
-Regression function: raw ~ -35.88695907 + (0.001255509496*L2A1) + (-2.007419174e-06*L3A1) + (-5.174140002e-07*L3A2) + (9.285535908e-11*L4A3)
-Raw Score RMSE = 1.86208
+R-Square Adj. = 0.97188
+Final regression model: raw ~ L3 + L2A1 + L3A2 + L4A3
+Regression function: raw ~ -37.19023497 + (-1.370311485e-05*L3) + (0.00141227211*L2A1) + (-7.508708806e-07*L3A2) + (1.369229799e-10*L4A3)
+Raw Score RMSE = 2.02084

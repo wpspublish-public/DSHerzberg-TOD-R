@@ -1,6 +1,6 @@
-[1] "lem_sumage model summary"
+[1] "lem_sum age model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.971663
-Final regression model: raw ~ L1 + A1 + A2 + L4A1
-Regression function: raw ~ -9.381309263 + (0.08715862054*L1) + (0.7390138346*A1) + (-0.02138921106*A2) + (1.278134488e-09*L4A1)
-Raw Score RMSE = 0.4307
+R-Square Adj. = 0.974155
+Final regression model: raw ~ A1 + L2A1 + L2A2 + L4A4
+Regression function: raw ~ -3.124666426 + (0.2203219199*A1) + (0.0001179149616*L2A1) + (-4.965964834e-06*L2A2) + (1.84802588e-13*L4A4)
+Raw Score RMSE = 0.41415

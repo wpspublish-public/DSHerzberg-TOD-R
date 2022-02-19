@@ -26,7 +26,7 @@ scores <- c("seg_sum", "rln_sum", "iwr_sum", "lem_sum", "pan_sum",
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "iwr_sum"
+score_to_norm_stem <- "PA"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -89,6 +89,7 @@ map(
     drop_na(!!sym(.x)) %>% 
     left_join(age_contin, by = "ID") %>% 
     rename(raw = !!sym(.x)) %>% 
+    # filter(age <= 12) %>% 
     select(ID, age, group, raw)
 ) %>%
   set_names(scores) %>%
@@ -125,7 +126,7 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 4, 
-  terms = 4, 
+  terms = 6, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
@@ -136,7 +137,7 @@ checkConsistency(model)
 tab_names <- c(
   "6.0-6.3", "6.4-6.7", "6.8-6.11", "7.0-7.3", "7.4-7.7", "7.8-7.11",
                "8.0-8.5", "8.6-8.11", "9.0-9.5",
-               "9.6-9.11", 
+               "9.6-9.11",
   "10.0-10.5", "10.6-10.11", "11.0-11.5",
   # "11.6-11.11", "12.0-12.5", "12.6-12.11")
   "11.6-11.11", "12.0-12.5", "12.6-12.11",
@@ -147,7 +148,7 @@ tab_names <- c(
 norms_list <- rawTable(
   c(
     6.167, 6.5, 6.833, 7.167, 7.5, 7.833, 8.25, 8.75,
-    9.25, 9.75, 
+    9.25, 9.75,
     10.25, 10.75, 11.25, 11.75, 12.25,
     # 12.75
     12.75,

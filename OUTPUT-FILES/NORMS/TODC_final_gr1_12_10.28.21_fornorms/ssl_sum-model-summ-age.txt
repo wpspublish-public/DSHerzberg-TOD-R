@@ -1,6 +1,6 @@
-[1] "ssl_sumage model summary"
-User specified solution: 5 terms
-R-Square Adj. = 0.961012
-Final regression model: raw ~ L1 + L2 + L3 + L4 + L3A1
-Regression function: raw ~ -426.5052783 + (17.54121131*L1) + (-0.2669925948*L2) + (0.001789484757*L3) + (-4.368389572e-06*L4) + (3.936268176e-07*L3A1)
-Raw Score RMSE = 1.61537
+[1] "ssl_sum age model summary"
+User specified solution: 4 terms
+R-Square Adj. = 0.960108
+Final regression model: raw ~ L1 + L4A2 + L4A3 + L4A4
+Regression function: raw ~ -11.42628296 + (0.1870235136*L1) + (2.130274885e-09*L4A2) + (-1.71237534e-10*L4A3) + (3.822919081e-12*L4A4)
+Raw Score RMSE = 1.69419

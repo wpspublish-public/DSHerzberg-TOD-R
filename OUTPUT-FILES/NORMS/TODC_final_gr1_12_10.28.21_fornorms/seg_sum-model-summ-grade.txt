@@ -1,6 +1,6 @@
 [1] "seg_sumgrade model summary"
 User specified solution: 4 terms
-R-Square Adj. = 0.920467
+R-Square Adj. = 0.934552
 Final regression model: raw ~ L1 + A1 + A2 + A3
-Regression function: raw ~ -15.05868476 + (0.2736066153*L1) + (1.274879689*A1) + (-0.0644404791*A2) + (0.001159823683*A3)
-Raw Score RMSE = 1.26075
+Regression function: raw ~ -13.71326117 + (0.272561341*L1) + (0.9885512854*A1) + (-0.04414030026*A2) + (0.000726660325*A3)
+Raw Score RMSE = 1.12362
