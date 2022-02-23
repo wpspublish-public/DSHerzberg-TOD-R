@@ -5,8 +5,8 @@ suppressMessages(suppressWarnings(library(tidyverse)))
 suppressMessages(library(psych))
 suppressMessages(library(bestNormalize))
 
-input_file_name <- "TODCratingscales_gr1_12final.csv"
-input_file_stem <- "TODCratingscales_gr1_12final"
+input_file_name <- "TODC_g1_12FINALMASTERstand_ratingscales.csv"
+input_file_stem <- "TODC_g1_12FINALMASTERstand_ratingscales"
 input_file_path <- "INPUT-FILES/NORMS/TODCratingscales_gr1_12final/"
 output_file_path <- "OUTPUT-FILES/NORMS/TODCratingscales_gr1_12final/"
 
