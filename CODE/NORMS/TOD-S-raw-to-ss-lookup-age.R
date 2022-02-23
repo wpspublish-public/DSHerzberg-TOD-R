@@ -8,10 +8,10 @@ suppressMessages(library(lubridate))
 # age), raw score
 
 # General tokens
-combined_score_to_norm_file_name <- "TODSfinal_fornorms-v2.csv"
-file_name_stem <- "TODSfinal_fornorms-v2"
-input_file_path <- "INPUT-FILES/NORMS/TODSfinal_fornorms/"
-output_file_path <- "OUTPUT-FILES/NORMS/TODSfinal_fornorms/"
+combined_score_to_norm_file_name <- "TODS_TOE&TODCchild_fornorms.csv"
+file_name_stem <- "TODS_TOE&TODCchild_fornorms"
+input_file_path <- "INPUT-FILES/NORMS/TODS_TOE&TODCchild_fornorms/"
+output_file_path <- "OUTPUT-FILES/NORMS/TODS_TOE&TODCchild_fornorms/"
 
 # Tokens for score names
 
@@ -19,7 +19,7 @@ scores <- c("lw_ability", "pv_ability", "wrf_sum", "qrf_sum")
 
 # Tokens setting the specific score to be normed on this iteration of the
 # script.
-score_to_norm_stem <- "lw_ability"
+score_to_norm_stem <- "qrf_sum"
 score_to_norm_file_name <- str_c(score_to_norm_stem, "-norms-input.csv")
 score_to_norm_max_raw <- data.frame(test = score_to_norm_stem) %>%
   mutate(
@@ -90,13 +90,13 @@ input <- suppressMessages(read_csv(here(
   str_c(input_file_path, score_to_norm_file_name)
 )))
 #       # run age-filtering if needed.)
-  # )))) %>%
-  #   filter(age > 7) %>%
-  #   select(-group) %>%
-  #   mutate(group =
-  #            getGroups(.$age)) %>% 
-  # relocate(group, .after = "age")
-  
+# ))) %>%
+#   filter(age > 7) %>%
+#   select(-group) %>%
+#   mutate(group =
+#            getGroups(.$age)) %>%
+# relocate(group, .after = "age")
+
 # Alex Lenhard's recommended approach with cNORM
 
 # Use the all-in-one cnorm() function to create the model.
@@ -190,14 +190,14 @@ norms_list <- rawTable(
     13.5, 14.5, 16, 18.0
     # todE-todC combined wrf-sum runs below this line
     # 5.167, 5.5, 5.833,
-    # 6.167, 6.5, 6.833, 
+    # 6.167, 6.5, 6.833,
     # 7.167, 7.5, 7.833
     # todE-todC combined qrf-sum runs below this line
-    # 7.167, 7.5, 7.833, 
+    # 7.167, 7.5, 7.833,
     # 8.25, 8.75,
     # 9.25, 9.75,
-    # 10.25, 10.75, 
-    # 11.25, 11.75, 
+    # 10.25, 10.75,
+    # 11.25, 11.75,
     # 12.25, 12.75,
     # 13.5, 14.5, 16, 18.0
   ), 

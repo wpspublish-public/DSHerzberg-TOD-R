@@ -8,10 +8,10 @@ suppressMessages(library(lubridate))
 # grade), raw score
 
 # General tokens
-combined_score_to_norm_file_name <- "TODSfinal_fornorms-v2.csv"
-file_name_stem <- "TODSfinal_fornorms-v2"
-input_file_path <- "INPUT-FILES/NORMS/TODSfinal_fornorms/"
-output_file_path <- "OUTPUT-FILES/NORMS/TODSfinal_fornorms/"
+combined_score_to_norm_file_name <- "TODS_TOE&TODCchild_fornorms.csv"
+file_name_stem <- "TODS_TOE&TODCchild_fornorms"
+input_file_path <- "INPUT-FILES/NORMS/TODS_TOE&TODCchild_fornorms/"
+output_file_path <- "OUTPUT-FILES/NORMS/TODS_TOE&TODCchild_fornorms/"
 
 # Tokens for score names
 
@@ -101,7 +101,7 @@ model <- cnorm(
   raw = input$raw, 
   group = input$group, 
   k = 4, 
-  terms = 5, 
+  terms = 3, 
   scale = "IQ"
   )
 # model <- cnorm(raw = input$raw, age = input$age, width = 1, k = 4, terms = 4, scale = "IQ")
@@ -127,12 +127,12 @@ tab_names <- c(
   # "11-Fall", "11-Spring",
   # "12-Fall", "12-Spring"
   # todE-todC combined runs below this line
-  # "K-Fall", "K-Spring", 
+  # "K-Fall", "K-Spring",
   # "1-Fall", "1-Spring",
   # "2-Fall", "2-Spring",
   # "3-Fall", "3-Spring",
   # "4-Fall", "4-Spring",
-  # "5-Fall", "5-Spring", 
+  # "5-Fall", "5-Spring",
   # "6-Fall", "6-Spring",
   # "7-Fall", "7-Spring",
   # "8-Fall", "8-Spring",
@@ -141,7 +141,7 @@ tab_names <- c(
   # "11-Fall", "11-Spring",
   # "12-Fall", "12-Spring"
   # todE-todC combined wrf-sum runs below this line
-  # "K-Fall", "K-Spring", 
+  # "K-Fall", "K-Spring",
   # "1-Fall", "1-Spring"
   # todE-todC combined qrf-sum runs below this line
   "2-Fall", "2-Spring",
