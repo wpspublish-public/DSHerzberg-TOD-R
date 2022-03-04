@@ -5,6 +5,7 @@ suppressMessages(library(runner))
 urlRemote_path  <- "https://raw.github.com/"
 github_path <- "wpspublish/DSHerzberg-TOD-R/master/INPUT-FILES/"
 fileName_path   <- "TODE-forceiling-2022-3-2.csv"
+stop_rule <- 4
 
 input <- suppressMessages(read_csv(url(
   str_c(urlRemote_path, github_path, fileName_path)
@@ -30,7 +31,7 @@ input_tall <- input %>%
     streak_val = case_when(value == 0 ~ streak_run(value, na_rm = F),
                            TRUE ~ NA_integer_),
     ceiling = case_when((
-      pre %in% c("snwe", "sege", "lswe", "rhme") & streak_val == 5
+      pre %in% c("snwe", "sege", "lswe", "rhme") & streak_val == stop_rule
     ) |
       (
         pre %in% c("lske_A", "lske_B", "lske_C") & streak_val == 3
