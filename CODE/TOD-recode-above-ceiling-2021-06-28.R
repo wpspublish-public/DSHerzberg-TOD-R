@@ -5,6 +5,8 @@ suppressMessages(library(runner))
 urlRemote_path  <- "https://raw.github.com/"
 github_path <- "wpspublish/DSHerzberg-TOD-R/master/INPUT-FILES/"
 fileName_path   <- "TODC_6.24.21_forceilingrecodes.csv"
+stop_rule <- 4
+
 
 input <- suppressMessages(read_csv(url(
   str_c(urlRemote_path, github_path, fileName_path)
@@ -20,7 +22,7 @@ input_tall <- input %>%
   mutate(
     streak_val = case_when(value == 0 ~ streak_run(value, na_rm = F),
                            TRUE ~ NA_integer_),
-    ceiling = case_when(streak_val == 5 ~ 1,
+    ceiling = case_when(streak_val == stop_rule ~ 1,
                         TRUE ~ 0)
   )
 
