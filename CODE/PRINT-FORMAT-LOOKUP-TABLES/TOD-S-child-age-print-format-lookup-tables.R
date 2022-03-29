@@ -1,7 +1,6 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 library(writexl)
-library(naturalsort)
 
 # PART I: SET UP TOKENS AND INPUT FILES
 
@@ -88,19 +87,11 @@ age_strat_cols_ta_wrf <-  print_lookups_ta[4] %>%
                select(perc, ss,!!sym(.x)), .y = .x) %>%
          set_names(age_strat_wrf))
 
-age_strat_cols_ta <- c(age_strat_cols_ta_pv_ls, 
-                       age_strat_cols_ta_qrf, 
-                       age_strat_cols_ta_wrf)
-
-#######START HERE: NEXT VECTOR CANT BE SIMPLE CROSSING
+age_strat_cols_ta <- c(age_strat_cols_ta_pv_ls, age_strat_cols_ta_qrf, age_strat_cols_ta_wrf)
 
 # create vec of names of all crossings of age_strat and test names.
-age_test_names_flat <- c(
-  str_c(age_strat, "_PV-S"),
-  str_c(age_strat, "_LW-S"),
-  str_c(age_strat_qrf, "_QRF-S"),
-  str_c(age_strat_wrf, "_WRF-S")
-)
+age_test_names_flat <- cross2(age_strat, input_test_names) %>% 
+  map_chr(str_c, collapse = "_")
 
 # flatten age_strat_dfs so that it is a one-level list holding all single
 # age-strat lookups spread over all tests. rename the list elements with
