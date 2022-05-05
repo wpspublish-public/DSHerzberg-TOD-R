@@ -1,4 +1,4 @@
-DATA: TOD-S.2.23.21-for-blimp-BLIMP-input.csv;
+DATA: TODC2.23.21for BLIMP-BLIMP-input.csv;
 VARIABLES: id item score;
 ORDINAL: score;
 NOMINAL: item;
@@ -7,8 +7,8 @@ CLUSTERID: id;
 MISSING: 999;
 MODEL: score ~ item;
 SEED: 90291;
-BURN: 1000;
+BURN: 5000;
 ITERATIONS: 1;
 CHAINS: 2 processors 2;
-# NIMPS: 1;# OPTIONS: psr;
+# NIMPS: 1;
 # SAVE: separate = TOD-S*.csv;

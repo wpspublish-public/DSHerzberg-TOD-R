@@ -24,7 +24,8 @@ na_summ <- tribble(
 # get problematic columns, rows
 all_0orNA_cols <- input_orig %>% keep(~all(is.na(.x) | .x == 0)) %>% names
 all_1orNA_cols <- input_orig %>% keep(~all(is.na(.x) | .x == 1)) %>% names
-all_0orNA_rows <- input_orig %>% filter(across(names(input_orig)[-1], ~(is.na(.) | . == 0)))
+all_0orNA_rows <- input_orig %>% filter(if_all(names(input_orig)[-1], ~(is.na(.) | . == 0)))
+
 
 input_orig[is.na(input_orig)] <- 999
 
