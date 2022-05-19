@@ -9,18 +9,30 @@ input_test_names <- c("PHM-C", "IWS-C", "RLN-C", "PWR-C", "WPC-C", "WM-C",
                       "PAN-C", "IWR-C", "ORE-C", "BLN-C", "SEG-C", "RWS-C", 
                       "SRE1-C", "SRE2-C", "RNL-C", "LM-C", "RPW-C", "RIW-C", 
                       "SSL-C", "LV-C", "GAN-C")
-input_test_names_start <- c("PHM-C", "IWS-C", "RLN-C", "PWR-C", "WPC-C", "WM-C", 
+input_test_names_lower <- c("PHM-C", "IWS-C", "RLN-C", "PWR-C", "WPC-C", "WM-C", 
                       "PAN-C", "IWR-C", "ORE-C", "BLN-C", "SEG-C", "RWS-C", 
                       "SRE1-C", "RNL-C", "LM-C", "RPW-C", "RIW-C", 
                       "SSL-C", "LV-C", "GAN-C")
-input_test_names_end <- c("PHM-C", "IWS-C", "RLN-C", "PWR-C", "WPC-C", "WM-C", 
+input_test_names_upper <- c("PHM-C", "IWS-C", "RLN-C", "PWR-C", "WPC-C", "WM-C", 
                       "PAN-C", "IWR-C", "ORE-C", "BLN-C", "SEG-C", "RWS-C", 
                       "SRE2-C", "RNL-C", "LM-C", "RPW-C", "RIW-C", 
                       "SSL-C", "LV-C", "GAN-C")
-output_test_names <- c("PHM-C", "IWS-C", "RLN-C", "PWR-C", "WPC-C", "WM-C", 
-                      "PAN-C", "IWR-C", "ORE-C", "BLN-C", "SEG-C", "RWS-C", 
-                      "SRE1-C", "SRE2-C", "RNL-C", "LM-C", "RPW-C", "RIW-C", 
+input_test_names_start <- c("PHM-C", "IWS-C", "RLN-C", "PWR-C", "WPC-C", "WM-C", 
+                      "PAN-C", "IWR-C", "ORE-C", "BLN-C", "SEG-C", "RWS-C")
+input_test_names_end <- c("RNL-C", "LM-C", "RPW-C", "RIW-C", 
                       "SSL-C", "LV-C", "GAN-C")
+output_test_names <- c("PHM-C", "IWS-C", "RLN-C", "PWR-C", "WPC-C", "WM-C", 
+                       "PAN-C", "IWR-C", "ORE-C", "BLN-C", "SEG-C", "RWS-C", 
+                       "SRE1-C", "SRE2-C", "RNL-C", "LM-C", "RPW-C", "RIW-C", 
+                       "SSL-C", "LV-C", "GAN-C")
+output_test_names_sre1 <- c("PHM-C", "IWS-C", "RLN-C", "PWR-C", "WPC-C", "WM-C", 
+                       "PAN-C", "IWR-C", "ORE-C", "BLN-C", "SEG-C", "RWS-C", 
+                       "SRE1-C", "RNL-C", "LM-C", "RPW-C", "RIW-C", 
+                       "SSL-C", "LV-C", "GAN-C")
+output_test_names_sre2 <- c("PHM-C", "IWS-C", "RLN-C", "PWR-C", "WPC-C", "WM-C", 
+                       "PAN-C", "IWR-C", "ORE-C", "BLN-C", "SEG-C", "RWS-C", 
+                       "SRE2-C", "RNL-C", "LM-C", "RPW-C", "RIW-C", 
+                       "SSL-C", "LV-C", "GAN-C")
 tod_form <- "TOD-C"
 norm_type <- "grade"
 input_file_path <- "PRINT-FORMAT-NORMS-TABLES/POST-cNORM-HAND-SMOOTHED-TABLES/TOD-C/CHILD-GRADE/"
@@ -32,7 +44,7 @@ input_files_ta <- map(
   ~
   suppressMessages(read_csv(here(str_c(
   input_file_path, .x, "-", norm_type, ".csv"
-))))
+)), col_select = -starts_with(".")))
 ) %>% 
   set_names(input_test_names)
 
@@ -73,9 +85,6 @@ new_names_input_sre2 <- input_files_ta[[14]] %>%
                   ))) %>%
   pull(.)
 grade_strat_sre2 <- new_names_input_sre2[2:length(new_names_input_sre2)]
-
-
-############START HERE
 
 # apply new names to input files
 input_files_ta <- map2(
@@ -122,16 +131,11 @@ print_lookups_ta <- input_files_ta %>%
       right_join(perc_ss_cols, by = "ss") %>%
       relocate(perc, .before = "ss")
   ) %>%
-  set_names(input_test_names) %>%
-  map2(
-    list(grade_strat, grade_strat, grade_strat_qrf, grade_strat_wrf),
-    ~ .x %>%
-      select(perc, ss, all_of(.y))
-  )
+  set_names(input_test_names)
 
 # decompose list of input tables into "list of lists", with bottom level elements
 # being three-col lookup tables, one for each grade-strat
-grade_strat_cols_ta_pv_ls <-  print_lookups_ta[1:2] %>%
+grade_strat_cols_ta_start <-  print_lookups_ta[1:12] %>%
   map( ~
          map(grade_strat,
              ~
@@ -139,33 +143,44 @@ grade_strat_cols_ta_pv_ls <-  print_lookups_ta[1:2] %>%
                select(perc, ss,!!sym(.x)), .y = .x) %>%
          set_names(grade_strat))
 
-grade_strat_cols_ta_qrf <-  print_lookups_ta[3] %>%
+grade_strat_cols_ta_sre1 <-  print_lookups_ta[13] %>%
   map( ~
-         map(grade_strat_qrf,
+         map(grade_strat_sre1,
              ~
                .y %>%
                select(perc, ss,!!sym(.x)), .y = .x) %>%
-         set_names(grade_strat_qrf))
+         set_names(grade_strat_sre1))
 
-grade_strat_cols_ta_wrf <-  print_lookups_ta[4] %>%
+grade_strat_cols_ta_sre2 <-  print_lookups_ta[14] %>%
   map( ~
-         map(grade_strat_wrf,
+         map(grade_strat_sre2,
              ~
                .y %>%
                select(perc, ss,!!sym(.x)), .y = .x) %>%
-         set_names(grade_strat_wrf))
+         set_names(grade_strat_sre2))
 
-grade_strat_cols_ta <- c(grade_strat_cols_ta_pv_ls, 
-                       grade_strat_cols_ta_qrf, 
-                       grade_strat_cols_ta_wrf)
+grade_strat_cols_ta_end <-  print_lookups_ta[15:21] %>%
+  map( ~
+         map(grade_strat,
+             ~
+               .y %>%
+               select(perc, ss,!!sym(.x)), .y = .x) %>%
+         set_names(grade_strat))
+
+grade_strat_cols_ta <- c(grade_strat_cols_ta_start, 
+                         grade_strat_cols_ta_sre1, 
+                         grade_strat_cols_ta_sre2, 
+                         grade_strat_cols_ta_end)
 
 # create vec of names of all crossings of grade_strat and test names.
-grade_test_names_flat <- c(
-  str_c(grade_strat, "_PV-S"),
-  str_c(grade_strat, "_LW-S"),
-  str_c(grade_strat_qrf, "_QRF-S"),
-  str_c(grade_strat_wrf, "_WRF-S")
-)
+grade_test_names_flat <- 
+  c(
+    cross2(grade_strat, input_test_names_start),
+    str_c(grade_strat_sre1, "_SRE1-C"), 
+    str_c(grade_strat_sre2, "_SRE2-C"), 
+    cross2(grade_strat, input_test_names_end)
+) %>% 
+  map_chr(str_c, collapse = "_")
 
 # flatten grade_strat_dfs so that it is a one-level list holding all single
 # grade-strat lookups spread over all tests. rename the list elements with
@@ -185,8 +200,8 @@ grade_test_cols_at <- map(
 # print_lookups_at is a transformation of grade_test_cols_at into a list suitable
 # for writing out as a tabbed .xlsx file.
 print_lookups_at <- map2(grade_test_cols_at,
-                         c(rep(list(output_test_names1), 4),
-                           rep(list(output_test_names2), 22)),
+                         c(rep(list(output_test_names_sre1), 10),
+                           rep(list(output_test_names_sre2), 14)),
                          ~ {
                            n <- .y
                            .x %>%
