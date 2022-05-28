@@ -23,7 +23,7 @@ item_names <- c(str_c("i", sprintf("%02d", 1:44)))
 input <-   suppressMessages(read_csv(here(
   str_c(input_file_path, input_file_name, ".csv")
 ))) %>% 
-  rename(i16 = i16i) %>% 
+  rename(i16 = i16i, gender = Gender) %>% 
   mutate(
   across(
     c(DOB, admin_date),
@@ -33,8 +33,47 @@ input <-   suppressMessages(read_csv(here(
   age = (DOB %--% admin_date) / years (1),
   iws_tot = rowSums(.[item_names])
 ) %>% 
-  select(ID, age, Gender, HighestEducation, Ethnicity, region, iws_tot)
-  
+  # drop gender = 3
+  filter (gender != 3) %>% 
+  # collapse categories to be weighted
+  mutate(
+    gender_w = gender,
+    educ_w = case_when(
+      HighestEducation == 1 ~ 1,
+      TRUE ~ 2
+    ), 
+    ethnic_w = case_when(
+      Ethnicity %in% c(1,3) ~ 1,
+      TRUE ~ 2
+    ) 
+  )
+
+# Demo proportions of input sample original variables
+prop.table(xtabs(~gender, data = input))
+table(input$gender)
+
+prop.table(xtabs(~HighestEducation, data = input))
+table(input$HighestEducation)
+
+prop.table(xtabs(~Ethnicity, data = input))
+table(input$Ethnicity)
+
+prop.table(xtabs(~region, data = input))
+table(input$region)
+
+# Demo proportions of new vars for weighting
+prop.table(xtabs(~gender_w, data = input))
+table(input$gender_w)
+
+prop.table(xtabs(~educ_w, data = input))
+table(input$educ_w)
+
+prop.table(xtabs(~ethnic_w, data = input))
+table(input$ethnic_w)
+
+# new data objedct has only vars to be weighted.
+input_w <- input %>% 
+  select(ID, age, gender_w, educ_w, ethnic_w, iws_tot)
 
 # Secondly, assigning population marginals to variable marginals.ppvt
 # Note: The marginals have to be in the shown format, especially the order
@@ -45,14 +84,6 @@ marginals.ppvt <- data.frame(var = c("sex", "sex", "migration", "migration"),
                              level = c(1,2,0,1),
                              prop = c(0.5100, 0.4900, 0.6500, 0.3500))
 View(marginals.ppvt)
-
-
-# In comparison: The actual composition ot the sample regarding sex and
-# migration status (just for demonstration purposes)
-prop.table(xtabs(~sex, data=norm.data)) # shares of males / females
-prop.table(xtabs(~migration, data=norm.data)) # shares of migration no / yes
-prop.table(xtabs(~migration + sex, data=norm.data)) # single cells
-
 
 
 # Step 1: Compute and standardize raking weights -------------------------------
