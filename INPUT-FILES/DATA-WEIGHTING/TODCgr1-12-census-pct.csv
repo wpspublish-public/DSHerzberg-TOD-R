@@ -14,3 +14,13 @@ region,northeast,16.3
 region,south,38.3
 region,midwest,21.4
 region,west,24.1
+,,
+,,
+,,
+var,cat,pct_census
+gender_w,male,51.1
+gender_w,female,48.9
+educ_w,no_HS,11.5
+educ_w,HS+,88.5
+ethnic_w,white-asian,56.8
+ethnic_w,non-white,43.2

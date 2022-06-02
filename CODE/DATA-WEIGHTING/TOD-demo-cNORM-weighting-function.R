@@ -71,7 +71,7 @@ table(input$educ_w)
 prop.table(xtabs(~ethnic_w, data = input))
 table(input$ethnic_w)
 
-# new data objedct has only vars to be weighted.
+# new data object has only vars to be weighted.
 input_w <- input %>% 
   select(ID, age, gender_w, educ_w, ethnic_w, iws_tot)
 
@@ -80,11 +80,13 @@ input_w <- input %>%
 # of the columns must be the variables names first, secondly, the single levels
 # of the variables, and finally the single proportions.
 # Each level of each factor needs its own row.
-marginals.ppvt <- data.frame(var = c("sex", "sex", "migration", "migration"),
-                             level = c(1,2,0,1),
-                             prop = c(0.5100, 0.4900, 0.6500, 0.3500))
-View(marginals.ppvt)
 
+marginals_input_w <-  data.frame(var = c("gender_w", "gender_w", 
+                                         "educ_w", "educ_w", 
+                                         "ethnic_w", "ethnic_w"),
+                                 level = c(1, 2, 1, 2, 1, 2),
+                                 prop = c(0.511, 0.489, 0.115, 0.885, 0.568, 0.432))
+View(marginals.ppvt)
 
 # Step 1: Compute and standardize raking weights -------------------------------
 
