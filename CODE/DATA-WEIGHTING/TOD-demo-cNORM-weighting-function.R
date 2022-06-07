@@ -94,7 +94,7 @@ marginals_input_w <-  data.frame(var = c("gender_w", "gender_w",
                                          "ethnic_w", "ethnic_w"),
                                  level = c(1, 2, 1, 2, 1, 2),
                                  prop = c(0.511, 0.489, 0.115, 0.885, 0.568, 0.432))
-View(marginals_input_w)
+# View(marginals_input_w)
 
 # Step 1: Compute and standardize raking weights -------------------------------
 
@@ -111,7 +111,10 @@ View(norm_data_split)
 # Step 2: ranking and modeling is done in a single step ------------------------
 model_w <- cnorm(raw     =  input_w$iws_tot,
                group   = input_w$group,
-               weights = weights_input_w)
+               weights = weights_input_w, 
+               terms = 4,
+               scale = "IQ"
+               )
 
 # plot(model_w, "series", end = 8)
 # checkConsistency(model_w)
@@ -190,7 +193,10 @@ write_csv(table_w,
 # create unweighted lookup tables for comparison.
 
 model_uw <- cnorm(raw     =  input_uw$iws_tot,
-                  group   = input_uw$group)
+                  group   = input_uw$group,
+                  terms = 4,
+                  scale = "IQ"
+                  )
 
 norms_list <- rawTable(
   c(
