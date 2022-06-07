@@ -2,9 +2,7 @@
 #' Tutorial on the usage of raking weights in regression-based norming
 #' with cNORM
 #'
-#'The script contains a step-by-step tutorial for the usage of raking weights
-#'in regression-based norming with R package cNORM based on the norm sample
-#'of the Peabody Picture Vocabulary Test (PPVT).
+#
 #'
 ################################################################################
 
@@ -240,3 +238,4 @@ write_csv(table_uw,
           here(
             str_c(output_file_path, "input-uw-raw-ss-lookup-table-age.csv")
           ))
+
