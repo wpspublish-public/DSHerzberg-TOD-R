@@ -5,18 +5,16 @@ suppressMessages(suppressWarnings(library(tidyverse)))
 suppressMessages(library(psych))
 suppressMessages(library(bestNormalize))
 
-input_file_path  <- "INPUT-FILES/NORMS/TODE_FINAL_composites/"
-input_file_name <- "TODE_FINAL_composites_grd.csv"
-input_file_stem <- "TODE_FINAL_composites_grd"
-output_file_path  <- "OUTPUT-FILES/NORMS/TODE_FINAL_composites/"
+input_file_path  <- "INPUT-FILES/NORMS/TODS_FINAL_composites/"
+input_file_name <- "TODS_child_DRI_grade.csv"
+input_file_stem <- "TODS_child_DRI_grade"
+output_file_path  <- "OUTPUT-FILES/NORMS/TODS_FINAL_composites/"
 
 
-score_names <- c("EDDIW", "EDDIQ", "ELP", "ERSW", "ERSQ",
-                 "ESWA", "EPHK", "EBRS", "EPHA")
-norm_type <- "_grd"
-all_raw_range <- 80:1040
-raw_range_per_score <- list(320:1040, 320:1040, 120:390, 200:650, 200:650, 
-                         80:260, 80:260, 80:260, 80:260)
+score_names <- c("DRIW", "DRIQ")
+norm_type <- "_grade"
+all_raw_range <- 80:260
+raw_range_per_score <- list(80:260, 80:260)
 ss_lower_bound <- 40
 ss_upper_bound <- 130
 
