@@ -45,14 +45,25 @@ norm_input_per_score <- map(
 
 # DETERMINE BEST NORMALIZATION MODEL
 
-set.seed(12345)
+# In the next block, we needs to iterate over bestNormalize(), which requres us
+# to set.seed on the random number generator to get the same results every time
+# the codes is run. We need to call set.seed() on each iteration. But,
+# set.seed() is a separate statement that cannot be integrated into the pipeline
+# of functions that runs here with with bestNormalize(). We can include multiple
+# statements within the map .fun call (set off by ~), by enclosing all
+# statements within curly braces. In this map() call, set.seed() is called anew
+# each time map() iterates, which is what we want to ensure repeatable results.
+
+
 norm_model_per_score_chosen_transform <- map(
   norm_input_per_score,
-  ~
+  ~ {
+    set.seed(12345)
     bestNormalize(.x) %>%
-    pluck("chosen_transform") %>% 
-    class() %>% 
-    pluck(1)
+      pluck("chosen_transform") %>% 
+      class() %>% 
+      pluck(1)
+  }
 ) %>% 
   set_names(score_names)
 
