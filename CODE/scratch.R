@@ -18,6 +18,25 @@ data1 <- map2(
     )
 
 
+As a followup, here is the most concise way to solve my original problem:
+
+```
+library(tidyverse)
+
+means <- c(40, 50, 60)
+sds <- c(9, 10, 11)
+
+data <- map2(
+  means,
+  sds,
+  ~ {
+    set.seed(12345)
+    rnorm(500, mean = .x, sd = .y)
+  }
+)
+```
+
+This code returns identical results each time it is run.
 
 
 means <- c(40, 50, 60)
