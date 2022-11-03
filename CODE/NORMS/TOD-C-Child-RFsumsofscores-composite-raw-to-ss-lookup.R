@@ -42,7 +42,7 @@ norm_input_per_score <- map(
 # DETERMINE BEST NORMALIZATION MODEL
 
 # In the next block, we need to iterate over bestNormalize(), which requres us
-# to set.seed on the random number generator to get the same results every time
+# to set.seed on the random number generator to get same results every time
 # the codes is run. We need to call set.seed() on each iteration. But,
 # set.seed() is a separate statement that cannot be integrated into the pipeline
 # of functions that runs here with with bestNormalize(). We can include multiple
