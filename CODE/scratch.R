@@ -1,3 +1,5 @@
+#GIT  test
+
 set.seed(12345)
 a <- rnorm(500, mean = 50, sd = 10)
 set.seed(12345)
