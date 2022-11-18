@@ -1,90 +1,33 @@
-#GIT  test
-
-set.seed(12345)
-a <- rnorm(500, mean = 50, sd = 10)
-set.seed(12345)
-b <- rnorm(500, mean = 50, sd = 10)
-identical(a, b)
-
-library(tidyverse)
-
-means <- c(40, 50, 60)
-sds <- c(9, 10, 11)
-
-set.seed(12345)
-data1 <- map2(
-  means,
-  sds,
-  ~
-    rnorm(500, mean = .x, sd = .y)
-    )
-
-
-As a followup, here is the most concise way to solve my original problem:
-
-```
-library(tidyverse)
-
-means <- c(40, 50, 60)
-sds <- c(9, 10, 11)
-
-data <- map2(
-  means,
-  sds,
-  ~ {
-    set.seed(12345)
-    rnorm(500, mean = .x, sd = .y)
-  }
-)
-```
-
-This code returns identical results each time it is run.
-
-
-means <- c(40, 50, 60)
-sds <- c(9, 10, 11)
-
-myfun <- function(means, sds){
-  set.seed(12345) # set it before each call
-  ret <- rnorm(500, mean = means, sd = sds)
-  return(ret)
+scale_readin <- function(x) {
+  # express the directory path to the input file as a string.
+  here(
+    paste0("INPUT-FILES/OES-INPUT-TABLES/DP4-EXAMPLE/", x, ".xlsx")) %>%
+    # assign("path", ., envir = .GlobalEnv)
+  
+  
+  # input file is multi-tabbed .xlsx. Tabs contain lookup tables for each
+  # agestrat. read input file into a df, stacking tabs on top of one another, and
+  # creating a new column "agestrat" to identify the origin tab of each set of rows.
+  # path %>% 
+    excel_sheets() %>%
+    set_names() %>%
+    map_df(read_excel,
+           path = .,
+           .id = "agestrat") %>% 
+    # recode agestrat so that it will sort properly
+    mutate(agestrat = str_sub(agestrat, 4) %>% 
+             str_pad(3, side = "left", "0"))
 }
 
-data <- purrr::map2(means,
-                    sds,
-                    ~ myfun(.x, .y))
+scale_lookup_pre <- scale_file_name %>% 
+  map(scale_readin) %>% 
+  setNames(form) %>% 
+  bind_rows(.id = "form")
 
 
-norm_fun <- function(x){
-  set.seed(12345)
-  ret <- bestNormalize(x) %>%
-    pluck("chosen_transform") %>% 
-    class() %>% 
-    pluck(1)
-  return(ret)
-}
-
-norm_model_per_score_chosen_transform3 <- map(
-  norm_input_per_score,
+test <- map_df(
+  paths,
   ~
-    norm_fun(.x)
-) %>% 
-  set_names(score_names)
-    
-
-
-set.seed(12345)
-norm_model_per_score_chosen_transform <- map(
-  norm_input_per_score,
-  ~ {
-    set.seed(12345)
-    bestNormalize(.x) %>%
-    pluck("chosen_transform") %>% 
-    class() %>% 
-    pluck(1)
-    }
-) %>% 
-  set_names(score_names)
-
-
-
+  read_excel(
+               path = path,
+               .id = "agestrat"))
