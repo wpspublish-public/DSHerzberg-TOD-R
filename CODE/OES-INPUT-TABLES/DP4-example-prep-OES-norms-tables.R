@@ -62,7 +62,7 @@ scale_lookup <-
   scale_lookup_pre %>% 
   filter(form == "interview") %>% 
   mutate(form = "clinician") %>% 
-  mutate_at(vars(PHY:COM), ~ as.numeric(NA)) %>% 
+  mutate(across(PHY:COM, ~ as.numeric(NA))) %>% 
   bind_rows(scale_lookup_pre, .)
 
 # Read in growth score .xlsx
@@ -72,7 +72,7 @@ growth_lookup <- here("INPUT-FILES/OES-INPUT-TABLES/DP4-EXAMPLE/growth-score-loo
   map_df(read_excel,
          path = here("INPUT-FILES/OES-INPUT-TABLES/DP4-EXAMPLE/growth-score-lookup.xlsx"),
          .id = "form") %>% 
-  rename_at(vars(PHY:COM), ~ paste0(.x,"_G")) 
+  rename_with(~ str_c(.x,"_G"), PHY:COM) 
 
 # Read in age equiv .xlsx
 ageEquiv_lookup <- here("INPUT-FILES/OES-INPUT-TABLES/DP4-EXAMPLE/ageEquiv-form-lookup.xlsx") %>% 
@@ -83,11 +83,11 @@ ageEquiv_lookup <- here("INPUT-FILES/OES-INPUT-TABLES/DP4-EXAMPLE/ageEquiv-form-
          .id = "form") %>%
   # For some reason, R is appending garbage chars to the end of value "<2:0" on
   # read-in. Next mutate_at subsets the string to get rid of the garbage chars.
-  mutate_at(vars(PHY:COM), ~ case_when(
+  mutate(across(PHY:COM, ~ case_when(
     str_detect(.x, "<") ~ str_sub(.x, 1, 4),
     TRUE ~ .x
-  )) %>% 
-  rename_at(vars(PHY:COM), ~ str_c(.x, "_AE"))
+  ))) %>% 
+  rename_with(~ str_c(.x, "_AE"), PHY:COM)
 
 # Read in CV .xlsx
 CV_lookup <- here("INPUT-FILES/OES-INPUT-TABLES/DP4-EXAMPLE/Form-Agestrat-CV.xlsx") %>% 
@@ -170,9 +170,14 @@ scale_CI_growth_AE_lookup <- scale_acr %>%
   select(form:COM, ends_with("CI90"), ends_with("CI95"), ends_with("_G"), ends_with("_AE")) %>% 
   # rename SS cols so all cols to be gathered are named with the format
   # "scaleName_scoreType"
-  rename_at(vars(PHY:COM), ~ paste0(.x,"_SS")) %>% 
+  rename_with(~ str_c(.x,"_SS"), PHY:COM) %>% 
   # gather "scaleName_scoreType" cols into key column, SS and CI values into val
   # col
+  
+  
+  # START HERE
+  
+  
   gather(key, val, 4:ncol(.)) %>%
   # Now split "scaleName_scoreType" in key col into two cols: scale and type
   extract(key, into = c("scale", "type"), "([[:alpha:]]{3})?\\_?(.*)") %>%
