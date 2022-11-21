@@ -175,15 +175,16 @@ scale_CI_growth_AE_lookup <- scale_acr %>%
   # col
   
   
-  # START HERE
-  
-  
-  gather(key, val, 4:ncol(.)) %>%
+  # before pivoting longer, need to change all colums to char, because
+  # pivot_longer() can't combine char and num into single col
+  mutate(across(4:ncol(.), as.character)) %>%
+  pivot_longer(4:ncol(.), names_to = "key", values_to = "val") %>%
   # Now split "scaleName_scoreType" in key col into two cols: scale and type
   extract(key, into = c("scale", "type"), "([[:alpha:]]{3})?\\_?(.*)") %>%
   # spread so that type yields cols of SS, G, CI90, CI95, and that quad remains
   # paired with correct form, agestrat, rawscore, and scale.
-  spread(type, val) %>% 
+  pivot_wider(names_from = type, values_from = val) %>%
+  # spread(type, val) %>%
   select(scale, form, agestrat, rawscore, SS, CI90, CI95, G, AE) %>% 
   rename(growth = G, AgeEquiv = AE) %>% 
   arrange(scale) %>% 
@@ -191,6 +192,7 @@ scale_CI_growth_AE_lookup <- scale_acr %>%
     SS = as.numeric(SS),
     growth = as.numeric(growth)
   )
+
 
 # Read in GDS .xlsx, using same general method as multi-tab .xlsx, but without
 # requiring a function
@@ -232,7 +234,7 @@ GDS_lookup <- here("INPUT-FILES/OES-INPUT-TABLES/DP4-EXAMPLE/GDS_lookup.xlsx") %
 
 # Assemble OES output table: first stack scale and GDS tables
 OES_lookup <- bind_rows(scale_CI_growth_AE_lookup, GDS_lookup) %>% 
-  # This drops rows that are NA on SS and growth, which shouldn"t exist on final output table.
+  # This drops rows that are NA on SS and growth, which shouldn't exist on final output table.
   filter(!(is.na(SS) & is.na(growth))) %>% 
   left_join(perc_lookup, by = "SS") %>% 
   mutate(descrange = case_when(
@@ -250,7 +252,7 @@ OES_lookup <- bind_rows(scale_CI_growth_AE_lookup, GDS_lookup) %>%
 
 # Write OES lookup table to .csv
 write_csv(OES_lookup, here(
-  "OUTPUT-FILES/DP4-OES-lookup.csv"
+  "OUTPUT-FILES/OES-INPUT-TABLES/DP4-EXAMPLE/DP4-OES-lookup.csv"
 ))
 
 
