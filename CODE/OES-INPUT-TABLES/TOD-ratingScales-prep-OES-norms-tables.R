@@ -3,6 +3,7 @@ suppressMessages(library(tidyverse))
 suppressMessages(library(readxl))
 
 form <- c("TODC-adult", "TODC-child", "TODE")
+version <- c("TODC", "TODC", "TODE")
 
 # Create char vec holding names of input .xlsx containing scale lookups.
 # `purrr::map_chr()` returns a char vec. Mapping `str_c` allows you to paste

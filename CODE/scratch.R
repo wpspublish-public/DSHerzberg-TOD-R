@@ -1,11 +1,13 @@
-df1 <- suppressMessages(
+test <- suppressMessages(
   read_csv(
     here(
-      "OUTPUT-FILES/OES-INPUT-TABLES/DP4-EXAMPLE/DP4-OES-lookup.csv"
-    )))
-
-df2 <- suppressMessages(
-  read_csv(
-    here(
-      "OUTPUT-FILES/OES-INPUT-TABLES/DP4-EXAMPLE/DP4-OES-lookup-ORIG.csv"
-    )))
+      "INPUT-FILES/OES-INPUT-TABLES/TODC-child-rating-scale-raw-to-t-score.csv"
+    ))) %>% 
+  mutate(version = "TOD-C") %>% 
+  pivot_longer(
+    cols = ends_with("_t"),
+    names_to = "rater",
+    values_to = "t_score"
+  ) %>% relocate(c(version, rater), .before = "raw") %>% 
+  arrange(rater)
+  
