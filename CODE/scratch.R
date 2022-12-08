@@ -1,6 +1,6 @@
 lookup_v3 <- map2(
   form_file_name,
-  version,
+  form,
   ~
     suppressMessages(read_csv(here(
       str_c("INPUT-FILES/OES-INPUT-TABLES/", .x, ".csv")
@@ -13,22 +13,26 @@ lookup_v3 <- map2(
     ) %>% relocate(c(version, norm_rater), .before = "raw") %>%
     arrange(norm_rater)
 ) %>% 
-  bind_rows(.) 
-
-# %>% 
-#   mutate(
-#     across(norm_rater,
-#            ~
-#              case_when(
-#                
-#              )
-#     )
-#   )
+  bind_rows(.) %>%
+  mutate(
+    across(norm_rater,
+           ~
+             case_when(
+               version == "TODC-child" & norm_rater == "parent_t" ~ "child-parent",
+               version == "TODC-child" & norm_rater == "self_t" ~ "child-self",
+               version == "TODC-child" & norm_rater == "teacher_t" ~ "child-teacher",
+               version == "TODC-adult" & norm_rater == "self_t" ~ "adult-self",
+               version == "TODE" & norm_rater == "parent_t" ~ "child-parent",
+               version == "TODE" & norm_rater == "teacher_t" ~ "child-teacher",
+               TRUE ~ NA_character_
+             )
+    )
+  )
 
 
   
   
-  ###########
+  ########### ALL BELOW WORKS
   
   todc_child <- suppressMessages(
   read_csv(
