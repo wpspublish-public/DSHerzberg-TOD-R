@@ -3,7 +3,6 @@ suppressMessages(library(tidyverse))
 suppressMessages(library(readxl))
 
 form <- c("TODC-child", "TODC-adult", "TODE")
-version <- c("TODC", "TODC", "TODE")
 
 # Create char vec holding names of input .xlsx containing scale lookups.
 # `purrr::map_chr()` returns a char vec. Mapping `str_c` allows you to paste
@@ -22,12 +21,41 @@ perc_lookup <- suppressMessages(
       "INPUT-FILES/OES-INPUT-TABLES/t-score-to-percentile.xlsx"
       )))
 
-form_lookup <- form_file_name %>%
-  map(~
-        suppressMessages(read_csv(here(
-          str_c("INPUT-FILES/OES-INPUT-TABLES/", .x, ".csv")
-        )))) %>%
-  reduce(left_join, by = "raw")
+lookup <- map2(
+  form_file_name,
+  form,
+  ~
+    suppressMessages(read_csv(here(
+      str_c("INPUT-FILES/OES-INPUT-TABLES/", .x, ".csv")
+    ))) %>%
+    mutate(version = .y) %>%
+    pivot_longer(
+      cols = ends_with("_t"),
+      names_to = "norm_rater",
+      values_to = "t_score"
+    ) %>% relocate(c(version, norm_rater), .before = "raw") %>%
+    arrange(norm_rater)
+) %>% 
+  bind_rows(.) %>%
+  mutate(
+    across(norm_rater,
+           ~
+             case_when(
+               version == "TODC-child" & norm_rater == "parent_t" ~ "child-parent",
+               version == "TODC-child" & norm_rater == "self_t" ~ "child-self",
+               version == "TODC-child" & norm_rater == "teacher_t" ~ "child-teacher",
+               version == "TODC-adult" & norm_rater == "self_t" ~ "adult-self",
+               version == "TODE" & norm_rater == "parent_t" ~ "child-parent",
+               version == "TODE" & norm_rater == "teacher_t" ~ "child-teacher",
+               TRUE ~ NA_character_
+             )
+    ),
+    across(version,
+           ~
+             str_sub(., 1, 4)
+    )
+  )
+
 
 ####START HERE - REFER TO OUTLINE OF HOW FINAL TABLE SHOULD LOOK
 
