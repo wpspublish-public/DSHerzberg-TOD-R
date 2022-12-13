@@ -53,8 +53,18 @@ lookup <- map2(
     across(version,
            ~
              str_sub(., 1, 4)
+    ),
+    risk_level = case_when(
+      t_score <= 37 ~ "No or extremely low risk",
+      between(t_score, 38, 43) ~ "Very low risk",
+      between(t_score, 44, 57) ~ "Low risk",
+      between(t_score, 58, 64) ~ "High risk",
+      between(t_score, 65, 70) ~ "Very high risk",
+      t_score >= 71 ~ "Extremely high risk",
+      TRUE ~ NA_character_
     )
-  )
+  ) %>% 
+  drop_na(t_score)
 
 
 ####START HERE - REFER TO OUTLINE OF HOW FINAL TABLE SHOULD LOOK
