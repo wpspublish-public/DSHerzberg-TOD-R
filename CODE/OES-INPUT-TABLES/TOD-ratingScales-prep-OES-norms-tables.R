@@ -19,7 +19,8 @@ perc_lookup <- suppressMessages(
   read_excel(
     here(
       "INPUT-FILES/OES-INPUT-TABLES/t-score-to-percentile.xlsx"
-      )))
+      ))) %>% 
+  rename(t_score = `t score`)
 
 lookup <- map2(
   form_file_name,
@@ -62,9 +63,54 @@ lookup <- map2(
       between(t_score, 65, 70) ~ "Very high risk",
       t_score >= 71 ~ "Extremely high risk",
       TRUE ~ NA_character_
+    ),
+    CV90 = case_when(
+      version == "TODC" & norm_rater == "child-self" ~ 4,
+      version == "TODC" & norm_rater == "adult-self" ~ 4,
+      version == "TODC" & norm_rater == "child-parent" ~ 4,
+      version == "TODC" & norm_rater == "child-teacher" ~ 3,
+      version == "TODE" & norm_rater == "child-parent" ~ 4,
+      version == "TODE" & norm_rater == "child-teacher" ~ 3,
+      TRUE ~ NA_real_
+    ),
+    CV95 = case_when(
+      version == "TODC" & norm_rater == "child-self" ~ 5,
+      version == "TODC" & norm_rater == "adult-self" ~ 4,
+      version == "TODC" & norm_rater == "child-parent" ~ 4,
+      version == "TODC" & norm_rater == "child-teacher" ~ 4,
+      version == "TODE" & norm_rater == "child-parent" ~ 4,
+      version == "TODE" & norm_rater == "child-teacher" ~ 3,
+      TRUE ~ NA_real_
     )
   ) %>% 
-  drop_na(t_score)
+  drop_na(t_score) %>% 
+  mutate(
+    CI90_LB_pre = t_score - CV90,
+    CI90_UB_pre = t_score + CV90,
+    CI95_LB_pre = t_score - CV95,
+    CI95_UB_pre = t_score + CV95,
+    CI90_LB = as.character(case_when(
+      CI90_LB_pre < 40 ~ 40,
+      TRUE ~ CI90_LB_pre
+    )), 
+    CI90_UB = as.character(case_when(
+      CI90_UB_pre > 80 ~ 80,
+      TRUE ~ CI90_UB_pre
+    )), 
+    CI95_LB = as.character(case_when(
+      CI95_LB_pre < 40 ~ 40,
+      TRUE ~ CI95_LB_pre
+    )), 
+    CI95_UB = as.character(case_when(
+      CI95_UB_pre > 80 ~ 80,
+      TRUE ~ CI95_UB_pre
+    )), 
+    CI90 = str_c(CI90_LB, CI90_UB, sep = " - "), 
+    CI95 = str_c(CI95_LB, CI95_UB, sep = " - ") 
+  ) %>% 
+  left_join(perc_lookup, by = "t_score") %>% 
+  select(version,	norm_rater,	raw, t_score, CI90, CI95, risk_level, percentile)
+  
 
 
 ####START HERE - REFER TO OUTLINE OF HOW FINAL TABLE SHOULD LOOK
