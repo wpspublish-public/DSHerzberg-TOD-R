@@ -24,7 +24,7 @@ perc_lookup <- suppressMessages(
 
 # Use map2() to read in input files into a list, and append a new column
 # labeling the TOD version of the input file
-lookup <- map2(
+OES_lookup <- map2(
   form_file_name,
   form,
   ~
@@ -126,3 +126,7 @@ lookup <- map2(
   # select and sequence cols for final OES input table
   select(version,	norm_rater,	raw, t_score, CI90, CI95, risk_level, percentile)
   
+# Write OES lookup table to .csv
+write_csv(OES_lookup, here(
+  'OUTPUT-FILES/OES-INPUT-TABLES/TOD-ratingScales-OES-lookup-table.csv'
+))
