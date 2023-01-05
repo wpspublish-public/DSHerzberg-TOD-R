@@ -64,12 +64,12 @@ OES_lookup <- map2(
     ),
     # code risk_level with case_when()
     risk_level = case_when(
-      t_score <= 37 ~ "No or extremely low risk",
-      between(t_score, 38, 43) ~ "Very low risk",
-      between(t_score, 44, 57) ~ "Low risk",
-      between(t_score, 58, 64) ~ "High risk",
-      between(t_score, 65, 70) ~ "Very high risk",
-      t_score >= 71 ~ "Extremely high risk",
+      t_score <= 43 ~ "Very low risk",
+      between(t_score, 44, 49) ~ "Moderately low risk",
+      between(t_score, 50, 56) ~ "Moderately high risk",
+      between(t_score, 57, 62) ~ "High risk",
+      between(t_score, 63, 69) ~ "Very high risk",
+      t_score >= 70 ~ "Extremely high risk",
       TRUE ~ NA_character_
     ),
     # code confidence values with case_when()
@@ -130,3 +130,4 @@ OES_lookup <- map2(
 write_csv(OES_lookup, here(
   'OUTPUT-FILES/OES-INPUT-TABLES/TOD-ratingScales-OES-lookup-table.csv'
 ))
+
