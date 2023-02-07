@@ -1,10 +1,12 @@
 suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
-scores <- c("DRIQ", "DRIW", "LWC", "PV", "QRF", "WRF")
+tests <- c("DRIQ", "DRIW", "LWC", "PV", "QRF", "WRF")
+adult_tests <- c("DRIQ", "LWC", "PV", "QRF")
 norm_groups <- c("age", "grade", "adult")
-age_stems <- str_c(scores, "-age")
-grade_stems <- str_c(scores, "-grade")
+age_stems <- str_c(tests, "-age")
+grade_stems <- str_c(tests, "-grade")
+adult_stems <- str_c(adult_tests, "-adult")
 lookup_names <- cross2(scores, norm_groups) %>% 
   map_chr(str_c, collapse = "-")
 age_grade_order <-
@@ -65,27 +67,105 @@ age_grade_order <-
     "12-Fall",
     "12-Spring"
   )
-
-
-
-age_lookups <- suppressMessages(
+ss_percentile_lookup <- suppressMessages(
   read_csv(
     here(
-      "INPUT-FILES/OES-INPUT-TABLES/TOD-S/PV-adult-lookup.csv"
+      "INPUT-FILES/OES-INPUT-TABLES/TOD-S/ss-to-percentile.csv"
     )
-  )) %>% 
-  pivot_longer(
-    cols = -raw,
-    names_to = "age_grade",
-    values_to = "ss"
-  ) %>% 
-  mutate(
-    test = "PV",
-    norm_group = "age"
-  ) %>% 
-  select(norm_group, test, age_grade, raw, ss) %>% 
-  arrange(norm_group, test, 
-          match(age_grade, age_grade_order), raw)
+  )
+)
+
+age_lookups <- map(
+  age_stems,
+  ~
+    suppressMessages(
+      read_csv(
+        here(
+          str_c("INPUT-FILES/OES-INPUT-TABLES/TOD-S/", .x, "-lookup.csv")
+        )
+      )) %>% 
+    pivot_longer(
+      cols = -raw,
+      names_to = "age_grade",
+      values_to = "ss"
+    ) %>% 
+    mutate(
+      test = str_sub(.x, 1, -5),
+      norm_group = "age"
+    ) %>% 
+    select(norm_group, test, age_grade, raw, ss) %>% 
+    arrange(norm_group, test, 
+            match(age_grade, age_grade_order), raw)
+) %>% 
+  bind_rows()
+
+grade_lookups <- map(
+  grade_stems,
+  ~
+    suppressMessages(
+      read_csv(
+        here(
+          str_c("INPUT-FILES/OES-INPUT-TABLES/TOD-S/", .x, "-lookup.csv")
+        )
+      )) %>% 
+    pivot_longer(
+      cols = -raw,
+      names_to = "age_grade",
+      values_to = "ss"
+    ) %>% 
+    mutate(
+      test = str_sub(.x, 1, -7),
+      norm_group = "grade"
+    ) %>% 
+    select(norm_group, test, age_grade, raw, ss) %>% 
+    arrange(norm_group, test, 
+            match(age_grade, age_grade_order), raw)
+) %>% 
+  bind_rows()
+
+adult_lookups <- map(
+  adult_stems,
+  ~
+    suppressMessages(
+      read_csv(
+        here(
+          str_c("INPUT-FILES/OES-INPUT-TABLES/TOD-S/", .x, "-lookup.csv")
+        )
+      )) %>% 
+    pivot_longer(
+      cols = -raw,
+      names_to = "age_grade",
+      values_to = "ss"
+    ) %>% 
+    mutate(
+      test = str_sub(.x, 1, -7),
+      norm_group = "adult"
+    ) %>% 
+    select(norm_group, test, age_grade, raw, ss) %>% 
+    arrange(norm_group, test, 
+            match(age_grade, age_grade_order), raw)
+) %>% 
+  bind_rows()
+
+all_lookups <- bind_rows(
+  age_lookups,
+  grade_lookups,
+  adult_lookups
+) %>% 
+  left_join(ss_percentile_lookup, by = "ss")
+
+
+##########################
+
+comp1 <- temp3[[4]]
+
+comp2 <- suppressMessages(
+  read_csv(
+    here(
+      "INPUT-FILES/OES-INPUT-TABLES/TOD-S/PV-age-lookup.csv"
+    )
+  )
+)
 
 temp1 <- suppressMessages(
   read_csv(
@@ -107,25 +187,25 @@ temp1 <- suppressMessages(
           match(age_grade, age_grade_order), raw)
 
 
-
-
-temp2 <- map(lookup_names,
-             ~
-                     suppressMessages(read_csv(here(
-                       str_c(
-                         "INPUT-FILES/OES-INPUT-TABLES/TOD-S/",
-                         .x,
-                         "-lookup.csv"
-                       )
-                     )))) %>%
-  set_names(lookup_names)
-
-comp1 <- temp3[[4]]
-
-comp2 <- suppressMessages(
+age_lookups_single <- suppressMessages(
   read_csv(
     here(
-      "INPUT-FILES/OES-INPUT-TABLES/TOD-S/PV-age-lookup.csv"
+      "INPUT-FILES/OES-INPUT-TABLES/TOD-S/PV-adult-lookup.csv"
     )
-  )
-)
+  )) %>% 
+  pivot_longer(
+    cols = -raw,
+    names_to = "age_grade",
+    values_to = "ss"
+  ) %>% 
+  mutate(
+    test = "PV",
+    norm_group = "age"
+  ) %>% 
+  select(norm_group, test, age_grade, raw, ss) %>% 
+  arrange(norm_group, test, 
+          match(age_grade, age_grade_order), raw)
+
+
+
+
