@@ -65,6 +65,80 @@ age_grade_order <-
     "12-Fall",
     "12-Spring"
   )
+age_low <-
+  c(
+    "5.0-5.3",
+    "5.4-5.7",
+    "5.8-5.11",
+    "6.0-6.3",
+    "6.4-6.7",
+    "6.8-6.11"
+  )
+age_middle <-
+  c(
+    "7.0-7.3",
+    "7.4-7.7",
+    "7.8-7.11",
+    "8.0-8.5",
+    "8.6-8.11",
+    "9.0-9.5",
+    "9.6-9.11",
+    "10.0-10.5",
+    "10.6-10.11"
+  )
+age_high <-
+  c(
+    "11.0-11.5",
+    "11.6-11.11",
+    "12.0-12.5",
+    "12.6-12.11",
+    "13.0-13.11",
+    "14.0-14.11",
+    "15.0-16.11",
+    "17.0-18.11",
+    "18.0-23.11",
+    "24.0-39.11",
+    "40.0-49.11",
+    "50.0-59.11",
+    "60.0-69.11",
+    "70.0-89.11"
+  )
+grade_low <-
+  c(
+    "K-Fall",
+    "K-Spring",
+    "1-Fall",
+    "1-Spring"
+  )
+grade_middle <-
+  c(
+    "2-Fall",
+    "2-Spring",
+    "3-Fall",
+    "3-Spring",
+    "4-Fall",
+    "4-Spring",
+    "5-Fall",
+    "5-Spring"
+  )
+grade_high <-
+  c(
+    "6-Fall",
+    "6-Spring",
+    "7-Fall",
+    "7-Spring",
+    "8-Fall",
+    "8-Spring",
+    "9-Fall",
+    "9-Spring",
+    "10-Fall",
+    "10-Spring",
+    "11-Fall",
+    "11-Spring",
+    "12-Fall",
+    "12-Spring"
+  )
+
 ss_percentile_lookup <- suppressMessages(
   read_csv(
     here(
@@ -254,7 +328,7 @@ all_lookups <- bind_rows(age_lookups,
       norm_group == "grade" & test == "PV" & between(raw, 137, 137) ~ "11 – Spring",
       norm_group == "grade" & test == "PV" & between(raw, 138, 138) ~ "12 – Fall",
       norm_group == "grade" & test == "PV" & between(raw, 139, 139) ~ "12 – Spring",
-      norm_group == "grade" & test == "PV" & between(raw, 143, 173) ~ "> 12",
+      norm_group == "grade" & test == "PV" & between(raw, 143, 173) ~ "> stop grade",
       norm_group == "grade" & test == "LWC" & between(raw, 29, 84) ~ "< start grade",
       norm_group == "grade" & test == "LWC" & between(raw, 85, 91) ~ "K – Fall",
       norm_group == "grade" & test == "LWC" & between(raw, 92, 97) ~ "K – Spring",
@@ -278,13 +352,13 @@ all_lookups <- bind_rows(age_lookups,
       norm_group == "grade" & test == "LWC" & between(raw, 133, 134) ~ "11 – Spring",
       norm_group == "grade" & test == "LWC" & between(raw, 135, 137) ~ "12 – Fall",
       norm_group == "grade" & test == "LWC" & between(raw, 138, 144) ~ "12 – Spring",
-      norm_group == "grade" & test == "LWC" & between(raw, 145, 168) ~ "> 12",
+      norm_group == "grade" & test == "LWC" & between(raw, 145, 168) ~ "> stop grade",
       norm_group == "grade" & test == "WRF" & between(raw, 0, 7) ~ "< start grade",
       norm_group == "grade" & test == "WRF" & between(raw, 8, 13) ~ "K – Fall",
       norm_group == "grade" & test == "WRF" & between(raw, 14, 18) ~ "K – Spring",
       norm_group == "grade" & test == "WRF" & between(raw, 19, 22) ~ "1 – Fall",
       norm_group == "grade" & test == "WRF" & between(raw, 23, 26) ~ "1 – Spring",
-      norm_group == "grade" & test == "WRF" & between(raw, 27, 68) ~ "> 12",
+      norm_group == "grade" & test == "WRF" & between(raw, 27, 68) ~ "> stop grade",
       norm_group == "grade" & test == "QRF" & between(raw, 0, 19) ~ "< start grade",
       norm_group == "grade" & test == "QRF" & between(raw, 20, 24) ~ "2 – Fall",
       norm_group == "grade" & test == "QRF" & between(raw, 25, 27) ~ "2 – Spring",
@@ -307,7 +381,77 @@ all_lookups <- bind_rows(age_lookups,
       norm_group == "grade" & test == "QRF" & between(raw, 55, 55) ~ "11 – Fall",
       norm_group == "grade" & test == "QRF" & between(raw, 56, 56) ~ "11 – Spring",
       norm_group == "grade" & test == "QRF" & between(raw, 57, 62) ~ "12 – Spring",
-      norm_group == "grade" & test == "QRF" & between(raw, 63, 93) ~ "> 12",
+      norm_group == "grade" & test == "QRF" & between(raw, 63, 93) ~ "> stop grade",
       TRUE ~ NA_character_
-    )
-  )
+    ), 
+    desc_range = case_when(
+      !(test %in% c("DRIQ", "DRIW")) & between(ss, 120, 130) ~ "Well Above Average", 
+      !(test %in% c("DRIQ", "DRIW")) & between(ss, 110, 119) ~ "Above Average", 
+      !(test %in% c("DRIQ", "DRIW")) & between(ss, 90, 109) ~ "Average", 
+      !(test %in% c("DRIQ", "DRIW")) & between(ss, 80, 89) ~ "Below Average", 
+      !(test %in% c("DRIQ", "DRIW")) & between(ss, 70, 79) ~ "Well Below Average", 
+      !(test %in% c("DRIQ", "DRIW")) & between(ss, 0, 69) ~ "Significantly Below Average", 
+      test %in% c("DRIQ", "DRIW") & between(ss, 109, 130) ~ "Above average",
+      test %in% c("DRIQ", "DRIW") & between(ss, 90, 109) ~ "Average",
+      test %in% c("DRIQ", "DRIW") & between(ss, 0, 89) ~ "Below average",
+      TRUE ~ NA_character_
+    ), 
+    risk = case_when(
+      test %in% c("DRIQ", "DRIW") & between(ss, 109, 130) ~ "No or Low Risk",
+      test %in% c("DRIQ", "DRIW") & between(ss, 90, 109) ~ "Possible Risk",
+      test %in% c("DRIQ", "DRIW") & between(ss, 0, 89) ~ "At-Risk",
+      TRUE ~ NA_character_
+    ), 
+    CV_90 = case_when(
+      age_grade %in% c(age_low, grade_low)  & test == "PV" ~  10,
+      age_grade %in% c(age_low, grade_low)  & test == "LWC" ~  8,
+      age_grade %in% c(age_middle, grade_middle)  & test == "PV" ~  11,
+      age_grade %in% c(age_middle, grade_middle)  & test == "LWC" ~  10,
+      age_grade %in% c(age_high, grade_high)  & test == "PV" ~  11,
+      age_grade %in% c(age_high, grade_high)  & test == "LWC" ~  9,
+      test == "WRF" ~  6,
+      test == "QRF" ~  5,
+      norm_group %in% c("age", "grade")  & test == "DRIW" ~  10, 
+      norm_group %in% c("age", "grade")  & test == "DRIQ" ~  8, 
+      norm_group %in% c("adult")  & test == "DRIQ" ~  7,
+      TRUE ~ NA_real_
+    ), 
+    CV_95 = case_when(
+      age_grade %in% c(age_low, grade_low) & test == "PV" ~ 12, 
+      age_grade %in% c(age_low, grade_low) & test == "LWC" ~ 10, 
+      age_grade %in% c(age_middle, grade_middle) & test == "PV" ~ 13, 
+      age_grade %in% c(age_middle, grade_middle) & test == "LWC" ~ 11, 
+      age_grade %in% c(age_high, grade_high) & test == "PV" ~ 13, 
+      age_grade %in% c(age_high, grade_high) & test == "LWC" ~ 11, 
+      test == "WRF" ~ 7, 
+      test == "QRF" ~ 6, 
+      norm_group %in% c("age", "grade") & test == "DRIW" ~ 12, 
+      norm_group %in% c("age", "grade") & test == "DRIQ" ~ 9, 
+      norm_group %in% c("adult") & test == "DRIQ" ~ 9,
+      TRUE ~ NA_real_
+    ), 
+      CI90_LB_pre = ss - CV_90,
+      CI90_UB_pre = ss + CV_90,
+      CI95_LB_pre = ss - CV_95,
+      CI95_UB_pre = ss + CV_95,
+      CI90_LB = as.character(case_when(
+        CI90_LB_pre < 40 ~ 40,
+        TRUE ~ CI90_LB_pre
+      )), 
+      CI90_UB = as.character(case_when(
+        CI90_UB_pre > 130 ~ 130,
+        TRUE ~ CI90_UB_pre
+      )), 
+      CI95_LB = as.character(case_when(
+        CI95_LB_pre < 40 ~ 40,
+        TRUE ~ CI95_LB_pre
+      )), 
+      CI95_UB = as.character(case_when(
+        CI95_UB_pre > 130 ~ 130,
+        TRUE ~ CI95_UB_pre
+      )), 
+      CI90 = str_c(CI90_LB, CI90_UB, sep = " - "), 
+      CI95 = str_c(CI95_LB, CI95_UB, sep = " - ") 
+    ) %>% 
+  select(norm_group, test, age_grade, raw, ss, CI90, CI95, percentile, equiv, desc_range, risk)
+  
