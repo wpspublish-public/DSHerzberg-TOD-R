@@ -1,0 +1,6 @@
+norm_group,score,raw,ss,CI90,CI95,percentile,desc_range,risk
+age,DRIQ,80,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+grade,DRIQ,81,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+adult,DRIQ,82,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIW,,,,,,,
+grade,DRIW,,,,,,,

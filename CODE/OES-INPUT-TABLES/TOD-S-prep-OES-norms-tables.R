@@ -147,6 +147,15 @@ ss_percentile_lookup <- suppressMessages(
   )
 )
 
+age_mo_min_max_lookup <- suppressMessages(
+  read_csv(
+    here(
+      "INPUT-FILES/OES-INPUT-TABLES/TOD-S/age-range-TODS.csv"
+    )
+  )
+) %>% 
+  rename(age_grade = original_age_range)
+
 age_lookups <- map(
   age_stems,
   ~
@@ -455,10 +464,54 @@ all_lookups <- bind_rows(age_lookups,
     ) %>% 
   select(norm_group, test, age_grade, raw, ss, CI90, CI95, percentile, equiv, desc_range, risk)
 
+age_lookups_v2 <- all_lookups %>%
+  filter((norm_group %in% c("age", "adult")) &
+           (test %in% c("PV", "LWC", "QRF", "WRF"))
+  ) %>% 
+  left_join(age_mo_min_max_lookup, by = "age_grade") %>% 
+  select(norm_group, test, age_min, age_max, raw, ss, CI90, CI95, percentile, equiv, desc_range)
+
+grade_lookups_v2 <- all_lookups %>%
+  filter((norm_group %in% c("grade")) &
+           (test %in% c("PV", "LWC", "QRF", "WRF"))
+  ) %>% 
+  select(test, age_grade, raw, ss, CI90, CI95, percentile, equiv, desc_range) %>% 
+  rename(grade = age_grade)
+
+indexcomposite_lookups_v2 <- all_lookups %>%
+  filter(test %in% c("DRIQ", "DRIW")
+  ) %>% 
+  select(norm_group, test, raw, ss, CI90, CI95, percentile, desc_range, risk) %>% 
+  rename(score = test)
+
 write_csv(
   all_lookups,
   here(
-    "OUTPUT-FILES/OES-INPUT-TABLES/TOD-S-OES-lookup-table.csv"
+    "OUTPUT-FILES/OES-INPUT-TABLES/TOD-S/TOD-S-OES-lookup-table.csv"
+  ),
+  na = ""
+)
+
+write_csv(
+  age_lookups_v2,
+  here(
+    "OUTPUT-FILES/OES-INPUT-TABLES/TOD-S/TOD-S-OES-age-lookup-table-v2.csv"
+  ),
+  na = ""
+)
+
+write_csv(
+  grade_lookups_v2,
+  here(
+    "OUTPUT-FILES/OES-INPUT-TABLES/TOD-S/TOD-S-OES-grade-lookup-table-v2.csv"
+  ),
+  na = ""
+)
+
+write_csv(
+  indexcomposite_lookups_v2,
+  here(
+    "OUTPUT-FILES/OES-INPUT-TABLES/TOD-S/TOD-S-OES-indexcomposite-lookup-table-v2.csv"
   ),
   na = ""
 )

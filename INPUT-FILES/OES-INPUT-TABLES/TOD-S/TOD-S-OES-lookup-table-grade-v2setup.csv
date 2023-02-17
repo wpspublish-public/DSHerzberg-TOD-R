@@ -1,0 +1,5 @@
+test,grade,raw,ss,CI90,CI95,percentile,grade_equiv,desc_range
+PV,K-Fall,29,40,40 - 48,40 - 50,<.1,< start grade,Significantly Below Average
+LWC,,,,,,,,
+WRF,,,,,,,,
+QRF,,,,,,,,

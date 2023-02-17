@@ -1,0 +1,5 @@
+norm_group,test,agemon_min,agemon_max,raw,ss,CI90,CI95,percentile,age_equiv,desc_range
+age,PV,60,63,29,40,40 - 48,40 - 50,<.1,< Start age,Significantly Below Average
+adult,LWC,,,,,,,,,
+,WRF,,,,,,,,,
+,QRF,,,,,,,,,

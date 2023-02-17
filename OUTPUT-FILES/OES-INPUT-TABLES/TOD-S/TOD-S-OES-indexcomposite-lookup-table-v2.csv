@@ -1,0 +1,906 @@
+norm_group,score,raw,ss,CI90,CI95,percentile,desc_range,risk
+age,DRIQ,80,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,81,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,82,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,83,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,84,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,85,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,86,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,87,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,88,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,89,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,90,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,91,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,92,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,93,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,94,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,95,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,96,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,97,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,98,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,99,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,100,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,101,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,102,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,103,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,104,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,105,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,106,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,107,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,108,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,109,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,110,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,111,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,112,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,113,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,114,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,115,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,116,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,117,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,118,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,119,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,120,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,121,57,49 - 65,48 - 66,0.2,Below average,At-Risk
+age,DRIQ,122,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+age,DRIQ,123,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+age,DRIQ,124,59,51 - 67,50 - 68,0.3,Below average,At-Risk
+age,DRIQ,125,59,51 - 67,50 - 68,0.3,Below average,At-Risk
+age,DRIQ,126,60,52 - 68,51 - 69,0.4,Below average,At-Risk
+age,DRIQ,127,60,52 - 68,51 - 69,0.4,Below average,At-Risk
+age,DRIQ,128,61,53 - 69,52 - 70,0.5,Below average,At-Risk
+age,DRIQ,129,61,53 - 69,52 - 70,0.5,Below average,At-Risk
+age,DRIQ,130,61,53 - 69,52 - 70,0.5,Below average,At-Risk
+age,DRIQ,131,62,54 - 70,53 - 71,1,Below average,At-Risk
+age,DRIQ,132,63,55 - 71,54 - 72,1,Below average,At-Risk
+age,DRIQ,133,63,55 - 71,54 - 72,1,Below average,At-Risk
+age,DRIQ,134,64,56 - 72,55 - 73,1,Below average,At-Risk
+age,DRIQ,135,64,56 - 72,55 - 73,1,Below average,At-Risk
+age,DRIQ,136,65,57 - 73,56 - 74,1,Below average,At-Risk
+age,DRIQ,137,65,57 - 73,56 - 74,1,Below average,At-Risk
+age,DRIQ,138,66,58 - 74,57 - 75,1,Below average,At-Risk
+age,DRIQ,139,66,58 - 74,57 - 75,1,Below average,At-Risk
+age,DRIQ,140,67,59 - 75,58 - 76,1,Below average,At-Risk
+age,DRIQ,141,67,59 - 75,58 - 76,1,Below average,At-Risk
+age,DRIQ,142,68,60 - 76,59 - 77,2,Below average,At-Risk
+age,DRIQ,143,68,60 - 76,59 - 77,2,Below average,At-Risk
+age,DRIQ,144,69,61 - 77,60 - 78,2,Below average,At-Risk
+age,DRIQ,145,69,61 - 77,60 - 78,2,Below average,At-Risk
+age,DRIQ,146,70,62 - 78,61 - 79,2,Below average,At-Risk
+age,DRIQ,147,70,62 - 78,61 - 79,2,Below average,At-Risk
+age,DRIQ,148,71,63 - 79,62 - 80,3,Below average,At-Risk
+age,DRIQ,149,71,63 - 79,62 - 80,3,Below average,At-Risk
+age,DRIQ,150,72,64 - 80,63 - 81,3,Below average,At-Risk
+age,DRIQ,151,72,64 - 80,63 - 81,3,Below average,At-Risk
+age,DRIQ,152,73,65 - 81,64 - 82,4,Below average,At-Risk
+age,DRIQ,153,73,65 - 81,64 - 82,4,Below average,At-Risk
+age,DRIQ,154,74,66 - 82,65 - 83,4,Below average,At-Risk
+age,DRIQ,155,74,66 - 82,65 - 83,4,Below average,At-Risk
+age,DRIQ,156,75,67 - 83,66 - 84,5,Below average,At-Risk
+age,DRIQ,157,75,67 - 83,66 - 84,5,Below average,At-Risk
+age,DRIQ,158,76,68 - 84,67 - 85,5,Below average,At-Risk
+age,DRIQ,159,77,69 - 85,68 - 86,6,Below average,At-Risk
+age,DRIQ,160,77,69 - 85,68 - 86,6,Below average,At-Risk
+age,DRIQ,161,78,70 - 86,69 - 87,7,Below average,At-Risk
+age,DRIQ,162,78,70 - 86,69 - 87,7,Below average,At-Risk
+age,DRIQ,163,79,71 - 87,70 - 88,8,Below average,At-Risk
+age,DRIQ,164,79,71 - 87,70 - 88,8,Below average,At-Risk
+age,DRIQ,165,80,72 - 88,71 - 89,9,Below average,At-Risk
+age,DRIQ,166,80,72 - 88,71 - 89,9,Below average,At-Risk
+age,DRIQ,167,81,73 - 89,72 - 90,10,Below average,At-Risk
+age,DRIQ,168,81,73 - 89,72 - 90,10,Below average,At-Risk
+age,DRIQ,169,82,74 - 90,73 - 91,12,Below average,At-Risk
+age,DRIQ,170,82,74 - 90,73 - 91,12,Below average,At-Risk
+age,DRIQ,171,83,75 - 91,74 - 92,13,Below average,At-Risk
+age,DRIQ,172,84,76 - 92,75 - 93,14,Below average,At-Risk
+age,DRIQ,173,84,76 - 92,75 - 93,14,Below average,At-Risk
+age,DRIQ,174,85,77 - 93,76 - 94,16,Below average,At-Risk
+age,DRIQ,175,85,77 - 93,76 - 94,16,Below average,At-Risk
+age,DRIQ,176,86,78 - 94,77 - 95,18,Below average,At-Risk
+age,DRIQ,177,86,78 - 94,77 - 95,18,Below average,At-Risk
+age,DRIQ,178,87,79 - 95,78 - 96,19,Below average,At-Risk
+age,DRIQ,179,87,79 - 95,78 - 96,19,Below average,At-Risk
+age,DRIQ,180,88,80 - 96,79 - 97,21,Below average,At-Risk
+age,DRIQ,181,89,81 - 97,80 - 98,23,Below average,At-Risk
+age,DRIQ,182,89,81 - 97,80 - 98,23,Below average,At-Risk
+age,DRIQ,183,90,82 - 98,81 - 99,25,Average,Possible Risk
+age,DRIQ,184,90,82 - 98,81 - 99,25,Average,Possible Risk
+age,DRIQ,185,91,83 - 99,82 - 100,27,Average,Possible Risk
+age,DRIQ,186,91,83 - 99,82 - 100,27,Average,Possible Risk
+age,DRIQ,187,92,84 - 100,83 - 101,30,Average,Possible Risk
+age,DRIQ,188,93,85 - 101,84 - 102,32,Average,Possible Risk
+age,DRIQ,189,93,85 - 101,84 - 102,32,Average,Possible Risk
+age,DRIQ,190,94,86 - 102,85 - 103,34,Average,Possible Risk
+age,DRIQ,191,94,86 - 102,85 - 103,34,Average,Possible Risk
+age,DRIQ,192,95,87 - 103,86 - 104,37,Average,Possible Risk
+age,DRIQ,193,95,87 - 103,86 - 104,37,Average,Possible Risk
+age,DRIQ,194,96,88 - 104,87 - 105,39,Average,Possible Risk
+age,DRIQ,195,97,89 - 105,88 - 106,42,Average,Possible Risk
+age,DRIQ,196,97,89 - 105,88 - 106,42,Average,Possible Risk
+age,DRIQ,197,98,90 - 106,89 - 107,45,Average,Possible Risk
+age,DRIQ,198,98,90 - 106,89 - 107,45,Average,Possible Risk
+age,DRIQ,199,99,91 - 107,90 - 108,47,Average,Possible Risk
+age,DRIQ,200,100,92 - 108,91 - 109,50,Average,Possible Risk
+age,DRIQ,201,100,92 - 108,91 - 109,50,Average,Possible Risk
+age,DRIQ,202,101,93 - 109,92 - 110,53,Average,Possible Risk
+age,DRIQ,203,101,93 - 109,92 - 110,53,Average,Possible Risk
+age,DRIQ,204,102,94 - 110,93 - 111,55,Average,Possible Risk
+age,DRIQ,205,103,95 - 111,94 - 112,58,Average,Possible Risk
+age,DRIQ,206,103,95 - 111,94 - 112,58,Average,Possible Risk
+age,DRIQ,207,104,96 - 112,95 - 113,61,Average,Possible Risk
+age,DRIQ,208,104,96 - 112,95 - 113,61,Average,Possible Risk
+age,DRIQ,209,105,97 - 113,96 - 114,63,Average,Possible Risk
+age,DRIQ,210,106,98 - 114,97 - 115,66,Average,Possible Risk
+age,DRIQ,211,106,98 - 114,97 - 115,66,Average,Possible Risk
+age,DRIQ,212,107,99 - 115,98 - 116,68,Average,Possible Risk
+age,DRIQ,213,107,99 - 115,98 - 116,68,Average,Possible Risk
+age,DRIQ,214,108,100 - 116,99 - 117,70,Average,Possible Risk
+age,DRIQ,215,109,101 - 117,100 - 118,73,Above average,No or Low Risk
+age,DRIQ,216,109,101 - 117,100 - 118,73,Above average,No or Low Risk
+age,DRIQ,217,110,102 - 118,101 - 119,75,Above average,No or Low Risk
+age,DRIQ,218,111,103 - 119,102 - 120,77,Above average,No or Low Risk
+age,DRIQ,219,111,103 - 119,102 - 120,77,Above average,No or Low Risk
+age,DRIQ,220,112,104 - 120,103 - 121,79,Above average,No or Low Risk
+age,DRIQ,221,112,104 - 120,103 - 121,79,Above average,No or Low Risk
+age,DRIQ,222,113,105 - 121,104 - 122,81,Above average,No or Low Risk
+age,DRIQ,223,114,106 - 122,105 - 123,82,Above average,No or Low Risk
+age,DRIQ,224,114,106 - 122,105 - 123,82,Above average,No or Low Risk
+age,DRIQ,225,115,107 - 123,106 - 124,84,Above average,No or Low Risk
+age,DRIQ,226,116,108 - 124,107 - 125,86,Above average,No or Low Risk
+age,DRIQ,227,116,108 - 124,107 - 125,86,Above average,No or Low Risk
+age,DRIQ,228,117,109 - 125,108 - 126,87,Above average,No or Low Risk
+age,DRIQ,229,118,110 - 126,109 - 127,88,Above average,No or Low Risk
+age,DRIQ,230,118,110 - 126,109 - 127,88,Above average,No or Low Risk
+age,DRIQ,231,119,111 - 127,110 - 128,90,Above average,No or Low Risk
+age,DRIQ,232,119,111 - 127,110 - 128,90,Above average,No or Low Risk
+age,DRIQ,233,120,112 - 128,111 - 129,91,Above average,No or Low Risk
+age,DRIQ,234,121,113 - 129,112 - 130,92,Above average,No or Low Risk
+age,DRIQ,235,121,113 - 129,112 - 130,92,Above average,No or Low Risk
+age,DRIQ,236,122,114 - 130,113 - 130,93,Above average,No or Low Risk
+age,DRIQ,237,123,115 - 130,114 - 130,94,Above average,No or Low Risk
+age,DRIQ,238,123,115 - 130,114 - 130,94,Above average,No or Low Risk
+age,DRIQ,239,124,116 - 130,115 - 130,95,Above average,No or Low Risk
+age,DRIQ,240,125,117 - 130,116 - 130,95,Above average,No or Low Risk
+age,DRIQ,241,125,117 - 130,116 - 130,95,Above average,No or Low Risk
+age,DRIQ,242,126,118 - 130,117 - 130,96,Above average,No or Low Risk
+age,DRIQ,243,127,119 - 130,118 - 130,96,Above average,No or Low Risk
+age,DRIQ,244,127,119 - 130,118 - 130,96,Above average,No or Low Risk
+age,DRIQ,245,128,120 - 130,119 - 130,97,Above average,No or Low Risk
+age,DRIQ,246,129,121 - 130,120 - 130,97,Above average,No or Low Risk
+age,DRIQ,247,129,121 - 130,120 - 130,97,Above average,No or Low Risk
+age,DRIQ,248,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,249,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,250,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,251,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,252,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,253,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,254,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,255,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,256,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,257,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,258,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,259,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIQ,260,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+age,DRIW,80,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,81,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,82,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,83,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,84,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,85,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,86,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,87,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,88,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,89,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,90,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,91,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,92,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,93,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,94,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,95,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,96,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,97,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,98,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,99,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,100,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,101,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,102,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,103,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,104,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,105,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,106,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,107,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,108,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,109,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,110,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,111,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,112,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,113,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,114,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,115,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,116,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,117,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,118,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,119,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,120,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,121,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,122,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,123,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,124,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,125,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,126,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,127,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,128,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,129,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,130,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,131,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,132,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,133,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,134,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,135,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,136,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,137,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,138,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,139,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,140,59,49 - 69,47 - 71,0.3,Below average,At-Risk
+age,DRIW,141,62,52 - 72,50 - 74,1,Below average,At-Risk
+age,DRIW,142,62,52 - 72,50 - 74,1,Below average,At-Risk
+age,DRIW,143,63,53 - 73,51 - 75,1,Below average,At-Risk
+age,DRIW,144,63,53 - 73,51 - 75,1,Below average,At-Risk
+age,DRIW,145,63,53 - 73,51 - 75,1,Below average,At-Risk
+age,DRIW,146,63,53 - 73,51 - 75,1,Below average,At-Risk
+age,DRIW,147,63,53 - 73,51 - 75,1,Below average,At-Risk
+age,DRIW,148,63,53 - 73,51 - 75,1,Below average,At-Risk
+age,DRIW,149,63,53 - 73,51 - 75,1,Below average,At-Risk
+age,DRIW,150,69,59 - 79,57 - 81,2,Below average,At-Risk
+age,DRIW,151,69,59 - 79,57 - 81,2,Below average,At-Risk
+age,DRIW,152,69,59 - 79,57 - 81,2,Below average,At-Risk
+age,DRIW,153,71,61 - 81,59 - 83,3,Below average,At-Risk
+age,DRIW,154,72,62 - 82,60 - 84,3,Below average,At-Risk
+age,DRIW,155,72,62 - 82,60 - 84,3,Below average,At-Risk
+age,DRIW,156,73,63 - 83,61 - 85,4,Below average,At-Risk
+age,DRIW,157,73,63 - 83,61 - 85,4,Below average,At-Risk
+age,DRIW,158,75,65 - 85,63 - 87,5,Below average,At-Risk
+age,DRIW,159,75,65 - 85,63 - 87,5,Below average,At-Risk
+age,DRIW,160,76,66 - 86,64 - 88,5,Below average,At-Risk
+age,DRIW,161,77,67 - 87,65 - 89,6,Below average,At-Risk
+age,DRIW,162,77,67 - 87,65 - 89,6,Below average,At-Risk
+age,DRIW,163,78,68 - 88,66 - 90,7,Below average,At-Risk
+age,DRIW,164,79,69 - 89,67 - 91,8,Below average,At-Risk
+age,DRIW,165,79,69 - 89,67 - 91,8,Below average,At-Risk
+age,DRIW,166,80,70 - 90,68 - 92,9,Below average,At-Risk
+age,DRIW,167,81,71 - 91,69 - 93,10,Below average,At-Risk
+age,DRIW,168,82,72 - 92,70 - 94,12,Below average,At-Risk
+age,DRIW,169,82,72 - 92,70 - 94,12,Below average,At-Risk
+age,DRIW,170,83,73 - 93,71 - 95,13,Below average,At-Risk
+age,DRIW,171,84,74 - 94,72 - 96,14,Below average,At-Risk
+age,DRIW,172,84,74 - 94,72 - 96,14,Below average,At-Risk
+age,DRIW,173,85,75 - 95,73 - 97,16,Below average,At-Risk
+age,DRIW,174,86,76 - 96,74 - 98,18,Below average,At-Risk
+age,DRIW,175,86,76 - 96,74 - 98,18,Below average,At-Risk
+age,DRIW,176,87,77 - 97,75 - 99,19,Below average,At-Risk
+age,DRIW,177,88,78 - 98,76 - 100,21,Below average,At-Risk
+age,DRIW,178,88,78 - 98,76 - 100,21,Below average,At-Risk
+age,DRIW,179,89,79 - 99,77 - 101,23,Below average,At-Risk
+age,DRIW,180,89,79 - 99,77 - 101,23,Below average,At-Risk
+age,DRIW,181,90,80 - 100,78 - 102,25,Average,Possible Risk
+age,DRIW,182,91,81 - 101,79 - 103,27,Average,Possible Risk
+age,DRIW,183,91,81 - 101,79 - 103,27,Average,Possible Risk
+age,DRIW,184,92,82 - 102,80 - 104,30,Average,Possible Risk
+age,DRIW,185,93,83 - 103,81 - 105,32,Average,Possible Risk
+age,DRIW,186,93,83 - 103,81 - 105,32,Average,Possible Risk
+age,DRIW,187,94,84 - 104,82 - 106,34,Average,Possible Risk
+age,DRIW,188,94,84 - 104,82 - 106,34,Average,Possible Risk
+age,DRIW,189,95,85 - 105,83 - 107,37,Average,Possible Risk
+age,DRIW,190,96,86 - 106,84 - 108,39,Average,Possible Risk
+age,DRIW,191,96,86 - 106,84 - 108,39,Average,Possible Risk
+age,DRIW,192,97,87 - 107,85 - 109,42,Average,Possible Risk
+age,DRIW,193,97,87 - 107,85 - 109,42,Average,Possible Risk
+age,DRIW,194,98,88 - 108,86 - 110,45,Average,Possible Risk
+age,DRIW,195,99,89 - 109,87 - 111,47,Average,Possible Risk
+age,DRIW,196,99,89 - 109,87 - 111,47,Average,Possible Risk
+age,DRIW,197,100,90 - 110,88 - 112,50,Average,Possible Risk
+age,DRIW,198,100,90 - 110,88 - 112,50,Average,Possible Risk
+age,DRIW,199,101,91 - 111,89 - 113,53,Average,Possible Risk
+age,DRIW,200,101,91 - 111,89 - 113,53,Average,Possible Risk
+age,DRIW,201,102,92 - 112,90 - 114,55,Average,Possible Risk
+age,DRIW,202,103,93 - 113,91 - 115,58,Average,Possible Risk
+age,DRIW,203,103,93 - 113,91 - 115,58,Average,Possible Risk
+age,DRIW,204,104,94 - 114,92 - 116,61,Average,Possible Risk
+age,DRIW,205,104,94 - 114,92 - 116,61,Average,Possible Risk
+age,DRIW,206,105,95 - 115,93 - 117,63,Average,Possible Risk
+age,DRIW,207,105,95 - 115,93 - 117,63,Average,Possible Risk
+age,DRIW,208,106,96 - 116,94 - 118,66,Average,Possible Risk
+age,DRIW,209,107,97 - 117,95 - 119,68,Average,Possible Risk
+age,DRIW,210,107,97 - 117,95 - 119,68,Average,Possible Risk
+age,DRIW,211,108,98 - 118,96 - 120,70,Average,Possible Risk
+age,DRIW,212,108,98 - 118,96 - 120,70,Average,Possible Risk
+age,DRIW,213,109,99 - 119,97 - 121,73,Above average,No or Low Risk
+age,DRIW,214,109,99 - 119,97 - 121,73,Above average,No or Low Risk
+age,DRIW,215,110,100 - 120,98 - 122,75,Above average,No or Low Risk
+age,DRIW,216,110,100 - 120,98 - 122,75,Above average,No or Low Risk
+age,DRIW,217,111,101 - 121,99 - 123,77,Above average,No or Low Risk
+age,DRIW,218,111,101 - 121,99 - 123,77,Above average,No or Low Risk
+age,DRIW,219,112,102 - 122,100 - 124,79,Above average,No or Low Risk
+age,DRIW,220,112,102 - 122,100 - 124,79,Above average,No or Low Risk
+age,DRIW,221,113,103 - 123,101 - 125,81,Above average,No or Low Risk
+age,DRIW,222,113,103 - 123,101 - 125,81,Above average,No or Low Risk
+age,DRIW,223,114,104 - 124,102 - 126,82,Above average,No or Low Risk
+age,DRIW,224,114,104 - 124,102 - 126,82,Above average,No or Low Risk
+age,DRIW,225,115,105 - 125,103 - 127,84,Above average,No or Low Risk
+age,DRIW,226,115,105 - 125,103 - 127,84,Above average,No or Low Risk
+age,DRIW,227,116,106 - 126,104 - 128,86,Above average,No or Low Risk
+age,DRIW,228,116,106 - 126,104 - 128,86,Above average,No or Low Risk
+age,DRIW,229,117,107 - 127,105 - 129,87,Above average,No or Low Risk
+age,DRIW,230,117,107 - 127,105 - 129,87,Above average,No or Low Risk
+age,DRIW,231,117,107 - 127,105 - 129,87,Above average,No or Low Risk
+age,DRIW,232,118,108 - 128,106 - 130,88,Above average,No or Low Risk
+age,DRIW,233,119,109 - 129,107 - 130,90,Above average,No or Low Risk
+age,DRIW,234,119,109 - 129,107 - 130,90,Above average,No or Low Risk
+age,DRIW,235,120,110 - 130,108 - 130,91,Above average,No or Low Risk
+age,DRIW,236,120,110 - 130,108 - 130,91,Above average,No or Low Risk
+age,DRIW,237,121,111 - 130,109 - 130,92,Above average,No or Low Risk
+age,DRIW,238,121,111 - 130,109 - 130,92,Above average,No or Low Risk
+age,DRIW,239,122,112 - 130,110 - 130,93,Above average,No or Low Risk
+age,DRIW,240,122,112 - 130,110 - 130,93,Above average,No or Low Risk
+age,DRIW,241,123,113 - 130,111 - 130,94,Above average,No or Low Risk
+age,DRIW,242,123,113 - 130,111 - 130,94,Above average,No or Low Risk
+age,DRIW,243,124,114 - 130,112 - 130,95,Above average,No or Low Risk
+age,DRIW,244,124,114 - 130,112 - 130,95,Above average,No or Low Risk
+age,DRIW,245,125,115 - 130,113 - 130,95,Above average,No or Low Risk
+age,DRIW,246,125,115 - 130,113 - 130,95,Above average,No or Low Risk
+age,DRIW,247,125,115 - 130,113 - 130,95,Above average,No or Low Risk
+age,DRIW,248,126,116 - 130,114 - 130,96,Above average,No or Low Risk
+age,DRIW,249,127,117 - 130,115 - 130,96,Above average,No or Low Risk
+age,DRIW,250,127,117 - 130,115 - 130,96,Above average,No or Low Risk
+age,DRIW,251,127,117 - 130,115 - 130,96,Above average,No or Low Risk
+age,DRIW,252,128,118 - 130,116 - 130,97,Above average,No or Low Risk
+age,DRIW,253,128,118 - 130,116 - 130,97,Above average,No or Low Risk
+age,DRIW,254,129,119 - 130,117 - 130,97,Above average,No or Low Risk
+age,DRIW,255,129,119 - 130,117 - 130,97,Above average,No or Low Risk
+age,DRIW,256,129,119 - 130,117 - 130,97,Above average,No or Low Risk
+age,DRIW,257,130,120 - 130,118 - 130,98,Above average,No or Low Risk
+age,DRIW,258,130,120 - 130,118 - 130,98,Above average,No or Low Risk
+age,DRIW,259,130,120 - 130,118 - 130,98,Above average,No or Low Risk
+age,DRIW,260,130,120 - 130,118 - 130,98,Above average,No or Low Risk
+grade,DRIQ,80,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,81,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,82,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,83,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,84,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,85,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,86,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,87,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,88,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,89,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,90,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,91,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,92,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,93,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,94,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,95,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,96,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,97,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,98,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,99,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,100,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,101,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,102,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,103,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,104,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,105,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,106,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,107,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,108,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,109,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,110,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,111,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,112,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,113,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,114,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,115,58,50 - 66,49 - 67,0.3,Below average,At-Risk
+grade,DRIQ,116,59,51 - 67,50 - 68,0.3,Below average,At-Risk
+grade,DRIQ,117,59,51 - 67,50 - 68,0.3,Below average,At-Risk
+grade,DRIQ,118,60,52 - 68,51 - 69,0.4,Below average,At-Risk
+grade,DRIQ,119,60,52 - 68,51 - 69,0.4,Below average,At-Risk
+grade,DRIQ,120,61,53 - 69,52 - 70,0.5,Below average,At-Risk
+grade,DRIQ,121,61,53 - 69,52 - 70,0.5,Below average,At-Risk
+grade,DRIQ,122,61,53 - 69,52 - 70,0.5,Below average,At-Risk
+grade,DRIQ,123,62,54 - 70,53 - 71,1,Below average,At-Risk
+grade,DRIQ,124,62,54 - 70,53 - 71,1,Below average,At-Risk
+grade,DRIQ,125,63,55 - 71,54 - 72,1,Below average,At-Risk
+grade,DRIQ,126,63,55 - 71,54 - 72,1,Below average,At-Risk
+grade,DRIQ,127,63,55 - 71,54 - 72,1,Below average,At-Risk
+grade,DRIQ,128,64,56 - 72,55 - 73,1,Below average,At-Risk
+grade,DRIQ,129,64,56 - 72,55 - 73,1,Below average,At-Risk
+grade,DRIQ,130,64,56 - 72,55 - 73,1,Below average,At-Risk
+grade,DRIQ,131,65,57 - 73,56 - 74,1,Below average,At-Risk
+grade,DRIQ,132,65,57 - 73,56 - 74,1,Below average,At-Risk
+grade,DRIQ,133,66,58 - 74,57 - 75,1,Below average,At-Risk
+grade,DRIQ,134,66,58 - 74,57 - 75,1,Below average,At-Risk
+grade,DRIQ,135,67,59 - 75,58 - 76,1,Below average,At-Risk
+grade,DRIQ,136,67,59 - 75,58 - 76,1,Below average,At-Risk
+grade,DRIQ,137,67,59 - 75,58 - 76,1,Below average,At-Risk
+grade,DRIQ,138,68,60 - 76,59 - 77,2,Below average,At-Risk
+grade,DRIQ,139,68,60 - 76,59 - 77,2,Below average,At-Risk
+grade,DRIQ,140,69,61 - 77,60 - 78,2,Below average,At-Risk
+grade,DRIQ,141,69,61 - 77,60 - 78,2,Below average,At-Risk
+grade,DRIQ,142,70,62 - 78,61 - 79,2,Below average,At-Risk
+grade,DRIQ,143,70,62 - 78,61 - 79,2,Below average,At-Risk
+grade,DRIQ,144,71,63 - 79,62 - 80,3,Below average,At-Risk
+grade,DRIQ,145,71,63 - 79,62 - 80,3,Below average,At-Risk
+grade,DRIQ,146,71,63 - 79,62 - 80,3,Below average,At-Risk
+grade,DRIQ,147,72,64 - 80,63 - 81,3,Below average,At-Risk
+grade,DRIQ,148,72,64 - 80,63 - 81,3,Below average,At-Risk
+grade,DRIQ,149,73,65 - 81,64 - 82,4,Below average,At-Risk
+grade,DRIQ,150,73,65 - 81,64 - 82,4,Below average,At-Risk
+grade,DRIQ,151,74,66 - 82,65 - 83,4,Below average,At-Risk
+grade,DRIQ,152,74,66 - 82,65 - 83,4,Below average,At-Risk
+grade,DRIQ,153,75,67 - 83,66 - 84,5,Below average,At-Risk
+grade,DRIQ,154,75,67 - 83,66 - 84,5,Below average,At-Risk
+grade,DRIQ,155,76,68 - 84,67 - 85,5,Below average,At-Risk
+grade,DRIQ,156,76,68 - 84,67 - 85,5,Below average,At-Risk
+grade,DRIQ,157,77,69 - 85,68 - 86,6,Below average,At-Risk
+grade,DRIQ,158,77,69 - 85,68 - 86,6,Below average,At-Risk
+grade,DRIQ,159,78,70 - 86,69 - 87,7,Below average,At-Risk
+grade,DRIQ,160,78,70 - 86,69 - 87,7,Below average,At-Risk
+grade,DRIQ,161,79,71 - 87,70 - 88,8,Below average,At-Risk
+grade,DRIQ,162,79,71 - 87,70 - 88,8,Below average,At-Risk
+grade,DRIQ,163,80,72 - 88,71 - 89,9,Below average,At-Risk
+grade,DRIQ,164,80,72 - 88,71 - 89,9,Below average,At-Risk
+grade,DRIQ,165,81,73 - 89,72 - 90,10,Below average,At-Risk
+grade,DRIQ,166,81,73 - 89,72 - 90,10,Below average,At-Risk
+grade,DRIQ,167,82,74 - 90,73 - 91,12,Below average,At-Risk
+grade,DRIQ,168,82,74 - 90,73 - 91,12,Below average,At-Risk
+grade,DRIQ,169,83,75 - 91,74 - 92,13,Below average,At-Risk
+grade,DRIQ,170,83,75 - 91,74 - 92,13,Below average,At-Risk
+grade,DRIQ,171,84,76 - 92,75 - 93,14,Below average,At-Risk
+grade,DRIQ,172,84,76 - 92,75 - 93,14,Below average,At-Risk
+grade,DRIQ,173,85,77 - 93,76 - 94,16,Below average,At-Risk
+grade,DRIQ,174,85,77 - 93,76 - 94,16,Below average,At-Risk
+grade,DRIQ,175,86,78 - 94,77 - 95,18,Below average,At-Risk
+grade,DRIQ,176,86,78 - 94,77 - 95,18,Below average,At-Risk
+grade,DRIQ,177,87,79 - 95,78 - 96,19,Below average,At-Risk
+grade,DRIQ,178,87,79 - 95,78 - 96,19,Below average,At-Risk
+grade,DRIQ,179,88,80 - 96,79 - 97,21,Below average,At-Risk
+grade,DRIQ,180,88,80 - 96,79 - 97,21,Below average,At-Risk
+grade,DRIQ,181,89,81 - 97,80 - 98,23,Below average,At-Risk
+grade,DRIQ,182,89,81 - 97,80 - 98,23,Below average,At-Risk
+grade,DRIQ,183,90,82 - 98,81 - 99,25,Average,Possible Risk
+grade,DRIQ,184,91,83 - 99,82 - 100,27,Average,Possible Risk
+grade,DRIQ,185,91,83 - 99,82 - 100,27,Average,Possible Risk
+grade,DRIQ,186,92,84 - 100,83 - 101,30,Average,Possible Risk
+grade,DRIQ,187,92,84 - 100,83 - 101,30,Average,Possible Risk
+grade,DRIQ,188,93,85 - 101,84 - 102,32,Average,Possible Risk
+grade,DRIQ,189,93,85 - 101,84 - 102,32,Average,Possible Risk
+grade,DRIQ,190,94,86 - 102,85 - 103,34,Average,Possible Risk
+grade,DRIQ,191,94,86 - 102,85 - 103,34,Average,Possible Risk
+grade,DRIQ,192,95,87 - 103,86 - 104,37,Average,Possible Risk
+grade,DRIQ,193,96,88 - 104,87 - 105,39,Average,Possible Risk
+grade,DRIQ,194,96,88 - 104,87 - 105,39,Average,Possible Risk
+grade,DRIQ,195,97,89 - 105,88 - 106,42,Average,Possible Risk
+grade,DRIQ,196,97,89 - 105,88 - 106,42,Average,Possible Risk
+grade,DRIQ,197,98,90 - 106,89 - 107,45,Average,Possible Risk
+grade,DRIQ,198,98,90 - 106,89 - 107,45,Average,Possible Risk
+grade,DRIQ,199,99,91 - 107,90 - 108,47,Average,Possible Risk
+grade,DRIQ,200,100,92 - 108,91 - 109,50,Average,Possible Risk
+grade,DRIQ,201,100,92 - 108,91 - 109,50,Average,Possible Risk
+grade,DRIQ,202,101,93 - 109,92 - 110,53,Average,Possible Risk
+grade,DRIQ,203,101,93 - 109,92 - 110,53,Average,Possible Risk
+grade,DRIQ,204,102,94 - 110,93 - 111,55,Average,Possible Risk
+grade,DRIQ,205,103,95 - 111,94 - 112,58,Average,Possible Risk
+grade,DRIQ,206,103,95 - 111,94 - 112,58,Average,Possible Risk
+grade,DRIQ,207,104,96 - 112,95 - 113,61,Average,Possible Risk
+grade,DRIQ,208,104,96 - 112,95 - 113,61,Average,Possible Risk
+grade,DRIQ,209,105,97 - 113,96 - 114,63,Average,Possible Risk
+grade,DRIQ,210,106,98 - 114,97 - 115,66,Average,Possible Risk
+grade,DRIQ,211,106,98 - 114,97 - 115,66,Average,Possible Risk
+grade,DRIQ,212,107,99 - 115,98 - 116,68,Average,Possible Risk
+grade,DRIQ,213,108,100 - 116,99 - 117,70,Average,Possible Risk
+grade,DRIQ,214,108,100 - 116,99 - 117,70,Average,Possible Risk
+grade,DRIQ,215,109,101 - 117,100 - 118,73,Above average,No or Low Risk
+grade,DRIQ,216,109,101 - 117,100 - 118,73,Above average,No or Low Risk
+grade,DRIQ,217,110,102 - 118,101 - 119,75,Above average,No or Low Risk
+grade,DRIQ,218,111,103 - 119,102 - 120,77,Above average,No or Low Risk
+grade,DRIQ,219,111,103 - 119,102 - 120,77,Above average,No or Low Risk
+grade,DRIQ,220,112,104 - 120,103 - 121,79,Above average,No or Low Risk
+grade,DRIQ,221,113,105 - 121,104 - 122,81,Above average,No or Low Risk
+grade,DRIQ,222,113,105 - 121,104 - 122,81,Above average,No or Low Risk
+grade,DRIQ,223,114,106 - 122,105 - 123,82,Above average,No or Low Risk
+grade,DRIQ,224,115,107 - 123,106 - 124,84,Above average,No or Low Risk
+grade,DRIQ,225,115,107 - 123,106 - 124,84,Above average,No or Low Risk
+grade,DRIQ,226,116,108 - 124,107 - 125,86,Above average,No or Low Risk
+grade,DRIQ,227,116,108 - 124,107 - 125,86,Above average,No or Low Risk
+grade,DRIQ,228,117,109 - 125,108 - 126,87,Above average,No or Low Risk
+grade,DRIQ,229,118,110 - 126,109 - 127,88,Above average,No or Low Risk
+grade,DRIQ,230,118,110 - 126,109 - 127,88,Above average,No or Low Risk
+grade,DRIQ,231,119,111 - 127,110 - 128,90,Above average,No or Low Risk
+grade,DRIQ,232,120,112 - 128,111 - 129,91,Above average,No or Low Risk
+grade,DRIQ,233,120,112 - 128,111 - 129,91,Above average,No or Low Risk
+grade,DRIQ,234,121,113 - 129,112 - 130,92,Above average,No or Low Risk
+grade,DRIQ,235,122,114 - 130,113 - 130,93,Above average,No or Low Risk
+grade,DRIQ,236,122,114 - 130,113 - 130,93,Above average,No or Low Risk
+grade,DRIQ,237,123,115 - 130,114 - 130,94,Above average,No or Low Risk
+grade,DRIQ,238,124,116 - 130,115 - 130,95,Above average,No or Low Risk
+grade,DRIQ,239,125,117 - 130,116 - 130,95,Above average,No or Low Risk
+grade,DRIQ,240,125,117 - 130,116 - 130,95,Above average,No or Low Risk
+grade,DRIQ,241,126,118 - 130,117 - 130,96,Above average,No or Low Risk
+grade,DRIQ,242,127,119 - 130,118 - 130,96,Above average,No or Low Risk
+grade,DRIQ,243,127,119 - 130,118 - 130,96,Above average,No or Low Risk
+grade,DRIQ,244,128,120 - 130,119 - 130,97,Above average,No or Low Risk
+grade,DRIQ,245,129,121 - 130,120 - 130,97,Above average,No or Low Risk
+grade,DRIQ,246,129,121 - 130,120 - 130,97,Above average,No or Low Risk
+grade,DRIQ,247,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,248,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,249,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,250,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,251,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,252,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,253,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,254,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,255,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,256,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,257,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,258,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,259,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIQ,260,130,122 - 130,121 - 130,98,Above average,No or Low Risk
+grade,DRIW,80,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,81,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,82,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,83,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,84,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,85,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,86,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,87,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,88,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,89,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,90,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,91,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,92,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,93,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,94,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,95,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,96,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,97,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,98,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,99,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,100,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,101,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,102,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,103,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,104,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,105,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,106,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,107,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,108,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,109,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,110,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,111,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,112,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,113,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,114,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,115,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,116,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,117,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,118,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,119,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,120,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,121,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,122,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,123,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,124,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,125,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,126,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,127,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,128,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,129,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,130,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,131,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,132,58,48 - 68,46 - 70,0.3,Below average,At-Risk
+grade,DRIW,133,62,52 - 72,50 - 74,1,Below average,At-Risk
+grade,DRIW,134,62,52 - 72,50 - 74,1,Below average,At-Risk
+grade,DRIW,135,63,53 - 73,51 - 75,1,Below average,At-Risk
+grade,DRIW,136,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,137,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,138,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,139,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,140,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,141,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,142,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,143,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,144,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,145,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,146,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,147,64,54 - 74,52 - 76,1,Below average,At-Risk
+grade,DRIW,148,70,60 - 80,58 - 82,2,Below average,At-Risk
+grade,DRIW,149,70,60 - 80,58 - 82,2,Below average,At-Risk
+grade,DRIW,150,70,60 - 80,58 - 82,2,Below average,At-Risk
+grade,DRIW,151,71,61 - 81,59 - 83,3,Below average,At-Risk
+grade,DRIW,152,71,61 - 81,59 - 83,3,Below average,At-Risk
+grade,DRIW,153,71,61 - 81,59 - 83,3,Below average,At-Risk
+grade,DRIW,154,71,61 - 81,59 - 83,3,Below average,At-Risk
+grade,DRIW,155,73,63 - 83,61 - 85,4,Below average,At-Risk
+grade,DRIW,156,73,63 - 83,61 - 85,4,Below average,At-Risk
+grade,DRIW,157,74,64 - 84,62 - 86,4,Below average,At-Risk
+grade,DRIW,158,74,64 - 84,62 - 86,4,Below average,At-Risk
+grade,DRIW,159,74,64 - 84,62 - 86,4,Below average,At-Risk
+grade,DRIW,160,76,66 - 86,64 - 88,5,Below average,At-Risk
+grade,DRIW,161,76,66 - 86,64 - 88,5,Below average,At-Risk
+grade,DRIW,162,77,67 - 87,65 - 89,6,Below average,At-Risk
+grade,DRIW,163,77,67 - 87,65 - 89,6,Below average,At-Risk
+grade,DRIW,164,78,68 - 88,66 - 90,7,Below average,At-Risk
+grade,DRIW,165,78,68 - 88,66 - 90,7,Below average,At-Risk
+grade,DRIW,166,79,69 - 89,67 - 91,8,Below average,At-Risk
+grade,DRIW,167,80,70 - 90,68 - 92,9,Below average,At-Risk
+grade,DRIW,168,80,70 - 90,68 - 92,9,Below average,At-Risk
+grade,DRIW,169,81,71 - 91,69 - 93,10,Below average,At-Risk
+grade,DRIW,170,81,71 - 91,69 - 93,10,Below average,At-Risk
+grade,DRIW,171,82,72 - 92,70 - 94,12,Below average,At-Risk
+grade,DRIW,172,82,72 - 92,70 - 94,12,Below average,At-Risk
+grade,DRIW,173,83,73 - 93,71 - 95,13,Below average,At-Risk
+grade,DRIW,174,83,73 - 93,71 - 95,13,Below average,At-Risk
+grade,DRIW,175,84,74 - 94,72 - 96,14,Below average,At-Risk
+grade,DRIW,176,84,74 - 94,72 - 96,14,Below average,At-Risk
+grade,DRIW,177,85,75 - 95,73 - 97,16,Below average,At-Risk
+grade,DRIW,178,85,75 - 95,73 - 97,16,Below average,At-Risk
+grade,DRIW,179,86,76 - 96,74 - 98,18,Below average,At-Risk
+grade,DRIW,180,86,76 - 96,74 - 98,18,Below average,At-Risk
+grade,DRIW,181,87,77 - 97,75 - 99,19,Below average,At-Risk
+grade,DRIW,182,87,77 - 97,75 - 99,19,Below average,At-Risk
+grade,DRIW,183,88,78 - 98,76 - 100,21,Below average,At-Risk
+grade,DRIW,184,88,78 - 98,76 - 100,21,Below average,At-Risk
+grade,DRIW,185,89,79 - 99,77 - 101,23,Below average,At-Risk
+grade,DRIW,186,90,80 - 100,78 - 102,25,Average,Possible Risk
+grade,DRIW,187,90,80 - 100,78 - 102,25,Average,Possible Risk
+grade,DRIW,188,91,81 - 101,79 - 103,27,Average,Possible Risk
+grade,DRIW,189,91,81 - 101,79 - 103,27,Average,Possible Risk
+grade,DRIW,190,92,82 - 102,80 - 104,30,Average,Possible Risk
+grade,DRIW,191,92,82 - 102,80 - 104,30,Average,Possible Risk
+grade,DRIW,192,93,83 - 103,81 - 105,32,Average,Possible Risk
+grade,DRIW,193,93,83 - 103,81 - 105,32,Average,Possible Risk
+grade,DRIW,194,94,84 - 104,82 - 106,34,Average,Possible Risk
+grade,DRIW,195,94,84 - 104,82 - 106,34,Average,Possible Risk
+grade,DRIW,196,95,85 - 105,83 - 107,37,Average,Possible Risk
+grade,DRIW,197,96,86 - 106,84 - 108,39,Average,Possible Risk
+grade,DRIW,198,96,86 - 106,84 - 108,39,Average,Possible Risk
+grade,DRIW,199,97,87 - 107,85 - 109,42,Average,Possible Risk
+grade,DRIW,200,97,87 - 107,85 - 109,42,Average,Possible Risk
+grade,DRIW,201,98,88 - 108,86 - 110,45,Average,Possible Risk
+grade,DRIW,202,98,88 - 108,86 - 110,45,Average,Possible Risk
+grade,DRIW,203,99,89 - 109,87 - 111,47,Average,Possible Risk
+grade,DRIW,204,99,89 - 109,87 - 111,47,Average,Possible Risk
+grade,DRIW,205,100,90 - 110,88 - 112,50,Average,Possible Risk
+grade,DRIW,206,101,91 - 111,89 - 113,53,Average,Possible Risk
+grade,DRIW,207,101,91 - 111,89 - 113,53,Average,Possible Risk
+grade,DRIW,208,102,92 - 112,90 - 114,55,Average,Possible Risk
+grade,DRIW,209,102,92 - 112,90 - 114,55,Average,Possible Risk
+grade,DRIW,210,103,93 - 113,91 - 115,58,Average,Possible Risk
+grade,DRIW,211,103,93 - 113,91 - 115,58,Average,Possible Risk
+grade,DRIW,212,104,94 - 114,92 - 116,61,Average,Possible Risk
+grade,DRIW,213,104,94 - 114,92 - 116,61,Average,Possible Risk
+grade,DRIW,214,105,95 - 115,93 - 117,63,Average,Possible Risk
+grade,DRIW,215,106,96 - 116,94 - 118,66,Average,Possible Risk
+grade,DRIW,216,106,96 - 116,94 - 118,66,Average,Possible Risk
+grade,DRIW,217,107,97 - 117,95 - 119,68,Average,Possible Risk
+grade,DRIW,218,107,97 - 117,95 - 119,68,Average,Possible Risk
+grade,DRIW,219,108,98 - 118,96 - 120,70,Average,Possible Risk
+grade,DRIW,220,108,98 - 118,96 - 120,70,Average,Possible Risk
+grade,DRIW,221,109,99 - 119,97 - 121,73,Above average,No or Low Risk
+grade,DRIW,222,109,99 - 119,97 - 121,73,Above average,No or Low Risk
+grade,DRIW,223,110,100 - 120,98 - 122,75,Above average,No or Low Risk
+grade,DRIW,224,111,101 - 121,99 - 123,77,Above average,No or Low Risk
+grade,DRIW,225,111,101 - 121,99 - 123,77,Above average,No or Low Risk
+grade,DRIW,226,112,102 - 122,100 - 124,79,Above average,No or Low Risk
+grade,DRIW,227,112,102 - 122,100 - 124,79,Above average,No or Low Risk
+grade,DRIW,228,113,103 - 123,101 - 125,81,Above average,No or Low Risk
+grade,DRIW,229,113,103 - 123,101 - 125,81,Above average,No or Low Risk
+grade,DRIW,230,114,104 - 124,102 - 126,82,Above average,No or Low Risk
+grade,DRIW,231,115,105 - 125,103 - 127,84,Above average,No or Low Risk
+grade,DRIW,232,115,105 - 125,103 - 127,84,Above average,No or Low Risk
+grade,DRIW,233,116,106 - 126,104 - 128,86,Above average,No or Low Risk
+grade,DRIW,234,116,106 - 126,104 - 128,86,Above average,No or Low Risk
+grade,DRIW,235,116,106 - 126,104 - 128,86,Above average,No or Low Risk
+grade,DRIW,236,118,108 - 128,106 - 130,88,Above average,No or Low Risk
+grade,DRIW,237,118,108 - 128,106 - 130,88,Above average,No or Low Risk
+grade,DRIW,238,119,109 - 129,107 - 130,90,Above average,No or Low Risk
+grade,DRIW,239,119,109 - 129,107 - 130,90,Above average,No or Low Risk
+grade,DRIW,240,120,110 - 130,108 - 130,91,Above average,No or Low Risk
+grade,DRIW,241,120,110 - 130,108 - 130,91,Above average,No or Low Risk
+grade,DRIW,242,121,111 - 130,109 - 130,92,Above average,No or Low Risk
+grade,DRIW,243,121,111 - 130,109 - 130,92,Above average,No or Low Risk
+grade,DRIW,244,122,112 - 130,110 - 130,93,Above average,No or Low Risk
+grade,DRIW,245,122,112 - 130,110 - 130,93,Above average,No or Low Risk
+grade,DRIW,246,123,113 - 130,111 - 130,94,Above average,No or Low Risk
+grade,DRIW,247,124,114 - 130,112 - 130,95,Above average,No or Low Risk
+grade,DRIW,248,124,114 - 130,112 - 130,95,Above average,No or Low Risk
+grade,DRIW,249,125,115 - 130,113 - 130,95,Above average,No or Low Risk
+grade,DRIW,250,126,116 - 130,114 - 130,96,Above average,No or Low Risk
+grade,DRIW,251,126,116 - 130,114 - 130,96,Above average,No or Low Risk
+grade,DRIW,252,126,116 - 130,114 - 130,96,Above average,No or Low Risk
+grade,DRIW,253,127,117 - 130,115 - 130,96,Above average,No or Low Risk
+grade,DRIW,254,128,118 - 130,116 - 130,97,Above average,No or Low Risk
+grade,DRIW,255,128,118 - 130,116 - 130,97,Above average,No or Low Risk
+grade,DRIW,256,129,119 - 130,117 - 130,97,Above average,No or Low Risk
+grade,DRIW,257,130,120 - 130,118 - 130,98,Above average,No or Low Risk
+grade,DRIW,258,130,120 - 130,118 - 130,98,Above average,No or Low Risk
+grade,DRIW,259,130,120 - 130,118 - 130,98,Above average,No or Low Risk
+grade,DRIW,260,130,120 - 130,118 - 130,98,Above average,No or Low Risk
+adult,DRIQ,80,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,81,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,82,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,83,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,84,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,85,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,86,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,87,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,88,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,89,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,90,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,91,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,92,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,93,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,94,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,95,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,96,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,97,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,98,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,99,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,100,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,101,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,102,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,103,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,104,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,105,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,106,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,107,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,108,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,109,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,110,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,111,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,112,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,113,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,114,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,115,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,116,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,117,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,118,59,52 - 66,50 - 68,0.3,Below average,At-Risk
+adult,DRIQ,119,61,54 - 68,52 - 70,0.5,Below average,At-Risk
+adult,DRIQ,120,61,54 - 68,52 - 70,0.5,Below average,At-Risk
+adult,DRIQ,121,61,54 - 68,52 - 70,0.5,Below average,At-Risk
+adult,DRIQ,122,61,54 - 68,52 - 70,0.5,Below average,At-Risk
+adult,DRIQ,123,61,54 - 68,52 - 70,0.5,Below average,At-Risk
+adult,DRIQ,124,61,54 - 68,52 - 70,0.5,Below average,At-Risk
+adult,DRIQ,125,61,54 - 68,52 - 70,0.5,Below average,At-Risk
+adult,DRIQ,126,61,54 - 68,52 - 70,0.5,Below average,At-Risk
+adult,DRIQ,127,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,128,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,129,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,130,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,131,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,132,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,133,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,134,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,135,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,136,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,137,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,138,64,57 - 71,55 - 73,1,Below average,At-Risk
+adult,DRIQ,139,69,62 - 76,60 - 78,2,Below average,At-Risk
+adult,DRIQ,140,69,62 - 76,60 - 78,2,Below average,At-Risk
+adult,DRIQ,141,70,63 - 77,61 - 79,2,Below average,At-Risk
+adult,DRIQ,142,70,63 - 77,61 - 79,2,Below average,At-Risk
+adult,DRIQ,143,70,63 - 77,61 - 79,2,Below average,At-Risk
+adult,DRIQ,144,71,64 - 78,62 - 80,3,Below average,At-Risk
+adult,DRIQ,145,71,64 - 78,62 - 80,3,Below average,At-Risk
+adult,DRIQ,146,71,64 - 78,62 - 80,3,Below average,At-Risk
+adult,DRIQ,147,71,64 - 78,62 - 80,3,Below average,At-Risk
+adult,DRIQ,148,73,66 - 80,64 - 82,4,Below average,At-Risk
+adult,DRIQ,149,73,66 - 80,64 - 82,4,Below average,At-Risk
+adult,DRIQ,150,73,66 - 80,64 - 82,4,Below average,At-Risk
+adult,DRIQ,151,73,66 - 80,64 - 82,4,Below average,At-Risk
+adult,DRIQ,152,74,67 - 81,65 - 83,4,Below average,At-Risk
+adult,DRIQ,153,75,68 - 82,66 - 84,5,Below average,At-Risk
+adult,DRIQ,154,75,68 - 82,66 - 84,5,Below average,At-Risk
+adult,DRIQ,155,75,68 - 82,66 - 84,5,Below average,At-Risk
+adult,DRIQ,156,76,69 - 83,67 - 85,5,Below average,At-Risk
+adult,DRIQ,157,77,70 - 84,68 - 86,6,Below average,At-Risk
+adult,DRIQ,158,77,70 - 84,68 - 86,6,Below average,At-Risk
+adult,DRIQ,159,78,71 - 85,69 - 87,7,Below average,At-Risk
+adult,DRIQ,160,78,71 - 85,69 - 87,7,Below average,At-Risk
+adult,DRIQ,161,79,72 - 86,70 - 88,8,Below average,At-Risk
+adult,DRIQ,162,79,72 - 86,70 - 88,8,Below average,At-Risk
+adult,DRIQ,163,80,73 - 87,71 - 89,9,Below average,At-Risk
+adult,DRIQ,164,80,73 - 87,71 - 89,9,Below average,At-Risk
+adult,DRIQ,165,81,74 - 88,72 - 90,10,Below average,At-Risk
+adult,DRIQ,166,81,74 - 88,72 - 90,10,Below average,At-Risk
+adult,DRIQ,167,82,75 - 89,73 - 91,12,Below average,At-Risk
+adult,DRIQ,168,82,75 - 89,73 - 91,12,Below average,At-Risk
+adult,DRIQ,169,83,76 - 90,74 - 92,13,Below average,At-Risk
+adult,DRIQ,170,83,76 - 90,74 - 92,13,Below average,At-Risk
+adult,DRIQ,171,84,77 - 91,75 - 93,14,Below average,At-Risk
+adult,DRIQ,172,84,77 - 91,75 - 93,14,Below average,At-Risk
+adult,DRIQ,173,85,78 - 92,76 - 94,16,Below average,At-Risk
+adult,DRIQ,174,85,78 - 92,76 - 94,16,Below average,At-Risk
+adult,DRIQ,175,86,79 - 93,77 - 95,18,Below average,At-Risk
+adult,DRIQ,176,86,79 - 93,77 - 95,18,Below average,At-Risk
+adult,DRIQ,177,87,80 - 94,78 - 96,19,Below average,At-Risk
+adult,DRIQ,178,87,80 - 94,78 - 96,19,Below average,At-Risk
+adult,DRIQ,179,88,81 - 95,79 - 97,21,Below average,At-Risk
+adult,DRIQ,180,88,81 - 95,79 - 97,21,Below average,At-Risk
+adult,DRIQ,181,89,82 - 96,80 - 98,23,Below average,At-Risk
+adult,DRIQ,182,89,82 - 96,80 - 98,23,Below average,At-Risk
+adult,DRIQ,183,90,83 - 97,81 - 99,25,Average,Possible Risk
+adult,DRIQ,184,91,84 - 98,82 - 100,27,Average,Possible Risk
+adult,DRIQ,185,91,84 - 98,82 - 100,27,Average,Possible Risk
+adult,DRIQ,186,92,85 - 99,83 - 101,30,Average,Possible Risk
+adult,DRIQ,187,92,85 - 99,83 - 101,30,Average,Possible Risk
+adult,DRIQ,188,93,86 - 100,84 - 102,32,Average,Possible Risk
+adult,DRIQ,189,93,86 - 100,84 - 102,32,Average,Possible Risk
+adult,DRIQ,190,94,87 - 101,85 - 103,34,Average,Possible Risk
+adult,DRIQ,191,95,88 - 102,86 - 104,37,Average,Possible Risk
+adult,DRIQ,192,95,88 - 102,86 - 104,37,Average,Possible Risk
+adult,DRIQ,193,96,89 - 103,87 - 105,39,Average,Possible Risk
+adult,DRIQ,194,96,89 - 103,87 - 105,39,Average,Possible Risk
+adult,DRIQ,195,97,90 - 104,88 - 106,42,Average,Possible Risk
+adult,DRIQ,196,97,90 - 104,88 - 106,42,Average,Possible Risk
+adult,DRIQ,197,98,91 - 105,89 - 107,45,Average,Possible Risk
+adult,DRIQ,198,99,92 - 106,90 - 108,47,Average,Possible Risk
+adult,DRIQ,199,99,92 - 106,90 - 108,47,Average,Possible Risk
+adult,DRIQ,200,100,93 - 107,91 - 109,50,Average,Possible Risk
+adult,DRIQ,201,100,93 - 107,91 - 109,50,Average,Possible Risk
+adult,DRIQ,202,101,94 - 108,92 - 110,53,Average,Possible Risk
+adult,DRIQ,203,102,95 - 109,93 - 111,55,Average,Possible Risk
+adult,DRIQ,204,102,95 - 109,93 - 111,55,Average,Possible Risk
+adult,DRIQ,205,103,96 - 110,94 - 112,58,Average,Possible Risk
+adult,DRIQ,206,103,96 - 110,94 - 112,58,Average,Possible Risk
+adult,DRIQ,207,104,97 - 111,95 - 113,61,Average,Possible Risk
+adult,DRIQ,208,105,98 - 112,96 - 114,63,Average,Possible Risk
+adult,DRIQ,209,105,98 - 112,96 - 114,63,Average,Possible Risk
+adult,DRIQ,210,106,99 - 113,97 - 115,66,Average,Possible Risk
+adult,DRIQ,211,107,100 - 114,98 - 116,68,Average,Possible Risk
+adult,DRIQ,212,107,100 - 114,98 - 116,68,Average,Possible Risk
+adult,DRIQ,213,108,101 - 115,99 - 117,70,Average,Possible Risk
+adult,DRIQ,214,109,102 - 116,100 - 118,73,Above average,No or Low Risk
+adult,DRIQ,215,109,102 - 116,100 - 118,73,Above average,No or Low Risk
+adult,DRIQ,216,110,103 - 117,101 - 119,75,Above average,No or Low Risk
+adult,DRIQ,217,110,103 - 117,101 - 119,75,Above average,No or Low Risk
+adult,DRIQ,218,111,104 - 118,102 - 120,77,Above average,No or Low Risk
+adult,DRIQ,219,112,105 - 119,103 - 121,79,Above average,No or Low Risk
+adult,DRIQ,220,112,105 - 119,103 - 121,79,Above average,No or Low Risk
+adult,DRIQ,221,113,106 - 120,104 - 122,81,Above average,No or Low Risk
+adult,DRIQ,222,114,107 - 121,105 - 123,82,Above average,No or Low Risk
+adult,DRIQ,223,114,107 - 121,105 - 123,82,Above average,No or Low Risk
+adult,DRIQ,224,115,108 - 122,106 - 124,84,Above average,No or Low Risk
+adult,DRIQ,225,116,109 - 123,107 - 125,86,Above average,No or Low Risk
+adult,DRIQ,226,117,110 - 124,108 - 126,87,Above average,No or Low Risk
+adult,DRIQ,227,117,110 - 124,108 - 126,87,Above average,No or Low Risk
+adult,DRIQ,228,118,111 - 125,109 - 127,88,Above average,No or Low Risk
+adult,DRIQ,229,119,112 - 126,110 - 128,90,Above average,No or Low Risk
+adult,DRIQ,230,119,112 - 126,110 - 128,90,Above average,No or Low Risk
+adult,DRIQ,231,120,113 - 127,111 - 129,91,Above average,No or Low Risk
+adult,DRIQ,232,121,114 - 128,112 - 130,92,Above average,No or Low Risk
+adult,DRIQ,233,121,114 - 128,112 - 130,92,Above average,No or Low Risk
+adult,DRIQ,234,122,115 - 129,113 - 130,93,Above average,No or Low Risk
+adult,DRIQ,235,123,116 - 130,114 - 130,94,Above average,No or Low Risk
+adult,DRIQ,236,123,116 - 130,114 - 130,94,Above average,No or Low Risk
+adult,DRIQ,237,123,116 - 130,114 - 130,94,Above average,No or Low Risk
+adult,DRIQ,238,125,118 - 130,116 - 130,95,Above average,No or Low Risk
+adult,DRIQ,239,126,119 - 130,117 - 130,96,Above average,No or Low Risk
+adult,DRIQ,240,126,119 - 130,117 - 130,96,Above average,No or Low Risk
+adult,DRIQ,241,127,120 - 130,118 - 130,96,Above average,No or Low Risk
+adult,DRIQ,242,128,121 - 130,119 - 130,97,Above average,No or Low Risk
+adult,DRIQ,243,129,122 - 130,120 - 130,97,Above average,No or Low Risk
+adult,DRIQ,244,129,122 - 130,120 - 130,97,Above average,No or Low Risk
+adult,DRIQ,245,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,246,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,247,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,248,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,249,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,250,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,251,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,252,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,253,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,254,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,255,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,256,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,257,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,258,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,259,130,123 - 130,121 - 130,98,Above average,No or Low Risk
+adult,DRIQ,260,130,123 - 130,121 - 130,98,Above average,No or Low Risk
