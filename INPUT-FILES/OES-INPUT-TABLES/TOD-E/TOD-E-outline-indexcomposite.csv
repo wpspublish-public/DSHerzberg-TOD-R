@@ -1,0 +1,10 @@
+norm_group,score,raw,ss,CI90,CI95,percentile,desc_range,risk
+age,EDDIW,,,,,,,
+grade,EDDIQ,,,,,,,
+,ELPI,,,,,,,
+,ERSIW,,,,,,,
+,ERSIQ,,,,,,,
+,ESWA,,,,,,,
+,EPK,,,,,,,
+,EBRS,,,,,,,
+,EPA,,,,,,,

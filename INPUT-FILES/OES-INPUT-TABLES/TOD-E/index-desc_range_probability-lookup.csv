@@ -1,0 +1,8 @@
+ss_min,ss_max,desc_range,probability
+120,130,Well Above average,Extremely Low Probability of Dyslexia 
+110,119,Above Average,Very low Probabiliy of Dyslexia
+100,109,Average to Moderately Above Average,Low Probability of Dyslexia
+90,99,Average to Moderately Below Average,Moderate Probability of Dyslexia
+80,89,Below Average,High Probability of Dyslexia
+70,79,Well Below Average,Very High Probability of Dyslexia
+40,69,Significantly Below Average,Extremely High Probability of Dyslexia
