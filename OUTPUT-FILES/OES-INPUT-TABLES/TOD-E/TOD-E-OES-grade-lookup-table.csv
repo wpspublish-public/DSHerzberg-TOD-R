@@ -1,0 +1,1705 @@
+test,grade,raw,ss,CI90,CI95,percentile,grade_equiv,desc_range
+ernle,K-Fall,0,65,56 - 74,54 - 76,1,< start grade,Significantly Below Average
+ernle,K-Fall,1,66,57 - 75,55 - 77,1,< start grade,Significantly Below Average
+ernle,K-Fall,2,66,57 - 75,55 - 77,1,< start grade,Significantly Below Average
+ernle,K-Fall,3,67,58 - 76,56 - 78,1,< start grade,Significantly Below Average
+ernle,K-Fall,4,68,59 - 77,57 - 79,2,< start grade,Significantly Below Average
+ernle,K-Fall,5,69,60 - 78,58 - 80,2,< start grade,Significantly Below Average
+ernle,K-Fall,6,70,61 - 79,59 - 81,2,< start grade,Well Below Average
+ernle,K-Fall,7,71,62 - 80,60 - 82,3,< start grade,Well Below Average
+ernle,K-Fall,8,71,62 - 80,60 - 82,3,< start grade,Well Below Average
+ernle,K-Fall,9,72,63 - 81,61 - 83,3,< start grade,Well Below Average
+ernle,K-Fall,10,73,64 - 82,62 - 84,4,< start grade,Well Below Average
+ernle,K-Fall,11,74,65 - 83,63 - 85,4,< start grade,Well Below Average
+ernle,K-Fall,12,75,66 - 84,64 - 86,5,< start grade,Well Below Average
+ernle,K-Fall,13,76,67 - 85,65 - 87,5,< start grade,Well Below Average
+ernle,K-Fall,14,76,67 - 85,65 - 87,5,< start grade,Well Below Average
+ernle,K-Fall,15,77,68 - 86,66 - 88,6,< start grade,Well Below Average
+ernle,K-Fall,16,78,69 - 87,67 - 89,7,< start grade,Well Below Average
+ernle,K-Fall,17,79,70 - 88,68 - 90,8,< start grade,Well Below Average
+ernle,K-Fall,18,80,71 - 89,69 - 91,9,< start grade,Below Average
+ernle,K-Fall,19,81,72 - 90,70 - 92,10,< start grade,Below Average
+ernle,K-Fall,20,81,72 - 90,70 - 92,10,< start grade,Below Average
+ernle,K-Fall,21,82,73 - 91,71 - 93,12,< start grade,Below Average
+ernle,K-Fall,22,83,74 - 92,72 - 94,13,< start grade,Below Average
+ernle,K-Fall,23,84,75 - 93,73 - 95,14,< start grade,Below Average
+ernle,K-Fall,24,85,76 - 94,74 - 96,16,< start grade,Below Average
+ernle,K-Fall,25,86,77 - 95,75 - 97,18,< start grade,Below Average
+ernle,K-Fall,26,86,77 - 95,75 - 97,18,< start grade,Below Average
+ernle,K-Fall,27,87,78 - 96,76 - 98,19,< start grade,Below Average
+ernle,K-Fall,28,88,79 - 97,77 - 99,21,< start grade,Below Average
+ernle,K-Fall,29,89,80 - 98,78 - 100,23,< start grade,Below Average
+ernle,K-Fall,30,90,81 - 99,79 - 101,25,< start grade,Average
+ernle,K-Fall,31,91,82 - 100,80 - 102,27,< start grade,Average
+ernle,K-Fall,32,91,82 - 100,80 - 102,27,< start grade,Average
+ernle,K-Fall,33,92,83 - 101,81 - 103,30,< start grade,Average
+ernle,K-Fall,34,93,84 - 102,82 - 104,32,< start grade,Average
+ernle,K-Fall,35,94,85 - 103,83 - 105,34,< start grade,Average
+ernle,K-Fall,36,95,86 - 104,84 - 106,37,K-Fall,Average
+ernle,K-Fall,37,96,87 - 105,85 - 107,39,K-Fall,Average
+ernle,K-Fall,38,97,88 - 106,86 - 108,42,K-Fall,Average
+ernle,K-Fall,39,97,88 - 106,86 - 108,42,K-Fall,Average
+ernle,K-Fall,40,98,89 - 107,87 - 109,45,K-Fall,Average
+ernle,K-Fall,41,99,90 - 108,88 - 110,47,K-Fall,Average
+ernle,K-Fall,42,100,91 - 109,89 - 111,50,K-Fall,Average
+ernle,K-Fall,43,101,92 - 110,90 - 112,53,K-Fall,Average
+ernle,K-Fall,44,102,93 - 111,91 - 113,55,K-Fall,Average
+ernle,K-Fall,45,102,93 - 111,91 - 113,55,K-Fall,Average
+ernle,K-Fall,46,103,94 - 112,92 - 114,58,K-Fall,Average
+ernle,K-Fall,47,104,95 - 113,93 - 115,61,K-Spring,Average
+ernle,K-Fall,48,105,96 - 114,94 - 116,63,K-Spring,Average
+ernle,K-Fall,49,106,97 - 115,95 - 117,66,K-Spring,Average
+ernle,K-Fall,50,107,98 - 116,96 - 118,68,K-Spring,Average
+ernle,K-Fall,51,107,98 - 116,96 - 118,68,K-Spring,Average
+ernle,K-Fall,52,108,99 - 117,97 - 119,70,K-Spring,Average
+ernle,K-Fall,53,109,100 - 118,98 - 120,73,K-Spring,Average
+ernle,K-Fall,54,110,101 - 119,99 - 121,75,K-Spring,Above Average
+ernle,K-Fall,55,111,102 - 120,100 - 122,77,K-Spring,Above Average
+ernle,K-Fall,56,112,103 - 121,101 - 123,79,1-Fall,Above Average
+ernle,K-Fall,57,112,103 - 121,101 - 123,79,1-Fall,Above Average
+ernle,K-Fall,58,113,104 - 122,102 - 124,81,1-Fall,Above Average
+ernle,K-Fall,59,114,105 - 123,103 - 125,82,1-Fall,Above Average
+ernle,K-Fall,60,115,106 - 124,104 - 126,84,1-Fall,Above Average
+ernle,K-Fall,61,116,107 - 125,105 - 127,86,1-Fall,Above Average
+ernle,K-Fall,62,117,108 - 126,106 - 128,87,1-Fall,Above Average
+ernle,K-Fall,63,117,108 - 126,106 - 128,87,1-Fall,Above Average
+ernle,K-Fall,64,118,109 - 127,107 - 129,88,1-Fall,Above Average
+ernle,K-Fall,65,119,110 - 128,108 - 130,90,1-Spring,Above Average
+ernle,K-Fall,66,120,111 - 129,109 - 130,91,1-Spring,Well Above Average
+ernle,K-Fall,67,121,112 - 130,110 - 130,92,1-Spring,Well Above Average
+ernle,K-Fall,68,122,113 - 130,111 - 130,93,1-Spring,Well Above Average
+ernle,K-Fall,69,122,113 - 130,111 - 130,93,1-Spring,Well Above Average
+ernle,K-Fall,70,123,114 - 130,112 - 130,94,1-Spring,Well Above Average
+ernle,K-Fall,71,124,115 - 130,113 - 130,95,1-Spring,Well Above Average
+ernle,K-Fall,72,125,116 - 130,114 - 130,95,2-Fall,Well Above Average
+ernle,K-Fall,73,126,117 - 130,115 - 130,96,2-Fall,Well Above Average
+ernle,K-Fall,74,127,118 - 130,116 - 130,96,2-Fall,Well Above Average
+ernle,K-Fall,75,128,119 - 130,117 - 130,97,2-Fall,Well Above Average
+ernle,K-Fall,76,128,119 - 130,117 - 130,97,2-Fall,Well Above Average
+ernle,K-Fall,77,129,120 - 130,118 - 130,97,2-Fall,Well Above Average
+ernle,K-Fall,78,130,121 - 130,119 - 130,98,2-Fall,Well Above Average
+ernle,K-Fall,79,130,121 - 130,119 - 130,98,2-Spring,Well Above Average
+ernle,K-Fall,80,130,121 - 130,119 - 130,98,2-Spring,Well Above Average
+ernle,K-Fall,81,130,121 - 130,119 - 130,98,2-Spring,Well Above Average
+ernle,K-Fall,82,130,121 - 130,119 - 130,98,2-Spring,Well Above Average
+ernle,K-Fall,83,130,121 - 130,119 - 130,98,2-Spring,Well Above Average
+ernle,K-Fall,84,130,121 - 130,119 - 130,98,2-Spring,Well Above Average
+ernle,K-Fall,85,130,121 - 130,119 - 130,98,2-Spring,Well Above Average
+ernle,K-Fall,86,130,121 - 130,119 - 130,98,2-Spring,Well Above Average
+ernle,K-Fall,87,130,121 - 130,119 - 130,98,2-Spring,Well Above Average
+ernle,K-Fall,88,130,121 - 130,119 - 130,98,2-Spring,Well Above Average
+ernle,K-Fall,89,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,90,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,91,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,92,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,93,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,94,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,95,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,96,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,97,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,98,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,99,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,100,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,101,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,102,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,103,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,104,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,105,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,106,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,107,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,108,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,109,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,110,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,111,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,112,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,113,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,114,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,115,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,116,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,117,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,118,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,119,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Fall,120,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,0,60,51 - 69,49 - 71,0.4,< start grade,Significantly Below Average
+ernle,K-Spring,1,61,52 - 70,50 - 72,0.5,< start grade,Significantly Below Average
+ernle,K-Spring,2,61,52 - 70,50 - 72,0.5,< start grade,Significantly Below Average
+ernle,K-Spring,3,62,53 - 71,51 - 73,1,< start grade,Significantly Below Average
+ernle,K-Spring,4,63,54 - 72,52 - 74,1,< start grade,Significantly Below Average
+ernle,K-Spring,5,64,55 - 73,53 - 75,1,< start grade,Significantly Below Average
+ernle,K-Spring,6,65,56 - 74,54 - 76,1,< start grade,Significantly Below Average
+ernle,K-Spring,7,65,56 - 74,54 - 76,1,< start grade,Significantly Below Average
+ernle,K-Spring,8,66,57 - 75,55 - 77,1,< start grade,Significantly Below Average
+ernle,K-Spring,9,67,58 - 76,56 - 78,1,< start grade,Significantly Below Average
+ernle,K-Spring,10,68,59 - 77,57 - 79,2,< start grade,Significantly Below Average
+ernle,K-Spring,11,68,59 - 77,57 - 79,2,< start grade,Significantly Below Average
+ernle,K-Spring,12,69,60 - 78,58 - 80,2,< start grade,Significantly Below Average
+ernle,K-Spring,13,70,61 - 79,59 - 81,2,< start grade,Well Below Average
+ernle,K-Spring,14,71,62 - 80,60 - 82,3,< start grade,Well Below Average
+ernle,K-Spring,15,72,63 - 81,61 - 83,3,< start grade,Well Below Average
+ernle,K-Spring,16,72,63 - 81,61 - 83,3,< start grade,Well Below Average
+ernle,K-Spring,17,73,64 - 82,62 - 84,4,< start grade,Well Below Average
+ernle,K-Spring,18,74,65 - 83,63 - 85,4,< start grade,Well Below Average
+ernle,K-Spring,19,75,66 - 84,64 - 86,5,< start grade,Well Below Average
+ernle,K-Spring,20,75,66 - 84,64 - 86,5,< start grade,Well Below Average
+ernle,K-Spring,21,76,67 - 85,65 - 87,5,< start grade,Well Below Average
+ernle,K-Spring,22,77,68 - 86,66 - 88,6,< start grade,Well Below Average
+ernle,K-Spring,23,78,69 - 87,67 - 89,7,< start grade,Well Below Average
+ernle,K-Spring,24,79,70 - 88,68 - 90,8,< start grade,Well Below Average
+ernle,K-Spring,25,79,70 - 88,68 - 90,8,< start grade,Well Below Average
+ernle,K-Spring,26,80,71 - 89,69 - 91,9,< start grade,Below Average
+ernle,K-Spring,27,81,72 - 90,70 - 92,10,< start grade,Below Average
+ernle,K-Spring,28,82,73 - 91,71 - 93,12,< start grade,Below Average
+ernle,K-Spring,29,82,73 - 91,71 - 93,12,< start grade,Below Average
+ernle,K-Spring,30,83,74 - 92,72 - 94,13,< start grade,Below Average
+ernle,K-Spring,31,84,75 - 93,73 - 95,14,< start grade,Below Average
+ernle,K-Spring,32,85,76 - 94,74 - 96,16,< start grade,Below Average
+ernle,K-Spring,33,86,77 - 95,75 - 97,18,< start grade,Below Average
+ernle,K-Spring,34,86,77 - 95,75 - 97,18,< start grade,Below Average
+ernle,K-Spring,35,87,78 - 96,76 - 98,19,< start grade,Below Average
+ernle,K-Spring,36,88,79 - 97,77 - 99,21,K-Fall,Below Average
+ernle,K-Spring,37,89,80 - 98,78 - 100,23,K-Fall,Below Average
+ernle,K-Spring,38,89,80 - 98,78 - 100,23,K-Fall,Below Average
+ernle,K-Spring,39,90,81 - 99,79 - 101,25,K-Fall,Average
+ernle,K-Spring,40,91,82 - 100,80 - 102,27,K-Fall,Average
+ernle,K-Spring,41,92,83 - 101,81 - 103,30,K-Fall,Average
+ernle,K-Spring,42,93,84 - 102,82 - 104,32,K-Fall,Average
+ernle,K-Spring,43,93,84 - 102,82 - 104,32,K-Fall,Average
+ernle,K-Spring,44,94,85 - 103,83 - 105,34,K-Fall,Average
+ernle,K-Spring,45,95,86 - 104,84 - 106,37,K-Fall,Average
+ernle,K-Spring,46,96,87 - 105,85 - 107,39,K-Fall,Average
+ernle,K-Spring,47,97,88 - 106,86 - 108,42,K-Spring,Average
+ernle,K-Spring,48,97,88 - 106,86 - 108,42,K-Spring,Average
+ernle,K-Spring,49,98,89 - 107,87 - 109,45,K-Spring,Average
+ernle,K-Spring,50,99,90 - 108,88 - 110,47,K-Spring,Average
+ernle,K-Spring,51,100,91 - 109,89 - 111,50,K-Spring,Average
+ernle,K-Spring,52,100,91 - 109,89 - 111,50,K-Spring,Average
+ernle,K-Spring,53,101,92 - 110,90 - 112,53,K-Spring,Average
+ernle,K-Spring,54,102,93 - 111,91 - 113,55,K-Spring,Average
+ernle,K-Spring,55,103,94 - 112,92 - 114,58,K-Spring,Average
+ernle,K-Spring,56,104,95 - 113,93 - 115,61,1-Fall,Average
+ernle,K-Spring,57,104,95 - 113,93 - 115,61,1-Fall,Average
+ernle,K-Spring,58,105,96 - 114,94 - 116,63,1-Fall,Average
+ernle,K-Spring,59,106,97 - 115,95 - 117,66,1-Fall,Average
+ernle,K-Spring,60,107,98 - 116,96 - 118,68,1-Fall,Average
+ernle,K-Spring,61,108,99 - 117,97 - 119,70,1-Fall,Average
+ernle,K-Spring,62,108,99 - 117,97 - 119,70,1-Fall,Average
+ernle,K-Spring,63,109,100 - 118,98 - 120,73,1-Fall,Average
+ernle,K-Spring,64,110,101 - 119,99 - 121,75,1-Fall,Above Average
+ernle,K-Spring,65,111,102 - 120,100 - 122,77,1-Spring,Above Average
+ernle,K-Spring,66,112,103 - 121,101 - 123,79,1-Spring,Above Average
+ernle,K-Spring,67,112,103 - 121,101 - 123,79,1-Spring,Above Average
+ernle,K-Spring,68,113,104 - 122,102 - 124,81,1-Spring,Above Average
+ernle,K-Spring,69,114,105 - 123,103 - 125,82,1-Spring,Above Average
+ernle,K-Spring,70,115,106 - 124,104 - 126,84,1-Spring,Above Average
+ernle,K-Spring,71,116,107 - 125,105 - 127,86,1-Spring,Above Average
+ernle,K-Spring,72,116,107 - 125,105 - 127,86,2-Fall,Above Average
+ernle,K-Spring,73,117,108 - 126,106 - 128,87,2-Fall,Above Average
+ernle,K-Spring,74,118,109 - 127,107 - 129,88,2-Fall,Above Average
+ernle,K-Spring,75,119,110 - 128,108 - 130,90,2-Fall,Above Average
+ernle,K-Spring,76,120,111 - 129,109 - 130,91,2-Fall,Well Above Average
+ernle,K-Spring,77,120,111 - 129,109 - 130,91,2-Fall,Well Above Average
+ernle,K-Spring,78,121,112 - 130,110 - 130,92,2-Fall,Well Above Average
+ernle,K-Spring,79,122,113 - 130,111 - 130,93,2-Spring,Well Above Average
+ernle,K-Spring,80,123,114 - 130,112 - 130,94,2-Spring,Well Above Average
+ernle,K-Spring,81,124,115 - 130,113 - 130,95,2-Spring,Well Above Average
+ernle,K-Spring,82,124,115 - 130,113 - 130,95,2-Spring,Well Above Average
+ernle,K-Spring,83,125,116 - 130,114 - 130,95,2-Spring,Well Above Average
+ernle,K-Spring,84,126,117 - 130,115 - 130,96,2-Spring,Well Above Average
+ernle,K-Spring,85,127,118 - 130,116 - 130,96,2-Spring,Well Above Average
+ernle,K-Spring,86,128,119 - 130,117 - 130,97,2-Spring,Well Above Average
+ernle,K-Spring,87,128,119 - 130,117 - 130,97,2-Spring,Well Above Average
+ernle,K-Spring,88,129,120 - 130,118 - 130,97,2-Spring,Well Above Average
+ernle,K-Spring,89,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,90,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,91,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,92,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,93,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,94,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,95,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,96,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,97,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,98,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,99,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,100,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,101,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,102,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,103,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,104,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,105,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,106,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,107,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,108,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,109,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,110,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,111,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,112,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,113,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,114,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,115,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,116,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,117,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,118,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,119,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,K-Spring,120,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,0,56,47 - 65,45 - 67,0.2,< start grade,Significantly Below Average
+ernle,1-Fall,1,56,47 - 65,45 - 67,0.2,< start grade,Significantly Below Average
+ernle,1-Fall,2,57,48 - 66,46 - 68,0.2,< start grade,Significantly Below Average
+ernle,1-Fall,3,58,49 - 67,47 - 69,0.3,< start grade,Significantly Below Average
+ernle,1-Fall,4,59,50 - 68,48 - 70,0.3,< start grade,Significantly Below Average
+ernle,1-Fall,5,59,50 - 68,48 - 70,0.3,< start grade,Significantly Below Average
+ernle,1-Fall,6,60,51 - 69,49 - 71,0.4,< start grade,Significantly Below Average
+ernle,1-Fall,7,61,52 - 70,50 - 72,0.5,< start grade,Significantly Below Average
+ernle,1-Fall,8,62,53 - 71,51 - 73,1,< start grade,Significantly Below Average
+ernle,1-Fall,9,62,53 - 71,51 - 73,1,< start grade,Significantly Below Average
+ernle,1-Fall,10,63,54 - 72,52 - 74,1,< start grade,Significantly Below Average
+ernle,1-Fall,11,64,55 - 73,53 - 75,1,< start grade,Significantly Below Average
+ernle,1-Fall,12,64,55 - 73,53 - 75,1,< start grade,Significantly Below Average
+ernle,1-Fall,13,65,56 - 74,54 - 76,1,< start grade,Significantly Below Average
+ernle,1-Fall,14,66,57 - 75,55 - 77,1,< start grade,Significantly Below Average
+ernle,1-Fall,15,67,58 - 76,56 - 78,1,< start grade,Significantly Below Average
+ernle,1-Fall,16,67,58 - 76,56 - 78,1,< start grade,Significantly Below Average
+ernle,1-Fall,17,68,59 - 77,57 - 79,2,< start grade,Significantly Below Average
+ernle,1-Fall,18,69,60 - 78,58 - 80,2,< start grade,Significantly Below Average
+ernle,1-Fall,19,70,61 - 79,59 - 81,2,< start grade,Well Below Average
+ernle,1-Fall,20,70,61 - 79,59 - 81,2,< start grade,Well Below Average
+ernle,1-Fall,21,71,62 - 80,60 - 82,3,< start grade,Well Below Average
+ernle,1-Fall,22,72,63 - 81,61 - 83,3,< start grade,Well Below Average
+ernle,1-Fall,23,72,63 - 81,61 - 83,3,< start grade,Well Below Average
+ernle,1-Fall,24,73,64 - 82,62 - 84,4,< start grade,Well Below Average
+ernle,1-Fall,25,74,65 - 83,63 - 85,4,< start grade,Well Below Average
+ernle,1-Fall,26,75,66 - 84,64 - 86,5,< start grade,Well Below Average
+ernle,1-Fall,27,75,66 - 84,64 - 86,5,< start grade,Well Below Average
+ernle,1-Fall,28,76,67 - 85,65 - 87,5,< start grade,Well Below Average
+ernle,1-Fall,29,77,68 - 86,66 - 88,6,< start grade,Well Below Average
+ernle,1-Fall,30,78,69 - 87,67 - 89,7,< start grade,Well Below Average
+ernle,1-Fall,31,78,69 - 87,67 - 89,7,< start grade,Well Below Average
+ernle,1-Fall,32,79,70 - 88,68 - 90,8,< start grade,Well Below Average
+ernle,1-Fall,33,80,71 - 89,69 - 91,9,< start grade,Below Average
+ernle,1-Fall,34,81,72 - 90,70 - 92,10,< start grade,Below Average
+ernle,1-Fall,35,81,72 - 90,70 - 92,10,< start grade,Below Average
+ernle,1-Fall,36,82,73 - 91,71 - 93,12,K-Fall,Below Average
+ernle,1-Fall,37,83,74 - 92,72 - 94,13,K-Fall,Below Average
+ernle,1-Fall,38,84,75 - 93,73 - 95,14,K-Fall,Below Average
+ernle,1-Fall,39,84,75 - 93,73 - 95,14,K-Fall,Below Average
+ernle,1-Fall,40,85,76 - 94,74 - 96,16,K-Fall,Below Average
+ernle,1-Fall,41,86,77 - 95,75 - 97,18,K-Fall,Below Average
+ernle,1-Fall,42,87,78 - 96,76 - 98,19,K-Fall,Below Average
+ernle,1-Fall,43,87,78 - 96,76 - 98,19,K-Fall,Below Average
+ernle,1-Fall,44,88,79 - 97,77 - 99,21,K-Fall,Below Average
+ernle,1-Fall,45,89,80 - 98,78 - 100,23,K-Fall,Below Average
+ernle,1-Fall,46,90,81 - 99,79 - 101,25,K-Fall,Average
+ernle,1-Fall,47,90,81 - 99,79 - 101,25,K-Spring,Average
+ernle,1-Fall,48,91,82 - 100,80 - 102,27,K-Spring,Average
+ernle,1-Fall,49,92,83 - 101,81 - 103,30,K-Spring,Average
+ernle,1-Fall,50,93,84 - 102,82 - 104,32,K-Spring,Average
+ernle,1-Fall,51,93,84 - 102,82 - 104,32,K-Spring,Average
+ernle,1-Fall,52,94,85 - 103,83 - 105,34,K-Spring,Average
+ernle,1-Fall,53,95,86 - 104,84 - 106,37,K-Spring,Average
+ernle,1-Fall,54,96,87 - 105,85 - 107,39,K-Spring,Average
+ernle,1-Fall,55,96,87 - 105,85 - 107,39,K-Spring,Average
+ernle,1-Fall,56,97,88 - 106,86 - 108,42,1-Fall,Average
+ernle,1-Fall,57,98,89 - 107,87 - 109,45,1-Fall,Average
+ernle,1-Fall,58,99,90 - 108,88 - 110,47,1-Fall,Average
+ernle,1-Fall,59,99,90 - 108,88 - 110,47,1-Fall,Average
+ernle,1-Fall,60,100,91 - 109,89 - 111,50,1-Fall,Average
+ernle,1-Fall,61,101,92 - 110,90 - 112,53,1-Fall,Average
+ernle,1-Fall,62,102,93 - 111,91 - 113,55,1-Fall,Average
+ernle,1-Fall,63,102,93 - 111,91 - 113,55,1-Fall,Average
+ernle,1-Fall,64,103,94 - 112,92 - 114,58,1-Fall,Average
+ernle,1-Fall,65,104,95 - 113,93 - 115,61,1-Spring,Average
+ernle,1-Fall,66,105,96 - 114,94 - 116,63,1-Spring,Average
+ernle,1-Fall,67,105,96 - 114,94 - 116,63,1-Spring,Average
+ernle,1-Fall,68,106,97 - 115,95 - 117,66,1-Spring,Average
+ernle,1-Fall,69,107,98 - 116,96 - 118,68,1-Spring,Average
+ernle,1-Fall,70,108,99 - 117,97 - 119,70,1-Spring,Average
+ernle,1-Fall,71,108,99 - 117,97 - 119,70,1-Spring,Average
+ernle,1-Fall,72,109,100 - 118,98 - 120,73,2-Fall,Average
+ernle,1-Fall,73,110,101 - 119,99 - 121,75,2-Fall,Above Average
+ernle,1-Fall,74,111,102 - 120,100 - 122,77,2-Fall,Above Average
+ernle,1-Fall,75,112,103 - 121,101 - 123,79,2-Fall,Above Average
+ernle,1-Fall,76,112,103 - 121,101 - 123,79,2-Fall,Above Average
+ernle,1-Fall,77,113,104 - 122,102 - 124,81,2-Fall,Above Average
+ernle,1-Fall,78,114,105 - 123,103 - 125,82,2-Fall,Above Average
+ernle,1-Fall,79,115,106 - 124,104 - 126,84,2-Spring,Above Average
+ernle,1-Fall,80,115,106 - 124,104 - 126,84,2-Spring,Above Average
+ernle,1-Fall,81,116,107 - 125,105 - 127,86,2-Spring,Above Average
+ernle,1-Fall,82,117,108 - 126,106 - 128,87,2-Spring,Above Average
+ernle,1-Fall,83,118,109 - 127,107 - 129,88,2-Spring,Above Average
+ernle,1-Fall,84,119,110 - 128,108 - 130,90,2-Spring,Above Average
+ernle,1-Fall,85,119,110 - 128,108 - 130,90,2-Spring,Above Average
+ernle,1-Fall,86,120,111 - 129,109 - 130,91,2-Spring,Well Above Average
+ernle,1-Fall,87,121,112 - 130,110 - 130,92,2-Spring,Well Above Average
+ernle,1-Fall,88,122,113 - 130,111 - 130,93,2-Spring,Well Above Average
+ernle,1-Fall,89,123,114 - 130,112 - 130,94,> stop grade,Well Above Average
+ernle,1-Fall,90,123,114 - 130,112 - 130,94,> stop grade,Well Above Average
+ernle,1-Fall,91,124,115 - 130,113 - 130,95,> stop grade,Well Above Average
+ernle,1-Fall,92,125,116 - 130,114 - 130,95,> stop grade,Well Above Average
+ernle,1-Fall,93,126,117 - 130,115 - 130,96,> stop grade,Well Above Average
+ernle,1-Fall,94,127,118 - 130,116 - 130,96,> stop grade,Well Above Average
+ernle,1-Fall,95,127,118 - 130,116 - 130,96,> stop grade,Well Above Average
+ernle,1-Fall,96,128,119 - 130,117 - 130,97,> stop grade,Well Above Average
+ernle,1-Fall,97,129,120 - 130,118 - 130,97,> stop grade,Well Above Average
+ernle,1-Fall,98,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,99,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,100,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,101,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,102,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,103,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,104,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,105,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,106,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,107,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,108,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,109,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,110,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,111,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,112,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,113,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,114,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,115,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,116,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,117,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,118,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,119,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Fall,120,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,0,52,43 - 61,41 - 63,0.1,< start grade,Significantly Below Average
+ernle,1-Spring,1,53,44 - 62,42 - 64,0.1,< start grade,Significantly Below Average
+ernle,1-Spring,2,53,44 - 62,42 - 64,0.1,< start grade,Significantly Below Average
+ernle,1-Spring,3,54,45 - 63,43 - 65,0.1,< start grade,Significantly Below Average
+ernle,1-Spring,4,55,46 - 64,44 - 66,0.1,< start grade,Significantly Below Average
+ernle,1-Spring,5,56,47 - 65,45 - 67,0.2,< start grade,Significantly Below Average
+ernle,1-Spring,6,56,47 - 65,45 - 67,0.2,< start grade,Significantly Below Average
+ernle,1-Spring,7,57,48 - 66,46 - 68,0.2,< start grade,Significantly Below Average
+ernle,1-Spring,8,58,49 - 67,47 - 69,0.3,< start grade,Significantly Below Average
+ernle,1-Spring,9,58,49 - 67,47 - 69,0.3,< start grade,Significantly Below Average
+ernle,1-Spring,10,59,50 - 68,48 - 70,0.3,< start grade,Significantly Below Average
+ernle,1-Spring,11,60,51 - 69,49 - 71,0.4,< start grade,Significantly Below Average
+ernle,1-Spring,12,60,51 - 69,49 - 71,0.4,< start grade,Significantly Below Average
+ernle,1-Spring,13,61,52 - 70,50 - 72,0.5,< start grade,Significantly Below Average
+ernle,1-Spring,14,62,53 - 71,51 - 73,1,< start grade,Significantly Below Average
+ernle,1-Spring,15,62,53 - 71,51 - 73,1,< start grade,Significantly Below Average
+ernle,1-Spring,16,63,54 - 72,52 - 74,1,< start grade,Significantly Below Average
+ernle,1-Spring,17,64,55 - 73,53 - 75,1,< start grade,Significantly Below Average
+ernle,1-Spring,18,64,55 - 73,53 - 75,1,< start grade,Significantly Below Average
+ernle,1-Spring,19,65,56 - 74,54 - 76,1,< start grade,Significantly Below Average
+ernle,1-Spring,20,66,57 - 75,55 - 77,1,< start grade,Significantly Below Average
+ernle,1-Spring,21,67,58 - 76,56 - 78,1,< start grade,Significantly Below Average
+ernle,1-Spring,22,67,58 - 76,56 - 78,1,< start grade,Significantly Below Average
+ernle,1-Spring,23,68,59 - 77,57 - 79,2,< start grade,Significantly Below Average
+ernle,1-Spring,24,69,60 - 78,58 - 80,2,< start grade,Significantly Below Average
+ernle,1-Spring,25,69,60 - 78,58 - 80,2,< start grade,Significantly Below Average
+ernle,1-Spring,26,70,61 - 79,59 - 81,2,< start grade,Well Below Average
+ernle,1-Spring,27,71,62 - 80,60 - 82,3,< start grade,Well Below Average
+ernle,1-Spring,28,71,62 - 80,60 - 82,3,< start grade,Well Below Average
+ernle,1-Spring,29,72,63 - 81,61 - 83,3,< start grade,Well Below Average
+ernle,1-Spring,30,73,64 - 82,62 - 84,4,< start grade,Well Below Average
+ernle,1-Spring,31,73,64 - 82,62 - 84,4,< start grade,Well Below Average
+ernle,1-Spring,32,74,65 - 83,63 - 85,4,< start grade,Well Below Average
+ernle,1-Spring,33,75,66 - 84,64 - 86,5,< start grade,Well Below Average
+ernle,1-Spring,34,76,67 - 85,65 - 87,5,< start grade,Well Below Average
+ernle,1-Spring,35,76,67 - 85,65 - 87,5,< start grade,Well Below Average
+ernle,1-Spring,36,77,68 - 86,66 - 88,6,K-Fall,Well Below Average
+ernle,1-Spring,37,78,69 - 87,67 - 89,7,K-Fall,Well Below Average
+ernle,1-Spring,38,78,69 - 87,67 - 89,7,K-Fall,Well Below Average
+ernle,1-Spring,39,79,70 - 88,68 - 90,8,K-Fall,Well Below Average
+ernle,1-Spring,40,80,71 - 89,69 - 91,9,K-Fall,Below Average
+ernle,1-Spring,41,81,72 - 90,70 - 92,10,K-Fall,Below Average
+ernle,1-Spring,42,81,72 - 90,70 - 92,10,K-Fall,Below Average
+ernle,1-Spring,43,82,73 - 91,71 - 93,12,K-Fall,Below Average
+ernle,1-Spring,44,83,74 - 92,72 - 94,13,K-Fall,Below Average
+ernle,1-Spring,45,83,74 - 92,72 - 94,13,K-Fall,Below Average
+ernle,1-Spring,46,84,75 - 93,73 - 95,14,K-Fall,Below Average
+ernle,1-Spring,47,85,76 - 94,74 - 96,16,K-Spring,Below Average
+ernle,1-Spring,48,86,77 - 95,75 - 97,18,K-Spring,Below Average
+ernle,1-Spring,49,86,77 - 95,75 - 97,18,K-Spring,Below Average
+ernle,1-Spring,50,87,78 - 96,76 - 98,19,K-Spring,Below Average
+ernle,1-Spring,51,88,79 - 97,77 - 99,21,K-Spring,Below Average
+ernle,1-Spring,52,88,79 - 97,77 - 99,21,K-Spring,Below Average
+ernle,1-Spring,53,89,80 - 98,78 - 100,23,K-Spring,Below Average
+ernle,1-Spring,54,90,81 - 99,79 - 101,25,K-Spring,Average
+ernle,1-Spring,55,91,82 - 100,80 - 102,27,K-Spring,Average
+ernle,1-Spring,56,91,82 - 100,80 - 102,27,1-Fall,Average
+ernle,1-Spring,57,92,83 - 101,81 - 103,30,1-Fall,Average
+ernle,1-Spring,58,93,84 - 102,82 - 104,32,1-Fall,Average
+ernle,1-Spring,59,94,85 - 103,83 - 105,34,1-Fall,Average
+ernle,1-Spring,60,94,85 - 103,83 - 105,34,1-Fall,Average
+ernle,1-Spring,61,95,86 - 104,84 - 106,37,1-Fall,Average
+ernle,1-Spring,62,96,87 - 105,85 - 107,39,1-Fall,Average
+ernle,1-Spring,63,96,87 - 105,85 - 107,39,1-Fall,Average
+ernle,1-Spring,64,97,88 - 106,86 - 108,42,1-Fall,Average
+ernle,1-Spring,65,98,89 - 107,87 - 109,45,1-Spring,Average
+ernle,1-Spring,66,99,90 - 108,88 - 110,47,1-Spring,Average
+ernle,1-Spring,67,99,90 - 108,88 - 110,47,1-Spring,Average
+ernle,1-Spring,68,100,91 - 109,89 - 111,50,1-Spring,Average
+ernle,1-Spring,69,101,92 - 110,90 - 112,53,1-Spring,Average
+ernle,1-Spring,70,102,93 - 111,91 - 113,55,1-Spring,Average
+ernle,1-Spring,71,102,93 - 111,91 - 113,55,1-Spring,Average
+ernle,1-Spring,72,103,94 - 112,92 - 114,58,2-Fall,Average
+ernle,1-Spring,73,104,95 - 113,93 - 115,61,2-Fall,Average
+ernle,1-Spring,74,105,96 - 114,94 - 116,63,2-Fall,Average
+ernle,1-Spring,75,106,97 - 115,95 - 117,66,2-Fall,Average
+ernle,1-Spring,76,106,97 - 115,95 - 117,66,2-Fall,Average
+ernle,1-Spring,77,107,98 - 116,96 - 118,68,2-Fall,Average
+ernle,1-Spring,78,108,99 - 117,97 - 119,70,2-Fall,Average
+ernle,1-Spring,79,109,100 - 118,98 - 120,73,2-Spring,Average
+ernle,1-Spring,80,109,100 - 118,98 - 120,73,2-Spring,Average
+ernle,1-Spring,81,110,101 - 119,99 - 121,75,2-Spring,Above Average
+ernle,1-Spring,82,111,102 - 120,100 - 122,77,2-Spring,Above Average
+ernle,1-Spring,83,112,103 - 121,101 - 123,79,2-Spring,Above Average
+ernle,1-Spring,84,113,104 - 122,102 - 124,81,2-Spring,Above Average
+ernle,1-Spring,85,113,104 - 122,102 - 124,81,2-Spring,Above Average
+ernle,1-Spring,86,114,105 - 123,103 - 125,82,2-Spring,Above Average
+ernle,1-Spring,87,115,106 - 124,104 - 126,84,2-Spring,Above Average
+ernle,1-Spring,88,116,107 - 125,105 - 127,86,2-Spring,Above Average
+ernle,1-Spring,89,116,107 - 125,105 - 127,86,> stop grade,Above Average
+ernle,1-Spring,90,117,108 - 126,106 - 128,87,> stop grade,Above Average
+ernle,1-Spring,91,118,109 - 127,107 - 129,88,> stop grade,Above Average
+ernle,1-Spring,92,119,110 - 128,108 - 130,90,> stop grade,Above Average
+ernle,1-Spring,93,120,111 - 129,109 - 130,91,> stop grade,Well Above Average
+ernle,1-Spring,94,121,112 - 130,110 - 130,92,> stop grade,Well Above Average
+ernle,1-Spring,95,121,112 - 130,110 - 130,92,> stop grade,Well Above Average
+ernle,1-Spring,96,122,113 - 130,111 - 130,93,> stop grade,Well Above Average
+ernle,1-Spring,97,123,114 - 130,112 - 130,94,> stop grade,Well Above Average
+ernle,1-Spring,98,124,115 - 130,113 - 130,95,> stop grade,Well Above Average
+ernle,1-Spring,99,125,116 - 130,114 - 130,95,> stop grade,Well Above Average
+ernle,1-Spring,100,126,117 - 130,115 - 130,96,> stop grade,Well Above Average
+ernle,1-Spring,101,126,117 - 130,115 - 130,96,> stop grade,Well Above Average
+ernle,1-Spring,102,127,118 - 130,116 - 130,96,> stop grade,Well Above Average
+ernle,1-Spring,103,128,119 - 130,117 - 130,97,> stop grade,Well Above Average
+ernle,1-Spring,104,129,120 - 130,118 - 130,97,> stop grade,Well Above Average
+ernle,1-Spring,105,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,106,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,107,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,108,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,109,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,110,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,111,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,112,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,113,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,114,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,115,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,116,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,117,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,118,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,119,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,1-Spring,120,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Fall,0,49,40 - 58,40 - 60,<.1,< start grade,Significantly Below Average
+ernle,2-Fall,1,50,41 - 59,40 - 61,0.1,< start grade,Significantly Below Average
+ernle,2-Fall,2,50,41 - 59,40 - 61,0.1,< start grade,Significantly Below Average
+ernle,2-Fall,3,51,42 - 60,40 - 62,0.1,< start grade,Significantly Below Average
+ernle,2-Fall,4,52,43 - 61,41 - 63,0.1,< start grade,Significantly Below Average
+ernle,2-Fall,5,52,43 - 61,41 - 63,0.1,< start grade,Significantly Below Average
+ernle,2-Fall,6,53,44 - 62,42 - 64,0.1,< start grade,Significantly Below Average
+ernle,2-Fall,7,53,44 - 62,42 - 64,0.1,< start grade,Significantly Below Average
+ernle,2-Fall,8,54,45 - 63,43 - 65,0.1,< start grade,Significantly Below Average
+ernle,2-Fall,9,55,46 - 64,44 - 66,0.1,< start grade,Significantly Below Average
+ernle,2-Fall,10,55,46 - 64,44 - 66,0.1,< start grade,Significantly Below Average
+ernle,2-Fall,11,56,47 - 65,45 - 67,0.2,< start grade,Significantly Below Average
+ernle,2-Fall,12,57,48 - 66,46 - 68,0.2,< start grade,Significantly Below Average
+ernle,2-Fall,13,57,48 - 66,46 - 68,0.2,< start grade,Significantly Below Average
+ernle,2-Fall,14,58,49 - 67,47 - 69,0.3,< start grade,Significantly Below Average
+ernle,2-Fall,15,59,50 - 68,48 - 70,0.3,< start grade,Significantly Below Average
+ernle,2-Fall,16,59,50 - 68,48 - 70,0.3,< start grade,Significantly Below Average
+ernle,2-Fall,17,60,51 - 69,49 - 71,0.4,< start grade,Significantly Below Average
+ernle,2-Fall,18,61,52 - 70,50 - 72,0.5,< start grade,Significantly Below Average
+ernle,2-Fall,19,61,52 - 70,50 - 72,0.5,< start grade,Significantly Below Average
+ernle,2-Fall,20,62,53 - 71,51 - 73,1,< start grade,Significantly Below Average
+ernle,2-Fall,21,63,54 - 72,52 - 74,1,< start grade,Significantly Below Average
+ernle,2-Fall,22,63,54 - 72,52 - 74,1,< start grade,Significantly Below Average
+ernle,2-Fall,23,64,55 - 73,53 - 75,1,< start grade,Significantly Below Average
+ernle,2-Fall,24,65,56 - 74,54 - 76,1,< start grade,Significantly Below Average
+ernle,2-Fall,25,65,56 - 74,54 - 76,1,< start grade,Significantly Below Average
+ernle,2-Fall,26,66,57 - 75,55 - 77,1,< start grade,Significantly Below Average
+ernle,2-Fall,27,67,58 - 76,56 - 78,1,< start grade,Significantly Below Average
+ernle,2-Fall,28,67,58 - 76,56 - 78,1,< start grade,Significantly Below Average
+ernle,2-Fall,29,68,59 - 77,57 - 79,2,< start grade,Significantly Below Average
+ernle,2-Fall,30,69,60 - 78,58 - 80,2,< start grade,Significantly Below Average
+ernle,2-Fall,31,69,60 - 78,58 - 80,2,< start grade,Significantly Below Average
+ernle,2-Fall,32,70,61 - 79,59 - 81,2,< start grade,Well Below Average
+ernle,2-Fall,33,71,62 - 80,60 - 82,3,< start grade,Well Below Average
+ernle,2-Fall,34,71,62 - 80,60 - 82,3,< start grade,Well Below Average
+ernle,2-Fall,35,72,63 - 81,61 - 83,3,< start grade,Well Below Average
+ernle,2-Fall,36,73,64 - 82,62 - 84,4,K-Fall,Well Below Average
+ernle,2-Fall,37,73,64 - 82,62 - 84,4,K-Fall,Well Below Average
+ernle,2-Fall,38,74,65 - 83,63 - 85,4,K-Fall,Well Below Average
+ernle,2-Fall,39,75,66 - 84,64 - 86,5,K-Fall,Well Below Average
+ernle,2-Fall,40,75,66 - 84,64 - 86,5,K-Fall,Well Below Average
+ernle,2-Fall,41,76,67 - 85,65 - 87,5,K-Fall,Well Below Average
+ernle,2-Fall,42,77,68 - 86,66 - 88,6,K-Fall,Well Below Average
+ernle,2-Fall,43,77,68 - 86,66 - 88,6,K-Fall,Well Below Average
+ernle,2-Fall,44,78,69 - 87,67 - 89,7,K-Fall,Well Below Average
+ernle,2-Fall,45,79,70 - 88,68 - 90,8,K-Fall,Well Below Average
+ernle,2-Fall,46,79,70 - 88,68 - 90,8,K-Fall,Well Below Average
+ernle,2-Fall,47,80,71 - 89,69 - 91,9,K-Spring,Below Average
+ernle,2-Fall,48,81,72 - 90,70 - 92,10,K-Spring,Below Average
+ernle,2-Fall,49,81,72 - 90,70 - 92,10,K-Spring,Below Average
+ernle,2-Fall,50,82,73 - 91,71 - 93,12,K-Spring,Below Average
+ernle,2-Fall,51,83,74 - 92,72 - 94,13,K-Spring,Below Average
+ernle,2-Fall,52,83,74 - 92,72 - 94,13,K-Spring,Below Average
+ernle,2-Fall,53,84,75 - 93,73 - 95,14,K-Spring,Below Average
+ernle,2-Fall,54,85,76 - 94,74 - 96,16,K-Spring,Below Average
+ernle,2-Fall,55,86,77 - 95,75 - 97,18,K-Spring,Below Average
+ernle,2-Fall,56,86,77 - 95,75 - 97,18,1-Fall,Below Average
+ernle,2-Fall,57,87,78 - 96,76 - 98,19,1-Fall,Below Average
+ernle,2-Fall,58,88,79 - 97,77 - 99,21,1-Fall,Below Average
+ernle,2-Fall,59,88,79 - 97,77 - 99,21,1-Fall,Below Average
+ernle,2-Fall,60,89,80 - 98,78 - 100,23,1-Fall,Below Average
+ernle,2-Fall,61,90,81 - 99,79 - 101,25,1-Fall,Average
+ernle,2-Fall,62,91,82 - 100,80 - 102,27,1-Fall,Average
+ernle,2-Fall,63,91,82 - 100,80 - 102,27,1-Fall,Average
+ernle,2-Fall,64,92,83 - 101,81 - 103,30,1-Fall,Average
+ernle,2-Fall,65,93,84 - 102,82 - 104,32,1-Spring,Average
+ernle,2-Fall,66,93,84 - 102,82 - 104,32,1-Spring,Average
+ernle,2-Fall,67,94,85 - 103,83 - 105,34,1-Spring,Average
+ernle,2-Fall,68,95,86 - 104,84 - 106,37,1-Spring,Average
+ernle,2-Fall,69,96,87 - 105,85 - 107,39,1-Spring,Average
+ernle,2-Fall,70,96,87 - 105,85 - 107,39,1-Spring,Average
+ernle,2-Fall,71,97,88 - 106,86 - 108,42,1-Spring,Average
+ernle,2-Fall,72,98,89 - 107,87 - 109,45,2-Fall,Average
+ernle,2-Fall,73,99,90 - 108,88 - 110,47,2-Fall,Average
+ernle,2-Fall,74,99,90 - 108,88 - 110,47,2-Fall,Average
+ernle,2-Fall,75,100,91 - 109,89 - 111,50,2-Fall,Average
+ernle,2-Fall,76,101,92 - 110,90 - 112,53,2-Fall,Average
+ernle,2-Fall,77,102,93 - 111,91 - 113,55,2-Fall,Average
+ernle,2-Fall,78,102,93 - 111,91 - 113,55,2-Fall,Average
+ernle,2-Fall,79,103,94 - 112,92 - 114,58,2-Spring,Average
+ernle,2-Fall,80,104,95 - 113,93 - 115,61,2-Spring,Average
+ernle,2-Fall,81,105,96 - 114,94 - 116,63,2-Spring,Average
+ernle,2-Fall,82,106,97 - 115,95 - 117,66,2-Spring,Average
+ernle,2-Fall,83,106,97 - 115,95 - 117,66,2-Spring,Average
+ernle,2-Fall,84,107,98 - 116,96 - 118,68,2-Spring,Average
+ernle,2-Fall,85,108,99 - 117,97 - 119,70,2-Spring,Average
+ernle,2-Fall,86,109,100 - 118,98 - 120,73,2-Spring,Average
+ernle,2-Fall,87,110,101 - 119,99 - 121,75,2-Spring,Above Average
+ernle,2-Fall,88,110,101 - 119,99 - 121,75,2-Spring,Above Average
+ernle,2-Fall,89,111,102 - 120,100 - 122,77,> stop grade,Above Average
+ernle,2-Fall,90,112,103 - 121,101 - 123,79,> stop grade,Above Average
+ernle,2-Fall,91,113,104 - 122,102 - 124,81,> stop grade,Above Average
+ernle,2-Fall,92,114,105 - 123,103 - 125,82,> stop grade,Above Average
+ernle,2-Fall,93,114,105 - 123,103 - 125,82,> stop grade,Above Average
+ernle,2-Fall,94,115,106 - 124,104 - 126,84,> stop grade,Above Average
+ernle,2-Fall,95,116,107 - 125,105 - 127,86,> stop grade,Above Average
+ernle,2-Fall,96,117,108 - 126,106 - 128,87,> stop grade,Above Average
+ernle,2-Fall,97,118,109 - 127,107 - 129,88,> stop grade,Above Average
+ernle,2-Fall,98,119,110 - 128,108 - 130,90,> stop grade,Above Average
+ernle,2-Fall,99,120,111 - 129,109 - 130,91,> stop grade,Well Above Average
+ernle,2-Fall,100,121,112 - 130,110 - 130,92,> stop grade,Well Above Average
+ernle,2-Fall,101,121,112 - 130,110 - 130,92,> stop grade,Well Above Average
+ernle,2-Fall,102,122,113 - 130,111 - 130,93,> stop grade,Well Above Average
+ernle,2-Fall,103,123,114 - 130,112 - 130,94,> stop grade,Well Above Average
+ernle,2-Fall,104,124,115 - 130,113 - 130,95,> stop grade,Well Above Average
+ernle,2-Fall,105,125,116 - 130,114 - 130,95,> stop grade,Well Above Average
+ernle,2-Fall,106,126,117 - 130,115 - 130,96,> stop grade,Well Above Average
+ernle,2-Fall,107,127,118 - 130,116 - 130,96,> stop grade,Well Above Average
+ernle,2-Fall,108,128,119 - 130,117 - 130,97,> stop grade,Well Above Average
+ernle,2-Fall,109,129,120 - 130,118 - 130,97,> stop grade,Well Above Average
+ernle,2-Fall,110,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Fall,111,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Fall,112,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Fall,113,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Fall,114,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Fall,115,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Fall,116,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Fall,117,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Fall,118,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Fall,119,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Fall,120,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Spring,0,46,40 - 55,40 - 57,<.1,< start grade,Significantly Below Average
+ernle,2-Spring,1,47,40 - 56,40 - 58,<.1,< start grade,Significantly Below Average
+ernle,2-Spring,2,47,40 - 56,40 - 58,<.1,< start grade,Significantly Below Average
+ernle,2-Spring,3,48,40 - 57,40 - 59,<.1,< start grade,Significantly Below Average
+ernle,2-Spring,4,49,40 - 58,40 - 60,<.1,< start grade,Significantly Below Average
+ernle,2-Spring,5,49,40 - 58,40 - 60,<.1,< start grade,Significantly Below Average
+ernle,2-Spring,6,50,41 - 59,40 - 61,0.1,< start grade,Significantly Below Average
+ernle,2-Spring,7,50,41 - 59,40 - 61,0.1,< start grade,Significantly Below Average
+ernle,2-Spring,8,51,42 - 60,40 - 62,0.1,< start grade,Significantly Below Average
+ernle,2-Spring,9,52,43 - 61,41 - 63,0.1,< start grade,Significantly Below Average
+ernle,2-Spring,10,52,43 - 61,41 - 63,0.1,< start grade,Significantly Below Average
+ernle,2-Spring,11,53,44 - 62,42 - 64,0.1,< start grade,Significantly Below Average
+ernle,2-Spring,12,53,44 - 62,42 - 64,0.1,< start grade,Significantly Below Average
+ernle,2-Spring,13,54,45 - 63,43 - 65,0.1,< start grade,Significantly Below Average
+ernle,2-Spring,14,55,46 - 64,44 - 66,0.1,< start grade,Significantly Below Average
+ernle,2-Spring,15,55,46 - 64,44 - 66,0.1,< start grade,Significantly Below Average
+ernle,2-Spring,16,56,47 - 65,45 - 67,0.2,< start grade,Significantly Below Average
+ernle,2-Spring,17,57,48 - 66,46 - 68,0.2,< start grade,Significantly Below Average
+ernle,2-Spring,18,57,48 - 66,46 - 68,0.2,< start grade,Significantly Below Average
+ernle,2-Spring,19,58,49 - 67,47 - 69,0.3,< start grade,Significantly Below Average
+ernle,2-Spring,20,58,49 - 67,47 - 69,0.3,< start grade,Significantly Below Average
+ernle,2-Spring,21,59,50 - 68,48 - 70,0.3,< start grade,Significantly Below Average
+ernle,2-Spring,22,60,51 - 69,49 - 71,0.4,< start grade,Significantly Below Average
+ernle,2-Spring,23,60,51 - 69,49 - 71,0.4,< start grade,Significantly Below Average
+ernle,2-Spring,24,61,52 - 70,50 - 72,0.5,< start grade,Significantly Below Average
+ernle,2-Spring,25,62,53 - 71,51 - 73,1,< start grade,Significantly Below Average
+ernle,2-Spring,26,62,53 - 71,51 - 73,1,< start grade,Significantly Below Average
+ernle,2-Spring,27,63,54 - 72,52 - 74,1,< start grade,Significantly Below Average
+ernle,2-Spring,28,63,54 - 72,52 - 74,1,< start grade,Significantly Below Average
+ernle,2-Spring,29,64,55 - 73,53 - 75,1,< start grade,Significantly Below Average
+ernle,2-Spring,30,65,56 - 74,54 - 76,1,< start grade,Significantly Below Average
+ernle,2-Spring,31,65,56 - 74,54 - 76,1,< start grade,Significantly Below Average
+ernle,2-Spring,32,66,57 - 75,55 - 77,1,< start grade,Significantly Below Average
+ernle,2-Spring,33,67,58 - 76,56 - 78,1,< start grade,Significantly Below Average
+ernle,2-Spring,34,67,58 - 76,56 - 78,1,< start grade,Significantly Below Average
+ernle,2-Spring,35,68,59 - 77,57 - 79,2,< start grade,Significantly Below Average
+ernle,2-Spring,36,69,60 - 78,58 - 80,2,K-Fall,Significantly Below Average
+ernle,2-Spring,37,69,60 - 78,58 - 80,2,K-Fall,Significantly Below Average
+ernle,2-Spring,38,70,61 - 79,59 - 81,2,K-Fall,Well Below Average
+ernle,2-Spring,39,70,61 - 79,59 - 81,2,K-Fall,Well Below Average
+ernle,2-Spring,40,71,62 - 80,60 - 82,3,K-Fall,Well Below Average
+ernle,2-Spring,41,72,63 - 81,61 - 83,3,K-Fall,Well Below Average
+ernle,2-Spring,42,72,63 - 81,61 - 83,3,K-Fall,Well Below Average
+ernle,2-Spring,43,73,64 - 82,62 - 84,4,K-Fall,Well Below Average
+ernle,2-Spring,44,74,65 - 83,63 - 85,4,K-Fall,Well Below Average
+ernle,2-Spring,45,74,65 - 83,63 - 85,4,K-Fall,Well Below Average
+ernle,2-Spring,46,75,66 - 84,64 - 86,5,K-Fall,Well Below Average
+ernle,2-Spring,47,76,67 - 85,65 - 87,5,K-Spring,Well Below Average
+ernle,2-Spring,48,76,67 - 85,65 - 87,5,K-Spring,Well Below Average
+ernle,2-Spring,49,77,68 - 86,66 - 88,6,K-Spring,Well Below Average
+ernle,2-Spring,50,78,69 - 87,67 - 89,7,K-Spring,Well Below Average
+ernle,2-Spring,51,78,69 - 87,67 - 89,7,K-Spring,Well Below Average
+ernle,2-Spring,52,79,70 - 88,68 - 90,8,K-Spring,Well Below Average
+ernle,2-Spring,53,80,71 - 89,69 - 91,9,K-Spring,Below Average
+ernle,2-Spring,54,80,71 - 89,69 - 91,9,K-Spring,Below Average
+ernle,2-Spring,55,81,72 - 90,70 - 92,10,K-Spring,Below Average
+ernle,2-Spring,56,82,73 - 91,71 - 93,12,1-Fall,Below Average
+ernle,2-Spring,57,82,73 - 91,71 - 93,12,1-Fall,Below Average
+ernle,2-Spring,58,83,74 - 92,72 - 94,13,1-Fall,Below Average
+ernle,2-Spring,59,84,75 - 93,73 - 95,14,1-Fall,Below Average
+ernle,2-Spring,60,85,76 - 94,74 - 96,16,1-Fall,Below Average
+ernle,2-Spring,61,85,76 - 94,74 - 96,16,1-Fall,Below Average
+ernle,2-Spring,62,86,77 - 95,75 - 97,18,1-Fall,Below Average
+ernle,2-Spring,63,87,78 - 96,76 - 98,19,1-Fall,Below Average
+ernle,2-Spring,64,87,78 - 96,76 - 98,19,1-Fall,Below Average
+ernle,2-Spring,65,88,79 - 97,77 - 99,21,1-Spring,Below Average
+ernle,2-Spring,66,89,80 - 98,78 - 100,23,1-Spring,Below Average
+ernle,2-Spring,67,89,80 - 98,78 - 100,23,1-Spring,Below Average
+ernle,2-Spring,68,90,81 - 99,79 - 101,25,1-Spring,Average
+ernle,2-Spring,69,91,82 - 100,80 - 102,27,1-Spring,Average
+ernle,2-Spring,70,92,83 - 101,81 - 103,30,1-Spring,Average
+ernle,2-Spring,71,92,83 - 101,81 - 103,30,1-Spring,Average
+ernle,2-Spring,72,93,84 - 102,82 - 104,32,2-Fall,Average
+ernle,2-Spring,73,94,85 - 103,83 - 105,34,2-Fall,Average
+ernle,2-Spring,74,95,86 - 104,84 - 106,37,2-Fall,Average
+ernle,2-Spring,75,95,86 - 104,84 - 106,37,2-Fall,Average
+ernle,2-Spring,76,96,87 - 105,85 - 107,39,2-Fall,Average
+ernle,2-Spring,77,97,88 - 106,86 - 108,42,2-Fall,Average
+ernle,2-Spring,78,98,89 - 107,87 - 109,45,2-Fall,Average
+ernle,2-Spring,79,98,89 - 107,87 - 109,45,2-Spring,Average
+ernle,2-Spring,80,99,90 - 108,88 - 110,47,2-Spring,Average
+ernle,2-Spring,81,100,91 - 109,89 - 111,50,2-Spring,Average
+ernle,2-Spring,82,101,92 - 110,90 - 112,53,2-Spring,Average
+ernle,2-Spring,83,101,92 - 110,90 - 112,53,2-Spring,Average
+ernle,2-Spring,84,102,93 - 111,91 - 113,55,2-Spring,Average
+ernle,2-Spring,85,103,94 - 112,92 - 114,58,2-Spring,Average
+ernle,2-Spring,86,104,95 - 113,93 - 115,61,2-Spring,Average
+ernle,2-Spring,87,105,96 - 114,94 - 116,63,2-Spring,Average
+ernle,2-Spring,88,105,96 - 114,94 - 116,63,2-Spring,Average
+ernle,2-Spring,89,106,97 - 115,95 - 117,66,> stop grade,Average
+ernle,2-Spring,90,107,98 - 116,96 - 118,68,> stop grade,Average
+ernle,2-Spring,91,108,99 - 117,97 - 119,70,> stop grade,Average
+ernle,2-Spring,92,109,100 - 118,98 - 120,73,> stop grade,Average
+ernle,2-Spring,93,110,101 - 119,99 - 121,75,> stop grade,Above Average
+ernle,2-Spring,94,111,102 - 120,100 - 122,77,> stop grade,Above Average
+ernle,2-Spring,95,111,102 - 120,100 - 122,77,> stop grade,Above Average
+ernle,2-Spring,96,112,103 - 121,101 - 123,79,> stop grade,Above Average
+ernle,2-Spring,97,113,104 - 122,102 - 124,81,> stop grade,Above Average
+ernle,2-Spring,98,114,105 - 123,103 - 125,82,> stop grade,Above Average
+ernle,2-Spring,99,115,106 - 124,104 - 126,84,> stop grade,Above Average
+ernle,2-Spring,100,116,107 - 125,105 - 127,86,> stop grade,Above Average
+ernle,2-Spring,101,117,108 - 126,106 - 128,87,> stop grade,Above Average
+ernle,2-Spring,102,118,109 - 127,107 - 129,88,> stop grade,Above Average
+ernle,2-Spring,103,119,110 - 128,108 - 130,90,> stop grade,Above Average
+ernle,2-Spring,104,120,111 - 129,109 - 130,91,> stop grade,Well Above Average
+ernle,2-Spring,105,121,112 - 130,110 - 130,92,> stop grade,Well Above Average
+ernle,2-Spring,106,122,113 - 130,111 - 130,93,> stop grade,Well Above Average
+ernle,2-Spring,107,123,114 - 130,112 - 130,94,> stop grade,Well Above Average
+ernle,2-Spring,108,124,115 - 130,113 - 130,95,> stop grade,Well Above Average
+ernle,2-Spring,109,125,116 - 130,114 - 130,95,> stop grade,Well Above Average
+ernle,2-Spring,110,126,117 - 130,115 - 130,96,> stop grade,Well Above Average
+ernle,2-Spring,111,128,119 - 130,117 - 130,97,> stop grade,Well Above Average
+ernle,2-Spring,112,129,120 - 130,118 - 130,97,> stop grade,Well Above Average
+ernle,2-Spring,113,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Spring,114,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Spring,115,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Spring,116,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Spring,117,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Spring,118,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Spring,119,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+ernle,2-Spring,120,130,121 - 130,119 - 130,98,> stop grade,Well Above Average
+esege,K-Fall,0,79,74 - 84,73 - 85,8,< start grade,Well Below Average
+esege,K-Fall,1,81,76 - 86,75 - 87,10,< start grade,Below Average
+esege,K-Fall,2,82,77 - 87,76 - 88,12,< start grade,Below Average
+esege,K-Fall,3,84,79 - 89,78 - 90,14,< start grade,Below Average
+esege,K-Fall,4,86,81 - 91,80 - 92,18,< start grade,Below Average
+esege,K-Fall,5,88,83 - 93,82 - 94,21,< start grade,Below Average
+esege,K-Fall,6,90,85 - 95,84 - 96,25,< start grade,Average
+esege,K-Fall,7,92,87 - 97,86 - 98,30,< start grade,Average
+esege,K-Fall,8,94,89 - 99,88 - 100,34,< start grade,Average
+esege,K-Fall,9,96,91 - 101,90 - 102,39,K-Fall,Average
+esege,K-Fall,10,98,93 - 103,92 - 104,45,K-Fall,Average
+esege,K-Fall,11,100,95 - 105,94 - 106,50,K-Fall,Average
+esege,K-Fall,12,102,97 - 107,96 - 108,55,K-Fall,Average
+esege,K-Fall,13,104,99 - 109,98 - 110,61,K-Spring,Average
+esege,K-Fall,14,106,101 - 111,100 - 112,66,K-Spring,Average
+esege,K-Fall,15,108,103 - 113,102 - 114,70,K-Spring,Average
+esege,K-Fall,16,110,105 - 115,104 - 116,75,K-Spring,Above Average
+esege,K-Fall,17,113,108 - 118,107 - 119,81,1-Fall,Above Average
+esege,K-Fall,18,116,111 - 121,110 - 122,86,1-Fall,Above Average
+esege,K-Fall,19,119,114 - 124,113 - 125,90,1-Spring,Above Average
+esege,K-Fall,20,122,117 - 127,116 - 128,93,1-Spring,Well Above Average
+esege,K-Fall,21,126,121 - 130,120 - 130,96,2-Fall,Well Above Average
+esege,K-Fall,22,130,125 - 130,124 - 130,98,2-Spring,Well Above Average
+esege,K-Fall,23,130,125 - 130,124 - 130,98,> stop grade,Well Above Average
+esege,K-Fall,24,130,125 - 130,124 - 130,98,> stop grade,Well Above Average
+esege,K-Fall,25,130,125 - 130,124 - 130,98,> stop grade,Well Above Average
+esege,K-Spring,0,73,68 - 78,67 - 79,4,< start grade,Well Below Average
+esege,K-Spring,1,75,70 - 80,69 - 81,5,< start grade,Well Below Average
+esege,K-Spring,2,77,72 - 82,71 - 83,6,< start grade,Well Below Average
+esege,K-Spring,3,78,73 - 83,72 - 84,7,< start grade,Well Below Average
+esege,K-Spring,4,80,75 - 85,74 - 86,9,< start grade,Below Average
+esege,K-Spring,5,82,77 - 87,76 - 88,12,< start grade,Below Average
+esege,K-Spring,6,83,78 - 88,77 - 89,13,< start grade,Below Average
+esege,K-Spring,7,85,80 - 90,79 - 91,16,< start grade,Below Average
+esege,K-Spring,8,87,82 - 92,81 - 93,19,< start grade,Below Average
+esege,K-Spring,9,89,84 - 94,83 - 95,23,K-Fall,Below Average
+esege,K-Spring,10,91,86 - 96,85 - 97,27,K-Fall,Average
+esege,K-Spring,11,93,88 - 98,87 - 99,32,K-Fall,Average
+esege,K-Spring,12,95,90 - 100,89 - 101,37,K-Fall,Average
+esege,K-Spring,13,97,92 - 102,91 - 103,42,K-Spring,Average
+esege,K-Spring,14,99,94 - 104,93 - 105,47,K-Spring,Average
+esege,K-Spring,15,101,96 - 106,95 - 107,53,K-Spring,Average
+esege,K-Spring,16,103,98 - 108,97 - 109,58,K-Spring,Average
+esege,K-Spring,17,106,101 - 111,100 - 112,66,1-Fall,Average
+esege,K-Spring,18,109,104 - 114,103 - 115,73,1-Fall,Average
+esege,K-Spring,19,112,107 - 117,106 - 118,79,1-Spring,Above Average
+esege,K-Spring,20,115,110 - 120,109 - 121,84,1-Spring,Above Average
+esege,K-Spring,21,119,114 - 124,113 - 125,90,2-Fall,Above Average
+esege,K-Spring,22,124,119 - 129,118 - 130,95,2-Spring,Well Above Average
+esege,K-Spring,23,130,125 - 130,124 - 130,98,> stop grade,Well Above Average
+esege,K-Spring,24,130,125 - 130,124 - 130,98,> stop grade,Well Above Average
+esege,K-Spring,25,130,125 - 130,124 - 130,98,> stop grade,Well Above Average
+esege,1-Fall,0,67,62 - 72,61 - 73,1,< start grade,Significantly Below Average
+esege,1-Fall,1,68,63 - 73,62 - 74,2,< start grade,Significantly Below Average
+esege,1-Fall,2,70,65 - 75,64 - 76,2,< start grade,Well Below Average
+esege,1-Fall,3,71,66 - 76,65 - 77,3,< start grade,Well Below Average
+esege,1-Fall,4,73,68 - 78,67 - 79,4,< start grade,Well Below Average
+esege,1-Fall,5,75,70 - 80,69 - 81,5,< start grade,Well Below Average
+esege,1-Fall,6,77,72 - 82,71 - 83,6,< start grade,Well Below Average
+esege,1-Fall,7,78,73 - 83,72 - 84,7,< start grade,Well Below Average
+esege,1-Fall,8,80,75 - 85,74 - 86,9,< start grade,Below Average
+esege,1-Fall,9,82,77 - 87,76 - 88,12,K-Fall,Below Average
+esege,1-Fall,10,84,79 - 89,78 - 90,14,K-Fall,Below Average
+esege,1-Fall,11,86,81 - 91,80 - 92,18,K-Fall,Below Average
+esege,1-Fall,12,88,83 - 93,82 - 94,21,K-Fall,Below Average
+esege,1-Fall,13,90,85 - 95,84 - 96,25,K-Spring,Average
+esege,1-Fall,14,92,87 - 97,86 - 98,30,K-Spring,Average
+esege,1-Fall,15,94,89 - 99,88 - 100,34,K-Spring,Average
+esege,1-Fall,16,97,92 - 102,91 - 103,42,K-Spring,Average
+esege,1-Fall,17,99,94 - 104,93 - 105,47,1-Fall,Average
+esege,1-Fall,18,102,97 - 107,96 - 108,55,1-Fall,Average
+esege,1-Fall,19,105,100 - 110,99 - 111,63,1-Spring,Average
+esege,1-Fall,20,108,103 - 113,102 - 114,70,1-Spring,Average
+esege,1-Fall,21,112,107 - 117,106 - 118,79,2-Fall,Above Average
+esege,1-Fall,22,117,112 - 122,111 - 123,87,2-Spring,Above Average
+esege,1-Fall,23,123,118 - 128,117 - 129,94,> stop grade,Well Above Average
+esege,1-Fall,24,130,125 - 130,124 - 130,98,> stop grade,Well Above Average
+esege,1-Fall,25,130,125 - 130,124 - 130,98,> stop grade,Well Above Average
+esege,1-Spring,0,60,55 - 65,54 - 66,0.4,< start grade,Significantly Below Average
+esege,1-Spring,1,62,57 - 67,56 - 68,1,< start grade,Significantly Below Average
+esege,1-Spring,2,63,58 - 68,57 - 69,1,< start grade,Significantly Below Average
+esege,1-Spring,3,65,60 - 70,59 - 71,1,< start grade,Significantly Below Average
+esege,1-Spring,4,66,61 - 71,60 - 72,1,< start grade,Significantly Below Average
+esege,1-Spring,5,68,63 - 73,62 - 74,2,< start grade,Significantly Below Average
+esege,1-Spring,6,70,65 - 75,64 - 76,2,< start grade,Well Below Average
+esege,1-Spring,7,72,67 - 77,66 - 78,3,< start grade,Well Below Average
+esege,1-Spring,8,73,68 - 78,67 - 79,4,< start grade,Well Below Average
+esege,1-Spring,9,75,70 - 80,69 - 81,5,K-Fall,Well Below Average
+esege,1-Spring,10,77,72 - 82,71 - 83,6,K-Fall,Well Below Average
+esege,1-Spring,11,79,74 - 84,73 - 85,8,K-Fall,Well Below Average
+esege,1-Spring,12,81,76 - 86,75 - 87,10,K-Fall,Below Average
+esege,1-Spring,13,83,78 - 88,77 - 89,13,K-Spring,Below Average
+esege,1-Spring,14,86,81 - 91,80 - 92,18,K-Spring,Below Average
+esege,1-Spring,15,88,83 - 93,82 - 94,21,K-Spring,Below Average
+esege,1-Spring,16,90,85 - 95,84 - 96,25,K-Spring,Average
+esege,1-Spring,17,93,88 - 98,87 - 99,32,1-Fall,Average
+esege,1-Spring,18,96,91 - 101,90 - 102,39,1-Fall,Average
+esege,1-Spring,19,99,94 - 104,93 - 105,47,1-Spring,Average
+esege,1-Spring,20,102,97 - 107,96 - 108,55,1-Spring,Average
+esege,1-Spring,21,106,101 - 111,100 - 112,66,2-Fall,Average
+esege,1-Spring,22,111,106 - 116,105 - 117,77,2-Spring,Above Average
+esege,1-Spring,23,116,111 - 121,110 - 122,86,> stop grade,Above Average
+esege,1-Spring,24,121,116 - 126,115 - 127,92,> stop grade,Well Above Average
+esege,1-Spring,25,126,121 - 130,120 - 130,96,> stop grade,Well Above Average
+esege,2-Fall,0,54,49 - 59,48 - 60,0.1,< start grade,Significantly Below Average
+esege,2-Fall,1,55,50 - 60,49 - 61,0.1,< start grade,Significantly Below Average
+esege,2-Fall,2,57,52 - 62,51 - 63,0.2,< start grade,Significantly Below Average
+esege,2-Fall,3,58,53 - 63,52 - 64,0.3,< start grade,Significantly Below Average
+esege,2-Fall,4,60,55 - 65,54 - 66,0.4,< start grade,Significantly Below Average
+esege,2-Fall,5,62,57 - 67,56 - 68,1,< start grade,Significantly Below Average
+esege,2-Fall,6,63,58 - 68,57 - 69,1,< start grade,Significantly Below Average
+esege,2-Fall,7,65,60 - 70,59 - 71,1,< start grade,Significantly Below Average
+esege,2-Fall,8,67,62 - 72,61 - 73,1,< start grade,Significantly Below Average
+esege,2-Fall,9,69,64 - 74,63 - 75,2,K-Fall,Significantly Below Average
+esege,2-Fall,10,70,65 - 75,64 - 76,2,K-Fall,Well Below Average
+esege,2-Fall,11,72,67 - 77,66 - 78,3,K-Fall,Well Below Average
+esege,2-Fall,12,74,69 - 79,68 - 80,4,K-Fall,Well Below Average
+esege,2-Fall,13,77,72 - 82,71 - 83,6,K-Spring,Well Below Average
+esege,2-Fall,14,79,74 - 84,73 - 85,8,K-Spring,Well Below Average
+esege,2-Fall,15,81,76 - 86,75 - 87,10,K-Spring,Below Average
+esege,2-Fall,16,84,79 - 89,78 - 90,14,K-Spring,Below Average
+esege,2-Fall,17,87,82 - 92,81 - 93,19,1-Fall,Below Average
+esege,2-Fall,18,90,85 - 95,84 - 96,25,1-Fall,Average
+esege,2-Fall,19,93,88 - 98,87 - 99,32,1-Spring,Average
+esege,2-Fall,20,97,92 - 102,91 - 103,42,1-Spring,Average
+esege,2-Fall,21,102,97 - 107,96 - 108,55,2-Fall,Average
+esege,2-Fall,22,108,103 - 113,102 - 114,70,2-Spring,Average
+esege,2-Fall,23,113,108 - 118,107 - 119,81,> stop grade,Above Average
+esege,2-Fall,24,118,113 - 123,112 - 124,88,> stop grade,Above Average
+esege,2-Fall,25,123,118 - 128,117 - 129,94,> stop grade,Well Above Average
+esege,2-Spring,0,48,43 - 53,42 - 54,<.1,< start grade,Significantly Below Average
+esege,2-Spring,1,49,44 - 54,43 - 55,<.1,< start grade,Significantly Below Average
+esege,2-Spring,2,51,46 - 56,45 - 57,0.1,< start grade,Significantly Below Average
+esege,2-Spring,3,52,47 - 57,46 - 58,0.1,< start grade,Significantly Below Average
+esege,2-Spring,4,54,49 - 59,48 - 60,0.1,< start grade,Significantly Below Average
+esege,2-Spring,5,55,50 - 60,49 - 61,0.1,< start grade,Significantly Below Average
+esege,2-Spring,6,57,52 - 62,51 - 63,0.2,< start grade,Significantly Below Average
+esege,2-Spring,7,58,53 - 63,52 - 64,0.3,< start grade,Significantly Below Average
+esege,2-Spring,8,60,55 - 65,54 - 66,0.4,< start grade,Significantly Below Average
+esege,2-Spring,9,62,57 - 67,56 - 68,1,K-Fall,Significantly Below Average
+esege,2-Spring,10,64,59 - 69,58 - 70,1,K-Fall,Significantly Below Average
+esege,2-Spring,11,66,61 - 71,60 - 72,1,K-Fall,Significantly Below Average
+esege,2-Spring,12,68,63 - 73,62 - 74,2,K-Fall,Significantly Below Average
+esege,2-Spring,13,70,65 - 75,64 - 76,2,K-Spring,Well Below Average
+esege,2-Spring,14,72,67 - 77,66 - 78,3,K-Spring,Well Below Average
+esege,2-Spring,15,74,69 - 79,68 - 80,4,K-Spring,Well Below Average
+esege,2-Spring,16,77,72 - 82,71 - 83,6,K-Spring,Well Below Average
+esege,2-Spring,17,80,75 - 85,74 - 86,9,1-Fall,Below Average
+esege,2-Spring,18,83,78 - 88,77 - 89,13,1-Fall,Below Average
+esege,2-Spring,19,87,82 - 92,81 - 93,19,1-Spring,Below Average
+esege,2-Spring,20,91,86 - 96,85 - 97,27,1-Spring,Average
+esege,2-Spring,21,97,92 - 102,91 - 103,42,2-Fall,Average
+esege,2-Spring,22,102,97 - 107,96 - 108,55,2-Spring,Average
+esege,2-Spring,23,107,102 - 112,101 - 113,68,> stop grade,Average
+esege,2-Spring,24,112,107 - 117,106 - 118,79,> stop grade,Above Average
+esege,2-Spring,25,117,112 - 122,111 - 123,87,> stop grade,Above Average
+lske,K-Fall,0,71,66 - 76,65 - 77,3,< start grade,Well Below Average
+lske,K-Fall,1,73,68 - 78,67 - 79,4,< start grade,Well Below Average
+lske,K-Fall,2,75,70 - 80,69 - 81,5,< start grade,Well Below Average
+lske,K-Fall,3,77,72 - 82,71 - 83,6,< start grade,Well Below Average
+lske,K-Fall,4,79,74 - 84,73 - 85,8,< start grade,Well Below Average
+lske,K-Fall,5,80,75 - 85,74 - 86,9,< start grade,Below Average
+lske,K-Fall,6,82,77 - 87,76 - 88,12,< start grade,Below Average
+lske,K-Fall,7,84,79 - 89,78 - 90,14,< start grade,Below Average
+lske,K-Fall,8,85,80 - 90,79 - 91,16,< start grade,Below Average
+lske,K-Fall,9,87,82 - 92,81 - 93,19,< start grade,Below Average
+lske,K-Fall,10,89,84 - 94,83 - 95,23,< start grade,Below Average
+lske,K-Fall,11,90,85 - 95,84 - 96,25,< start grade,Average
+lske,K-Fall,12,92,87 - 97,86 - 98,30,< start grade,Average
+lske,K-Fall,13,93,88 - 98,87 - 99,32,< start grade,Average
+lske,K-Fall,14,95,90 - 100,89 - 101,37,K-Fall,Average
+lske,K-Fall,15,97,92 - 102,91 - 103,42,K-Fall,Average
+lske,K-Fall,16,99,94 - 104,93 - 105,47,K-Fall,Average
+lske,K-Fall,17,100,95 - 105,94 - 106,50,K-Fall,Average
+lske,K-Fall,18,102,97 - 107,96 - 108,55,K-Fall,Average
+lske,K-Fall,19,104,99 - 109,98 - 110,61,K-Spring,Average
+lske,K-Fall,20,106,101 - 111,100 - 112,66,K-Spring,Average
+lske,K-Fall,21,108,103 - 113,102 - 114,70,K-Spring,Average
+lske,K-Fall,22,110,105 - 115,104 - 116,75,K-Spring,Above Average
+lske,K-Fall,23,112,107 - 117,106 - 118,79,K-Spring,Above Average
+lske,K-Fall,24,114,109 - 119,108 - 120,82,1-Fall,Above Average
+lske,K-Fall,25,117,112 - 122,111 - 123,87,1-Fall,Above Average
+lske,K-Fall,26,119,114 - 124,113 - 125,90,1-Fall,Above Average
+lske,K-Fall,27,123,118 - 128,117 - 129,94,1-Fall,Well Above Average
+lske,K-Fall,28,128,123 - 130,122 - 130,97,1-Spring,Well Above Average
+lske,K-Fall,29,130,125 - 130,124 - 130,98,1-Spring,Well Above Average
+lske,K-Fall,30,130,125 - 130,124 - 130,98,2-Fall,Well Above Average
+lske,K-Fall,31,130,125 - 130,124 - 130,98,2-Fall,Well Above Average
+lske,K-Fall,32,130,125 - 130,124 - 130,98,2-Spring,Well Above Average
+lske,K-Fall,33,130,125 - 130,124 - 130,98,2-Spring,Well Above Average
+lske,K-Spring,0,62,57 - 67,56 - 68,1,< start grade,Significantly Below Average
+lske,K-Spring,1,64,59 - 69,58 - 70,1,< start grade,Significantly Below Average
+lske,K-Spring,2,66,61 - 71,60 - 72,1,< start grade,Significantly Below Average
+lske,K-Spring,3,68,63 - 73,62 - 74,2,< start grade,Significantly Below Average
+lske,K-Spring,4,70,65 - 75,64 - 76,2,< start grade,Well Below Average
+lske,K-Spring,5,71,66 - 76,65 - 77,3,< start grade,Well Below Average
+lske,K-Spring,6,73,68 - 78,67 - 79,4,< start grade,Well Below Average
+lske,K-Spring,7,75,70 - 80,69 - 81,5,< start grade,Well Below Average
+lske,K-Spring,8,77,72 - 82,71 - 83,6,< start grade,Well Below Average
+lske,K-Spring,9,79,74 - 84,73 - 85,8,< start grade,Well Below Average
+lske,K-Spring,10,80,75 - 85,74 - 86,9,< start grade,Below Average
+lske,K-Spring,11,82,77 - 87,76 - 88,12,< start grade,Below Average
+lske,K-Spring,12,84,79 - 89,78 - 90,14,< start grade,Below Average
+lske,K-Spring,13,85,80 - 90,79 - 91,16,< start grade,Below Average
+lske,K-Spring,14,87,82 - 92,81 - 93,19,K-Fall,Below Average
+lske,K-Spring,15,89,84 - 94,83 - 95,23,K-Fall,Below Average
+lske,K-Spring,16,90,85 - 95,84 - 96,25,K-Fall,Average
+lske,K-Spring,17,92,87 - 97,86 - 98,30,K-Fall,Average
+lske,K-Spring,18,94,89 - 99,88 - 100,34,K-Fall,Average
+lske,K-Spring,19,96,91 - 101,90 - 102,39,K-Spring,Average
+lske,K-Spring,20,97,92 - 102,91 - 103,42,K-Spring,Average
+lske,K-Spring,21,99,94 - 104,93 - 105,47,K-Spring,Average
+lske,K-Spring,22,101,96 - 106,95 - 107,53,K-Spring,Average
+lske,K-Spring,23,103,98 - 108,97 - 109,58,K-Spring,Average
+lske,K-Spring,24,105,100 - 110,99 - 111,63,1-Fall,Average
+lske,K-Spring,25,107,102 - 112,101 - 113,68,1-Fall,Average
+lske,K-Spring,26,109,104 - 114,103 - 115,73,1-Fall,Average
+lske,K-Spring,27,111,106 - 116,105 - 117,77,1-Fall,Above Average
+lske,K-Spring,28,114,109 - 119,108 - 120,82,1-Spring,Above Average
+lske,K-Spring,29,116,111 - 121,110 - 122,86,1-Spring,Above Average
+lske,K-Spring,30,119,114 - 124,113 - 125,90,2-Fall,Above Average
+lske,K-Spring,31,124,119 - 129,118 - 130,95,2-Fall,Well Above Average
+lske,K-Spring,32,130,125 - 130,124 - 130,98,2-Spring,Well Above Average
+lske,K-Spring,33,130,125 - 130,124 - 130,98,2-Spring,Well Above Average
+lske,1-Fall,0,55,50 - 60,49 - 61,0.1,< start grade,Significantly Below Average
+lske,1-Fall,1,57,52 - 62,51 - 63,0.2,< start grade,Significantly Below Average
+lske,1-Fall,2,59,54 - 64,53 - 65,0.3,< start grade,Significantly Below Average
+lske,1-Fall,3,61,56 - 66,55 - 67,0.5,< start grade,Significantly Below Average
+lske,1-Fall,4,63,58 - 68,57 - 69,1,< start grade,Significantly Below Average
+lske,1-Fall,5,64,59 - 69,58 - 70,1,< start grade,Significantly Below Average
+lske,1-Fall,6,65,60 - 70,59 - 71,1,< start grade,Significantly Below Average
+lske,1-Fall,7,66,61 - 71,60 - 72,1,< start grade,Significantly Below Average
+lske,1-Fall,8,68,63 - 73,62 - 74,2,< start grade,Significantly Below Average
+lske,1-Fall,9,70,65 - 75,64 - 76,2,< start grade,Well Below Average
+lske,1-Fall,10,72,67 - 77,66 - 78,3,< start grade,Well Below Average
+lske,1-Fall,11,74,69 - 79,68 - 80,4,< start grade,Well Below Average
+lske,1-Fall,12,75,70 - 80,69 - 81,5,< start grade,Well Below Average
+lske,1-Fall,13,77,72 - 82,71 - 83,6,< start grade,Well Below Average
+lske,1-Fall,14,79,74 - 84,73 - 85,8,K-Fall,Well Below Average
+lske,1-Fall,15,81,76 - 86,75 - 87,10,K-Fall,Below Average
+lske,1-Fall,16,83,78 - 88,77 - 89,13,K-Fall,Below Average
+lske,1-Fall,17,84,79 - 89,78 - 90,14,K-Fall,Below Average
+lske,1-Fall,18,86,81 - 91,80 - 92,18,K-Fall,Below Average
+lske,1-Fall,19,88,83 - 93,82 - 94,21,K-Spring,Below Average
+lske,1-Fall,20,90,85 - 95,84 - 96,25,K-Spring,Average
+lske,1-Fall,21,92,87 - 97,86 - 98,30,K-Spring,Average
+lske,1-Fall,22,93,88 - 98,87 - 99,32,K-Spring,Average
+lske,1-Fall,23,95,90 - 100,89 - 101,37,K-Spring,Average
+lske,1-Fall,24,97,92 - 102,91 - 103,42,1-Fall,Average
+lske,1-Fall,25,99,94 - 104,93 - 105,47,1-Fall,Average
+lske,1-Fall,26,101,96 - 106,95 - 107,53,1-Fall,Average
+lske,1-Fall,27,103,98 - 108,97 - 109,58,1-Fall,Average
+lske,1-Fall,28,106,101 - 111,100 - 112,66,1-Spring,Average
+lske,1-Fall,29,108,103 - 113,102 - 114,70,1-Spring,Average
+lske,1-Fall,30,111,106 - 116,105 - 117,77,2-Fall,Above Average
+lske,1-Fall,31,113,108 - 118,107 - 119,81,2-Fall,Above Average
+lske,1-Fall,32,117,112 - 122,111 - 123,87,2-Spring,Above Average
+lske,1-Fall,33,123,118 - 128,117 - 129,94,2-Spring,Well Above Average
+lske,1-Spring,0,47,42 - 52,41 - 53,<.1,< start grade,Significantly Below Average
+lske,1-Spring,1,49,44 - 54,43 - 55,<.1,< start grade,Significantly Below Average
+lske,1-Spring,2,51,46 - 56,45 - 57,0.1,< start grade,Significantly Below Average
+lske,1-Spring,3,53,48 - 58,47 - 59,0.1,< start grade,Significantly Below Average
+lske,1-Spring,4,54,49 - 59,48 - 60,0.1,< start grade,Significantly Below Average
+lske,1-Spring,5,56,51 - 61,50 - 62,0.2,< start grade,Significantly Below Average
+lske,1-Spring,6,57,52 - 62,51 - 63,0.2,< start grade,Significantly Below Average
+lske,1-Spring,7,58,53 - 63,52 - 64,0.3,< start grade,Significantly Below Average
+lske,1-Spring,8,60,55 - 65,54 - 66,0.4,< start grade,Significantly Below Average
+lske,1-Spring,9,62,57 - 67,56 - 68,1,< start grade,Significantly Below Average
+lske,1-Spring,10,64,59 - 69,58 - 70,1,< start grade,Significantly Below Average
+lske,1-Spring,11,66,61 - 71,60 - 72,1,< start grade,Significantly Below Average
+lske,1-Spring,12,67,62 - 72,61 - 73,1,< start grade,Significantly Below Average
+lske,1-Spring,13,68,63 - 73,62 - 74,2,< start grade,Significantly Below Average
+lske,1-Spring,14,70,65 - 75,64 - 76,2,K-Fall,Well Below Average
+lske,1-Spring,15,72,67 - 77,66 - 78,3,K-Fall,Well Below Average
+lske,1-Spring,16,74,69 - 79,68 - 80,4,K-Fall,Well Below Average
+lske,1-Spring,17,76,71 - 81,70 - 82,5,K-Fall,Well Below Average
+lske,1-Spring,18,78,73 - 83,72 - 84,7,K-Fall,Well Below Average
+lske,1-Spring,19,80,75 - 85,74 - 86,9,K-Spring,Below Average
+lske,1-Spring,20,82,77 - 87,76 - 88,12,K-Spring,Below Average
+lske,1-Spring,21,84,79 - 89,78 - 90,14,K-Spring,Below Average
+lske,1-Spring,22,86,81 - 91,80 - 92,18,K-Spring,Below Average
+lske,1-Spring,23,88,83 - 93,82 - 94,21,K-Spring,Below Average
+lske,1-Spring,24,90,85 - 95,84 - 96,25,1-Fall,Average
+lske,1-Spring,25,92,87 - 97,86 - 98,30,1-Fall,Average
+lske,1-Spring,26,94,89 - 99,88 - 100,34,1-Fall,Average
+lske,1-Spring,27,96,91 - 101,90 - 102,39,1-Fall,Average
+lske,1-Spring,28,99,94 - 104,93 - 105,47,1-Spring,Average
+lske,1-Spring,29,101,96 - 106,95 - 107,53,1-Spring,Average
+lske,1-Spring,30,104,99 - 109,98 - 110,61,2-Fall,Average
+lske,1-Spring,31,107,102 - 112,101 - 113,68,2-Fall,Average
+lske,1-Spring,32,110,105 - 115,104 - 116,75,2-Spring,Above Average
+lske,1-Spring,33,115,110 - 120,109 - 121,84,2-Spring,Above Average
+lske,2-Fall,0,40,40 - 45,40 - 46,<.1,< start grade,Significantly Below Average
+lske,2-Fall,1,41,40 - 46,40 - 47,<.1,< start grade,Significantly Below Average
+lske,2-Fall,2,42,40 - 47,40 - 48,<.1,< start grade,Significantly Below Average
+lske,2-Fall,3,44,40 - 49,40 - 50,<.1,< start grade,Significantly Below Average
+lske,2-Fall,4,45,40 - 50,40 - 51,<.1,< start grade,Significantly Below Average
+lske,2-Fall,5,47,42 - 52,41 - 53,<.1,< start grade,Significantly Below Average
+lske,2-Fall,6,49,44 - 54,43 - 55,<.1,< start grade,Significantly Below Average
+lske,2-Fall,7,51,46 - 56,45 - 57,0.1,< start grade,Significantly Below Average
+lske,2-Fall,8,53,48 - 58,47 - 59,0.1,< start grade,Significantly Below Average
+lske,2-Fall,9,54,49 - 59,48 - 60,0.1,< start grade,Significantly Below Average
+lske,2-Fall,10,56,51 - 61,50 - 62,0.2,< start grade,Significantly Below Average
+lske,2-Fall,11,58,53 - 63,52 - 64,0.3,< start grade,Significantly Below Average
+lske,2-Fall,12,59,54 - 64,53 - 65,0.3,< start grade,Significantly Below Average
+lske,2-Fall,13,61,56 - 66,55 - 67,0.5,< start grade,Significantly Below Average
+lske,2-Fall,14,63,58 - 68,57 - 69,1,K-Fall,Significantly Below Average
+lske,2-Fall,15,65,60 - 70,59 - 71,1,K-Fall,Significantly Below Average
+lske,2-Fall,16,66,61 - 71,60 - 72,1,K-Fall,Significantly Below Average
+lske,2-Fall,17,68,63 - 73,62 - 74,2,K-Fall,Significantly Below Average
+lske,2-Fall,18,69,64 - 74,63 - 75,2,K-Fall,Significantly Below Average
+lske,2-Fall,19,71,66 - 76,65 - 77,3,K-Spring,Well Below Average
+lske,2-Fall,20,73,68 - 78,67 - 79,4,K-Spring,Well Below Average
+lske,2-Fall,21,76,71 - 81,70 - 82,5,K-Spring,Well Below Average
+lske,2-Fall,22,78,73 - 83,72 - 84,7,K-Spring,Well Below Average
+lske,2-Fall,23,80,75 - 85,74 - 86,9,K-Spring,Below Average
+lske,2-Fall,24,82,77 - 87,76 - 88,12,1-Fall,Below Average
+lske,2-Fall,25,84,79 - 89,78 - 90,14,1-Fall,Below Average
+lske,2-Fall,26,87,82 - 92,81 - 93,19,1-Fall,Below Average
+lske,2-Fall,27,89,84 - 94,83 - 95,23,1-Fall,Below Average
+lske,2-Fall,28,92,87 - 97,86 - 98,30,1-Spring,Average
+lske,2-Fall,29,94,89 - 99,88 - 100,34,1-Spring,Average
+lske,2-Fall,30,97,92 - 102,91 - 103,42,2-Fall,Average
+lske,2-Fall,31,100,95 - 105,94 - 106,50,2-Fall,Average
+lske,2-Fall,32,104,99 - 109,98 - 110,61,2-Spring,Average
+lske,2-Fall,33,110,105 - 115,104 - 116,75,2-Spring,Above Average
+lske,2-Spring,0,40,40 - 45,40 - 46,<.1,< start grade,Significantly Below Average
+lske,2-Spring,1,40,40 - 45,40 - 46,<.1,< start grade,Significantly Below Average
+lske,2-Spring,2,40,40 - 45,40 - 46,<.1,< start grade,Significantly Below Average
+lske,2-Spring,3,40,40 - 45,40 - 46,<.1,< start grade,Significantly Below Average
+lske,2-Spring,4,40,40 - 45,40 - 46,<.1,< start grade,Significantly Below Average
+lske,2-Spring,5,40,40 - 45,40 - 46,<.1,< start grade,Significantly Below Average
+lske,2-Spring,6,40,40 - 45,40 - 46,<.1,< start grade,Significantly Below Average
+lske,2-Spring,7,42,40 - 47,40 - 48,<.1,< start grade,Significantly Below Average
+lske,2-Spring,8,44,40 - 49,40 - 50,<.1,< start grade,Significantly Below Average
+lske,2-Spring,9,45,40 - 50,40 - 51,<.1,< start grade,Significantly Below Average
+lske,2-Spring,10,47,42 - 52,41 - 53,<.1,< start grade,Significantly Below Average
+lske,2-Spring,11,49,44 - 54,43 - 55,<.1,< start grade,Significantly Below Average
+lske,2-Spring,12,51,46 - 56,45 - 57,0.1,< start grade,Significantly Below Average
+lske,2-Spring,13,53,48 - 58,47 - 59,0.1,< start grade,Significantly Below Average
+lske,2-Spring,14,55,50 - 60,49 - 61,0.1,K-Fall,Significantly Below Average
+lske,2-Spring,15,56,51 - 61,50 - 62,0.2,K-Fall,Significantly Below Average
+lske,2-Spring,16,58,53 - 63,52 - 64,0.3,K-Fall,Significantly Below Average
+lske,2-Spring,17,59,54 - 64,53 - 65,0.3,K-Fall,Significantly Below Average
+lske,2-Spring,18,60,55 - 65,54 - 66,0.4,K-Fall,Significantly Below Average
+lske,2-Spring,19,62,57 - 67,56 - 68,1,K-Spring,Significantly Below Average
+lske,2-Spring,20,64,59 - 69,58 - 70,1,K-Spring,Significantly Below Average
+lske,2-Spring,21,65,60 - 70,59 - 71,1,K-Spring,Significantly Below Average
+lske,2-Spring,22,68,63 - 73,62 - 74,2,K-Spring,Significantly Below Average
+lske,2-Spring,23,70,65 - 75,64 - 76,2,K-Spring,Well Below Average
+lske,2-Spring,24,73,68 - 78,67 - 79,4,1-Fall,Well Below Average
+lske,2-Spring,25,75,70 - 80,69 - 81,5,1-Fall,Well Below Average
+lske,2-Spring,26,78,73 - 83,72 - 84,7,1-Fall,Well Below Average
+lske,2-Spring,27,81,76 - 86,75 - 87,10,1-Fall,Below Average
+lske,2-Spring,28,83,78 - 88,77 - 89,13,1-Spring,Below Average
+lske,2-Spring,29,86,81 - 91,80 - 92,18,1-Spring,Below Average
+lske,2-Spring,30,89,84 - 94,83 - 95,23,2-Fall,Below Average
+lske,2-Spring,31,93,88 - 98,87 - 99,32,2-Fall,Average
+lske,2-Spring,32,97,92 - 102,91 - 103,42,2-Spring,Average
+lske,2-Spring,33,103,98 - 108,97 - 109,58,2-Spring,Average
+lswe,K-Fall,0,61,,,0.5,< start grade,Significantly Below Average
+lswe,K-Fall,1,64,,,1,< start grade,Significantly Below Average
+lswe,K-Fall,2,67,,,1,< start grade,Significantly Below Average
+lswe,K-Fall,3,70,,,2,< start grade,Well Below Average
+lswe,K-Fall,4,73,,,4,< start grade,Well Below Average
+lswe,K-Fall,5,76,,,5,< start grade,Well Below Average
+lswe,K-Fall,6,79,,,8,< start grade,Well Below Average
+lswe,K-Fall,7,82,,,12,< start grade,Below Average
+lswe,K-Fall,8,85,,,16,< start grade,Below Average
+lswe,K-Fall,9,88,,,21,< start grade,Below Average
+lswe,K-Fall,10,91,,,27,< start grade,Average
+lswe,K-Fall,11,94,,,34,< start grade,Average
+lswe,K-Fall,12,97,,,42,K-Fall,Average
+lswe,K-Fall,13,100,,,50,K-Fall,Average
+lswe,K-Fall,14,103,,,58,K-Fall,Average
+lswe,K-Fall,15,105,,,63,K-Fall,Average
+lswe,K-Fall,16,108,,,70,K-Spring,Average
+lswe,K-Fall,17,110,,,75,K-Spring,Above Average
+lswe,K-Fall,18,113,,,81,K-Spring,Above Average
+lswe,K-Fall,19,115,,,84,K-Spring,Above Average
+lswe,K-Fall,20,117,,,87,K-Spring,Above Average
+lswe,K-Fall,21,119,,,90,1-Fall,Above Average
+lswe,K-Fall,22,122,,,93,1-Fall,Well Above Average
+lswe,K-Fall,23,124,,,95,1-Fall,Well Above Average
+lswe,K-Fall,24,126,,,96,1-Fall,Well Above Average
+lswe,K-Fall,25,128,,,97,1-Fall,Well Above Average
+lswe,K-Fall,26,130,,,98,1-Fall,Well Above Average
+lswe,K-Fall,27,130,,,98,1-Spring,Well Above Average
+lswe,K-Fall,28,130,,,98,1-Spring,Well Above Average
+lswe,K-Fall,29,130,,,98,1-Spring,Well Above Average
+lswe,K-Fall,30,130,,,98,1-Spring,Well Above Average
+lswe,K-Fall,31,130,,,98,1-Spring,Well Above Average
+lswe,K-Fall,32,130,,,98,2-Fall,Well Above Average
+lswe,K-Fall,33,130,,,98,2-Fall,Well Above Average
+lswe,K-Fall,34,130,,,98,2-Spring,Well Above Average
+lswe,K-Fall,35,130,,,98,2-Spring,Well Above Average
+lswe,K-Fall,36,130,,,98,2-Spring,Well Above Average
+lswe,K-Fall,37,130,,,98,> stop grade,Well Above Average
+lswe,K-Fall,38,130,,,98,> stop grade,Well Above Average
+lswe,K-Spring,0,59,,,0.3,< start grade,Significantly Below Average
+lswe,K-Spring,1,61,,,0.5,< start grade,Significantly Below Average
+lswe,K-Spring,2,63,,,1,< start grade,Significantly Below Average
+lswe,K-Spring,3,65,,,1,< start grade,Significantly Below Average
+lswe,K-Spring,4,67,,,1,< start grade,Significantly Below Average
+lswe,K-Spring,5,70,,,2,< start grade,Well Below Average
+lswe,K-Spring,6,72,,,3,< start grade,Well Below Average
+lswe,K-Spring,7,74,,,4,< start grade,Well Below Average
+lswe,K-Spring,8,77,,,6,< start grade,Well Below Average
+lswe,K-Spring,9,80,,,9,< start grade,Below Average
+lswe,K-Spring,10,83,,,13,< start grade,Below Average
+lswe,K-Spring,11,85,,,16,< start grade,Below Average
+lswe,K-Spring,12,87,,,19,K-Fall,Below Average
+lswe,K-Spring,13,90,,,25,K-Fall,Average
+lswe,K-Spring,14,92,,,30,K-Fall,Average
+lswe,K-Spring,15,94,,,34,K-Fall,Average
+lswe,K-Spring,16,97,,,42,K-Spring,Average
+lswe,K-Spring,17,99,,,47,K-Spring,Average
+lswe,K-Spring,18,101,,,53,K-Spring,Average
+lswe,K-Spring,19,103,,,58,K-Spring,Average
+lswe,K-Spring,20,105,,,63,K-Spring,Average
+lswe,K-Spring,21,107,,,68,1-Fall,Average
+lswe,K-Spring,22,109,,,73,1-Fall,Average
+lswe,K-Spring,23,111,,,77,1-Fall,Above Average
+lswe,K-Spring,24,113,,,81,1-Fall,Above Average
+lswe,K-Spring,25,114,,,82,1-Fall,Above Average
+lswe,K-Spring,26,116,,,86,1-Fall,Above Average
+lswe,K-Spring,27,118,,,88,1-Spring,Above Average
+lswe,K-Spring,28,120,,,91,1-Spring,Well Above Average
+lswe,K-Spring,29,121,,,92,1-Spring,Well Above Average
+lswe,K-Spring,30,123,,,94,1-Spring,Well Above Average
+lswe,K-Spring,31,125,,,95,1-Spring,Well Above Average
+lswe,K-Spring,32,127,,,96,2-Fall,Well Above Average
+lswe,K-Spring,33,128,,,97,2-Fall,Well Above Average
+lswe,K-Spring,34,130,,,98,2-Spring,Well Above Average
+lswe,K-Spring,35,130,,,98,2-Spring,Well Above Average
+lswe,K-Spring,36,130,,,98,2-Spring,Well Above Average
+lswe,K-Spring,37,130,,,98,> stop grade,Well Above Average
+lswe,K-Spring,38,130,,,98,> stop grade,Well Above Average
+lswe,1-Fall,0,53,,,0.1,< start grade,Significantly Below Average
+lswe,1-Fall,1,55,,,0.1,< start grade,Significantly Below Average
+lswe,1-Fall,2,57,,,0.2,< start grade,Significantly Below Average
+lswe,1-Fall,3,60,,,0.4,< start grade,Significantly Below Average
+lswe,1-Fall,4,63,,,1,< start grade,Significantly Below Average
+lswe,1-Fall,5,65,,,1,< start grade,Significantly Below Average
+lswe,1-Fall,6,67,,,1,< start grade,Significantly Below Average
+lswe,1-Fall,7,69,,,2,< start grade,Significantly Below Average
+lswe,1-Fall,8,71,,,3,< start grade,Well Below Average
+lswe,1-Fall,9,73,,,4,< start grade,Well Below Average
+lswe,1-Fall,10,75,,,5,< start grade,Well Below Average
+lswe,1-Fall,11,75,,,5,< start grade,Well Below Average
+lswe,1-Fall,12,77,,,6,K-Fall,Well Below Average
+lswe,1-Fall,13,79,,,8,K-Fall,Well Below Average
+lswe,1-Fall,14,81,,,10,K-Fall,Below Average
+lswe,1-Fall,15,83,,,13,K-Fall,Below Average
+lswe,1-Fall,16,85,,,16,K-Spring,Below Average
+lswe,1-Fall,17,87,,,19,K-Spring,Below Average
+lswe,1-Fall,18,89,,,23,K-Spring,Below Average
+lswe,1-Fall,19,91,,,27,K-Spring,Average
+lswe,1-Fall,20,93,,,32,K-Spring,Average
+lswe,1-Fall,21,95,,,37,1-Fall,Average
+lswe,1-Fall,22,97,,,42,1-Fall,Average
+lswe,1-Fall,23,98,,,45,1-Fall,Average
+lswe,1-Fall,24,100,,,50,1-Fall,Average
+lswe,1-Fall,25,102,,,55,1-Fall,Average
+lswe,1-Fall,26,104,,,61,1-Fall,Average
+lswe,1-Fall,27,106,,,66,1-Spring,Average
+lswe,1-Fall,28,107,,,68,1-Spring,Average
+lswe,1-Fall,29,109,,,73,1-Spring,Average
+lswe,1-Fall,30,111,,,77,1-Spring,Above Average
+lswe,1-Fall,31,113,,,81,1-Spring,Above Average
+lswe,1-Fall,32,114,,,82,2-Fall,Above Average
+lswe,1-Fall,33,116,,,86,2-Fall,Above Average
+lswe,1-Fall,34,118,,,88,2-Spring,Above Average
+lswe,1-Fall,35,119,,,90,2-Spring,Above Average
+lswe,1-Fall,36,121,,,92,2-Spring,Well Above Average
+lswe,1-Fall,37,123,,,94,> stop grade,Well Above Average
+lswe,1-Fall,38,124,,,95,> stop grade,Well Above Average
+lswe,1-Spring,0,51,,,0.1,< start grade,Significantly Below Average
+lswe,1-Spring,1,54,,,0.1,< start grade,Significantly Below Average
+lswe,1-Spring,2,56,,,0.2,< start grade,Significantly Below Average
+lswe,1-Spring,3,58,,,0.3,< start grade,Significantly Below Average
+lswe,1-Spring,4,60,,,0.4,< start grade,Significantly Below Average
+lswe,1-Spring,5,61,,,0.5,< start grade,Significantly Below Average
+lswe,1-Spring,6,63,,,1,< start grade,Significantly Below Average
+lswe,1-Spring,7,64,,,1,< start grade,Significantly Below Average
+lswe,1-Spring,8,65,,,1,< start grade,Significantly Below Average
+lswe,1-Spring,9,66,,,1,< start grade,Significantly Below Average
+lswe,1-Spring,10,67,,,1,< start grade,Significantly Below Average
+lswe,1-Spring,11,68,,,2,< start grade,Significantly Below Average
+lswe,1-Spring,12,70,,,2,K-Fall,Well Below Average
+lswe,1-Spring,13,72,,,3,K-Fall,Well Below Average
+lswe,1-Spring,14,73,,,4,K-Fall,Well Below Average
+lswe,1-Spring,15,75,,,5,K-Fall,Well Below Average
+lswe,1-Spring,16,77,,,6,K-Spring,Well Below Average
+lswe,1-Spring,17,78,,,7,K-Spring,Well Below Average
+lswe,1-Spring,18,79,,,8,K-Spring,Well Below Average
+lswe,1-Spring,19,81,,,10,K-Spring,Below Average
+lswe,1-Spring,20,83,,,13,K-Spring,Below Average
+lswe,1-Spring,21,85,,,16,1-Fall,Below Average
+lswe,1-Spring,22,86,,,18,1-Fall,Below Average
+lswe,1-Spring,23,88,,,21,1-Fall,Below Average
+lswe,1-Spring,24,90,,,25,1-Fall,Average
+lswe,1-Spring,25,92,,,30,1-Fall,Average
+lswe,1-Spring,26,94,,,34,1-Fall,Average
+lswe,1-Spring,27,96,,,39,1-Spring,Average
+lswe,1-Spring,28,98,,,45,1-Spring,Average
+lswe,1-Spring,29,100,,,50,1-Spring,Average
+lswe,1-Spring,30,102,,,55,1-Spring,Average
+lswe,1-Spring,31,104,,,61,1-Spring,Average
+lswe,1-Spring,32,106,,,66,2-Fall,Average
+lswe,1-Spring,33,108,,,70,2-Fall,Average
+lswe,1-Spring,34,110,,,75,2-Spring,Above Average
+lswe,1-Spring,35,113,,,81,2-Spring,Above Average
+lswe,1-Spring,36,115,,,84,2-Spring,Above Average
+lswe,1-Spring,37,118,,,88,> stop grade,Above Average
+lswe,1-Spring,38,120,,,91,> stop grade,Well Above Average
+lswe,2-Fall,0,48,,,<.1,< start grade,Significantly Below Average
+lswe,2-Fall,1,50,,,0.1,< start grade,Significantly Below Average
+lswe,2-Fall,2,52,,,0.1,< start grade,Significantly Below Average
+lswe,2-Fall,3,53,,,0.1,< start grade,Significantly Below Average
+lswe,2-Fall,4,54,,,0.1,< start grade,Significantly Below Average
+lswe,2-Fall,5,55,,,0.1,< start grade,Significantly Below Average
+lswe,2-Fall,6,56,,,0.2,< start grade,Significantly Below Average
+lswe,2-Fall,7,57,,,0.2,< start grade,Significantly Below Average
+lswe,2-Fall,8,58,,,0.3,< start grade,Significantly Below Average
+lswe,2-Fall,9,59,,,0.3,< start grade,Significantly Below Average
+lswe,2-Fall,10,60,,,0.4,< start grade,Significantly Below Average
+lswe,2-Fall,11,61,,,0.5,< start grade,Significantly Below Average
+lswe,2-Fall,12,63,,,1,K-Fall,Significantly Below Average
+lswe,2-Fall,13,64,,,1,K-Fall,Significantly Below Average
+lswe,2-Fall,14,65,,,1,K-Fall,Significantly Below Average
+lswe,2-Fall,15,67,,,1,K-Fall,Significantly Below Average
+lswe,2-Fall,16,68,,,2,K-Spring,Significantly Below Average
+lswe,2-Fall,17,70,,,2,K-Spring,Well Below Average
+lswe,2-Fall,18,71,,,3,K-Spring,Well Below Average
+lswe,2-Fall,19,72,,,3,K-Spring,Well Below Average
+lswe,2-Fall,20,74,,,4,K-Spring,Well Below Average
+lswe,2-Fall,21,75,,,5,1-Fall,Well Below Average
+lswe,2-Fall,22,76,,,5,1-Fall,Well Below Average
+lswe,2-Fall,23,78,,,7,1-Fall,Well Below Average
+lswe,2-Fall,24,80,,,9,1-Fall,Below Average
+lswe,2-Fall,25,82,,,12,1-Fall,Below Average
+lswe,2-Fall,26,84,,,14,1-Fall,Below Average
+lswe,2-Fall,27,86,,,18,1-Spring,Below Average
+lswe,2-Fall,28,88,,,21,1-Spring,Below Average
+lswe,2-Fall,29,90,,,25,1-Spring,Average
+lswe,2-Fall,30,93,,,32,1-Spring,Average
+lswe,2-Fall,31,95,,,37,1-Spring,Average
+lswe,2-Fall,32,98,,,45,2-Fall,Average
+lswe,2-Fall,33,101,,,53,2-Fall,Average
+lswe,2-Fall,34,104,,,61,2-Spring,Average
+lswe,2-Fall,35,108,,,70,2-Spring,Average
+lswe,2-Fall,36,113,,,81,2-Spring,Above Average
+lswe,2-Fall,37,117,,,87,> stop grade,Above Average
+lswe,2-Fall,38,119,,,90,> stop grade,Above Average
+lswe,2-Spring,0,43,,,<.1,< start grade,Significantly Below Average
+lswe,2-Spring,1,44,,,<.1,< start grade,Significantly Below Average
+lswe,2-Spring,2,45,,,<.1,< start grade,Significantly Below Average
+lswe,2-Spring,3,46,,,<.1,< start grade,Significantly Below Average
+lswe,2-Spring,4,47,,,<.1,< start grade,Significantly Below Average
+lswe,2-Spring,5,48,,,<.1,< start grade,Significantly Below Average
+lswe,2-Spring,6,49,,,<.1,< start grade,Significantly Below Average
+lswe,2-Spring,7,50,,,0.1,< start grade,Significantly Below Average
+lswe,2-Spring,8,51,,,0.1,< start grade,Significantly Below Average
+lswe,2-Spring,9,52,,,0.1,< start grade,Significantly Below Average
+lswe,2-Spring,10,53,,,0.1,< start grade,Significantly Below Average
+lswe,2-Spring,11,54,,,0.1,< start grade,Significantly Below Average
+lswe,2-Spring,12,55,,,0.1,K-Fall,Significantly Below Average
+lswe,2-Spring,13,56,,,0.2,K-Fall,Significantly Below Average
+lswe,2-Spring,14,57,,,0.2,K-Fall,Significantly Below Average
+lswe,2-Spring,15,58,,,0.3,K-Fall,Significantly Below Average
+lswe,2-Spring,16,59,,,0.3,K-Spring,Significantly Below Average
+lswe,2-Spring,17,60,,,0.4,K-Spring,Significantly Below Average
+lswe,2-Spring,18,61,,,0.5,K-Spring,Significantly Below Average
+lswe,2-Spring,19,62,,,1,K-Spring,Significantly Below Average
+lswe,2-Spring,20,63,,,1,K-Spring,Significantly Below Average
+lswe,2-Spring,21,64,,,1,1-Fall,Significantly Below Average
+lswe,2-Spring,22,65,,,1,1-Fall,Significantly Below Average
+lswe,2-Spring,23,67,,,1,1-Fall,Significantly Below Average
+lswe,2-Spring,24,69,,,2,1-Fall,Significantly Below Average
+lswe,2-Spring,25,73,,,4,1-Fall,Well Below Average
+lswe,2-Spring,26,75,,,5,1-Fall,Well Below Average
+lswe,2-Spring,27,78,,,7,1-Spring,Well Below Average
+lswe,2-Spring,28,81,,,10,1-Spring,Below Average
+lswe,2-Spring,29,84,,,14,1-Spring,Below Average
+lswe,2-Spring,30,87,,,19,1-Spring,Below Average
+lswe,2-Spring,31,89,,,23,1-Spring,Below Average
+lswe,2-Spring,32,92,,,30,2-Fall,Average
+lswe,2-Spring,33,95,,,37,2-Fall,Average
+lswe,2-Spring,34,98,,,45,2-Spring,Average
+lswe,2-Spring,35,101,,,53,2-Spring,Average
+lswe,2-Spring,36,104,,,61,2-Spring,Average
+lswe,2-Spring,37,109,,,73,> stop grade,Average
+lswe,2-Spring,38,112,,,79,> stop grade,Above Average
+rhye,K-Fall,0,83,77 - 89,76 - 90,13,< start grade,Below Average
+rhye,K-Fall,1,85,79 - 91,78 - 92,16,< start grade,Below Average
+rhye,K-Fall,2,87,81 - 93,80 - 94,19,< start grade,Below Average
+rhye,K-Fall,3,90,84 - 96,83 - 97,25,< start grade,Average
+rhye,K-Fall,4,92,86 - 98,85 - 99,30,< start grade,Average
+rhye,K-Fall,5,94,88 - 100,87 - 101,34,< start grade,Average
+rhye,K-Fall,6,95,89 - 101,88 - 102,37,K-Fall,Average
+rhye,K-Fall,7,97,91 - 103,90 - 104,42,K-Fall,Average
+rhye,K-Fall,8,99,93 - 105,92 - 106,47,K-Fall,Average
+rhye,K-Fall,9,101,95 - 107,94 - 108,53,K-Fall,Average
+rhye,K-Fall,10,103,97 - 109,96 - 110,58,K-Fall,Average
+rhye,K-Fall,11,105,99 - 111,98 - 112,63,K-Spring,Average
+rhye,K-Fall,12,106,100 - 112,99 - 113,66,K-Spring,Average
+rhye,K-Fall,13,108,102 - 114,101 - 115,70,K-Spring,Average
+rhye,K-Fall,14,110,104 - 116,103 - 117,75,K-Spring,Above Average
+rhye,K-Fall,15,112,106 - 118,105 - 119,79,1-Fall,Above Average
+rhye,K-Fall,16,114,108 - 120,107 - 121,82,1-Fall,Above Average
+rhye,K-Fall,17,116,110 - 122,109 - 123,86,1-Fall,Above Average
+rhye,K-Fall,18,117,111 - 123,110 - 124,87,1-Fall,Above Average
+rhye,K-Fall,19,119,113 - 125,112 - 126,90,1-Spring,Above Average
+rhye,K-Fall,20,121,115 - 127,114 - 128,92,1-Spring,Well Above Average
+rhye,K-Fall,21,123,117 - 129,116 - 130,94,1-Spring,Well Above Average
+rhye,K-Fall,22,126,120 - 130,119 - 130,96,2-Fall,Well Above Average
+rhye,K-Fall,23,128,122 - 130,121 - 130,97,2-Fall,Well Above Average
+rhye,K-Fall,24,130,124 - 130,123 - 130,98,2-Fall,Well Above Average
+rhye,K-Fall,25,130,124 - 130,123 - 130,98,2-Spring,Well Above Average
+rhye,K-Fall,26,130,124 - 130,123 - 130,98,2-Spring,Well Above Average
+rhye,K-Fall,27,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+rhye,K-Fall,28,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+rhye,K-Fall,29,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+rhye,K-Fall,30,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+rhye,K-Spring,0,74,68 - 80,67 - 81,4,< start grade,Well Below Average
+rhye,K-Spring,1,77,71 - 83,70 - 84,6,< start grade,Well Below Average
+rhye,K-Spring,2,79,73 - 85,72 - 86,8,< start grade,Well Below Average
+rhye,K-Spring,3,81,75 - 87,74 - 88,10,< start grade,Below Average
+rhye,K-Spring,4,83,77 - 89,76 - 90,13,< start grade,Below Average
+rhye,K-Spring,5,85,79 - 91,78 - 92,16,< start grade,Below Average
+rhye,K-Spring,6,87,81 - 93,80 - 94,19,K-Fall,Below Average
+rhye,K-Spring,7,89,83 - 95,82 - 96,23,K-Fall,Below Average
+rhye,K-Spring,8,91,85 - 97,84 - 98,27,K-Fall,Average
+rhye,K-Spring,9,93,87 - 99,86 - 100,32,K-Fall,Average
+rhye,K-Spring,10,95,89 - 101,88 - 102,37,K-Fall,Average
+rhye,K-Spring,11,97,91 - 103,90 - 104,42,K-Spring,Average
+rhye,K-Spring,12,98,92 - 104,91 - 105,45,K-Spring,Average
+rhye,K-Spring,13,100,94 - 106,93 - 107,50,K-Spring,Average
+rhye,K-Spring,14,102,96 - 108,95 - 109,55,K-Spring,Average
+rhye,K-Spring,15,104,98 - 110,97 - 111,61,1-Fall,Average
+rhye,K-Spring,16,105,99 - 111,98 - 112,63,1-Fall,Average
+rhye,K-Spring,17,107,101 - 113,100 - 114,68,1-Fall,Average
+rhye,K-Spring,18,109,103 - 115,102 - 116,73,1-Fall,Average
+rhye,K-Spring,19,111,105 - 117,104 - 118,77,1-Spring,Above Average
+rhye,K-Spring,20,112,106 - 118,105 - 119,79,1-Spring,Above Average
+rhye,K-Spring,21,114,108 - 120,107 - 121,82,1-Spring,Above Average
+rhye,K-Spring,22,116,110 - 122,109 - 123,86,2-Fall,Above Average
+rhye,K-Spring,23,118,112 - 124,111 - 125,88,2-Fall,Above Average
+rhye,K-Spring,24,120,114 - 126,113 - 127,91,2-Fall,Well Above Average
+rhye,K-Spring,25,122,116 - 128,115 - 129,93,2-Spring,Well Above Average
+rhye,K-Spring,26,124,118 - 130,117 - 130,95,2-Spring,Well Above Average
+rhye,K-Spring,27,126,120 - 130,119 - 130,96,> stop grade,Well Above Average
+rhye,K-Spring,28,129,123 - 130,122 - 130,97,> stop grade,Well Above Average
+rhye,K-Spring,29,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+rhye,K-Spring,30,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+rhye,1-Fall,0,66,60 - 72,59 - 73,1,< start grade,Significantly Below Average
+rhye,1-Fall,1,68,62 - 74,61 - 75,2,< start grade,Significantly Below Average
+rhye,1-Fall,2,71,65 - 77,64 - 78,3,< start grade,Well Below Average
+rhye,1-Fall,3,73,67 - 79,66 - 80,4,< start grade,Well Below Average
+rhye,1-Fall,4,75,69 - 81,68 - 82,5,< start grade,Well Below Average
+rhye,1-Fall,5,78,72 - 84,71 - 85,7,< start grade,Well Below Average
+rhye,1-Fall,6,80,74 - 86,73 - 87,9,K-Fall,Below Average
+rhye,1-Fall,7,82,76 - 88,75 - 89,12,K-Fall,Below Average
+rhye,1-Fall,8,84,78 - 90,77 - 91,14,K-Fall,Below Average
+rhye,1-Fall,9,86,80 - 92,79 - 93,18,K-Fall,Below Average
+rhye,1-Fall,10,88,82 - 94,81 - 95,21,K-Fall,Below Average
+rhye,1-Fall,11,90,84 - 96,83 - 97,25,K-Spring,Average
+rhye,1-Fall,12,91,85 - 97,84 - 98,27,K-Spring,Average
+rhye,1-Fall,13,93,87 - 99,86 - 100,32,K-Spring,Average
+rhye,1-Fall,14,95,89 - 101,88 - 102,37,K-Spring,Average
+rhye,1-Fall,15,97,91 - 103,90 - 104,42,1-Fall,Average
+rhye,1-Fall,16,99,93 - 105,92 - 106,47,1-Fall,Average
+rhye,1-Fall,17,100,94 - 106,93 - 107,50,1-Fall,Average
+rhye,1-Fall,18,102,96 - 108,95 - 109,55,1-Fall,Average
+rhye,1-Fall,19,104,98 - 110,97 - 111,61,1-Spring,Average
+rhye,1-Fall,20,106,100 - 112,99 - 113,66,1-Spring,Average
+rhye,1-Fall,21,107,101 - 113,100 - 114,68,1-Spring,Average
+rhye,1-Fall,22,109,103 - 115,102 - 116,73,2-Fall,Average
+rhye,1-Fall,23,111,105 - 117,104 - 118,77,2-Fall,Above Average
+rhye,1-Fall,24,113,107 - 119,106 - 120,81,2-Fall,Above Average
+rhye,1-Fall,25,115,109 - 121,108 - 122,84,2-Spring,Above Average
+rhye,1-Fall,26,117,111 - 123,110 - 124,87,2-Spring,Above Average
+rhye,1-Fall,27,119,113 - 125,112 - 126,90,> stop grade,Above Average
+rhye,1-Fall,28,121,115 - 127,114 - 128,92,> stop grade,Well Above Average
+rhye,1-Fall,29,124,118 - 130,117 - 130,95,> stop grade,Well Above Average
+rhye,1-Fall,30,126,120 - 130,119 - 130,96,> stop grade,Well Above Average
+rhye,1-Spring,0,57,51 - 63,50 - 64,0.2,< start grade,Significantly Below Average
+rhye,1-Spring,1,60,54 - 66,53 - 67,0.4,< start grade,Significantly Below Average
+rhye,1-Spring,2,63,57 - 69,56 - 70,1,< start grade,Significantly Below Average
+rhye,1-Spring,3,65,59 - 71,58 - 72,1,< start grade,Significantly Below Average
+rhye,1-Spring,4,68,62 - 74,61 - 75,2,< start grade,Significantly Below Average
+rhye,1-Spring,5,70,64 - 76,63 - 77,2,< start grade,Well Below Average
+rhye,1-Spring,6,72,66 - 78,65 - 79,3,K-Fall,Well Below Average
+rhye,1-Spring,7,75,69 - 81,68 - 82,5,K-Fall,Well Below Average
+rhye,1-Spring,8,77,71 - 83,70 - 84,6,K-Fall,Well Below Average
+rhye,1-Spring,9,79,73 - 85,72 - 86,8,K-Fall,Well Below Average
+rhye,1-Spring,10,81,75 - 87,74 - 88,10,K-Fall,Below Average
+rhye,1-Spring,11,83,77 - 89,76 - 90,13,K-Spring,Below Average
+rhye,1-Spring,12,85,79 - 91,78 - 92,16,K-Spring,Below Average
+rhye,1-Spring,13,87,81 - 93,80 - 94,19,K-Spring,Below Average
+rhye,1-Spring,14,89,83 - 95,82 - 96,23,K-Spring,Below Average
+rhye,1-Spring,15,90,84 - 96,83 - 97,25,1-Fall,Average
+rhye,1-Spring,16,92,86 - 98,85 - 99,30,1-Fall,Average
+rhye,1-Spring,17,94,88 - 100,87 - 101,34,1-Fall,Average
+rhye,1-Spring,18,96,90 - 102,89 - 103,39,1-Fall,Average
+rhye,1-Spring,19,98,92 - 104,91 - 105,45,1-Spring,Average
+rhye,1-Spring,20,100,94 - 106,93 - 107,50,1-Spring,Average
+rhye,1-Spring,21,102,96 - 108,95 - 109,55,1-Spring,Average
+rhye,1-Spring,22,103,97 - 109,96 - 110,58,2-Fall,Average
+rhye,1-Spring,23,105,99 - 111,98 - 112,63,2-Fall,Average
+rhye,1-Spring,24,107,101 - 113,100 - 114,68,2-Fall,Average
+rhye,1-Spring,25,109,103 - 115,102 - 116,73,2-Spring,Average
+rhye,1-Spring,26,112,106 - 118,105 - 119,79,2-Spring,Above Average
+rhye,1-Spring,27,114,108 - 120,107 - 121,82,> stop grade,Above Average
+rhye,1-Spring,28,116,110 - 122,109 - 123,86,> stop grade,Above Average
+rhye,1-Spring,29,119,113 - 125,112 - 126,90,> stop grade,Above Average
+rhye,1-Spring,30,122,116 - 128,115 - 129,93,> stop grade,Well Above Average
+rhye,2-Fall,0,50,44 - 56,43 - 57,0.1,< start grade,Significantly Below Average
+rhye,2-Fall,1,53,47 - 59,46 - 60,0.1,< start grade,Significantly Below Average
+rhye,2-Fall,2,56,50 - 62,49 - 63,0.2,< start grade,Significantly Below Average
+rhye,2-Fall,3,58,52 - 64,51 - 65,0.3,< start grade,Significantly Below Average
+rhye,2-Fall,4,61,55 - 67,54 - 68,0.5,< start grade,Significantly Below Average
+rhye,2-Fall,5,63,57 - 69,56 - 70,1,< start grade,Significantly Below Average
+rhye,2-Fall,6,66,60 - 72,59 - 73,1,K-Fall,Significantly Below Average
+rhye,2-Fall,7,68,62 - 74,61 - 75,2,K-Fall,Significantly Below Average
+rhye,2-Fall,8,70,64 - 76,63 - 77,2,K-Fall,Well Below Average
+rhye,2-Fall,9,72,66 - 78,65 - 79,3,K-Fall,Well Below Average
+rhye,2-Fall,10,74,68 - 80,67 - 81,4,K-Fall,Well Below Average
+rhye,2-Fall,11,76,70 - 82,69 - 83,5,K-Spring,Well Below Average
+rhye,2-Fall,12,78,72 - 84,71 - 85,7,K-Spring,Well Below Average
+rhye,2-Fall,13,80,74 - 86,73 - 87,9,K-Spring,Below Average
+rhye,2-Fall,14,82,76 - 88,75 - 89,12,K-Spring,Below Average
+rhye,2-Fall,15,84,78 - 90,77 - 91,14,1-Fall,Below Average
+rhye,2-Fall,16,86,80 - 92,79 - 93,18,1-Fall,Below Average
+rhye,2-Fall,17,88,82 - 94,81 - 95,21,1-Fall,Below Average
+rhye,2-Fall,18,90,84 - 96,83 - 97,25,1-Fall,Average
+rhye,2-Fall,19,92,86 - 98,85 - 99,30,1-Spring,Average
+rhye,2-Fall,20,94,88 - 100,87 - 101,34,1-Spring,Average
+rhye,2-Fall,21,96,90 - 102,89 - 103,39,1-Spring,Average
+rhye,2-Fall,22,98,92 - 104,91 - 105,45,2-Fall,Average
+rhye,2-Fall,23,100,94 - 106,93 - 107,50,2-Fall,Average
+rhye,2-Fall,24,102,96 - 108,95 - 109,55,2-Fall,Average
+rhye,2-Fall,25,105,99 - 111,98 - 112,63,2-Spring,Average
+rhye,2-Fall,26,107,101 - 113,100 - 114,68,2-Spring,Average
+rhye,2-Fall,27,110,104 - 116,103 - 117,75,> stop grade,Above Average
+rhye,2-Fall,28,112,106 - 118,105 - 119,79,> stop grade,Above Average
+rhye,2-Fall,29,116,110 - 122,109 - 123,86,> stop grade,Above Average
+rhye,2-Fall,30,121,115 - 127,114 - 128,92,> stop grade,Well Above Average
+rhye,2-Spring,0,43,40 - 49,40 - 50,<.1,< start grade,Significantly Below Average
+rhye,2-Spring,1,46,40 - 52,40 - 53,<.1,< start grade,Significantly Below Average
+rhye,2-Spring,2,49,43 - 55,42 - 56,<.1,< start grade,Significantly Below Average
+rhye,2-Spring,3,52,46 - 58,45 - 59,0.1,< start grade,Significantly Below Average
+rhye,2-Spring,4,54,48 - 60,47 - 61,0.1,< start grade,Significantly Below Average
+rhye,2-Spring,5,57,51 - 63,50 - 64,0.2,< start grade,Significantly Below Average
+rhye,2-Spring,6,59,53 - 65,52 - 66,0.3,K-Fall,Significantly Below Average
+rhye,2-Spring,7,61,55 - 67,54 - 68,0.5,K-Fall,Significantly Below Average
+rhye,2-Spring,8,63,57 - 69,56 - 70,1,K-Fall,Significantly Below Average
+rhye,2-Spring,9,66,60 - 72,59 - 73,1,K-Fall,Significantly Below Average
+rhye,2-Spring,10,68,62 - 74,61 - 75,2,K-Fall,Significantly Below Average
+rhye,2-Spring,11,70,64 - 76,63 - 77,2,K-Spring,Well Below Average
+rhye,2-Spring,12,72,66 - 78,65 - 79,3,K-Spring,Well Below Average
+rhye,2-Spring,13,74,68 - 80,67 - 81,4,K-Spring,Well Below Average
+rhye,2-Spring,14,76,70 - 82,69 - 83,5,K-Spring,Well Below Average
+rhye,2-Spring,15,78,72 - 84,71 - 85,7,1-Fall,Well Below Average
+rhye,2-Spring,16,80,74 - 86,73 - 87,9,1-Fall,Below Average
+rhye,2-Spring,17,82,76 - 88,75 - 89,12,1-Fall,Below Average
+rhye,2-Spring,18,84,78 - 90,77 - 91,14,1-Fall,Below Average
+rhye,2-Spring,19,86,80 - 92,79 - 93,18,1-Spring,Below Average
+rhye,2-Spring,20,88,82 - 94,81 - 95,21,1-Spring,Below Average
+rhye,2-Spring,21,91,85 - 97,84 - 98,27,1-Spring,Average
+rhye,2-Spring,22,93,87 - 99,86 - 100,32,2-Fall,Average
+rhye,2-Spring,23,95,89 - 101,88 - 102,37,2-Fall,Average
+rhye,2-Spring,24,97,91 - 103,90 - 104,42,2-Fall,Average
+rhye,2-Spring,25,100,94 - 106,93 - 107,50,2-Spring,Average
+rhye,2-Spring,26,103,97 - 109,96 - 110,58,2-Spring,Average
+rhye,2-Spring,27,106,100 - 112,99 - 113,66,> stop grade,Average
+rhye,2-Spring,28,109,103 - 115,102 - 116,73,> stop grade,Average
+rhye,2-Spring,29,114,108 - 120,107 - 121,82,> stop grade,Above Average
+rhye,2-Spring,30,117,111 - 123,110 - 124,87,> stop grade,Above Average
+spwe,K-Fall,0,70,64 - 76,63 - 77,2,< start grade,Well Below Average
+spwe,K-Fall,1,73,67 - 79,66 - 80,4,< start grade,Well Below Average
+spwe,K-Fall,2,76,70 - 82,69 - 83,5,< start grade,Well Below Average
+spwe,K-Fall,3,78,72 - 84,71 - 85,7,< start grade,Well Below Average
+spwe,K-Fall,4,81,75 - 87,74 - 88,10,< start grade,Below Average
+spwe,K-Fall,5,84,78 - 90,77 - 91,14,< start grade,Below Average
+spwe,K-Fall,6,87,81 - 93,80 - 94,19,< start grade,Below Average
+spwe,K-Fall,7,89,83 - 95,82 - 96,23,< start grade,Below Average
+spwe,K-Fall,8,92,86 - 98,85 - 99,30,< start grade,Average
+spwe,K-Fall,9,95,89 - 101,88 - 102,37,K-Fall,Average
+spwe,K-Fall,10,97,91 - 103,90 - 104,42,K-Fall,Average
+spwe,K-Fall,11,100,94 - 106,93 - 107,50,K-Fall,Average
+spwe,K-Fall,12,103,97 - 109,96 - 110,58,K-Fall,Average
+spwe,K-Fall,13,105,99 - 111,98 - 112,63,K-Spring,Average
+spwe,K-Fall,14,108,102 - 114,101 - 115,70,K-Spring,Average
+spwe,K-Fall,15,111,105 - 117,104 - 118,77,1-Fall,Above Average
+spwe,K-Fall,16,114,108 - 120,107 - 121,82,1-Fall,Above Average
+spwe,K-Fall,17,117,111 - 123,110 - 124,87,1-Fall,Above Average
+spwe,K-Fall,18,120,114 - 126,113 - 127,91,1-Spring,Well Above Average
+spwe,K-Fall,19,123,117 - 129,116 - 130,94,1-Spring,Well Above Average
+spwe,K-Fall,20,127,121 - 130,120 - 130,96,1-Spring,Well Above Average
+spwe,K-Fall,21,130,124 - 130,123 - 130,98,2-Fall,Well Above Average
+spwe,K-Fall,22,130,124 - 130,123 - 130,98,2-Fall,Well Above Average
+spwe,K-Fall,23,130,124 - 130,123 - 130,98,2-Spring,Well Above Average
+spwe,K-Fall,24,130,124 - 130,123 - 130,98,2-Spring,Well Above Average
+spwe,K-Fall,25,130,124 - 130,123 - 130,98,2-Spring,Well Above Average
+spwe,K-Fall,26,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Fall,27,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Fall,28,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Fall,29,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Fall,30,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Fall,31,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Fall,32,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Spring,0,62,56 - 68,55 - 69,1,< start grade,Significantly Below Average
+spwe,K-Spring,1,65,59 - 71,58 - 72,1,< start grade,Significantly Below Average
+spwe,K-Spring,2,68,62 - 74,61 - 75,2,< start grade,Significantly Below Average
+spwe,K-Spring,3,71,65 - 77,64 - 78,3,< start grade,Well Below Average
+spwe,K-Spring,4,74,68 - 80,67 - 81,4,< start grade,Well Below Average
+spwe,K-Spring,5,77,71 - 83,70 - 84,6,< start grade,Well Below Average
+spwe,K-Spring,6,79,73 - 85,72 - 86,8,< start grade,Well Below Average
+spwe,K-Spring,7,82,76 - 88,75 - 89,12,< start grade,Below Average
+spwe,K-Spring,8,85,79 - 91,78 - 92,16,< start grade,Below Average
+spwe,K-Spring,9,88,82 - 94,81 - 95,21,K-Fall,Below Average
+spwe,K-Spring,10,90,84 - 96,83 - 97,25,K-Fall,Average
+spwe,K-Spring,11,93,87 - 99,86 - 100,32,K-Fall,Average
+spwe,K-Spring,12,96,90 - 102,89 - 103,39,K-Fall,Average
+spwe,K-Spring,13,98,92 - 104,91 - 105,45,K-Spring,Average
+spwe,K-Spring,14,101,95 - 107,94 - 108,53,K-Spring,Average
+spwe,K-Spring,15,104,98 - 110,97 - 111,61,1-Fall,Average
+spwe,K-Spring,16,106,100 - 112,99 - 113,66,1-Fall,Average
+spwe,K-Spring,17,109,103 - 115,102 - 116,73,1-Fall,Average
+spwe,K-Spring,18,112,106 - 118,105 - 119,79,1-Spring,Above Average
+spwe,K-Spring,19,115,109 - 121,108 - 122,84,1-Spring,Above Average
+spwe,K-Spring,20,118,112 - 124,111 - 125,88,1-Spring,Above Average
+spwe,K-Spring,21,121,115 - 127,114 - 128,92,2-Fall,Well Above Average
+spwe,K-Spring,22,124,118 - 130,117 - 130,95,2-Fall,Well Above Average
+spwe,K-Spring,23,128,122 - 130,121 - 130,97,2-Spring,Well Above Average
+spwe,K-Spring,24,130,124 - 130,123 - 130,98,2-Spring,Well Above Average
+spwe,K-Spring,25,130,124 - 130,123 - 130,98,2-Spring,Well Above Average
+spwe,K-Spring,26,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Spring,27,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Spring,28,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Spring,29,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Spring,30,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Spring,31,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,K-Spring,32,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,1-Fall,0,52,46 - 58,45 - 59,0.1,< start grade,Significantly Below Average
+spwe,1-Fall,1,56,50 - 62,49 - 63,0.2,< start grade,Significantly Below Average
+spwe,1-Fall,2,60,54 - 66,53 - 67,0.4,< start grade,Significantly Below Average
+spwe,1-Fall,3,63,57 - 69,56 - 70,1,< start grade,Significantly Below Average
+spwe,1-Fall,4,66,60 - 72,59 - 73,1,< start grade,Significantly Below Average
+spwe,1-Fall,5,69,63 - 75,62 - 76,2,< start grade,Significantly Below Average
+spwe,1-Fall,6,72,66 - 78,65 - 79,3,< start grade,Well Below Average
+spwe,1-Fall,7,75,69 - 81,68 - 82,5,< start grade,Well Below Average
+spwe,1-Fall,8,78,72 - 84,71 - 85,7,< start grade,Well Below Average
+spwe,1-Fall,9,81,75 - 87,74 - 88,10,K-Fall,Below Average
+spwe,1-Fall,10,83,77 - 89,76 - 90,13,K-Fall,Below Average
+spwe,1-Fall,11,86,80 - 92,79 - 93,18,K-Fall,Below Average
+spwe,1-Fall,12,89,83 - 95,82 - 96,23,K-Fall,Below Average
+spwe,1-Fall,13,91,85 - 97,84 - 98,27,K-Spring,Average
+spwe,1-Fall,14,94,88 - 100,87 - 101,34,K-Spring,Average
+spwe,1-Fall,15,97,91 - 103,90 - 104,42,1-Fall,Average
+spwe,1-Fall,16,99,93 - 105,92 - 106,47,1-Fall,Average
+spwe,1-Fall,17,102,96 - 108,95 - 109,55,1-Fall,Average
+spwe,1-Fall,18,105,99 - 111,98 - 112,63,1-Spring,Average
+spwe,1-Fall,19,108,102 - 114,101 - 115,70,1-Spring,Average
+spwe,1-Fall,20,110,104 - 116,103 - 117,75,1-Spring,Above Average
+spwe,1-Fall,21,113,107 - 119,106 - 120,81,2-Fall,Above Average
+spwe,1-Fall,22,116,110 - 122,109 - 123,86,2-Fall,Above Average
+spwe,1-Fall,23,119,113 - 125,112 - 126,90,2-Spring,Above Average
+spwe,1-Fall,24,122,116 - 128,115 - 129,93,2-Spring,Well Above Average
+spwe,1-Fall,25,126,120 - 130,119 - 130,96,2-Spring,Well Above Average
+spwe,1-Fall,26,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,1-Fall,27,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,1-Fall,28,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,1-Fall,29,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,1-Fall,30,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,1-Fall,31,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,1-Fall,32,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,1-Spring,0,42,40 - 48,40 - 49,<.1,< start grade,Significantly Below Average
+spwe,1-Spring,1,46,40 - 52,40 - 53,<.1,< start grade,Significantly Below Average
+spwe,1-Spring,2,50,44 - 56,43 - 57,0.1,< start grade,Significantly Below Average
+spwe,1-Spring,3,54,48 - 60,47 - 61,0.1,< start grade,Significantly Below Average
+spwe,1-Spring,4,58,52 - 64,51 - 65,0.3,< start grade,Significantly Below Average
+spwe,1-Spring,5,61,55 - 67,54 - 68,0.5,< start grade,Significantly Below Average
+spwe,1-Spring,6,64,58 - 70,57 - 71,1,< start grade,Significantly Below Average
+spwe,1-Spring,7,67,61 - 73,60 - 74,1,< start grade,Significantly Below Average
+spwe,1-Spring,8,70,64 - 76,63 - 77,2,< start grade,Well Below Average
+spwe,1-Spring,9,73,67 - 79,66 - 80,4,K-Fall,Well Below Average
+spwe,1-Spring,10,76,70 - 82,69 - 83,5,K-Fall,Well Below Average
+spwe,1-Spring,11,79,73 - 85,72 - 86,8,K-Fall,Well Below Average
+spwe,1-Spring,12,82,76 - 88,75 - 89,12,K-Fall,Below Average
+spwe,1-Spring,13,84,78 - 90,77 - 91,14,K-Spring,Below Average
+spwe,1-Spring,14,87,81 - 93,80 - 94,19,K-Spring,Below Average
+spwe,1-Spring,15,90,84 - 96,83 - 97,25,1-Fall,Average
+spwe,1-Spring,16,93,87 - 99,86 - 100,32,1-Fall,Average
+spwe,1-Spring,17,95,89 - 101,88 - 102,37,1-Fall,Average
+spwe,1-Spring,18,98,92 - 104,91 - 105,45,1-Spring,Average
+spwe,1-Spring,19,101,95 - 107,94 - 108,53,1-Spring,Average
+spwe,1-Spring,20,103,97 - 109,96 - 110,58,1-Spring,Average
+spwe,1-Spring,21,106,100 - 112,99 - 113,66,2-Fall,Average
+spwe,1-Spring,22,109,103 - 115,102 - 116,73,2-Fall,Average
+spwe,1-Spring,23,112,106 - 118,105 - 119,79,2-Spring,Above Average
+spwe,1-Spring,24,115,109 - 121,108 - 122,84,2-Spring,Above Average
+spwe,1-Spring,25,118,112 - 124,111 - 125,88,2-Spring,Above Average
+spwe,1-Spring,26,121,115 - 127,114 - 128,92,> stop grade,Well Above Average
+spwe,1-Spring,27,124,118 - 130,117 - 130,95,> stop grade,Well Above Average
+spwe,1-Spring,28,128,122 - 130,121 - 130,97,> stop grade,Well Above Average
+spwe,1-Spring,29,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,1-Spring,30,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,1-Spring,31,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,1-Spring,32,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,2-Fall,0,40,40 - 46,40 - 47,<.1,< start grade,Significantly Below Average
+spwe,2-Fall,1,40,40 - 46,40 - 47,<.1,< start grade,Significantly Below Average
+spwe,2-Fall,2,40,40 - 46,40 - 47,<.1,< start grade,Significantly Below Average
+spwe,2-Fall,3,44,40 - 50,40 - 51,<.1,< start grade,Significantly Below Average
+spwe,2-Fall,4,48,42 - 54,41 - 55,<.1,< start grade,Significantly Below Average
+spwe,2-Fall,5,52,46 - 58,45 - 59,0.1,< start grade,Significantly Below Average
+spwe,2-Fall,6,55,49 - 61,48 - 62,0.1,< start grade,Significantly Below Average
+spwe,2-Fall,7,59,53 - 65,52 - 66,0.3,< start grade,Significantly Below Average
+spwe,2-Fall,8,62,56 - 68,55 - 69,1,< start grade,Significantly Below Average
+spwe,2-Fall,9,65,59 - 71,58 - 72,1,K-Fall,Significantly Below Average
+spwe,2-Fall,10,69,63 - 75,62 - 76,2,K-Fall,Significantly Below Average
+spwe,2-Fall,11,72,66 - 78,65 - 79,3,K-Fall,Well Below Average
+spwe,2-Fall,12,75,69 - 81,68 - 82,5,K-Fall,Well Below Average
+spwe,2-Fall,13,77,71 - 83,70 - 84,6,K-Spring,Well Below Average
+spwe,2-Fall,14,80,74 - 86,73 - 87,9,K-Spring,Below Average
+spwe,2-Fall,15,83,77 - 89,76 - 90,13,1-Fall,Below Average
+spwe,2-Fall,16,86,80 - 92,79 - 93,18,1-Fall,Below Average
+spwe,2-Fall,17,88,82 - 94,81 - 95,21,1-Fall,Below Average
+spwe,2-Fall,18,91,85 - 97,84 - 98,27,1-Spring,Average
+spwe,2-Fall,19,94,88 - 100,87 - 101,34,1-Spring,Average
+spwe,2-Fall,20,97,91 - 103,90 - 104,42,1-Spring,Average
+spwe,2-Fall,21,99,93 - 105,92 - 106,47,2-Fall,Average
+spwe,2-Fall,22,102,96 - 108,95 - 109,55,2-Fall,Average
+spwe,2-Fall,23,105,99 - 111,98 - 112,63,2-Spring,Average
+spwe,2-Fall,24,108,102 - 114,101 - 115,70,2-Spring,Average
+spwe,2-Fall,25,110,104 - 116,103 - 117,75,2-Spring,Above Average
+spwe,2-Fall,26,113,107 - 119,106 - 120,81,> stop grade,Above Average
+spwe,2-Fall,27,117,111 - 123,110 - 124,87,> stop grade,Above Average
+spwe,2-Fall,28,120,114 - 126,113 - 127,91,> stop grade,Well Above Average
+spwe,2-Fall,29,123,117 - 129,116 - 130,94,> stop grade,Well Above Average
+spwe,2-Fall,30,127,121 - 130,120 - 130,96,> stop grade,Well Above Average
+spwe,2-Fall,31,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,2-Fall,32,130,124 - 130,123 - 130,98,> stop grade,Well Above Average
+spwe,2-Spring,0,40,40 - 46,40 - 47,<.1,< start grade,Significantly Below Average
+spwe,2-Spring,1,40,40 - 46,40 - 47,<.1,< start grade,Significantly Below Average
+spwe,2-Spring,2,40,40 - 46,40 - 47,<.1,< start grade,Significantly Below Average
+spwe,2-Spring,3,40,40 - 46,40 - 47,<.1,< start grade,Significantly Below Average
+spwe,2-Spring,4,40,40 - 46,40 - 47,<.1,< start grade,Significantly Below Average
+spwe,2-Spring,5,41,40 - 47,40 - 48,<.1,< start grade,Significantly Below Average
+spwe,2-Spring,6,45,40 - 51,40 - 52,<.1,< start grade,Significantly Below Average
+spwe,2-Spring,7,49,43 - 55,42 - 56,<.1,< start grade,Significantly Below Average
+spwe,2-Spring,8,53,47 - 59,46 - 60,0.1,< start grade,Significantly Below Average
+spwe,2-Spring,9,57,51 - 63,50 - 64,0.2,K-Fall,Significantly Below Average
+spwe,2-Spring,10,60,54 - 66,53 - 67,0.4,K-Fall,Significantly Below Average
+spwe,2-Spring,11,64,58 - 70,57 - 71,1,K-Fall,Significantly Below Average
+spwe,2-Spring,12,67,61 - 73,60 - 74,1,K-Fall,Significantly Below Average
+spwe,2-Spring,13,70,64 - 76,63 - 77,2,K-Spring,Well Below Average
+spwe,2-Spring,14,73,67 - 79,66 - 80,4,K-Spring,Well Below Average
+spwe,2-Spring,15,76,70 - 82,69 - 83,5,1-Fall,Well Below Average
+spwe,2-Spring,16,79,73 - 85,72 - 86,8,1-Fall,Well Below Average
+spwe,2-Spring,17,82,76 - 88,75 - 89,12,1-Fall,Below Average
+spwe,2-Spring,18,84,78 - 90,77 - 91,14,1-Spring,Below Average
+spwe,2-Spring,19,87,81 - 93,80 - 94,19,1-Spring,Below Average
+spwe,2-Spring,20,90,84 - 96,83 - 97,25,1-Spring,Average
+spwe,2-Spring,21,93,87 - 99,86 - 100,32,2-Fall,Average
+spwe,2-Spring,22,96,90 - 102,89 - 103,39,2-Fall,Average
+spwe,2-Spring,23,98,92 - 104,91 - 105,45,2-Spring,Average
+spwe,2-Spring,24,101,95 - 107,94 - 108,53,2-Spring,Average
+spwe,2-Spring,25,104,98 - 110,97 - 111,61,2-Spring,Average
+spwe,2-Spring,26,107,101 - 113,100 - 114,68,> stop grade,Average
+spwe,2-Spring,27,110,104 - 116,103 - 117,75,> stop grade,Above Average
+spwe,2-Spring,28,113,107 - 119,106 - 120,81,> stop grade,Above Average
+spwe,2-Spring,29,117,111 - 123,110 - 124,87,> stop grade,Above Average
+spwe,2-Spring,30,120,114 - 126,113 - 127,91,> stop grade,Well Above Average
+spwe,2-Spring,31,124,118 - 130,117 - 130,95,> stop grade,Well Above Average
+spwe,2-Spring,32,129,123 - 130,122 - 130,97,> stop grade,Well Above Average

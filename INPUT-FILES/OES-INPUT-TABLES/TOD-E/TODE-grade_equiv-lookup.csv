@@ -1,4 +1,4 @@
-Grade,SPWEraw_min,SPWEraw_max,RHYEraw_min,RHYEraw_maz,ERLNEraw_min,ERLNEraw_max,LSWEraw_min,LSWEraw_max,ESEGEraw_min,ESEGEraw_max,LSKEraw_min,LSKEraw_max
+Grade,SPWEraw_min,SPWEraw_max,RHYEraw_min,RHYEraw_maz,ERNLEraw_min,ERNLEraw_max,LSWEraw_min,LSWEraw_max,ESEGEraw_min,ESEGEraw_max,LSKEraw_min,LSKEraw_max
 < Start grade,0,8,0,5,0,35,0,11,0,8,0,13
 K-Fall,9,12,6,10,36,46,12,15,9,12,14,18
 K-Spring,13,14,11,14,47,55,16,20,13,16,19,23
