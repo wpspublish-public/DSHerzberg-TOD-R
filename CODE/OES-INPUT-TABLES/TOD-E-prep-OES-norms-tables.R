@@ -414,6 +414,7 @@ index_composites_lookups <-
     score = test
   ) %>% 
   arrange(norm_group, match(score, index_composites), raw) %>% 
+  drop_na(ss) %>% 
   write_csv(
     here(
       "OUTPUT-FILES/OES-INPUT-TABLES/TOD-E/TOD-E-OES-index-composite-lookup-table.csv"
