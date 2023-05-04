@@ -1,0 +1,4 @@
+T_min,T_max,risk_level
+40,59,Low to Moderate Risk
+60,69,High Risk
+70,80,Very High Risk
