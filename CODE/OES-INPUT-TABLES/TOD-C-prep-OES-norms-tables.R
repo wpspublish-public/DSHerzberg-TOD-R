@@ -2,11 +2,14 @@ suppressMessages(library(here))
 suppressMessages(library(tidyverse))
 
 tests <- c("PHMC", "IWSC", "RLNC", "PWRC", "WPCC", "WMC", "PANC", "IWRC", "OREC", "BLNC", "SEGC", 
-           "RWSC", "SRE1C", "SRE2C", "RNLC", "LMC", "RPWC", "RIWC", "SSLC", "LVC", "GANC")
+           "RWSC", "SRE1C", "SRE2C", "RNLC", "LMC", "RPWC", "RIWC", "SSLC", "LVC", "GANC") %>% 
+  str_to_lower(.)
 age_grade_index_composites <- c("DDIW", "DDIQ", "LPI", "RSIW", "RSIQ", "SWA", "PK", "BRS", "DE", "SP", "RFW", 
-                                "RFQ", "RCQ1", "RCQ2", "PA", "RAN", "AWM", "OP", "VO", "RE", "VR2", "VR4")
+                                "RFQ", "RCQ1", "RCQ2", "PA", "RAN", "AWM", "OP", "VO", "RE", "VR2", "VR4") %>% 
+  str_to_lower(.)
 adult_index_composites <- c("DDIQ", "LPI", "RSIQ", "SWA", "PK", "BRS", "DE", "SP", "RFQ", "RCQ2", "PA", 
-                            "RAN", "AWM", "OP", "VO", "RE", "VR2", "VR4")
+                            "RAN", "AWM", "OP", "VO", "RE", "VR2", "VR4") %>% 
+  str_to_lower(.)
 index_composites <- c(age_grade_index_composites, adult_index_composites)
 all_scores <- c(tests, index_composites)
 norm_groups <- c("age", "grade")
@@ -69,16 +72,25 @@ age_grade_order <-
 ss_percentile_lookup <- suppressMessages(
   read_csv(
     here(
-      "INPUT-FILES/OES-INPUT-TABLES/TOD-E/SS-to-percentile.csv"
+      "INPUT-FILES/OES-INPUT-TABLES/TOD-C/SS-to-percentile.csv"
     )
   )
 ) %>%
   rename(ss = SS)
 
-age_mo_min_max_lookup <- suppressMessages(
+adult_age_mo_min_max_lookup <- suppressMessages(
   read_csv(
     here(
-      "INPUT-FILES/OES-INPUT-TABLES/TOD-E/age-range-TODE.csv"
+      "INPUT-FILES/OES-INPUT-TABLES/TOD-C/age-range-adult.csv"
+    )
+  )
+) %>%
+  rename(age_grade = original_age_range)
+
+child_age_mo_min_max_lookup <- suppressMessages(
+  read_csv(
+    here(
+      "INPUT-FILES/OES-INPUT-TABLES/TOD-C/age-range-child.csv"
     )
   )
 ) %>%
@@ -88,22 +100,38 @@ cv_lookup <- bind_rows(
   suppressMessages(
     read_csv(
       here(
-        "INPUT-FILES/OES-INPUT-TABLES/TOD-E/test-CI-lookup.csv"
+        "INPUT-FILES/OES-INPUT-TABLES/TOD-C/test-CI-lookup.csv"
       )
     )
   ) %>% 
-    mutate(across(test, ~ str_to_lower(.))) %>% 
-    rename(CV_90 = CI90, CV_95 = CI95), 
+    rename(CV_90 = CI90, CV_95 = CI95) %>% 
+    mutate(source = "test"), 
   suppressMessages(
     read_csv(
       here(
-        "INPUT-FILES/OES-INPUT-TABLES/TOD-E/index_composites-CI-lookup.csv"
+        "INPUT-FILES/OES-INPUT-TABLES/TOD-C/indexcomposites-CI-child-lookup.csv"
       )
     )
   ) %>% 
     mutate(across(test, ~ str_to_lower(.))) %>% 
-    rename(CV_90 = CI90, CV_95 = CI95)
-)
+    rename(CV_90 = CI90, CV_95 = CI95) %>% 
+    mutate(source = "indexcomposites_child"), 
+  suppressMessages(
+  read_csv(
+    here(
+      "INPUT-FILES/OES-INPUT-TABLES/TOD-C/indexcomposites-CI-adult-lookup.csv"
+    )
+  )
+) %>% 
+  mutate(across(test, ~ str_to_lower(.))) %>% 
+  rename(CV_90 = CI90, CV_95 = CI95) %>% 
+  mutate(source = "indexcomposites_adult"), 
+) %>% 
+  select(test, source, CV_90, CV_95)
+
+
+################# START HERE
+
 
 #### OUTPUT FOR AGE LOOKUP TABLES
 
@@ -113,7 +141,7 @@ age_lookups <- map(
     suppressMessages(
       read_csv(
         here(
-          str_c("INPUT-FILES/OES-INPUT-TABLES/TOD-E/", .x, "-lookup.csv")
+          str_c("INPUT-FILES/OES-INPUT-TABLES/TOD-C/", .x, "-lookup.csv")
         )
       )) %>% 
     pivot_longer(
@@ -240,7 +268,7 @@ age_lookups <- map(
   ) %>% 
   write_csv(
     here(
-      "OUTPUT-FILES/OES-INPUT-TABLES/TOD-E/TOD-E-OES-age-lookup-table.csv"
+      "OUTPUT-FILES/OES-INPUT-TABLES/TOD-C/TOD-C-OES-age-lookup-table.csv"
     ),
     na = ""
   )
@@ -253,7 +281,7 @@ grade_lookups <- map(
     suppressMessages(
       read_csv(
         here(
-          str_c("INPUT-FILES/OES-INPUT-TABLES/TOD-E/", .x, "-lookup.csv")
+          str_c("INPUT-FILES/OES-INPUT-TABLES/TOD-C/", .x, "-lookup.csv")
         )
       )) %>% 
     pivot_longer(
@@ -358,7 +386,7 @@ grade_lookups <- map(
   rename(grade = age_grade) %>% 
   write_csv(
     here(
-      "OUTPUT-FILES/OES-INPUT-TABLES/TOD-E/TOD-E-OES-grade-lookup-table.csv"
+      "OUTPUT-FILES/OES-INPUT-TABLES/TOD-C/TOD-C-OES-grade-lookup-table.csv"
     ),
     na = ""
   )
@@ -369,7 +397,7 @@ index_composites_lookups <-
   list(
     suppressMessages(read_csv(here(
       str_c(
-        "INPUT-FILES/OES-INPUT-TABLES/TOD-E/index_composites-age-lookup.csv"
+        "INPUT-FILES/OES-INPUT-TABLES/TOD-C/index_composites-age-lookup.csv"
       )
     ))) %>%
       pivot_longer(
@@ -383,7 +411,7 @@ index_composites_lookups <-
              norm_group = "age"),
     suppressMessages(read_csv(here(
       str_c(
-        "INPUT-FILES/OES-INPUT-TABLES/TOD-E/index_composites-grade-lookup.csv"
+        "INPUT-FILES/OES-INPUT-TABLES/TOD-C/index_composites-grade-lookup.csv"
       )
     ))) %>%
       pivot_longer(
@@ -455,7 +483,7 @@ index_composites_lookups <-
   drop_na(ss) %>% 
   write_csv(
     here(
-      "OUTPUT-FILES/OES-INPUT-TABLES/TOD-E/TOD-E-OES-index-composite-lookup-table.csv"
+      "OUTPUT-FILES/OES-INPUT-TABLES/TOD-C/TOD-C-OES-index-composite-lookup-table.csv"
     ),
     na = ""
   )
