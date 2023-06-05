@@ -13,7 +13,7 @@ adult_index_composites <- c("DDIQ", "LPI", "RSIQ", "SWA", "PK", "BRS", "DE", "SP
 index_composites <- c(age_grade_index_composites, adult_index_composites)
 all_scores <- c(tests, index_composites)
 norm_groups <- c("age", "grade")
-test_age_stems <- str_c(tests, "-age")
+test_age_stems <- str_c(tests, "-age")[!str_detect(str_c(tests, "-age"), "orec-age")]
 test_grade_stems <- str_c(tests, "-grade")
 age_grade_order <-
   c(
@@ -78,22 +78,12 @@ ss_percentile_lookup <- suppressMessages(
 ) %>%
   rename(ss = SS)
 
-adult_age_mo_min_max_lookup <- suppressMessages(
-  read_csv(
-    here(
-      "INPUT-FILES/OES-INPUT-TABLES/TOD-C/age-range-adult.csv"
-    )
-  )
-) %>%
-  rename(age_grade = original_age_range)
-
-child_age_mo_min_max_lookup <- suppressMessages(
-  read_csv(
-    here(
-      "INPUT-FILES/OES-INPUT-TABLES/TOD-C/age-range-child.csv"
-    )
-  )
-) %>%
+age_mo_min_max_lookup <- bind_rows(suppressMessages(read_csv(
+  here("INPUT-FILES/OES-INPUT-TABLES/TOD-C/age-range-child.csv")
+)) ,
+suppressMessages(read_csv(
+  here("INPUT-FILES/OES-INPUT-TABLES/TOD-C/age-range-adult.csv")
+))) %>%
   rename(age_grade = original_age_range)
 
 cv_lookup <- bind_rows(
@@ -129,10 +119,6 @@ cv_lookup <- bind_rows(
 ) %>% 
   select(test, source, CV_90, CV_95)
 
-
-################# START HERE
-
-
 #### OUTPUT FOR AGE LOOKUP TABLES
 
 age_lookups <- map(
@@ -160,6 +146,7 @@ age_lookups <- map(
   left_join(ss_percentile_lookup, by = "ss") %>%
   left_join(cv_lookup, by = "test") %>% 
   left_join(age_mo_min_max_lookup, by = "age_grade") %>% 
+  ###################### START HERE
   mutate(
     equiv = case_when(
       test == "spwe"  & between(raw, 0, 7) ~ "< start age",
