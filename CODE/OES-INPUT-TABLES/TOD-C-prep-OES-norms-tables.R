@@ -86,38 +86,27 @@ suppressMessages(read_csv(
 ))) %>%
   rename(age_grade = original_age_range)
 
-cv_lookup <- bind_rows(
-  suppressMessages(
-    read_csv(
-      here(
-        "INPUT-FILES/OES-INPUT-TABLES/TOD-C/test-CI-lookup.csv"
-      )
-    )
-  ) %>% 
-    rename(CV_90 = CI90, CV_95 = CI95) %>% 
-    mutate(source = "test"), 
-  suppressMessages(
-    read_csv(
-      here(
-        "INPUT-FILES/OES-INPUT-TABLES/TOD-C/indexcomposites-CI-child-lookup.csv"
-      )
-    )
-  ) %>% 
-    mutate(across(test, ~ str_to_lower(.))) %>% 
-    rename(CV_90 = CI90, CV_95 = CI95) %>% 
-    mutate(source = "indexcomposites_child"), 
-  suppressMessages(
-  read_csv(
-    here(
-      "INPUT-FILES/OES-INPUT-TABLES/TOD-C/indexcomposites-CI-adult-lookup.csv"
-    )
-  )
-) %>% 
-  mutate(across(test, ~ str_to_lower(.))) %>% 
-  rename(CV_90 = CI90, CV_95 = CI95) %>% 
-  mutate(source = "indexcomposites_adult"), 
-) %>% 
-  select(test, source, CV_90, CV_95)
+cv_lookup_test <- suppressMessages(read_csv(
+  here("INPUT-FILES/OES-INPUT-TABLES/TOD-C/test-CI-lookup.csv")
+)) %>%
+  rename(CV_90 = CI90, CV_95 = CI95) %>%
+  select(test, CV_90, CV_95)
+
+cv_lookup_index_composites_age_grade <- suppressMessages(read_csv(
+  here("INPUT-FILES/OES-INPUT-TABLES/TOD-C/indexcomposites-CI-child-lookup.csv")
+)) %>%
+  rename(CV_90 = CI90, CV_95 = CI95) %>%
+  select(test, CV_90, CV_95) %>% 
+  mutate(across(test,
+                ~ str_to_lower(.)))
+
+cv_lookup_index_composites_adult <- suppressMessages(read_csv(
+  here("INPUT-FILES/OES-INPUT-TABLES/TOD-C/indexcomposites-CI-adult-lookup.csv")
+)) %>%
+  rename(CV_90 = CI90, CV_95 = CI95) %>%
+  select(test, CV_90, CV_95) %>% 
+  mutate(across(test,
+                ~ str_to_lower(.)))
 
 #### OUTPUT FOR AGE LOOKUP TABLES
 
@@ -139,7 +128,7 @@ age_lookups <- map(
 ) %>%
   bind_rows() %>%
   left_join(ss_percentile_lookup, by = "ss") %>%
-  left_join(cv_lookup, by = "test") %>%
+  left_join(cv_lookup_test, by = "test") %>%
   left_join(age_mo_min_max_lookup, by = "age_grade") %>%
   mutate(
     equiv = case_when(
@@ -548,7 +537,7 @@ grade_lookups <- map(
 ) %>% 
   bind_rows() %>%
   left_join(ss_percentile_lookup, by = "ss") %>%
-  left_join(cv_lookup, by = "test") %>% 
+  left_join(cv_lookup_test, by = "test") %>% 
   mutate(
     grade_equiv = case_when(
       test == "phmc" & between(raw, 0, 19) ~ "< start grade", 
@@ -948,7 +937,7 @@ index_composites_lookups <-
   list(
     suppressMessages(read_csv(here(
       str_c(
-        "INPUT-FILES/OES-INPUT-TABLES/TOD-C/index_composites-age-lookup.csv"
+        "INPUT-FILES/OES-INPUT-TABLES/TOD-C/indexcomposites-age-lookup.csv"
       )
     ))) %>%
       pivot_longer(
@@ -957,12 +946,12 @@ index_composites_lookups <-
         values_to = "ss"
       ) %>%
       mutate(across(test,
-                    ~ str_sub(., 1,-5) %>%
-                      str_to_lower()),
-             norm_group = "age"),
+                    ~ str_to_lower(.)),
+             norm_group = "age") %>% 
+      left_join(cv_lookup_index_composites_age_grade, by = "test"), 
     suppressMessages(read_csv(here(
       str_c(
-        "INPUT-FILES/OES-INPUT-TABLES/TOD-C/index_composites-grade-lookup.csv"
+        "INPUT-FILES/OES-INPUT-TABLES/TOD-C/indexcomposites-grade-lookup.csv"
       )
     ))) %>%
       pivot_longer(
@@ -971,13 +960,29 @@ index_composites_lookups <-
         values_to = "ss"
       ) %>%
       mutate(across(test,
-                    ~ str_sub(., 1,-7) %>%
-                      str_to_lower()),
-             norm_group = "grade")
+                    ~ str_to_lower(.)),
+             norm_group = "grade") %>% 
+      left_join(cv_lookup_index_composites_age_grade, by = "test"), 
+    suppressMessages(read_csv(here(
+      str_c(
+        "INPUT-FILES/OES-INPUT-TABLES/TOD-C/indexcomposites-adult-lookup.csv"
+      )
+    ))) %>%
+      pivot_longer(
+        cols = -raw,
+        names_to = "test",
+        values_to = "ss"
+      ) %>%
+      mutate(across(test,
+                    ~ str_to_lower(.)),
+             norm_group = "adult") %>% 
+      left_join(cv_lookup_index_composites_adult, by = "test")
   ) %>%
   bind_rows() %>%
-  left_join(ss_percentile_lookup, by = "ss") %>%
-  left_join(cv_lookup, by = "test") %>% 
+  left_join(ss_percentile_lookup, by = "ss") %>% 
+  
+  # ### START HERE BY EXAMIING WRITTEN OUTPUT TO THIS POINT
+  
   mutate(
     risk = case_when(
       test %in% c("eddiq", "eddiw") &
