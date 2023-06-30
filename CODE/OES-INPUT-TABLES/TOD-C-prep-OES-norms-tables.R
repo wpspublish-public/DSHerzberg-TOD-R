@@ -14,6 +14,7 @@ index_composites <- c(age_grade_index_composites, adult_index_composites)
 all_scores <- c(tests, index_composites)
 norm_groups <- c("age", "grade")
 test_age_stems <- str_c(tests, "-age")[!str_detect(str_c(tests, "-age"), "orec-age")]
+test_age_adult_stems <- str_c(tests, "-adult")[!str_detect(str_c(tests, "-adult"), "sre1c-adult")]
 test_grade_stems <- str_c(tests, "-grade")
 age_grade_order <-
   c(
@@ -66,7 +67,10 @@ age_grade_order <-
     "11-Fall", 
     "11-Spring", 
     "12-Fall", 
-    "12-Spring"
+    "12-Spring",
+    "age",
+    "grade",
+    "adult"
   )
 
 ss_percentile_lookup <- suppressMessages(
@@ -110,23 +114,40 @@ cv_lookup_index_composites_adult <- suppressMessages(read_csv(
 
 #### OUTPUT FOR AGE LOOKUP TABLES
 
-age_lookups <- map(
-  test_age_stems,
-  ~
-    suppressMessages(read_csv(here(
-      str_c("INPUT-FILES/OES-INPUT-TABLES/TOD-C/", .x, "-lookup.csv")
-    ))) %>%
-    pivot_longer(
-      cols = -raw,
-      names_to = "age_grade",
-      values_to = "ss"
-    ) %>%
-    mutate(test = str_sub(.x, 1,-5),) %>%
-    select(test, age_grade, raw, ss) %>%
-    arrange(test,
-            match(age_grade, age_grade_order), raw)
-) %>%
-  bind_rows() %>%
+age_lookups <- bind_rows(bind_rows(
+  map(
+    test_age_stems,
+    ~
+      suppressMessages(read_csv(here(
+        str_c("INPUT-FILES/OES-INPUT-TABLES/TOD-C/", .x, "-lookup.csv")
+      ))) %>%
+      pivot_longer(
+        cols = -raw,
+        names_to = "age_grade",
+        values_to = "ss"
+      ) %>%
+      mutate(test = str_sub(.x, 1, -5)) %>%
+      select(test, age_grade, raw, ss)
+  )
+),
+bind_rows(
+  map(
+    test_age_adult_stems,
+    ~
+      suppressMessages(read_csv(here(
+        str_c("INPUT-FILES/OES-INPUT-TABLES/TOD-C/", .x, "-lookup.csv")
+      ))) %>%
+      pivot_longer(
+        cols = -raw,
+        names_to = "age_grade",
+        values_to = "ss"
+      ) %>%
+      mutate(test = str_sub(.x, 1, -7)) %>%
+      select(test, age_grade, raw, ss)
+  )
+)) %>% 
+  arrange(match(test, tests),
+          match(age_grade, age_grade_order), raw) %>% 
   left_join(ss_percentile_lookup, by = "ss") %>%
   left_join(cv_lookup_test, by = "test") %>%
   left_join(age_mo_min_max_lookup, by = "age_grade") %>%
@@ -980,22 +1001,19 @@ index_composites_lookups <-
   ) %>%
   bind_rows() %>%
   left_join(ss_percentile_lookup, by = "ss") %>% 
-  
-  # ### START HERE BY EXAMIING WRITTEN OUTPUT TO THIS POINT
-  
   mutate(
-    risk = case_when(
-      test %in% c("eddiq", "eddiw") &
+    prob = case_when(
+      test %in% c("ddiq", "ddiw") &
         between(ss, 120, 130) ~ "Extremely Low Probability of Dyslexia",
-      test %in% c("eddiq", "eddiw") &
+      test %in% c("ddiq", "ddiw") &
         between(ss, 110, 119) ~ "Very Low Probability of Dyslexia",
-      test %in% c("eddiq", "eddiw") &
+      test %in% c("ddiq", "ddiw") &
         between(ss, 90, 109) ~ "Low to Moderate Probability of Dyslexia",
-      test %in% c("eddiq", "eddiw") &
+      test %in% c("ddiq", "ddiw") &
         between(ss, 80, 89) ~ "High Probability of Dyslexia",
-      test %in% c("eddiq", "eddiw") &
+      test %in% c("ddiq", "ddiw") &
         between(ss, 70, 79) ~ "Very High Probability of Dyslexia",
-      test %in% c("eddiq", "eddiw") &
+      test %in% c("ddiq", "ddiw") &
         between(ss, 40, 69) ~ "Extremely High Probability of Dyslexia",
       TRUE ~ NA_character_
     ),
@@ -1031,11 +1049,11 @@ index_composites_lookups <-
     CI90 = str_c(CI90_LB, CI90_UB, sep = " - "), 
     CI95 = str_c(CI95_LB, CI95_UB, sep = " - ") 
   ) %>% 
-  select(norm_group, test, raw, ss, CI90, CI95, percentile, desc_range, risk) %>% 
+  select(norm_group, test, raw, ss, CI90, CI95, percentile, desc_range, prob) %>% 
   rename(
     score = test
   ) %>% 
-  arrange(norm_group, match(score, index_composites), raw) %>% 
+  arrange(match(norm_group, age_grade_order), match(score, age_grade_index_composites), raw) %>% 
   drop_na(ss) %>% 
   write_csv(
     here(
