@@ -1059,7 +1059,7 @@ index_composites_lookups <-
     here(
       "OUTPUT-FILES/OES-INPUT-TABLES/TOD-C/TOD-C-OES-index-composite-lookup-table.csv"
     ),
-    na = ""
+    na = " "
   )
 
 
