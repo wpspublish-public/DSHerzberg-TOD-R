@@ -8178,16 +8178,16 @@ age,WRF,60,63,22,130,124 - 130,123 - 130,98,6:8 to 6:11,Well Above Average
 age,WRF,60,63,23,130,124 - 130,123 - 130,98,7:0 to 7:3,Well Above Average
 age,WRF,60,63,24,130,124 - 130,123 - 130,98,7:0 to 7:3,Well Above Average
 age,WRF,60,63,25,130,124 - 130,123 - 130,98,7:0 to 7:3,Well Above Average
-age,WRF,60,63,26,130,124 - 130,123 - 130,98,,Well Above Average
-age,WRF,60,63,27,130,124 - 130,123 - 130,98,,Well Above Average
+age,WRF,60,63,26,130,124 - 130,123 - 130,98,7:4 to 7:7,Well Above Average
+age,WRF,60,63,27,130,124 - 130,123 - 130,98,7:4 to 7:7,Well Above Average
 age,WRF,60,63,28,130,124 - 130,123 - 130,98,7:8 to 7:11,Well Above Average
 age,WRF,60,63,29,130,124 - 130,123 - 130,98,7:8 to 7:11,Well Above Average
 age,WRF,60,63,30,130,124 - 130,123 - 130,98,7:8 to 7:11,Well Above Average
 age,WRF,60,63,31,130,124 - 130,123 - 130,98,7:8 to 7:11,Well Above Average
 age,WRF,60,63,32,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,60,63,33,130,124 - 130,123 - 130,98,> stop age,Well Above Average
-age,WRF,60,63,34,130,124 - 130,123 - 130,98,7:4 to 7:7,Well Above Average
-age,WRF,60,63,35,130,124 - 130,123 - 130,98,7:4 to 7:7,Well Above Average
+age,WRF,60,63,34,130,124 - 130,123 - 130,98,> stop age,Well Above Average
+age,WRF,60,63,35,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,60,63,36,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,60,63,37,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,60,63,38,130,124 - 130,123 - 130,98,> stop age,Well Above Average
@@ -8247,16 +8247,16 @@ age,WRF,64,67,22,124,118 - 130,117 - 130,95,6:8 to 6:11,Well Above Average
 age,WRF,64,67,23,125,119 - 130,118 - 130,95,7:0 to 7:3,Well Above Average
 age,WRF,64,67,24,127,121 - 130,120 - 130,96,7:0 to 7:3,Well Above Average
 age,WRF,64,67,25,128,122 - 130,121 - 130,97,7:0 to 7:3,Well Above Average
-age,WRF,64,67,26,130,124 - 130,123 - 130,98,,Well Above Average
-age,WRF,64,67,27,130,124 - 130,123 - 130,98,,Well Above Average
+age,WRF,64,67,26,130,124 - 130,123 - 130,98,7:4 to 7:7,Well Above Average
+age,WRF,64,67,27,130,124 - 130,123 - 130,98,7:4 to 7:7,Well Above Average
 age,WRF,64,67,28,130,124 - 130,123 - 130,98,7:8 to 7:11,Well Above Average
 age,WRF,64,67,29,130,124 - 130,123 - 130,98,7:8 to 7:11,Well Above Average
 age,WRF,64,67,30,130,124 - 130,123 - 130,98,7:8 to 7:11,Well Above Average
 age,WRF,64,67,31,130,124 - 130,123 - 130,98,7:8 to 7:11,Well Above Average
 age,WRF,64,67,32,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,64,67,33,130,124 - 130,123 - 130,98,> stop age,Well Above Average
-age,WRF,64,67,34,130,124 - 130,123 - 130,98,7:4 to 7:7,Well Above Average
-age,WRF,64,67,35,130,124 - 130,123 - 130,98,7:4 to 7:7,Well Above Average
+age,WRF,64,67,34,130,124 - 130,123 - 130,98,> stop age,Well Above Average
+age,WRF,64,67,35,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,64,67,36,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,64,67,37,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,64,67,38,130,124 - 130,123 - 130,98,> stop age,Well Above Average
@@ -8316,16 +8316,16 @@ age,WRF,68,71,22,117,111 - 123,110 - 124,87,6:8 to 6:11,Above Average
 age,WRF,68,71,23,118,112 - 124,111 - 125,88,7:0 to 7:3,Above Average
 age,WRF,68,71,24,120,114 - 126,113 - 127,91,7:0 to 7:3,Well Above Average
 age,WRF,68,71,25,121,115 - 127,114 - 128,92,7:0 to 7:3,Well Above Average
-age,WRF,68,71,26,123,117 - 129,116 - 130,94,,Well Above Average
-age,WRF,68,71,27,124,118 - 130,117 - 130,95,,Well Above Average
+age,WRF,68,71,26,123,117 - 129,116 - 130,94,7:4 to 7:7,Well Above Average
+age,WRF,68,71,27,124,118 - 130,117 - 130,95,7:4 to 7:7,Well Above Average
 age,WRF,68,71,28,126,120 - 130,119 - 130,96,7:8 to 7:11,Well Above Average
 age,WRF,68,71,29,127,121 - 130,120 - 130,96,7:8 to 7:11,Well Above Average
 age,WRF,68,71,30,128,122 - 130,121 - 130,97,7:8 to 7:11,Well Above Average
 age,WRF,68,71,31,130,124 - 130,123 - 130,98,7:8 to 7:11,Well Above Average
 age,WRF,68,71,32,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,68,71,33,130,124 - 130,123 - 130,98,> stop age,Well Above Average
-age,WRF,68,71,34,130,124 - 130,123 - 130,98,7:4 to 7:7,Well Above Average
-age,WRF,68,71,35,130,124 - 130,123 - 130,98,7:4 to 7:7,Well Above Average
+age,WRF,68,71,34,130,124 - 130,123 - 130,98,> stop age,Well Above Average
+age,WRF,68,71,35,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,68,71,36,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,68,71,37,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,68,71,38,130,124 - 130,123 - 130,98,> stop age,Well Above Average
@@ -8385,16 +8385,16 @@ age,WRF,72,75,22,110,104 - 116,103 - 117,75,6:8 to 6:11,Above Average
 age,WRF,72,75,23,112,106 - 118,105 - 119,79,7:0 to 7:3,Above Average
 age,WRF,72,75,24,114,108 - 120,107 - 121,82,7:0 to 7:3,Above Average
 age,WRF,72,75,25,115,109 - 121,108 - 122,84,7:0 to 7:3,Above Average
-age,WRF,72,75,26,117,111 - 123,110 - 124,87,,Above Average
-age,WRF,72,75,27,118,112 - 124,111 - 125,88,,Above Average
+age,WRF,72,75,26,117,111 - 123,110 - 124,87,7:4 to 7:7,Above Average
+age,WRF,72,75,27,118,112 - 124,111 - 125,88,7:4 to 7:7,Above Average
 age,WRF,72,75,28,120,114 - 126,113 - 127,91,7:8 to 7:11,Well Above Average
 age,WRF,72,75,29,121,115 - 127,114 - 128,92,7:8 to 7:11,Well Above Average
 age,WRF,72,75,30,123,117 - 129,116 - 130,94,7:8 to 7:11,Well Above Average
 age,WRF,72,75,31,124,118 - 130,117 - 130,95,7:8 to 7:11,Well Above Average
 age,WRF,72,75,32,126,120 - 130,119 - 130,96,> stop age,Well Above Average
 age,WRF,72,75,33,127,121 - 130,120 - 130,96,> stop age,Well Above Average
-age,WRF,72,75,34,128,122 - 130,121 - 130,97,7:4 to 7:7,Well Above Average
-age,WRF,72,75,35,130,124 - 130,123 - 130,98,7:4 to 7:7,Well Above Average
+age,WRF,72,75,34,128,122 - 130,121 - 130,97,> stop age,Well Above Average
+age,WRF,72,75,35,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,72,75,36,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,72,75,37,130,124 - 130,123 - 130,98,> stop age,Well Above Average
 age,WRF,72,75,38,130,124 - 130,123 - 130,98,> stop age,Well Above Average
@@ -8454,16 +8454,16 @@ age,WRF,76,79,22,105,99 - 111,98 - 112,63,6:8 to 6:11,Average
 age,WRF,76,79,23,107,101 - 113,100 - 114,68,7:0 to 7:3,Average
 age,WRF,76,79,24,108,102 - 114,101 - 115,70,7:0 to 7:3,Average
 age,WRF,76,79,25,110,104 - 116,103 - 117,75,7:0 to 7:3,Above Average
-age,WRF,76,79,26,111,105 - 117,104 - 118,77,,Above Average
-age,WRF,76,79,27,113,107 - 119,106 - 120,81,,Above Average
+age,WRF,76,79,26,111,105 - 117,104 - 118,77,7:4 to 7:7,Above Average
+age,WRF,76,79,27,113,107 - 119,106 - 120,81,7:4 to 7:7,Above Average
 age,WRF,76,79,28,115,109 - 121,108 - 122,84,7:8 to 7:11,Above Average
 age,WRF,76,79,29,116,110 - 122,109 - 123,86,7:8 to 7:11,Above Average
 age,WRF,76,79,30,118,112 - 124,111 - 125,88,7:8 to 7:11,Above Average
 age,WRF,76,79,31,119,113 - 125,112 - 126,90,7:8 to 7:11,Above Average
 age,WRF,76,79,32,121,115 - 127,114 - 128,92,> stop age,Well Above Average
 age,WRF,76,79,33,122,116 - 128,115 - 129,93,> stop age,Well Above Average
-age,WRF,76,79,34,123,117 - 129,116 - 130,94,7:4 to 7:7,Well Above Average
-age,WRF,76,79,35,125,119 - 130,118 - 130,95,7:4 to 7:7,Well Above Average
+age,WRF,76,79,34,123,117 - 129,116 - 130,94,> stop age,Well Above Average
+age,WRF,76,79,35,125,119 - 130,118 - 130,95,> stop age,Well Above Average
 age,WRF,76,79,36,126,120 - 130,119 - 130,96,> stop age,Well Above Average
 age,WRF,76,79,37,128,122 - 130,121 - 130,97,> stop age,Well Above Average
 age,WRF,76,79,38,129,123 - 130,122 - 130,97,> stop age,Well Above Average
@@ -8523,16 +8523,16 @@ age,WRF,80,83,22,100,94 - 106,93 - 107,50,6:8 to 6:11,Average
 age,WRF,80,83,23,102,96 - 108,95 - 109,55,7:0 to 7:3,Average
 age,WRF,80,83,24,104,98 - 110,97 - 111,61,7:0 to 7:3,Average
 age,WRF,80,83,25,105,99 - 111,98 - 112,63,7:0 to 7:3,Average
-age,WRF,80,83,26,107,101 - 113,100 - 114,68,,Average
-age,WRF,80,83,27,108,102 - 114,101 - 115,70,,Average
+age,WRF,80,83,26,107,101 - 113,100 - 114,68,7:4 to 7:7,Average
+age,WRF,80,83,27,108,102 - 114,101 - 115,70,7:4 to 7:7,Average
 age,WRF,80,83,28,110,104 - 116,103 - 117,75,7:8 to 7:11,Above Average
 age,WRF,80,83,29,111,105 - 117,104 - 118,77,7:8 to 7:11,Above Average
 age,WRF,80,83,30,113,107 - 119,106 - 120,81,7:8 to 7:11,Above Average
 age,WRF,80,83,31,115,109 - 121,108 - 122,84,7:8 to 7:11,Above Average
 age,WRF,80,83,32,116,110 - 122,109 - 123,86,> stop age,Above Average
 age,WRF,80,83,33,118,112 - 124,111 - 125,88,> stop age,Above Average
-age,WRF,80,83,34,119,113 - 125,112 - 126,90,7:4 to 7:7,Above Average
-age,WRF,80,83,35,121,115 - 127,114 - 128,92,7:4 to 7:7,Well Above Average
+age,WRF,80,83,34,119,113 - 125,112 - 126,90,> stop age,Above Average
+age,WRF,80,83,35,121,115 - 127,114 - 128,92,> stop age,Well Above Average
 age,WRF,80,83,36,122,116 - 128,115 - 129,93,> stop age,Well Above Average
 age,WRF,80,83,37,124,118 - 130,117 - 130,95,> stop age,Well Above Average
 age,WRF,80,83,38,125,119 - 130,118 - 130,95,> stop age,Well Above Average
@@ -8592,16 +8592,16 @@ age,WRF,84,87,22,96,90 - 102,89 - 103,39,6:8 to 6:11,Average
 age,WRF,84,87,23,98,92 - 104,91 - 105,45,7:0 to 7:3,Average
 age,WRF,84,87,24,100,94 - 106,93 - 107,50,7:0 to 7:3,Average
 age,WRF,84,87,25,101,95 - 107,94 - 108,53,7:0 to 7:3,Average
-age,WRF,84,87,26,103,97 - 109,96 - 110,58,,Average
-age,WRF,84,87,27,104,98 - 110,97 - 111,61,,Average
+age,WRF,84,87,26,103,97 - 109,96 - 110,58,7:4 to 7:7,Average
+age,WRF,84,87,27,104,98 - 110,97 - 111,61,7:4 to 7:7,Average
 age,WRF,84,87,28,106,100 - 112,99 - 113,66,7:8 to 7:11,Average
 age,WRF,84,87,29,107,101 - 113,100 - 114,68,7:8 to 7:11,Average
 age,WRF,84,87,30,109,103 - 115,102 - 116,73,7:8 to 7:11,Average
 age,WRF,84,87,31,111,105 - 117,104 - 118,77,7:8 to 7:11,Above Average
 age,WRF,84,87,32,112,106 - 118,105 - 119,79,> stop age,Above Average
 age,WRF,84,87,33,114,108 - 120,107 - 121,82,> stop age,Above Average
-age,WRF,84,87,34,115,109 - 121,108 - 122,84,7:4 to 7:7,Above Average
-age,WRF,84,87,35,117,111 - 123,110 - 124,87,7:4 to 7:7,Above Average
+age,WRF,84,87,34,115,109 - 121,108 - 122,84,> stop age,Above Average
+age,WRF,84,87,35,117,111 - 123,110 - 124,87,> stop age,Above Average
 age,WRF,84,87,36,118,112 - 124,111 - 125,88,> stop age,Above Average
 age,WRF,84,87,37,120,114 - 126,113 - 127,91,> stop age,Well Above Average
 age,WRF,84,87,38,121,115 - 127,114 - 128,92,> stop age,Well Above Average
@@ -8661,16 +8661,16 @@ age,WRF,88,91,22,93,87 - 99,86 - 100,32,6:8 to 6:11,Average
 age,WRF,88,91,23,94,88 - 100,87 - 101,34,7:0 to 7:3,Average
 age,WRF,88,91,24,96,90 - 102,89 - 103,39,7:0 to 7:3,Average
 age,WRF,88,91,25,98,92 - 104,91 - 105,45,7:0 to 7:3,Average
-age,WRF,88,91,26,99,93 - 105,92 - 106,47,,Average
-age,WRF,88,91,27,101,95 - 107,94 - 108,53,,Average
+age,WRF,88,91,26,99,93 - 105,92 - 106,47,7:4 to 7:7,Average
+age,WRF,88,91,27,101,95 - 107,94 - 108,53,7:4 to 7:7,Average
 age,WRF,88,91,28,102,96 - 108,95 - 109,55,7:8 to 7:11,Average
 age,WRF,88,91,29,104,98 - 110,97 - 111,61,7:8 to 7:11,Average
 age,WRF,88,91,30,105,99 - 111,98 - 112,63,7:8 to 7:11,Average
 age,WRF,88,91,31,107,101 - 113,100 - 114,68,7:8 to 7:11,Average
 age,WRF,88,91,32,109,103 - 115,102 - 116,73,> stop age,Average
 age,WRF,88,91,33,110,104 - 116,103 - 117,75,> stop age,Above Average
-age,WRF,88,91,34,112,106 - 118,105 - 119,79,7:4 to 7:7,Above Average
-age,WRF,88,91,35,113,107 - 119,106 - 120,81,7:4 to 7:7,Above Average
+age,WRF,88,91,34,112,106 - 118,105 - 119,79,> stop age,Above Average
+age,WRF,88,91,35,113,107 - 119,106 - 120,81,> stop age,Above Average
 age,WRF,88,91,36,115,109 - 121,108 - 122,84,> stop age,Above Average
 age,WRF,88,91,37,117,111 - 123,110 - 124,87,> stop age,Above Average
 age,WRF,88,91,38,118,112 - 124,111 - 125,88,> stop age,Above Average
@@ -8730,16 +8730,16 @@ age,WRF,92,95,22,90,84 - 96,83 - 97,25,6:8 to 6:11,Average
 age,WRF,92,95,23,91,85 - 97,84 - 98,27,7:0 to 7:3,Average
 age,WRF,92,95,24,93,87 - 99,86 - 100,32,7:0 to 7:3,Average
 age,WRF,92,95,25,95,89 - 101,88 - 102,37,7:0 to 7:3,Average
-age,WRF,92,95,26,96,90 - 102,89 - 103,39,,Average
-age,WRF,92,95,27,98,92 - 104,91 - 105,45,,Average
+age,WRF,92,95,26,96,90 - 102,89 - 103,39,7:4 to 7:7,Average
+age,WRF,92,95,27,98,92 - 104,91 - 105,45,7:4 to 7:7,Average
 age,WRF,92,95,28,99,93 - 105,92 - 106,47,7:8 to 7:11,Average
 age,WRF,92,95,29,101,95 - 107,94 - 108,53,7:8 to 7:11,Average
 age,WRF,92,95,30,102,96 - 108,95 - 109,55,7:8 to 7:11,Average
 age,WRF,92,95,31,104,98 - 110,97 - 111,61,7:8 to 7:11,Average
 age,WRF,92,95,32,106,100 - 112,99 - 113,66,> stop age,Average
 age,WRF,92,95,33,107,101 - 113,100 - 114,68,> stop age,Average
-age,WRF,92,95,34,109,103 - 115,102 - 116,73,7:4 to 7:7,Average
-age,WRF,92,95,35,110,104 - 116,103 - 117,75,7:4 to 7:7,Above Average
+age,WRF,92,95,34,109,103 - 115,102 - 116,73,> stop age,Average
+age,WRF,92,95,35,110,104 - 116,103 - 117,75,> stop age,Above Average
 age,WRF,92,95,36,112,106 - 118,105 - 119,79,> stop age,Above Average
 age,WRF,92,95,37,114,108 - 120,107 - 121,82,> stop age,Above Average
 age,WRF,92,95,38,116,110 - 122,109 - 123,86,> stop age,Above Average
